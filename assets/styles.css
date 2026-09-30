@@ -279,3 +279,26 @@ footer a { color: var(--cyan); text-decoration: none; font-size: 13px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+
+
+/* Unified calculator selector */
+.calculator-deck { display: grid; gap: 34px; }
+.calculator-switcher { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, .7fr); gap: 24px; align-items: end; }
+.calculator-switcher label { display: grid; gap: 8px; }
+.calculator-switcher select {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 42px 10px 12px;
+  color: var(--ink);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+}
+.calculator-switcher p { margin: 0 0 4px; color: var(--muted); }
+.calculator-view[hidden] { display: none !important; }
+.recovery-planner { margin-top: 28px; }
+
+@media (max-width: 700px) {
+  .calculator-switcher { grid-template-columns: 1fr; align-items: stretch; }
+}
