@@ -44,6 +44,7 @@
             <option value="ias-local">Interstellar Anomaly Scanner — local level</option>
             <option value="ias-network">Interstellar Anomaly Scanner — account-wide planner</option>
             <option value="recovery">Intergalactic Recovery Center</option>
+            <option value="build-queue">Planet build queue</option>
           </select>
         </label>
         <p id="calculator-summary">Single-planet IAS cost and Lithium production.</p>
@@ -184,6 +185,55 @@
             <div class="planner-result savings-result"><span>Resulting bonus</span><strong id="recovery-result-bonus"></strong><small>+0.2% per building level</small></div>
           </div>
           <p class="fine-print">Projection assumes the early observed ×1.5 local cost curve continues. Recheck this planner as more Control Center levels are measured.</p>
+        </article>
+      </section>
+
+      <section class="calculator-view" data-calculator-view="build-queue" id="build-queue-calculator" hidden>
+        <div class="section-heading wide">
+          <p class="kicker">PLANET BUILD QUEUE</p>
+          <h2>Price the whole plan before you start</h2>
+          <p>Queue modeled Orion buildings from their current level to a target level and see the combined Metal, Crystal, and Deuterium requirement up front.</p>
+        </div>
+
+        <article class="panel build-queue">
+          <div class="queue-toolbar">
+            <div>
+              <p class="micro">QUEUE ITEMS</p>
+              <h3>New planet / upgrade package</h3>
+              <p>Add as many building targets as you need. Each row prices only the levels between current and target.</p>
+            </div>
+            <button type="button" class="button secondary" id="queue-add-item">+ Add building</button>
+          </div>
+
+          <div id="queue-items" class="queue-items" aria-live="polite"></div>
+
+          <div class="queue-total-grid">
+            <div class="planner-result primary-result">
+              <span>Total resources</span>
+              <strong id="queue-grand-total">0</strong>
+              <small id="queue-total-breakdown">M 0 · C 0 · D 0</small>
+            </div>
+            <div class="planner-result">
+              <span>Metal</span>
+              <strong id="queue-metal">0</strong>
+              <small>combined queued cost</small>
+            </div>
+            <div class="planner-result">
+              <span>Crystal</span>
+              <strong id="queue-crystal">0</strong>
+              <small>combined queued cost</small>
+            </div>
+            <div class="planner-result">
+              <span>Deuterium</span>
+              <strong id="queue-deuterium">0</strong>
+              <small>combined queued cost</small>
+            </div>
+          </div>
+
+          <div class="queue-actions">
+            <button type="button" class="button secondary" id="queue-clear">Clear queue</button>
+          </div>
+          <p class="fine-print">Currently includes the buildings whose cost models are available in Project Orion: IAS and Intergalactic Recovery Center. Recovery Center costs remain provisional until the higher-level curve is validated. Base-game prerequisite buildings are not included yet.</p>
         </article>
       </section>
     </section>
