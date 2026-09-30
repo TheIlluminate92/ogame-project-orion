@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.10.1"
+    revision: "0.10.2"
   },
 
   lithium: {
@@ -50,9 +50,11 @@ window.ORION_DATA = {
           bonusPerLevelPercent: 0.2,
           stacksEmpireWide: true,
           maxObservedTechinfoLevel: 15,
+          costValidatedThrough: 9,
+          maxCalculatorLevel: 100,
           baseCost: { metal: 75000, crystal: 52500, deuterium: 22500 },
           costMultiplier: 1.5,
-          costModelStatus: "Provisional early-level model inferred from rounded PTS UI values.",
+          costModelStatus: "×1.5 model matches supplied PTS costs through level 9; higher levels remain projections.",
           observedDisplayedCosts: [
             { level: 1, metal: "75K", crystal: "52K", deuterium: "22K" },
             { level: 2, metal: "112K", crystal: "78K", deuterium: "33K" },
@@ -174,6 +176,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.10.2",
+      notes: "Reworked the new-planet build queue into add-by-target workflow: select IAS or Recovery Center, enter a target level, add it, then view cumulative per-building costs and a grand resource total. Recovery Center cost progression is now marked validated through level 9."
+    },
     {
       date: "2026-09-30",
       version: "0.10.1",
