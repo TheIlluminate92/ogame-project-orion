@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-30
 
-Working revision: **0.8.1**
+Working revision: **0.9.0**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -11,7 +11,7 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
 - Publishing source: `main` branch, repository root
-- Revision 0.8.1 publication verified: 2026-09-30
+- Revision 0.9.0 publication pending verification: 2026-09-30
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
@@ -27,9 +27,11 @@ Future revisions should be treated as published only after the Pages build and t
 
 - IAS levels stack across planets for account-wide anomaly progression.
 - Scanner construction-cost formula matches supplied PTS values through level 35.
-- Metal conversion was observed twice at 3 Metal to 1 Lithium.
+- Observed 100% workload conversion ratios: Metal 3:1, Crystal 2:1, Deuterium 1:1, Lifeform Food 100:1.
+- Multiple planets can convert different resources to Lithium simultaneously with independent controls.
 - Control Center buildings unlock at completed mission levels 50, 100, 150, 200, 250, 300, and 350.
-- Combined IAS 60 produced an observed ten-system scan cost of 112,454 Lithium.
+- Combined IAS 60 produced an observed scan cost of 112,454 Lithium at both 10- and 150-system range settings.
+- Observed range choices at IAS 60: 10, 50, and 150 systems.
 - Mission rewards can be collected in order, wave by wave.
 - Partial collection is possible before a multi-wave mission fully ends.
 - Observed templates include Small Pirate Encounter, Delivery: Metal, and Valuable Delivery.
@@ -53,15 +55,14 @@ Missing intermediate times are not estimated.
 - Four waves total.
 - Visible NPC ship counts: wave 2 = 25, wave 3 = 25, wave 4 = 22.
 - Wave 1 size and ship composition were not visible.
-- Observed reward: one Small Cargo and one Light Fighter.
-- Displayed reward-collection costs included 1,569 and 3,138 Lithium.
+- Observed completed-wave reward: one Small Cargo and one Light Fighter per shown wave.
+- Per-wave claim cost shown: 1,569 Lithium; selecting two completed waves cost 3,138 Lithium.
 
 ## Open questions
 
 The canonical list is in `data/orion-data.js`. Important unresolved items include:
 
 - Complete mission-template list.
-- Non-Metal resource conversion ratios.
 - Exact scan, claim-cost, reward, enemy-scaling, and construction-time formulas.
 - Which mechanics use combined account IAS versus local planet IAS.
 - Exact Control Center building names and bonuses.
