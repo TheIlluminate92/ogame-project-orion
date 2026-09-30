@@ -4,6 +4,7 @@ This file tracks structural releases and provides continuity when development mo
 
 | Revision | Date | Major change |
 |---|---|---|
+| 0.12.1 | 2026-09-30 | Added IAS-349 scanner checkpoint, high-level mission samples, and L351 Small Alien wave composition. |
 | 0.12.0 | 2026-09-30 | Added the L100/L150/L200 Control Center buildings to progression, calculators, and queue; added clickable building details; downgraded IRC stacking to candidate pending confirmation. |
 | 0.11.2 | 2026-09-30 | Bug hunt: corrected IRC unlock to L50, tested multiplicative empire stacking as a candidate model, and hardened validation. |
 | 0.11.1 | 2026-09-30 | Fixed broken calculator queue handlers and initialization. |
@@ -40,9 +41,9 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 ## Current continuation point
 
-- Working revision: 0.12.0
+- Working revision: 0.12.1
 - Local validation: passing
-- Deployment: revision 0.12.0 pushed to main; live verification still required
+- Deployment: revision 0.12.1 pushed to main; live verification still required
 - Next action: identify the L250/L300/L350 Control Center buildings, independently confirm or reject the IRC empire-stacking formula, and collect full-precision cost checkpoints for the new L100/L150/L200 buildings.
 - Highest cost-formula validation: IAS 35
 - Highest calculator level: IAS 100
