@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.11.1"
+    revision: "0.11.2"
   },
 
   lithium: {
@@ -74,10 +74,11 @@ window.ORION_DATA = {
       buildings: {
         intergalacticRecoveryCenter: {
           name: "Intergalactic Recovery Center",
-          unlockMissionLevel: 100,
+          unlockMissionLevel: 50,
           effect: "Increases the number of ships gained from anomaly missions.",
           bonusPerLevelPercent: 0.2,
           stacksEmpireWide: true,
+          empireStackingFormula: "1 - product(1 - localBonus)",
           maxObservedTechinfoLevel: 15,
           costValidatedThrough: 9,
           maxCalculatorLevel: 100,
@@ -136,8 +137,8 @@ window.ORION_DATA = {
     {
       label: "CONTROL CENTER SAMPLE",
       title: "Intergalactic Recovery Center",
-      metrics: ["Unlock: complete a level-100 mission", "+0.2% ships per level", "L3 contribution: 0.6%", "Observed empire total: 2.19% from multiple planets", "Techinfo shown through level 15"],
-      note: "The ship-reward bonus applies empire-wide and contributions from multiple planets stack. The ×1.5 cost model matches supplied PTS values through level 9; higher levels remain projections."
+      metrics: ["Unlock: complete a level-50 mission", "+0.2% ships per level", "L3 contribution: 0.6%", "Observed L3 + L8 empire total: 2.19%", "Techinfo shown through level 15"],
+      note: "The ship-reward bonus applies empire-wide. The observed 0.6% and 1.6% planet contributions combine to 2.1904%, matching 1 − (1 − 0.006)(1 − 0.016), so empire stacking is multiplicative rather than simple addition. The ×1.5 cost model matches supplied PTS values through level 9; higher levels remain projections."
     },
     {
       label: "BUILD-TIME SAMPLE",
@@ -225,6 +226,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.11.2",
+      notes: "Bug-hunt release: corrected Intergalactic Recovery Center to the level-50 Control Center unlock, fixed empire-wide Recovery Center stacking to the observed multiplicative formula, capped bonus targets below 100%, and hardened validation against broken queue wiring."
+    },
     {
       date: "2026-09-30",
       version: "0.11.1",
