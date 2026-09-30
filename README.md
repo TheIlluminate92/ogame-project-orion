@@ -46,4 +46,4 @@ GitHub Pages publishes directly from the root of the `main` branch. This keeps r
 
 ## Status
 
-Current working revision: **0.10.1**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.
+Current working revision: **0.10.2**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.
