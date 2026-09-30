@@ -174,16 +174,16 @@
     const requestedBonus = Math.max(0.2, Math.min(150, Number.parseFloat(targetInput.value) || 0.2));
     const available = Math.max(1, Math.min(50, Number.parseInt(planetsInput.value, 10) || 1));
     const targetLevels = Math.max(1, Math.ceil((requestedBonus - 1e-9) / recovery.bonusPerLevelPercent));
-    const maxLevels = available * recovery.maxObservedTechinfoLevel;
+    const maxLevels = available * recovery.maxCalculatorLevel;
     const clampedLevels = Math.min(targetLevels, maxLevels);
-    const levels = balancedLevels(clampedLevels, available, recovery.maxObservedTechinfoLevel);
+    const levels = balancedLevels(clampedLevels, available, recovery.maxCalculatorLevel);
     const cost = addCosts(levels.map(recoveryCumulativeCost));
     const totalBonus = clampedLevels * recovery.bonusPerLevelPercent;
 
     targetInput.value = requestedBonus.toFixed(1);
     planetsInput.value = available;
     $("#recovery-distribution").textContent = distributionLabel(levels, "L");
-    $("#recovery-fields").textContent = `${levels.length} planet${levels.length === 1 ? "" : "s"} contributing · max modeled local level ${recovery.maxObservedTechinfoLevel}`;
+    $("#recovery-fields").textContent = `${levels.length} planet${levels.length === 1 ? "" : "s"} contributing · max modeled local level ${recovery.maxCalculatorLevel}`;
     $("#recovery-total").textContent = format.format(resourceTotal(cost));
     $("#recovery-breakdown").textContent = `M ${format.format(cost.metal)} · C ${format.format(cost.crystal)} · D ${format.format(cost.deuterium)}`;
     $("#recovery-result-bonus").textContent = `${totalBonus.toFixed(1)}%`;
@@ -193,7 +193,7 @@
     ias: {
       label: "Interstellar Anomaly Scanner",
       shortLabel: "IAS",
-      maxLevel: 1000,
+      maxLevel: 100,
       cumulative: cumulativeCostExact,
       validatedThrough: data.scanner.costValidatedThrough
     },
