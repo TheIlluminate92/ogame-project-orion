@@ -11,7 +11,7 @@ Most routine updates only require editing [`data/orion-data.js`](data/orion-data
 3. Increment `meta.revision`.
 4. Add one short entry at the top of `changelog`.
 5. Run `node scripts/validate.mjs`.
-6. Commit and push to `main`; GitHub Pages deploys automatically.
+6. Commit and push to `main`; GitHub Pages redeploys automatically from the repository root.
 
 Keep confirmed information separate from `unknowns`. PTS behavior can change without notice, so do not silently promote testing assumptions to confirmed mechanics.
 
@@ -21,7 +21,7 @@ This is a no-build static site. Open `index.html`, or serve the directory with a
 
 ## Deployment
 
-The workflow in `.github/workflows/pages.yml` publishes the repository root through GitHub Pages whenever `main` changes. In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
+GitHub Pages publishes directly from the root of the `main` branch. This keeps rapid PTS updates simple and avoids a separate build process.
 
 ## Files
 
