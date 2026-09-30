@@ -302,3 +302,62 @@ footer a { color: var(--cyan); text-decoration: none; font-size: 13px; }
 @media (max-width: 700px) {
   .calculator-switcher { grid-template-columns: 1fr; align-items: stretch; }
 }
+
+
+/* Planet build queue */
+.build-queue { display: grid; gap: 24px; }
+.queue-toolbar { display: flex; justify-content: space-between; gap: 20px; align-items: end; }
+.queue-toolbar h3 { margin: 0 0 6px; }
+.queue-toolbar p:not(.micro) { margin: 0; color: var(--muted); }
+.queue-items { display: grid; gap: 10px; }
+.queue-empty { margin: 0; padding: 20px; color: var(--muted); border: 1px dashed var(--line); border-radius: 10px; }
+.queue-row {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.25fr) 100px 100px minmax(250px, 1.4fr) 44px;
+  gap: 10px;
+  align-items: end;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255,255,255,.02);
+}
+.queue-row label { display: grid; gap: 6px; color: var(--muted); font-size: 12px; font-weight: 700; }
+.queue-row select, .queue-row input {
+  min-height: 44px;
+  width: 100%;
+  padding: 8px 10px;
+  color: var(--ink);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  font: inherit;
+}
+.queue-row-cost { min-width: 0; display: grid; gap: 2px; }
+.queue-row-cost span { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.queue-row-cost strong { color: var(--lime); font-size: 20px; line-height: 1.2; }
+.queue-row-cost small { color: var(--muted); overflow-wrap: anywhere; }
+.queue-remove {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgba(255,107,105,.35);
+  border-radius: 7px;
+  color: var(--red);
+  background: rgba(255,107,105,.06);
+  font-size: 24px;
+  cursor: pointer;
+}
+.queue-total-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
+.queue-actions { display: flex; justify-content: flex-end; }
+
+@media (max-width: 900px) {
+  .queue-row { grid-template-columns: 1fr 1fr; }
+  .queue-row label:first-child, .queue-row-cost { grid-column: 1 / -1; }
+  .queue-remove { justify-self: end; }
+  .queue-total-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .queue-toolbar { align-items: stretch; flex-direction: column; }
+  .queue-row { grid-template-columns: 1fr 1fr; }
+  .queue-total-grid { grid-template-columns: 1fr; }
+}
