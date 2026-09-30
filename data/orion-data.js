@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.10.0"
+    revision: "0.10.1"
   },
 
   lithium: {
@@ -174,6 +174,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.10.1",
+      notes: "Added a planet build queue that totals incremental Metal, Crystal, and Deuterium costs across multiple modeled Orion buildings and target levels."
+    },
     {
       date: "2026-09-30",
       version: "0.10.0",
