@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.11.2"
+    revision: "0.12.0"
   },
 
   lithium: {
@@ -73,22 +73,89 @@ window.ORION_DATA = {
       unlockRule: "Complete a mission of the listed level to unlock the corresponding Control Center building.",
       buildings: {
         intergalacticRecoveryCenter: {
+          calculatorKey: "recovery",
+          iconLabel: "SHIP",
           name: "Intergalactic Recovery Center",
           unlockMissionLevel: 50,
           effect: "Increases the number of ships gained from anomaly missions.",
+          bonusResource: "Ships",
           bonusPerLevelPercent: 0.2,
           stacksEmpireWide: true,
-          empireStackingFormula: "1 - product(1 - localBonus)",
+          empireStackingStatus: "Observed empire total 2.19% is consistent with multiplicative stacking, but the rule still needs an independent confirmation.",
           maxObservedTechinfoLevel: 15,
           costValidatedThrough: 9,
           maxCalculatorLevel: 100,
           baseCost: { metal: 75000, crystal: 52500, deuterium: 22500 },
+          baseCostStatus: "Working exact model derived from observed PTS costs.",
           costMultiplier: 1.5,
           costModelStatus: "×1.5 model matches supplied PTS costs through level 9; higher levels remain projections.",
           observedDisplayedCosts: [
             { level: 1, metal: "75K", crystal: "52K", deuterium: "22K" },
             { level: 2, metal: "112K", crystal: "78K", deuterium: "33K" },
             { level: 4, metal: "253K", crystal: "177K", deuterium: "75K" }
+          ]
+        },
+        lithiumElectrolysisLab: {
+          calculatorKey: "lithiumLab",
+          iconLabel: "Li",
+          name: "Lithium Electrolysis Lab",
+          unlockMissionLevel: 100,
+          effect: "Increases the amount of Lithium gained from anomaly missions with each level.",
+          bonusResource: "Lithium",
+          bonusPerLevelPercent: 0.2,
+          maxObservedTechinfoLevel: 15,
+          maxCalculatorLevel: 100,
+          baseCost: { metal: 52500, crystal: 37500, deuterium: 37500 },
+          baseCostStatus: "Inferred from abbreviated PTS UI values.",
+          costMultiplier: 1.5,
+          costObservedLevels: [1, 2, 3, 4],
+          costModelStatus: "Working ×1.5 model matches displayed level 1–4 checkpoints; full-precision base costs are inferred from abbreviated UI values.",
+          observedDisplayedCosts: [
+            { level: 1, metal: "52K", crystal: "37K", deuterium: "37K" },
+            { level: 2, metal: "78K", crystal: "56K", deuterium: "56K" },
+            { level: 3, metal: "118K", crystal: "84K", deuterium: "84K" },
+            { level: 4, metal: "177K", crystal: "126K", deuterium: "126K" }
+          ]
+        },
+        metalRecyclingUnit: {
+          calculatorKey: "metalRecycling",
+          iconLabel: "M",
+          name: "Metal Recycling Unit",
+          unlockMissionLevel: 150,
+          effect: "Increases the amount of Metal gained from anomaly missions with each level.",
+          bonusResource: "Metal",
+          bonusPerLevelPercent: 0.2,
+          maxObservedTechinfoLevel: 15,
+          maxCalculatorLevel: 100,
+          baseCost: { metal: 112500, crystal: 37500, deuterium: 18000 },
+          baseCostStatus: "Inferred from abbreviated PTS UI values.",
+          costMultiplier: 1.5,
+          costObservedLevels: [1, 3, 4],
+          costModelStatus: "Working ×1.5 model matches the displayed level 1, 3, and 4 checkpoints; full-precision base costs are inferred.",
+          observedDisplayedCosts: [
+            { level: 1, metal: "112K", crystal: "37K", deuterium: "18K" },
+            { level: 3, metal: "253K", crystal: "84K", deuterium: "40K" },
+            { level: 4, metal: "379K", crystal: "126K", deuterium: "60K" }
+          ]
+        },
+        crystalFinishingStation: {
+          calculatorKey: "crystalFinishing",
+          iconLabel: "C",
+          name: "Crystal Finishing Station",
+          unlockMissionLevel: 200,
+          effect: "Increases the amount of Crystal gained from anomaly missions with each level.",
+          bonusResource: "Crystal",
+          bonusPerLevelPercent: 0.2,
+          maxObservedTechinfoLevel: 15,
+          maxCalculatorLevel: 100,
+          baseCost: { metal: 37500, crystal: 67500, deuterium: 27000 },
+          baseCostStatus: "Inferred from abbreviated PTS UI values.",
+          costMultiplier: 1.5,
+          costObservedLevels: [1, 10],
+          costModelStatus: "Working ×1.5 model matches the displayed level-1 and level-10 checkpoints; full-precision base costs are inferred.",
+          observedDisplayedCosts: [
+            { level: 1, metal: "37K", crystal: "67K", deuterium: "27K" },
+            { level: 10, metal: "1.4M", crystal: "2.6M", deuterium: "1.0M" }
           ]
         }
       }
@@ -222,10 +289,15 @@ window.ORION_DATA = {
     "Enemy fleet and defense scaling rules",
     "Which mechanics use the combined account-wide scanner level versus the local planet level",
     "IAS construction-time formula and whether the displayed one-second time is the global minimum",
-    "Remaining Control Center building names, exact bonus effects, and high-level construction-cost curves"
+    "Control Center buildings at mission levels 250, 300, and 350, plus full-precision base costs and high-level curves for the newly observed buildings"
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.12.0",
+      notes: "Added Lithium Electrolysis Lab, Metal Recycling Unit, and Crystal Finishing Station to the Control Center progression, calculator deck, and build queue. Added clickable Control Center detail cards, cost-model status, and downgraded Recovery Center empire stacking from confirmed to a candidate model pending another test."
+    },
     {
       date: "2026-09-30",
       version: "0.11.2",
