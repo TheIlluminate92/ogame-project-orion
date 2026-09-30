@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-30
 
-Working revision: **0.12.0**
+Working revision: **0.12.1**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -11,7 +11,7 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
 - Publishing source: `main` branch, repository root
-- Revision 0.12.0 publication pending verification: 2026-09-30
+- Revision 0.12.1 publication pending verification: 2026-09-30
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
@@ -44,6 +44,9 @@ Future revisions should be treated as published only after the Pages build and t
 - Observed Discovery Limit upgrade costs: 2→3 = 3M/1.5M/750K; 3→4 = 45M/22.5M/11.25M; 4→5 = 160M/80M/40M.
 - Observed Max Results upgrade cost: 3→4 = 300M/150M/75M.
 - High-level 150-system scan checkpoints include L171 = 406,624 Lithium, L207 = 567,901, and L212 = 590,371.
+- Combined IAS 349 at 10-system range showed a scan cost of 961,980 Lithium, Max Results 3, and Discovery Limit 1/4.
+- A level-351 PvE two-star Small Alien Encounter showed four NPC waves of 1,881 / 1,971 / 374 / 988 ships; visible later-wave combat tech was Weapons 28 / Shielding 20 / Armor 28.
+- Newly observed mission templates include Lifeform Rescue, Resource: Metal, and Resource: Deuterium.
 - PvE missions cannot be attacked by other players; PvP missions can be targeted/sabotaged and award double rewards when completed successfully.
 - Mission rewards can be collected in order, wave by wave.
 - Partial collection is possible before a multi-wave mission fully ends.
