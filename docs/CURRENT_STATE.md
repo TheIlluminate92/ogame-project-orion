@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-30
 
-Working revision: **0.10.0**
+Working revision: **0.10.2**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -11,7 +11,7 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
 - Publishing source: `main` branch, repository root
-- Revision 0.10.0 publication pending verification: 2026-09-30
+- Revision 0.10.2 publication pending verification: 2026-09-30
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
@@ -21,8 +21,9 @@ Future revisions should be treated as published only after the Pages build and t
 - `calculators.html` is a unified selectable calculator deck for IAS and Control Center buildings.
 - The local scanner calculator supports levels 1–100 with exact integer costs.
 - The cross-planet planner supports combined IAS targets 1–1,000 and 1–50 available planets.
-- The Intergalactic Recovery Center calculator models +0.2% ship rewards per level and empire-wide stacking; its early ×1.5 cost curve is provisional.
+- The Intergalactic Recovery Center calculator models +0.2% ship rewards per level and empire-wide stacking; the ×1.5 cost curve matches supplied PTS values through level 9 and projects higher levels.
 - The planner assumes all selected planets begin at IAS 0 and optimizes construction resources, not Lithium production.
+- The new-planet build queue accepts building + target-level entries and reports cumulative cost for each queued building plus a grand total.
 
 ## Confirmed or repeatedly observed
 
