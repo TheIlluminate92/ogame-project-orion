@@ -201,6 +201,8 @@
               <select id="queue-building-select">
                 <option value="ias">Interstellar Anomaly Scanner</option>
                 <option value="recovery">Intergalactic Recovery Center</option>
+                <option value="discoveryLimit">Anomaly Discovery Limit</option>
+                <option value="maxResults">Max Results</option>
               </select>
             </label>
             <label>Target level
@@ -242,7 +244,7 @@
           <div class="queue-actions">
             <button type="button" class="button secondary" id="queue-clear">Clear queue</button>
           </div>
-          <p class="fine-print">New-planet mode assumes every queued building starts at level 0. IAS uses the confirmed cost formula. Recovery Center costs match PTS through level 9; higher levels, including level 25, are formula projections until further checkpoints are supplied. Base-game prerequisites are not included yet.</p>
+          <p class="fine-print">IAS and Recovery Center are cumulative from level 0. Scanner capacity upgrades use their observed defaults: Discovery Limit starts at 2 and Max Results starts at 3. Only observed capacity-upgrade targets are selectable; no cost curve is assumed. Recovery Center costs match PTS through level 9 and project above that.</p>
         </article>
       </section>
     </section>
