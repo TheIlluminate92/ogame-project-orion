@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.11.0"
+    revision: "0.11.1"
   },
 
   lithium: {
@@ -225,6 +225,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.11.1",
+      notes: "Fixed the calculator page queue controls: Add to queue, building selector limits, Enter-to-add, clear queue, and quick-level buttons now use the correct handlers."
+    },
     {
       date: "2026-09-30",
       version: "0.11.0",
