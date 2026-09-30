@@ -386,7 +386,11 @@
   $("#recovery-target-bonus").addEventListener("input", updateRecoveryPlanner);
   $("#recovery-planets").addEventListener("input", updateRecoveryPlanner);
   $("#calculator-select").addEventListener("change", (event) => selectCalculator(event.target.value));
-  $("#queue-add-item").addEventListener("click", () => addQueueItem("ias", 0, 1));
+  $("#queue-building-select").addEventListener("change", syncQueueTargetLimits);
+  $("#queue-add-item").addEventListener("click", addSelectedQueueItem);
+  $("#queue-target-level").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") addSelectedQueueItem();
+  });
   $("#queue-clear").addEventListener("click", () => {
     queueItems = [];
     renderQueue();
@@ -397,6 +401,7 @@
     updateLevelCalculator(Number(levelInput.value));
   }));
 
-  addQueueItem("ias", 0, 60);
+  syncQueueTargetLimits();
+  renderQueue();
   selectCalculator($("#calculator-select").value);
 })();
