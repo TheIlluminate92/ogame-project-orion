@@ -39,11 +39,11 @@ GitHub Pages publishes directly from the root of the `main` branch. This keeps r
 - `calculators.html` — unified selectable IAS and Control Center calculator deck
 - `assets/styles.css` — visual system and responsive layout
 - `assets/app.js` — homepage data renderer
-- `assets/calculators.js` — IAS and Control Center calculator logic
+- `assets/calculators.js` — IAS, Control Center, and multi-building queue calculator logic
 - `data/orion-data.js` — frequently updated PTS facts
 - `downloads/` — alliance-ready PDF briefing
 - `scripts/validate.mjs` — formula and file checks
 
 ## Status
 
-Current working revision: **0.10.0**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.
+Current working revision: **0.10.1**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.
