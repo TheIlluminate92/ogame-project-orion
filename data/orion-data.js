@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.10.3"
+    revision: "0.11.0"
   },
 
   lithium: {
@@ -38,6 +38,35 @@ window.ORION_DATA = {
       final: { metal: 35142559683, crystal: 17571279841, deuterium: 5857093280 },
       cumulative: { metal: 122998958649, crystal: 61499479308, deuterium: 20499826416 }
     },
+    mechanics: {
+      anomalyLevel: "The maximum selectable anomaly level depends on IAS levels across all planets. A discovered anomaly's actual level may differ by up to 20% from the indicated level.",
+      maxResults: "Maximum number of anomaly missions a single galaxy scan can discover. Default: 3.",
+      discoveryLimit: "Maximum number of discovered anomalies that can be investigated simultaneously. Default: 2."
+    },
+    scannerUpgrades: {
+      discoveryLimit: {
+        name: "Anomaly Discovery Limit",
+        defaultValue: 2,
+        observedCosts: [
+          { from: 2, to: 3, metal: 3000000, crystal: 1500000, deuterium: 750000 },
+          { from: 3, to: 4, metal: 45000000, crystal: 22500000, deuterium: 11250000 },
+          { from: 4, to: 5, metal: 160000000, crystal: 80000000, deuterium: 40000000 }
+        ]
+      },
+      maxResults: {
+        name: "Max Results",
+        defaultValue: 3,
+        observedCosts: [
+          { from: 3, to: 4, metal: 300000000, crystal: 150000000, deuterium: 75000000 }
+        ]
+      }
+    },
+    scanCostCheckpoints: [
+      { anomalyLevel: 60, rangeSystems: 150, lithium: 112454 },
+      { anomalyLevel: 171, rangeSystems: 150, lithium: 406624 },
+      { anomalyLevel: 207, rangeSystems: 150, lithium: 567901 },
+      { anomalyLevel: 212, rangeSystems: 150, lithium: 590371 }
+    ],
     controlCenter: {
       description: "The Control Center enables IAS upgrades and unlocks bonuses for anomaly missions.",
       unlockLevels: [50, 100, 150, 200, 250, 300, 350],
@@ -77,8 +106,9 @@ window.ORION_DATA = {
       { icon: "⌬", name: "ACS co-op", detail: "Alliance members can contribute fleet value to supported missions." }
     ],
     rules: [
-      "Activated missions are public: other players may take part, interfere, attack, or recycle.",
-      "PvP variants award 2× rewards.",
+      "PvE missions cannot be attacked by other players.",
+      "PvP missions can be targeted and sabotaged by other players.",
+      "PvP variants award 2× rewards when completed successfully.",
       "On ACS missions, rewards are divided by each participant’s contributed fleet resource value.",
       "ACS participation is unavailable for missions that do not support ACS."
     ]
@@ -86,10 +116,28 @@ window.ORION_DATA = {
 
   observations: [
     {
+      label: "SCANNER CAPACITY UPGRADES",
+      title: "Discovery Limit and Max Results",
+      metrics: ["Discovery Limit default: 2", "2→3: 3M / 1.5M / 750K", "3→4: 45M / 22.5M / 11.25M", "4→5: 160M / 80M / 40M", "Max Results default: 3", "3→4: 300M / 150M / 75M"],
+      note: "The two tracks are independent. Discovery Limit controls simultaneous anomaly investigations; Max Results controls how many missions a single scan can discover. Costs are stored as discrete observed upgrades; no extrapolated formula is assumed."
+    },
+    {
+      label: "HIGH-LEVEL SCANNER",
+      title: "Anomaly level 212",
+      metrics: ["150-system scan", "Scan cost: 590,371 Lithium", "Max Results: 3", "Discovery Limit: 4", "Rolls: L197 / L232 / L249"],
+      note: "The scanner tooltip states that discovered anomaly level may vary by up to 20% from the indicated level. The level-249 result is about 17.5% above the selected level 212 and is consistent with that rule."
+    },
+    {
+      label: "LEVEL-212 MISSION SAMPLE",
+      title: "Three-result scan",
+      metrics: ["L197 Resource: Metal · PvP · 3★ · 2 waves · ≈17,625,148 Metal", "L232 Delivery: Crystal · PvP · 1★ · 2 waves · ≈4,612,558 Crystal", "L249 Delivery: Crystal · PvP · 5★ · 1 wave · ≈9,710,696 Crystal"],
+      note: "Observed reward costs were approximately 1.645M, 646,066, and 1.386M Lithium respectively. This sample is useful for separating mission level, stars, waves, distance, and claim cost during later ROI analysis."
+    },
+    {
       label: "CONTROL CENTER SAMPLE",
       title: "Intergalactic Recovery Center",
       metrics: ["Unlock: complete a level-100 mission", "+0.2% ships per level", "L3 contribution: 0.6%", "Observed empire total: 2.19% from multiple planets", "Techinfo shown through level 15"],
-      note: "The ship-reward bonus applies empire-wide and contributions from multiple planets stack. Early displayed build costs follow a working ×1.5 model, but the high-level cost curve remains provisional."
+      note: "The ship-reward bonus applies empire-wide and contributions from multiple planets stack. The ×1.5 cost model matches supplied PTS values through level 9; higher levels remain projections."
     },
     {
       label: "BUILD-TIME SAMPLE",
@@ -166,6 +214,7 @@ window.ORION_DATA = {
     "The complete mission-template list",
     "Whether the observed conversion ratios change with scanner level, class, universe settings, or other modifiers",
     "Exact scan and claim cost formulas",
+    "Cost progression beyond the observed Discovery Limit and Max Results upgrades",
     "Exact reward formulas, ranges, and caps",
     "General and Mecha modifier percentages",
     "Whether economy speed, score, fleet value, or universe age affects rewards",
@@ -176,6 +225,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.11.0",
+      notes: "Added confirmed scanner tooltips, discrete Discovery Limit and Max Results upgrade costs, high-level scan checkpoints through anomaly level 212, a level-212 three-result mission sample, and clarified PvE/PvP interaction rules. Capacity upgrades were added to the build queue without inventing an extrapolated cost formula."
+    },
     {
       date: "2026-09-30",
       version: "0.10.3",
