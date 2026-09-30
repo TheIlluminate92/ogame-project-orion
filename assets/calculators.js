@@ -9,8 +9,9 @@
   let sevenPower = 1n;
   let fivePower = 1n;
 
-  const recovery = data.scanner.controlCenter.buildings.intergalacticRecoveryCenter;
-  const recoveryCumulative = [{ metal: 0n, crystal: 0n, deuterium: 0n }];
+  const controlBuildings = data.scanner.controlCenter.buildings;
+  const recovery = controlBuildings.intergalacticRecoveryCenter;
+  const controlCostCaches = new Map();
 
   function resourceTotal(cost) {
     return cost.metal + cost.crystal + cost.deuterium;
@@ -43,7 +44,7 @@
     };
   }
 
-  function recoveryCostAt(level) {
+  function controlBuildingCostAt(building, level) {
     let numerator = 1n;
     let denominator = 1n;
     for (let i = 1; i < level; i += 1) {
@@ -51,25 +52,32 @@
       denominator *= 2n;
     }
     return {
-      metal: BigInt(recovery.baseCost.metal) * numerator / denominator,
-      crystal: BigInt(recovery.baseCost.crystal) * numerator / denominator,
-      deuterium: BigInt(recovery.baseCost.deuterium) * numerator / denominator
+      metal: BigInt(building.baseCost.metal) * numerator / denominator,
+      crystal: BigInt(building.baseCost.crystal) * numerator / denominator,
+      deuterium: BigInt(building.baseCost.deuterium) * numerator / denominator
     };
   }
 
-  function recoveryCumulativeCost(level) {
-    while (recoveryCumulative.length <= level) {
-      const currentLevel = recoveryCumulative.length;
-      const previous = recoveryCumulative[currentLevel - 1];
-      const current = recoveryCostAt(currentLevel);
-      recoveryCumulative.push({
+  function controlBuildingCumulativeCost(building, level) {
+    if (!controlCostCaches.has(building.calculatorKey)) {
+      controlCostCaches.set(building.calculatorKey, [{ metal: 0n, crystal: 0n, deuterium: 0n }]);
+    }
+    const cache = controlCostCaches.get(building.calculatorKey);
+    while (cache.length <= level) {
+      const currentLevel = cache.length;
+      const previous = cache[currentLevel - 1];
+      const current = controlBuildingCostAt(building, currentLevel);
+      cache.push({
         metal: previous.metal + current.metal,
         crystal: previous.crystal + current.crystal,
         deuterium: previous.deuterium + current.deuterium
       });
     }
-    return recoveryCumulative[level];
+    return cache[level];
   }
+
+  const recoveryCostAt = (level) => controlBuildingCostAt(recovery, level);
+  const recoveryCumulativeCost = (level) => controlBuildingCumulativeCost(recovery, level);
 
   function lithiumAt(level) {
     return Math.floor(200 * level * Math.pow(1.1, level));
@@ -230,6 +238,37 @@
     $("#recovery-result-bonus").textContent = `${best.bonus.toFixed(2)}%`;
   }
 
+  const controlCalculatorByKey = {
+    lithiumLab: controlBuildings.lithiumElectrolysisLab,
+    metalRecycling: controlBuildings.metalRecyclingUnit,
+    crystalFinishing: controlBuildings.crystalFinishingStation
+  };
+  let activeControlBuildingKey = "lithiumLab";
+
+  function updateControlBuildingCalculator(buildingKey = activeControlBuildingKey) {
+    const building = controlCalculatorByKey[buildingKey];
+    if (!building) return;
+    activeControlBuildingKey = buildingKey;
+    const input = $("#control-building-level-input");
+    input.max = building.maxCalculatorLevel || 100;
+    const level = Math.max(1, Math.min(Number(input.max), Number(input.value) || 1));
+    input.value = level;
+
+    $("#control-building-kicker").textContent = `CONTROL CENTER // LEVEL-${building.unlockMissionLevel} UNLOCK`;
+    $("#control-building-name").textContent = building.name;
+    $("#control-building-effect").textContent = building.effect;
+    $("#control-building-unlock").textContent = `UNLOCK: COMPLETE A LEVEL-${building.unlockMissionLevel} MISSION`;
+    $("#control-building-level-output").textContent = level;
+    $("#control-building-bonus-label").textContent = `${building.bonusResource} mission reward bonus`;
+    $("#control-building-bonus").textContent = `${(level * building.bonusPerLevelPercent).toFixed(1)}%`;
+    $("#control-building-level-cost").innerHTML = costRows(controlBuildingCostAt(building, level));
+    $("#control-building-cumulative-cost").innerHTML = costRows(controlBuildingCumulativeCost(building, level));
+    $("#control-building-status").textContent = "WORKING ×1.5 MODEL";
+    $("#control-building-checkpoints").textContent = (building.costObservedLevels || []).map((value) => `L${value}`).join(" · ") || "PTS SAMPLES";
+    $("#control-building-base-status").textContent = building.baseCostStatus || "";
+    $("#control-building-model-note").textContent = building.costModelStatus || "";
+  }
+
   function scannerUpgradeCumulative(upgradeKey, target) {
     const upgrade = data.scanner.scannerUpgrades[upgradeKey];
     const zero = { metal: 0n, crystal: 0n, deuterium: 0n };
@@ -265,6 +304,36 @@
       validatedThrough: recovery.costValidatedThrough || 0,
       validationMode: "formula"
     },
+    lithiumLab: {
+      label: controlBuildings.lithiumElectrolysisLab.name,
+      shortLabel: "LITHIUM LAB",
+      minTarget: 1,
+      maxLevel: controlBuildings.lithiumElectrolysisLab.maxCalculatorLevel,
+      baseLevel: 0,
+      cumulative: (target) => controlBuildingCumulativeCost(controlBuildings.lithiumElectrolysisLab, target),
+      validationMode: "modeled",
+      modelStatus: controlBuildings.lithiumElectrolysisLab.costModelStatus
+    },
+    metalRecycling: {
+      label: controlBuildings.metalRecyclingUnit.name,
+      shortLabel: "METAL UNIT",
+      minTarget: 1,
+      maxLevel: controlBuildings.metalRecyclingUnit.maxCalculatorLevel,
+      baseLevel: 0,
+      cumulative: (target) => controlBuildingCumulativeCost(controlBuildings.metalRecyclingUnit, target),
+      validationMode: "modeled",
+      modelStatus: controlBuildings.metalRecyclingUnit.costModelStatus
+    },
+    crystalFinishing: {
+      label: controlBuildings.crystalFinishingStation.name,
+      shortLabel: "CRYSTAL STATION",
+      minTarget: 1,
+      maxLevel: controlBuildings.crystalFinishingStation.maxCalculatorLevel,
+      baseLevel: 0,
+      cumulative: (target) => controlBuildingCumulativeCost(controlBuildings.crystalFinishingStation, target),
+      validationMode: "modeled",
+      modelStatus: controlBuildings.crystalFinishingStation.costModelStatus
+    },
     discoveryLimit: {
       label: "Anomaly Discovery Limit",
       shortLabel: "DISCOVERY LIMIT",
@@ -295,6 +364,7 @@
   function queueValidationLabel(item) {
     const building = queueCatalog[item.building];
     if (building.validationMode === "observed") return "observed upgrade cost";
+    if (building.validationMode === "modeled") return "working ×1.5 model · abbreviated PTS inputs";
     return item.target <= building.validatedThrough
       ? `PTS-checked through L${building.validatedThrough}`
       : `projection above L${building.validatedThrough}`;
@@ -399,14 +469,20 @@
   const summaries = {
     "ias-local": "Single-planet IAS cost and Lithium production.",
     "ias-network": "Cheapest balanced account-wide IAS distribution.",
-    "recovery": "Intergalactic Recovery Center local cost and empire-wide ship-reward bonus planning.",
+    "recovery": "Intergalactic Recovery Center local cost and provisional empire-wide ship-reward planning.",
+    "lithiumLab": "Lithium Electrolysis Lab level cost and Lithium mission-reward bonus.",
+    "metalRecycling": "Metal Recycling Unit level cost and Metal mission-reward bonus.",
+    "crystalFinishing": "Crystal Finishing Station level cost and Crystal mission-reward bonus.",
     "build-queue": "Queue several Orion building targets and total the resources for a new planet or upgrade package."
   };
 
   function selectCalculator(value) {
-    $$("[data-calculator-view]").forEach((section) => {
-      section.hidden = section.dataset.calculatorView !== value;
+    const isControlBuilding = Boolean(controlCalculatorByKey[value]);
+    const view = isControlBuilding ? "control-building" : value;
+    $("[data-calculator-view]").forEach((section) => {
+      section.hidden = section.dataset.calculatorView !== view;
     });
+    if (isControlBuilding) updateControlBuildingCalculator(value);
     $("#calculator-summary").textContent = summaries[value] || "";
   }
 
@@ -424,6 +500,7 @@
   $("#target-ias").addEventListener("input", updateNetworkPlanner);
   $("#available-planets").addEventListener("input", updateNetworkPlanner);
   recoveryLevelInput.addEventListener("input", () => updateRecoveryLevel(Number(recoveryLevelInput.value)));
+  $("#control-building-level-input").addEventListener("input", () => updateControlBuildingCalculator());
   $("#recovery-target-bonus").addEventListener("input", updateRecoveryPlanner);
   $("#recovery-planets").addEventListener("input", updateRecoveryPlanner);
   $("#calculator-select").addEventListener("change", (event) => selectCalculator(event.target.value));
@@ -444,5 +521,9 @@
 
   syncQueueTargetLimits();
   renderQueue();
+  const requestedCalc = new URLSearchParams(window.location.search).get("calc");
+  if (requestedCalc && Array.from($("#calculator-select").options).some((option) => option.value === requestedCalc)) {
+    $("#calculator-select").value = requestedCalc;
+  }
   selectCalculator($("#calculator-select").value);
 })();
