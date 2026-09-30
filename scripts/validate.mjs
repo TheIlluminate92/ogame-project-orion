@@ -110,8 +110,24 @@ const calculatorHtml = fs.readFileSync(path.join(root, "calculators.html"), "utf
 for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/calculators.js"]) {
   if (!calculatorHtml.includes(asset)) throw new Error(`calculators.html does not reference ${asset}`);
 }
-for (const id of ["level-input", "level-cost", "cumulative-cost", "target-ias", "available-planets", "planner-comparison"]) {
+for (const id of ["level-input", "level-cost", "cumulative-cost", "target-ias", "available-planets", "planner-comparison", "queue-building-select", "queue-target-level", "queue-add-item", "queue-items", "queue-grand-total"]) {
   if (!calculatorHtml.includes(`id="${id}"`)) throw new Error(`calculators.html is missing #${id}`);
+}
+
+const calculatorJs = fs.readFileSync(path.join(root, "assets/calculators.js"), "utf8");
+for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select"]) {
+  if (!calculatorJs.includes(requiredSnippet)) throw new Error(`calculators.js is missing queue wiring: ${requiredSnippet}`);
+}
+if (calculatorJs.includes('addQueueItem("ias"')) {
+  throw new Error("calculators.js still contains the retired queue initializer");
+}
+
+const recovery = data.scanner.controlCenter?.buildings?.intergalacticRecoveryCenter;
+if (!recovery || recovery.unlockMissionLevel !== 50) {
+  throw new Error("Intergalactic Recovery Center unlock level must match the observed level-50 slot");
+}
+if (!data.scanner.controlCenter.unlockLevels.includes(recovery.unlockMissionLevel)) {
+  throw new Error("Recovery Center unlock level is missing from Control Center progression");
 }
 
 console.log(`Project Orion site validation passed — revision ${data.meta.revision}, updated ${data.meta.updated}.`);
