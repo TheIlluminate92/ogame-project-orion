@@ -189,20 +189,58 @@
     $("#recovery-result-bonus").textContent = `${totalBonus.toFixed(1)}%`;
   }
 
+  function scannerUpgradeCumulative(upgradeKey, target) {
+    const upgrade = data.scanner.scannerUpgrades[upgradeKey];
+    const zero = { metal: 0n, crystal: 0n, deuterium: 0n };
+    if (target <= upgrade.defaultValue) return zero;
+    const steps = upgrade.observedCosts
+      .filter((step) => step.to <= target)
+      .map((step) => ({
+        metal: BigInt(step.metal),
+        crystal: BigInt(step.crystal),
+        deuterium: BigInt(step.deuterium)
+      }));
+    return addCosts(steps);
+  }
+
   const queueCatalog = {
     ias: {
       label: "Interstellar Anomaly Scanner",
       shortLabel: "IAS",
+      minTarget: 1,
       maxLevel: 100,
+      baseLevel: 0,
       cumulative: cumulativeCostExact,
-      validatedThrough: data.scanner.costValidatedThrough
+      validatedThrough: data.scanner.costValidatedThrough,
+      validationMode: "formula"
     },
     recovery: {
       label: "Intergalactic Recovery Center",
       shortLabel: "IRC",
+      minTarget: 1,
       maxLevel: recovery.maxCalculatorLevel || 100,
+      baseLevel: 0,
       cumulative: recoveryCumulativeCost,
-      validatedThrough: recovery.costValidatedThrough || 0
+      validatedThrough: recovery.costValidatedThrough || 0,
+      validationMode: "formula"
+    },
+    discoveryLimit: {
+      label: "Anomaly Discovery Limit",
+      shortLabel: "DISCOVERY LIMIT",
+      minTarget: data.scanner.scannerUpgrades.discoveryLimit.defaultValue + 1,
+      maxLevel: Math.max(...data.scanner.scannerUpgrades.discoveryLimit.observedCosts.map((step) => step.to)),
+      baseLevel: data.scanner.scannerUpgrades.discoveryLimit.defaultValue,
+      cumulative: (target) => scannerUpgradeCumulative("discoveryLimit", target),
+      validationMode: "observed"
+    },
+    maxResults: {
+      label: "Max Results",
+      shortLabel: "MAX RESULTS",
+      minTarget: data.scanner.scannerUpgrades.maxResults.defaultValue + 1,
+      maxLevel: Math.max(...data.scanner.scannerUpgrades.maxResults.observedCosts.map((step) => step.to)),
+      baseLevel: data.scanner.scannerUpgrades.maxResults.defaultValue,
+      cumulative: (target) => scannerUpgradeCumulative("maxResults", target),
+      validationMode: "observed"
     }
   };
 
@@ -215,32 +253,40 @@
 
   function queueValidationLabel(item) {
     const building = queueCatalog[item.building];
+    if (building.validationMode === "observed") return "observed upgrade cost";
     return item.target <= building.validatedThrough
       ? `PTS-checked through L${building.validatedThrough}`
       : `projection above L${building.validatedThrough}`;
+  }
+
+  function queueRangeLabel(item) {
+    const building = queueCatalog[item.building];
+    return building.baseLevel === 0
+      ? `L0 → L${item.target}`
+      : `${building.baseLevel} → ${item.target}`;
   }
 
   function renderQueue() {
     const host = $("#queue-items");
 
     if (!queueItems.length) {
-      host.innerHTML = '<p class="queue-empty">Queue is empty. Example: choose IAS, enter 35, add it; then choose Recovery Center, enter 25, and add that.</p>';
+      host.innerHTML = '<p class="queue-empty">Queue is empty. Example: add IAS 35, IRC 25, Discovery Limit 5, and Max Results 4.</p>';
     } else {
       host.innerHTML = queueItems.map((item) => {
         const building = queueCatalog[item.building];
         const cost = queueItemCost(item);
         return `<div class="queue-row queue-row-simple" data-queue-id="${item.id}">
           <div class="queue-name">
-            <span>${building.shortLabel} → LEVEL ${item.target}</span>
+            <span>${building.shortLabel} → ${item.target}</span>
             <strong>${building.label}</strong>
             <small>${queueValidationLabel(item)}</small>
           </div>
           <div class="queue-row-cost">
-            <span>Cumulative L0 → L${item.target}</span>
+            <span>Cumulative ${queueRangeLabel(item)}</span>
             <strong>${format.format(resourceTotal(cost))}</strong>
             <small>M ${format.format(cost.metal)} · C ${format.format(cost.crystal)} · D ${format.format(cost.deuterium)}</small>
           </div>
-          <button type="button" class="queue-remove" aria-label="Remove ${building.label} level ${item.target} from queue">×</button>
+          <button type="button" class="queue-remove" aria-label="Remove ${building.label} target ${item.target} from queue">×</button>
         </div>`;
       }).join("");
 
@@ -266,9 +312,9 @@
     } else {
       buildingTotals.innerHTML = Array.from(grouped.entries()).map(([key, group]) => {
         const building = queueCatalog[key];
-        const levels = group.items.map((item) => `L${item.target}`).join(" + ");
+        const targets = group.items.map((item) => item.target).join(" + ");
         return `<div class="planner-result">
-          <span>${building.shortLabel} · ${levels}</span>
+          <span>${building.shortLabel} · target ${targets}</span>
           <strong>${format.format(resourceTotal(group.cost))}</strong>
           <small>M ${format.format(group.cost.metal)} · C ${format.format(group.cost.crystal)} · D ${format.format(group.cost.deuterium)}</small>
         </div>`;
@@ -286,16 +332,17 @@
   function syncQueueTargetLimits() {
     const building = queueCatalog[$("#queue-building-select").value];
     const input = $("#queue-target-level");
+    input.min = building.minTarget;
     input.max = building.maxLevel;
-    const parsed = Number.parseInt(input.value, 10) || 1;
-    input.value = Math.max(1, Math.min(building.maxLevel, parsed));
+    const parsed = Number.parseInt(input.value, 10) || building.minTarget;
+    input.value = Math.max(building.minTarget, Math.min(building.maxLevel, parsed));
   }
 
   function addSelectedQueueItem() {
     const buildingKey = $("#queue-building-select").value;
     const building = queueCatalog[buildingKey];
     const targetInput = $("#queue-target-level");
-    const target = Math.max(1, Math.min(building.maxLevel, Number.parseInt(targetInput.value, 10) || 1));
+    const target = Math.max(building.minTarget, Math.min(building.maxLevel, Number.parseInt(targetInput.value, 10) || building.minTarget));
 
     const existing = queueItems.find((item) => item.building === buildingKey);
     if (existing) {
