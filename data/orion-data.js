@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.9.0"
+    revision: "0.10.0"
   },
 
   lithium: {
@@ -41,7 +41,25 @@ window.ORION_DATA = {
     controlCenter: {
       description: "The Control Center enables IAS upgrades and unlocks bonuses for anomaly missions.",
       unlockLevels: [50, 100, 150, 200, 250, 300, 350],
-      unlockRule: "Complete a mission of the listed level to unlock the corresponding Control Center building."
+      unlockRule: "Complete a mission of the listed level to unlock the corresponding Control Center building.",
+      buildings: {
+        intergalacticRecoveryCenter: {
+          name: "Intergalactic Recovery Center",
+          unlockMissionLevel: 100,
+          effect: "Increases the number of ships gained from anomaly missions.",
+          bonusPerLevelPercent: 0.2,
+          stacksEmpireWide: true,
+          maxObservedTechinfoLevel: 15,
+          baseCost: { metal: 75000, crystal: 52500, deuterium: 22500 },
+          costMultiplier: 1.5,
+          costModelStatus: "Provisional early-level model inferred from rounded PTS UI values.",
+          observedDisplayedCosts: [
+            { level: 1, metal: "75K", crystal: "52K", deuterium: "22K" },
+            { level: 2, metal: "112K", crystal: "78K", deuterium: "33K" },
+            { level: 4, metal: "253K", crystal: "177K", deuterium: "75K" }
+          ]
+        }
+      }
     }
   },
 
@@ -65,6 +83,12 @@ window.ORION_DATA = {
   },
 
   observations: [
+    {
+      label: "CONTROL CENTER SAMPLE",
+      title: "Intergalactic Recovery Center",
+      metrics: ["Unlock: complete a level-100 mission", "+0.2% ships per level", "L3 contribution: 0.6%", "Observed empire total: 2.19% from multiple planets", "Techinfo shown through level 15"],
+      note: "The ship-reward bonus applies empire-wide and contributions from multiple planets stack. Early displayed build costs follow a working ×1.5 model, but the high-level cost curve remains provisional."
+    },
     {
       label: "BUILD-TIME SAMPLE",
       title: "IAS construction timing",
@@ -146,10 +170,15 @@ window.ORION_DATA = {
     "Enemy fleet and defense scaling rules",
     "Which mechanics use the combined account-wide scanner level versus the local planet level",
     "IAS construction-time formula and whether the displayed one-second time is the global minimum",
-    "Control Center building names and exact bonus effects"
+    "Remaining Control Center building names, exact bonus effects, and high-level construction-cost curves"
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.10.0",
+      notes: "Unified the calculator deck behind one selector and added an Intergalactic Recovery Center calculator with empire-wide bonus planning, while keeping its early-level cost curve explicitly provisional."
+    },
     {
       date: "2026-09-30",
       version: "0.9.0",
