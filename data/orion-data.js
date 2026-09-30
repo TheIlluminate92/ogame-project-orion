@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.8.1"
+    revision: "0.9.0"
   },
 
   lithium: {
@@ -15,7 +15,7 @@ window.ORION_DATA = {
       "Lithium cannot be traded or stolen.",
       "Production stops when the selected source resource is depleted.",
       "Lithium is spent on anomaly scans and reward claims.",
-      "Two observed PTS Metal conversions at 100% workload confirm a 3:1 ratio: 4,830 → 1,610 and 1,452 → 484 per hour."
+      "Observed PTS 100% workload conversion ratios: Metal 3:1, Crystal 2:1, Deuterium 1:1, and Lifeform Food 100:1."
     ],
     converterUi: ["Selectable source resource", "Adjustable workload", "Cost and Lithium rates per hour", "Endless conversion mode", "Per-planet conversion overview"]
   },
@@ -72,10 +72,10 @@ window.ORION_DATA = {
       note: "Observed checkpoints under the reported support-building setup. Missing intermediate timings are intentionally not estimated."
     },
     {
-      label: "CONVERSION SAMPLE",
-      title: "Metal → Lithium",
-      metrics: ["100% workload", "4,830 → 1,610/hour", "1,452 → 484/hour", "Confirmed twice: 3:1", "Per-planet controls observed"],
-      note: "The same Metal ratio appeared at two production rates. Crystal, Deuterium, and Lifeform Food ratios remain unconfirmed."
+      label: "CONVERSION RATIOS",
+      title: "Resource → Lithium",
+      metrics: ["100% workload", "Metal 3:1", "Crystal 2:1", "Deuterium 1:1", "Lifeform Food 100:1", "Independent per-planet controls observed"],
+      note: "Direct PTS samples include Metal 590,151 → 196,717/hour, Crystal 968 → 484/hour, Deuterium 220 → 220/hour, and Lifeform Food 79,800 → 798/hour. Ratios are observed behavior, not yet proven against every possible modifier."
     },
     {
       label: "SCAN SAMPLE",
@@ -92,8 +92,8 @@ window.ORION_DATA = {
     {
       label: "HIGH-LEVEL SCAN",
       title: "Combined IAS 60",
-      metrics: ["Range: 10 systems", "Scan cost: 112,454 Lithium", "Maximum results: 3", "Discovery limit: 2 / 2"],
-      note: "Observed search span: galaxy 7, systems 297–317. Returned mission levels 55, 58, and 60. This remains a sample, not a scan-cost formula."
+      metrics: ["Range options observed: 10 / 50 / 150 systems", "10-system cost: 112,454 Lithium", "150-system cost: 112,454 Lithium", "Maximum results: 3", "Discovery limit: 2 / 2"],
+      note: "The same level-60 scan cost was observed at both 10- and 150-system ranges, suggesting selected range may not affect scan cost at this level. This remains an observation, not a universal scan-cost rule."
     },
     {
       label: "DELIVERY SAMPLES",
@@ -104,8 +104,14 @@ window.ORION_DATA = {
     {
       label: "MULTI-WAVE SAMPLE",
       title: "Small Pirate Encounter",
-      metrics: ["PvP · Combat · level 11", "4 waves", "Wave 2: 25 NPC ships", "Wave 3: 25 NPC ships", "Wave 4: 22 NPC ships", "Early collection shown", "Small Cargo 1 + Light Fighter 1", "Displayed claim costs: 1,569 and 3,138 Lithium"],
-      note: "Wave 1 size and NPC ship composition were not visible. The claim dialog states that rewards are collected in order, wave by wave, and allows the player to choose how many completed waves to collect. Delivery destination shown: Epsilon [7:304:15]."
+      metrics: ["PvP · Combat · level 11", "4 waves", "Wave 2: 25 NPC ships", "Wave 3: 25 NPC ships", "Wave 4: 22 NPC ships", "Wave rewards: Small Cargo 1 + Light Fighter 1", "Per-wave claim cost: 1,569 Lithium", "Two-wave claim cost: 3,138 Lithium"],
+      note: "The reward dialog shows completed waves collected in order and demonstrates additive claim cost for the two selected waves. Wave 1 NPC size and ship composition were not visible."
+    },
+    {
+      label: "HIGH-LEVEL MISSION SAMPLES",
+      title: "Mission variation around IAS 60",
+      metrics: ["L49 Delivery: 6 waves · cost 275,514 · ≈4,361,160 Metal", "L51 PvP Delivery: 1 wave · cost 47,793 · ≈1,377,955 Metal", "L59 Medium Pirate: 2 waves · cost 110,580", "L62 PvP Small Alien: 2 waves · cost 348,608 · ≈3,153,246 Metal", "L64 PvP Small Alien: 1 wave · cost 239,902 · ≈4,256,486 Crystal"],
+      note: "These samples show that mission level alone does not determine claim cost, wave count, duration, or reward type. Exact reward and claim-cost formulas remain unknown."
     }
   ],
 
@@ -132,8 +138,7 @@ window.ORION_DATA = {
 
   unknowns: [
     "The complete mission-template list",
-    "Crystal, Deuterium, and Lifeform Food conversion ratios",
-    "Whether the observed 3:1 Metal ratio changes with scanner level or other modifiers",
+    "Whether the observed conversion ratios change with scanner level, class, universe settings, or other modifiers",
     "Exact scan and claim cost formulas",
     "Exact reward formulas, ranges, and caps",
     "General and Mecha modifier percentages",
@@ -145,6 +150,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.9.0",
+      notes: "Closed the observed resource-to-Lithium conversion table (Metal 3:1, Crystal 2:1, Deuterium 1:1, Food 100:1), added level-60 10-vs-150-system scan evidence, and expanded high-level mission and multi-wave reward samples."
+    },
     {
       date: "2026-09-30",
       version: "0.8.1",
