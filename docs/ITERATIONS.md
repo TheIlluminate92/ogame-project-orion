@@ -4,6 +4,7 @@ This file tracks structural releases and provides continuity when development mo
 
 | Revision | Date | Major change |
 |---|---|---|
+| 0.11.2 | 2026-09-30 | Bug hunt: corrected IRC unlock to L50, fixed multiplicative empire stacking, and hardened validation. |
 | 0.11.1 | 2026-09-30 | Fixed broken calculator queue handlers and initialization. |
 | 0.11.0 | 2026-09-30 | Added scanner tooltip mechanics, Discovery Limit/Max Results upgrade costs, high-level scan samples through L212, and capacity upgrades in the build queue. |
 | 0.10.3 | 2026-09-30 | Capped local building calculators and queue targets at level 100. |
@@ -38,9 +39,9 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 ## Current continuation point
 
-- Working revision: 0.11.1
+- Working revision: 0.11.2
 - Local validation: passing
-- Deployment: revision 0.11.1 pushed to main; live verification still required
+- Deployment: revision 0.11.2 pushed to main; live verification still required
 - Next action: continue high-level scanner/mission sampling, validate Recovery Center checkpoints above level 9, and collect additional discrete scanner-capacity upgrade costs.
 - Highest cost-formula validation: IAS 35
 - Highest calculator level: IAS 100
