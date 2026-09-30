@@ -4,7 +4,8 @@ This file tracks structural releases and provides continuity when development mo
 
 | Revision | Date | Major change |
 |---|---|---|
-| 0.11.2 | 2026-09-30 | Bug hunt: corrected IRC unlock to L50, fixed multiplicative empire stacking, and hardened validation. |
+| 0.12.0 | 2026-09-30 | Added the L100/L150/L200 Control Center buildings to progression, calculators, and queue; added clickable building details; downgraded IRC stacking to candidate pending confirmation. |
+| 0.11.2 | 2026-09-30 | Bug hunt: corrected IRC unlock to L50, tested multiplicative empire stacking as a candidate model, and hardened validation. |
 | 0.11.1 | 2026-09-30 | Fixed broken calculator queue handlers and initialization. |
 | 0.11.0 | 2026-09-30 | Added scanner tooltip mechanics, Discovery Limit/Max Results upgrade costs, high-level scan samples through L212, and capacity upgrades in the build queue. |
 | 0.10.3 | 2026-09-30 | Capped local building calculators and queue targets at level 100. |
@@ -39,10 +40,10 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 ## Current continuation point
 
-- Working revision: 0.11.2
+- Working revision: 0.12.0
 - Local validation: passing
-- Deployment: revision 0.11.2 pushed to main; live verification still required
-- Next action: continue high-level scanner/mission sampling, validate Recovery Center checkpoints above level 9, and collect additional discrete scanner-capacity upgrade costs.
+- Deployment: revision 0.12.0 pushed to main; live verification still required
+- Next action: identify the L250/L300/L350 Control Center buildings, independently confirm or reject the IRC empire-stacking formula, and collect full-precision cost checkpoints for the new L100/L150/L200 buildings.
 - Highest cost-formula validation: IAS 35
 - Highest calculator level: IAS 100
 - Highest combined planner target: IAS 1,000
