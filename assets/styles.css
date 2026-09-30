@@ -395,3 +395,84 @@ footer a { color: var(--cyan); text-decoration: none; font-size: 13px; }
   .queue-row-simple .queue-row-cost { grid-column: 1 / -1; }
   .queue-building-totals { grid-template-columns: 1fr; }
 }
+
+
+/* Control Center progression details */
+.milestone.known {
+  width: 100%;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+.milestone.known:hover,
+.milestone.known:focus-visible {
+  border-color: rgba(109,228,255,.65);
+  transform: translateY(-2px);
+  outline: none;
+}
+.milestone.locked { opacity: .58; }
+.milestone-icon {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  min-width: 32px;
+  min-height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 4px 7px;
+  border: 1px solid rgba(109,228,255,.28);
+  border-radius: 7px;
+  color: var(--cyan);
+  background: rgba(109,228,255,.06);
+  font: 800 11px/1 monospace;
+}
+.milestone.known small {
+  line-height: 1.25;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.building-dialog {
+  width: min(620px, calc(100vw - 28px));
+  padding: 26px;
+  color: var(--ink);
+  background: #0b1723;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.55);
+}
+.building-dialog::backdrop { background: rgba(0,0,0,.72); }
+.dialog-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  color: var(--muted);
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+}
+.building-dialog-head { display: flex; gap: 14px; align-items: center; padding-right: 40px; }
+.building-dialog-head h3 { margin: 2px 0 0; font-size: 26px; }
+.building-mark {
+  min-width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(109,228,255,.35);
+  border-radius: 10px;
+  color: var(--cyan);
+  background: rgba(109,228,255,.07);
+  font: 900 15px monospace;
+}
+.building-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+.building-detail-grid > div { padding: 14px; border: 1px solid var(--line); border-radius: 9px; background: rgba(255,255,255,.025); }
+.building-detail-grid span { display: block; color: var(--muted); font-size: 11px; text-transform: uppercase; }
+.building-detail-grid strong { display: block; margin-top: 5px; color: var(--lime); font-size: 15px; overflow-wrap: anywhere; }
+
+@media (max-width: 700px) {
+  .building-detail-grid { grid-template-columns: 1fr; }
+}
