@@ -189,10 +189,117 @@
     $("#recovery-result-bonus").textContent = `${totalBonus.toFixed(1)}%`;
   }
 
+  const queueCatalog = {
+    ias: {
+      label: "Interstellar Anomaly Scanner",
+      maxLevel: 1000,
+      cumulative: cumulativeCostExact,
+      provisional: false
+    },
+    recovery: {
+      label: "Intergalactic Recovery Center",
+      maxLevel: recovery.maxObservedTechinfoLevel,
+      cumulative: recoveryCumulativeCost,
+      provisional: true
+    }
+  };
+
+  let queueId = 0;
+  let queueItems = [];
+
+  function subtractCost(high, low) {
+    return {
+      metal: high.metal - low.metal,
+      crystal: high.crystal - low.crystal,
+      deuterium: high.deuterium - low.deuterium
+    };
+  }
+
+  function queueItemCost(item) {
+    const building = queueCatalog[item.building];
+    const current = Math.max(0, Math.min(building.maxLevel, item.current));
+    const target = Math.max(current, Math.min(building.maxLevel, item.target));
+    return subtractCost(building.cumulative(target), building.cumulative(current));
+  }
+
+  function renderQueue() {
+    const host = $("#queue-items");
+    if (!queueItems.length) {
+      host.innerHTML = '<p class="queue-empty">Queue is empty. Add a building target to price a new planet or upgrade package.</p>';
+    } else {
+      host.innerHTML = queueItems.map((item) => {
+        const building = queueCatalog[item.building];
+        const cost = queueItemCost(item);
+        return `<div class="queue-row" data-queue-id="${item.id}">
+          <label>Building
+            <select class="queue-building">
+              ${Object.entries(queueCatalog).map(([key, value]) => `<option value="${key}"${key === item.building ? " selected" : ""}>${value.label}</option>`).join("")}
+            </select>
+          </label>
+          <label>Current
+            <input class="queue-current" type="number" min="0" max="${building.maxLevel}" value="${item.current}" inputmode="numeric">
+          </label>
+          <label>Target
+            <input class="queue-target" type="number" min="0" max="${building.maxLevel}" value="${item.target}" inputmode="numeric">
+          </label>
+          <div class="queue-row-cost">
+            <span>Incremental cost${building.provisional ? " · provisional" : ""}</span>
+            <strong>${format.format(resourceTotal(cost))}</strong>
+            <small>M ${format.format(cost.metal)} · C ${format.format(cost.crystal)} · D ${format.format(cost.deuterium)}</small>
+          </div>
+          <button type="button" class="queue-remove" aria-label="Remove ${building.label} from queue">×</button>
+        </div>`;
+      }).join("");
+    }
+
+    const total = addCosts(queueItems.map(queueItemCost));
+    $("#queue-grand-total").textContent = format.format(resourceTotal(total));
+    $("#queue-total-breakdown").textContent = `M ${format.format(total.metal)} · C ${format.format(total.crystal)} · D ${format.format(total.deuterium)}`;
+    $("#queue-metal").textContent = format.format(total.metal);
+    $("#queue-crystal").textContent = format.format(total.crystal);
+    $("#queue-deuterium").textContent = format.format(total.deuterium);
+
+    $(".queue-row").forEach((row) => {
+      const id = Number(row.dataset.queueId);
+      row.querySelector(".queue-building").addEventListener("change", (event) => {
+        const item = queueItems.find((candidate) => candidate.id === id);
+        item.building = event.target.value;
+        const max = queueCatalog[item.building].maxLevel;
+        item.current = Math.min(item.current, max);
+        item.target = Math.max(item.current, Math.min(item.target, max));
+        renderQueue();
+      });
+      row.querySelector(".queue-current").addEventListener("input", (event) => {
+        const item = queueItems.find((candidate) => candidate.id === id);
+        const max = queueCatalog[item.building].maxLevel;
+        item.current = Math.max(0, Math.min(max, Number.parseInt(event.target.value, 10) || 0));
+        if (item.target < item.current) item.target = item.current;
+        renderQueue();
+      });
+      row.querySelector(".queue-target").addEventListener("input", (event) => {
+        const item = queueItems.find((candidate) => candidate.id === id);
+        const max = queueCatalog[item.building].maxLevel;
+        item.target = Math.max(item.current, Math.min(max, Number.parseInt(event.target.value, 10) || item.current));
+        renderQueue();
+      });
+      row.querySelector(".queue-remove").addEventListener("click", () => {
+        queueItems = queueItems.filter((candidate) => candidate.id !== id);
+        renderQueue();
+      });
+    });
+  }
+
+  function addQueueItem(building = "ias", current = 0, target = 1) {
+    queueId += 1;
+    queueItems.push({ id: queueId, building, current, target });
+    renderQueue();
+  }
+
   const summaries = {
     "ias-local": "Single-planet IAS cost and Lithium production.",
     "ias-network": "Cheapest balanced account-wide IAS distribution.",
-    "recovery": "Intergalactic Recovery Center local cost and empire-wide ship-reward bonus planning."
+    "recovery": "Intergalactic Recovery Center local cost and empire-wide ship-reward bonus planning.",
+    "build-queue": "Queue several Orion building targets and total the resources for a new planet or upgrade package."
   };
 
   function selectCalculator(value) {
@@ -219,11 +326,17 @@
   $("#recovery-target-bonus").addEventListener("input", updateRecoveryPlanner);
   $("#recovery-planets").addEventListener("input", updateRecoveryPlanner);
   $("#calculator-select").addEventListener("change", (event) => selectCalculator(event.target.value));
+  $("#queue-add-item").addEventListener("click", () => addQueueItem("ias", 0, 1));
+  $("#queue-clear").addEventListener("click", () => {
+    queueItems = [];
+    renderQueue();
+  });
 
-  $$("[data-level]").forEach((button) => button.addEventListener("click", () => {
+  $("[data-level]").forEach((button) => button.addEventListener("click", () => {
     levelInput.value = button.dataset.level;
     updateLevelCalculator(Number(levelInput.value));
   }));
 
+  addQueueItem("ias", 0, 60);
   selectCalculator($("#calculator-select").value);
 })();
