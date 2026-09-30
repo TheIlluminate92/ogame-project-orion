@@ -29,7 +29,8 @@
       <div class="status-row">
         <span class="status warning">PTS — subject to change</span>
         <span class="status neutral">IAS costs checked through L35</span>
-        <span class="status neutral">Recovery costs checked through L9</span>
+        <span class="status neutral">IRC costs checked through L9</span>
+        <span class="status neutral">3 new Control Center models added</span>
         <a class="status neutral status-link" href="index.html">← Back to briefing</a>
       </div>
     </div>
@@ -44,6 +45,9 @@
             <option value="ias-local">Interstellar Anomaly Scanner — local level</option>
             <option value="ias-network">Interstellar Anomaly Scanner — account-wide planner</option>
             <option value="recovery">Intergalactic Recovery Center</option>
+            <option value="lithiumLab">Lithium Electrolysis Lab</option>
+            <option value="metalRecycling">Metal Recycling Unit</option>
+            <option value="crystalFinishing">Crystal Finishing Station</option>
             <option value="build-queue">Planet build queue</option>
           </select>
         </label>
@@ -162,8 +166,8 @@
             <p class="micro">OBSERVED / WORKING MODEL</p>
             <div class="formula-block"><span>Bonus</span><code>0.2% × level</code></div>
             <div class="formula-block"><span>Early-level cost curve</span><code>Base × 1.5^(L − 1)</code></div>
-            <div class="ratio"><span>Observed stacking</span><strong>EMPIRE-WIDE</strong><small>Planet bonuses combine multiplicatively across the empire</small></div>
-            <p class="fine-print">The bonus and empire-wide stacking are directly observed. The ×1.5 cost curve is a working model inferred from early displayed costs and is not yet validated at high levels.</p>
+            <div class="ratio"><span>Empire stacking</span><strong>CANDIDATE MODEL</strong><small>2.19% observed total fits multiplicative stacking; one more test is needed</small></div>
+            <p class="fine-print">Local +0.2% per level is directly observed. The empire-wide stacking formula is still under test. The ×1.5 cost curve matches supplied PTS checkpoints through level 9.</p>
           </aside>
         </div>
 
@@ -172,7 +176,7 @@
             <div>
               <p class="micro">EMPIRE BONUS TARGET</p>
               <h3>Lowest-cost balanced Recovery Center layout</h3>
-              <p>Because observed bonuses stack multiplicatively across planets, this compares balanced layouts and selects the lowest-resource option for the target bonus.</p>
+              <p>Uses the current multiplicative stacking candidate to compare balanced layouts. Treat the empire result as provisional until another stacking test confirms the rule.</p>
             </div>
             <div class="planner-inputs">
               <label>Target bonus %<input id="recovery-target-bonus" type="number" min="0.2" max="99.9" value="3" step="0.2" inputmode="decimal"></label>
@@ -182,10 +186,46 @@
           <div class="planner-results" aria-live="polite">
             <div class="planner-result primary-result"><span>Balanced distribution</span><strong id="recovery-distribution"></strong><small id="recovery-fields"></small></div>
             <div class="planner-result"><span>Projected resources</span><strong id="recovery-total"></strong><small id="recovery-breakdown"></small></div>
-            <div class="planner-result savings-result"><span>Resulting bonus</span><strong id="recovery-result-bonus"></strong><small>local +0.2% per level · empire stacking is multiplicative</small></div>
+            <div class="planner-result savings-result"><span>Resulting bonus</span><strong id="recovery-result-bonus"></strong><small>local +0.2% per level · empire stacking model is provisional</small></div>
           </div>
-          <p class="fine-print">Empire bonus uses the observed multiplicative stacking rule. Construction cost above level 9 still projects the ×1.5 local cost curve.</p>
+          <p class="fine-print">Empire bonus currently uses the multiplicative candidate model because it reproduces the observed 2.19% total. Do not treat that stacking rule as confirmed yet. Construction cost above level 9 projects the ×1.5 curve.</p>
         </article>
+      </section>
+
+      <section class="calculator-view" data-calculator-view="control-building" id="control-building-calculator" hidden>
+        <div class="section-heading wide">
+          <p class="kicker" id="control-building-kicker">CONTROL CENTER BUILDING</p>
+          <h2 id="control-building-name">Control Center building</h2>
+          <p id="control-building-effect"></p>
+        </div>
+        <div class="scanner-layout">
+          <article class="panel calculator">
+            <div class="panel-head">
+              <div>
+                <p class="micro" id="control-building-unlock"></p>
+                <h3>Level <output id="control-building-level-output" for="control-building-level-input">1</output></h3>
+              </div>
+              <span class="live-dot projection" id="control-building-status">WORKING COST MODEL</span>
+            </div>
+            <input id="control-building-level-input" type="range" min="1" max="100" value="1" step="1" aria-label="Control Center building level">
+            <div class="metric featured">
+              <span id="control-building-bonus-label">Mission reward bonus</span>
+              <strong id="control-building-bonus">0.2%</strong>
+              <small>local building contribution</small>
+            </div>
+            <div class="cost-columns">
+              <div><p class="micro">BUILD THIS LEVEL</p><dl id="control-building-level-cost"></dl></div>
+              <div><p class="micro">CUMULATIVE 0 → LEVEL</p><dl id="control-building-cumulative-cost"></dl></div>
+            </div>
+          </article>
+          <aside class="panel formula-panel">
+            <p class="micro">PTS MODEL STATUS</p>
+            <div class="formula-block"><span>Bonus</span><code>+0.2% × level</code></div>
+            <div class="formula-block"><span>Working cost curve</span><code>Base × 1.5^(L − 1)</code></div>
+            <div class="ratio"><span>Observed checkpoints</span><strong id="control-building-checkpoints">—</strong><small id="control-building-base-status"></small></div>
+            <p class="fine-print" id="control-building-model-note"></p>
+          </aside>
+        </div>
       </section>
 
       <section class="calculator-view" data-calculator-view="build-queue" id="build-queue-calculator" hidden>
@@ -201,6 +241,9 @@
               <select id="queue-building-select">
                 <option value="ias">Interstellar Anomaly Scanner</option>
                 <option value="recovery">Intergalactic Recovery Center</option>
+                <option value="lithiumLab">Lithium Electrolysis Lab</option>
+                <option value="metalRecycling">Metal Recycling Unit</option>
+                <option value="crystalFinishing">Crystal Finishing Station</option>
                 <option value="discoveryLimit">Anomaly Discovery Limit</option>
                 <option value="maxResults">Max Results</option>
               </select>
@@ -244,7 +287,7 @@
           <div class="queue-actions">
             <button type="button" class="button secondary" id="queue-clear">Clear queue</button>
           </div>
-          <p class="fine-print">IAS and Recovery Center are cumulative from level 0. Scanner capacity upgrades use their observed defaults: Discovery Limit starts at 2 and Max Results starts at 3. Only observed capacity-upgrade targets are selectable; no cost curve is assumed. Recovery Center costs match PTS through level 9 and project above that.</p>
+          <p class="fine-print">IAS and Control Center buildings are cumulative from level 0. The three newly observed Control Center buildings use working ×1.5 models derived from abbreviated PTS values, so their totals are estimates rather than exact full-precision game costs. Scanner capacity upgrades use only discrete observed prices.</p>
         </article>
       </section>
     </section>
