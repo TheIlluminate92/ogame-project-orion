@@ -192,62 +192,85 @@
   const queueCatalog = {
     ias: {
       label: "Interstellar Anomaly Scanner",
+      shortLabel: "IAS",
       maxLevel: 1000,
       cumulative: cumulativeCostExact,
-      provisional: false
+      validatedThrough: data.scanner.costValidatedThrough
     },
     recovery: {
       label: "Intergalactic Recovery Center",
-      maxLevel: recovery.maxObservedTechinfoLevel,
+      shortLabel: "IRC",
+      maxLevel: recovery.maxCalculatorLevel || 100,
       cumulative: recoveryCumulativeCost,
-      provisional: true
+      validatedThrough: recovery.costValidatedThrough || 0
     }
   };
 
   let queueId = 0;
   let queueItems = [];
 
-  function subtractCost(high, low) {
-    return {
-      metal: high.metal - low.metal,
-      crystal: high.crystal - low.crystal,
-      deuterium: high.deuterium - low.deuterium
-    };
+  function queueItemCost(item) {
+    return queueCatalog[item.building].cumulative(item.target);
   }
 
-  function queueItemCost(item) {
+  function queueValidationLabel(item) {
     const building = queueCatalog[item.building];
-    const current = Math.max(0, Math.min(building.maxLevel, item.current));
-    const target = Math.max(current, Math.min(building.maxLevel, item.target));
-    return subtractCost(building.cumulative(target), building.cumulative(current));
+    return item.target <= building.validatedThrough
+      ? `PTS-checked through L${building.validatedThrough}`
+      : `projection above L${building.validatedThrough}`;
   }
 
   function renderQueue() {
     const host = $("#queue-items");
+
     if (!queueItems.length) {
-      host.innerHTML = '<p class="queue-empty">Queue is empty. Add a building target to price a new planet or upgrade package.</p>';
+      host.innerHTML = '<p class="queue-empty">Queue is empty. Example: choose IAS, enter 35, add it; then choose Recovery Center, enter 25, and add that.</p>';
     } else {
       host.innerHTML = queueItems.map((item) => {
         const building = queueCatalog[item.building];
         const cost = queueItemCost(item);
-        return `<div class="queue-row" data-queue-id="${item.id}">
-          <label>Building
-            <select class="queue-building">
-              ${Object.entries(queueCatalog).map(([key, value]) => `<option value="${key}"${key === item.building ? " selected" : ""}>${value.label}</option>`).join("")}
-            </select>
-          </label>
-          <label>Current
-            <input class="queue-current" type="number" min="0" max="${building.maxLevel}" value="${item.current}" inputmode="numeric">
-          </label>
-          <label>Target
-            <input class="queue-target" type="number" min="0" max="${building.maxLevel}" value="${item.target}" inputmode="numeric">
-          </label>
+        return `<div class="queue-row queue-row-simple" data-queue-id="${item.id}">
+          <div class="queue-name">
+            <span>${building.shortLabel} → LEVEL ${item.target}</span>
+            <strong>${building.label}</strong>
+            <small>${queueValidationLabel(item)}</small>
+          </div>
           <div class="queue-row-cost">
-            <span>Incremental cost${building.provisional ? " · provisional" : ""}</span>
+            <span>Cumulative L0 → L${item.target}</span>
             <strong>${format.format(resourceTotal(cost))}</strong>
             <small>M ${format.format(cost.metal)} · C ${format.format(cost.crystal)} · D ${format.format(cost.deuterium)}</small>
           </div>
-          <button type="button" class="queue-remove" aria-label="Remove ${building.label} from queue">×</button>
+          <button type="button" class="queue-remove" aria-label="Remove ${building.label} level ${item.target} from queue">×</button>
+        </div>`;
+      }).join("");
+
+      $$(".queue-remove").forEach((button) => button.addEventListener("click", () => {
+        const id = Number(button.closest(".queue-row").dataset.queueId);
+        queueItems = queueItems.filter((candidate) => candidate.id !== id);
+        renderQueue();
+      }));
+    }
+
+    const grouped = new Map();
+    queueItems.forEach((item) => {
+      const key = item.building;
+      const existing = grouped.get(key) || { cost: { metal: 0n, crystal: 0n, deuterium: 0n }, items: [] };
+      existing.cost = addCosts([existing.cost, queueItemCost(item)]);
+      existing.items.push(item);
+      grouped.set(key, existing);
+    });
+
+    const buildingTotals = $("#queue-building-totals");
+    if (!grouped.size) {
+      buildingTotals.innerHTML = '<p class="queue-empty">No building totals yet.</p>';
+    } else {
+      buildingTotals.innerHTML = Array.from(grouped.entries()).map(([key, group]) => {
+        const building = queueCatalog[key];
+        const levels = group.items.map((item) => `L${item.target}`).join(" + ");
+        return `<div class="planner-result">
+          <span>${building.shortLabel} · ${levels}</span>
+          <strong>${format.format(resourceTotal(group.cost))}</strong>
+          <small>M ${format.format(group.cost.metal)} · C ${format.format(group.cost.crystal)} · D ${format.format(group.cost.deuterium)}</small>
         </div>`;
       }).join("");
     }
@@ -258,40 +281,30 @@
     $("#queue-metal").textContent = format.format(total.metal);
     $("#queue-crystal").textContent = format.format(total.crystal);
     $("#queue-deuterium").textContent = format.format(total.deuterium);
-
-    $(".queue-row").forEach((row) => {
-      const id = Number(row.dataset.queueId);
-      row.querySelector(".queue-building").addEventListener("change", (event) => {
-        const item = queueItems.find((candidate) => candidate.id === id);
-        item.building = event.target.value;
-        const max = queueCatalog[item.building].maxLevel;
-        item.current = Math.min(item.current, max);
-        item.target = Math.max(item.current, Math.min(item.target, max));
-        renderQueue();
-      });
-      row.querySelector(".queue-current").addEventListener("input", (event) => {
-        const item = queueItems.find((candidate) => candidate.id === id);
-        const max = queueCatalog[item.building].maxLevel;
-        item.current = Math.max(0, Math.min(max, Number.parseInt(event.target.value, 10) || 0));
-        if (item.target < item.current) item.target = item.current;
-        renderQueue();
-      });
-      row.querySelector(".queue-target").addEventListener("input", (event) => {
-        const item = queueItems.find((candidate) => candidate.id === id);
-        const max = queueCatalog[item.building].maxLevel;
-        item.target = Math.max(item.current, Math.min(max, Number.parseInt(event.target.value, 10) || item.current));
-        renderQueue();
-      });
-      row.querySelector(".queue-remove").addEventListener("click", () => {
-        queueItems = queueItems.filter((candidate) => candidate.id !== id);
-        renderQueue();
-      });
-    });
   }
 
-  function addQueueItem(building = "ias", current = 0, target = 1) {
-    queueId += 1;
-    queueItems.push({ id: queueId, building, current, target });
+  function syncQueueTargetLimits() {
+    const building = queueCatalog[$("#queue-building-select").value];
+    const input = $("#queue-target-level");
+    input.max = building.maxLevel;
+    const parsed = Number.parseInt(input.value, 10) || 1;
+    input.value = Math.max(1, Math.min(building.maxLevel, parsed));
+  }
+
+  function addSelectedQueueItem() {
+    const buildingKey = $("#queue-building-select").value;
+    const building = queueCatalog[buildingKey];
+    const targetInput = $("#queue-target-level");
+    const target = Math.max(1, Math.min(building.maxLevel, Number.parseInt(targetInput.value, 10) || 1));
+
+    const existing = queueItems.find((item) => item.building === buildingKey);
+    if (existing) {
+      existing.target = target;
+    } else {
+      queueId += 1;
+      queueItems.push({ id: queueId, building: buildingKey, target });
+    }
+    targetInput.value = target;
     renderQueue();
   }
 
