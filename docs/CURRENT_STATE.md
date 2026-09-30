@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-30
 
-Working revision: **0.9.0**
+Working revision: **0.10.0**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -11,16 +11,17 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
 - Publishing source: `main` branch, repository root
-- Revision 0.9.0 publication pending verification: 2026-09-30
+- Revision 0.10.0 publication pending verification: 2026-09-30
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
 ## Current site structure
 
 - The homepage is a concise field guide.
-- `calculators.html` is a dedicated calculator deck.
+- `calculators.html` is a unified selectable calculator deck for IAS and Control Center buildings.
 - The local scanner calculator supports levels 1–100 with exact integer costs.
 - The cross-planet planner supports combined IAS targets 1–1,000 and 1–50 available planets.
+- The Intergalactic Recovery Center calculator models +0.2% ship rewards per level and empire-wide stacking; its early ×1.5 cost curve is provisional.
 - The planner assumes all selected planets begin at IAS 0 and optimizes construction resources, not Lithium production.
 
 ## Confirmed or repeatedly observed
@@ -30,6 +31,7 @@ Future revisions should be treated as published only after the Pages build and t
 - Observed 100% workload conversion ratios: Metal 3:1, Crystal 2:1, Deuterium 1:1, Lifeform Food 100:1.
 - Multiple planets can convert different resources to Lithium simultaneously with independent controls.
 - Control Center buildings unlock at completed mission levels 50, 100, 150, 200, 250, 300, and 350.
+- Intergalactic Recovery Center is the level-100 unlock; its +0.2% ship-reward bonus per level stacks empire-wide across planets.
 - Combined IAS 60 produced an observed scan cost of 112,454 Lithium at both 10- and 150-system range settings.
 - Observed range choices at IAS 60: 10, 50, and 150 systems.
 - Mission rewards can be collected in order, wave by wave.
