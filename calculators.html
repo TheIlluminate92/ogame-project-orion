@@ -132,7 +132,7 @@
 
       <section class="calculator-view" data-calculator-view="recovery" id="recovery-calculator" hidden>
         <div class="section-heading wide">
-          <p class="kicker">CONTROL CENTER // LEVEL-100 UNLOCK</p>
+          <p class="kicker">CONTROL CENTER // LEVEL-50 UNLOCK</p>
           <h2>Intergalactic Recovery Center</h2>
           <p>Plan the empire-wide ship-reward bonus. The observed bonus is +0.2 percentage points per level and stacks across planets.</p>
         </div>
@@ -162,7 +162,7 @@
             <p class="micro">OBSERVED / WORKING MODEL</p>
             <div class="formula-block"><span>Bonus</span><code>0.2% × level</code></div>
             <div class="formula-block"><span>Early-level cost curve</span><code>Base × 1.5^(L − 1)</code></div>
-            <div class="ratio"><span>Observed stacking</span><strong>EMPIRE-WIDE</strong><small>Planet contributions add to the account total</small></div>
+            <div class="ratio"><span>Observed stacking</span><strong>EMPIRE-WIDE</strong><small>Planet bonuses combine multiplicatively across the empire</small></div>
             <p class="fine-print">The bonus and empire-wide stacking are directly observed. The ×1.5 cost curve is a working model inferred from early displayed costs and is not yet validated at high levels.</p>
           </aside>
         </div>
@@ -171,20 +171,20 @@
           <div class="planner-intro">
             <div>
               <p class="micro">EMPIRE BONUS TARGET</p>
-              <h3>Cheapest balanced Recovery Center layout</h3>
-              <p>Because observed bonuses stack across planets, this estimates the cheapest even distribution for a target ship-reward bonus.</p>
+              <h3>Lowest-cost balanced Recovery Center layout</h3>
+              <p>Because observed bonuses stack multiplicatively across planets, this compares balanced layouts and selects the lowest-resource option for the target bonus.</p>
             </div>
             <div class="planner-inputs">
-              <label>Target bonus %<input id="recovery-target-bonus" type="number" min="0.2" max="150" value="3" step="0.2" inputmode="decimal"></label>
+              <label>Target bonus %<input id="recovery-target-bonus" type="number" min="0.2" max="99.9" value="3" step="0.2" inputmode="decimal"></label>
               <label>Available planets<input id="recovery-planets" type="number" min="1" max="50" value="10" inputmode="numeric"></label>
             </div>
           </div>
           <div class="planner-results" aria-live="polite">
             <div class="planner-result primary-result"><span>Balanced distribution</span><strong id="recovery-distribution"></strong><small id="recovery-fields"></small></div>
             <div class="planner-result"><span>Projected resources</span><strong id="recovery-total"></strong><small id="recovery-breakdown"></small></div>
-            <div class="planner-result savings-result"><span>Resulting bonus</span><strong id="recovery-result-bonus"></strong><small>+0.2% per building level</small></div>
+            <div class="planner-result savings-result"><span>Resulting bonus</span><strong id="recovery-result-bonus"></strong><small>local +0.2% per level · empire stacking is multiplicative</small></div>
           </div>
-          <p class="fine-print">Projection assumes the early observed ×1.5 local cost curve continues. Recheck this planner as more Control Center levels are measured.</p>
+          <p class="fine-print">Empire bonus uses the observed multiplicative stacking rule. Construction cost above level 9 still projects the ×1.5 local cost curve.</p>
         </article>
       </section>
 
