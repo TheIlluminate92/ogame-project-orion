@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.12.0"
+    revision: "0.12.1"
   },
 
   lithium: {
@@ -171,7 +171,9 @@ window.ORION_DATA = {
       { icon: "◎", name: "Death Stars", detail: "Some combat missions explicitly feature Death Stars." },
       { icon: "⇄", name: "Delivery", detail: "Observed templates include Delivery: Metal and Valuable Delivery, with one to three waves." },
       { icon: "⚔", name: "PvE / PvP", detail: "Mission variants may invite direct player interference." },
-      { icon: "⌬", name: "ACS co-op", detail: "Alliance members can contribute fleet value to supported missions." }
+      { icon: "⌬", name: "ACS co-op", detail: "Alliance members can contribute fleet value to supported missions." },
+      { icon: "✚", name: "Lifeform Rescue", detail: "Observed PvP rescue mission can award Lifeform XP plus an additional unidentified reward type." },
+      { icon: "▣", name: "Resource fields", detail: "Observed combat templates include Resource: Metal and Resource: Deuterium." }
     ],
     rules: [
       "PvE missions cannot be attacked by other players.",
@@ -183,6 +185,24 @@ window.ORION_DATA = {
   },
 
   observations: [
+    {
+      label: "HIGH-IAS SCAN",
+      title: "Combined IAS 349",
+      metrics: ["Selected anomaly level: 349", "Range: 10 systems", "Span: 3:298–3:318", "Scan cost: 961,980 Lithium", "Max Results: 3", "Discovery Limit: 1 / 4"],
+      note: "High-level scanner checkpoint. The scan returned missions from level 284 through 351, consistent with the scanner tooltip allowing discovered anomaly levels to vary from the selected level."
+    },
+    {
+      label: "LEVEL-351 COMBAT SAMPLE",
+      title: "Small Alien Encounter",
+      metrics: ["PvE · ★★", "Level 351", "4 waves", "Duration: 1h 25m", "Distance: 2,890", "Reward cost: 3.869M Lithium", "Possible rewards: ≈3,784,178 Metal + ≈5,105,756 Crystal + 172 of an unidentified reward icon"],
+      note: "Wave sizes were 1,881 / 1,971 / 374 / 988 ships. Wave 1 was 1,881 Heavy Fighters. Wave 2: 384 Small Cargo, 88 Large Cargo, 625 Light Fighters, 627 Heavy Fighters, 247 Cruisers. Wave 3: 18 Small Cargo, 97 Light Fighters, 87 Heavy Fighters, 42 Cruisers, 25 Battleships, 23 Destroyers, 51 Battlecruisers, 31 Reapers. Wave 4: 685 Light Fighters, 181 Cruisers, 93 Battleships, 14 Destroyers, 1 Deathstar, 14 Battlecruisers. NPC combat tech shown on waves 2–4: Weapons 28, Shielding 20, Armor 28."
+    },
+    {
+      label: "HIGH-LEVEL MISSION MIX",
+      title: "IAS 349 scan results",
+      metrics: ["L306 Resource: Metal · PvP ★ · 8 waves · 2h 44m · cost 3.373M · ≈30,709,440 Metal", "L284 Resource: Deuterium · PvP ★ · 2 waves · 42m · cost 782,814 · ≈2,116,728 Deuterium", "L196 Lifeform Rescue · PvP ★★★★ · 3 waves · 20m · distance 80,000 · 2,352–23,520 Lifeform XP + 126–595 of an unidentified reward icon", "L194 Medium Pirate Encounter · PvE ★ · 4 waves · 1h 31m · distance 80,000 · ≈1,232,629 Metal + 19–76 of an unidentified reward icon"],
+      note: "These screenshots add Resource: Metal, Resource: Deuterium, and Lifeform Rescue to the observed mission-template set. The unidentified icon rewards are stored conservatively until their exact item/type is confirmed."
+    },
     {
       label: "SCANNER CAPACITY UPGRADES",
       title: "Discovery Limit and Max Results",
@@ -293,6 +313,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.12.1",
+      notes: "Added combined-IAS-349 scanner evidence, high-level Resource and Lifeform Rescue mission samples, and the full visible four-wave NPC composition for a level-351 Small Alien Encounter."
+    },
     {
       date: "2026-09-30",
       version: "0.12.0",
