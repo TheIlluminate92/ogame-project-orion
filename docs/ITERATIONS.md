@@ -4,6 +4,7 @@ This file tracks structural releases and provides continuity when development mo
 
 | Revision | Date | Major change |
 |---|---|---|
+| 0.11.0 | 2026-09-30 | Added scanner tooltip mechanics, Discovery Limit/Max Results upgrade costs, high-level scan samples through L212, and capacity upgrades in the build queue. |
 | 0.10.3 | 2026-09-30 | Capped local building calculators and queue targets at level 100. |
 | 0.10.2 | 2026-09-30 | Reworked the build queue for building + target-level entry, per-building cumulative costs, and grand totals; Recovery Center costs validated through L9. |
 | 0.10.1 | 2026-09-30 | Added a multi-building planet build queue with upfront resource totals. |
@@ -36,10 +37,10 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 ## Current continuation point
 
-- Working revision: 0.10.3
+- Working revision: 0.11.0
 - Local validation: passing
-- Deployment: revision 0.10.3 pushed to main; live verification still required
-- Next action: validate Recovery Center checkpoints above level 9, identify remaining Control Center buildings, and continue structured ROI evidence intake
+- Deployment: revision 0.11.0 pushed to main; live verification still required
+- Next action: continue high-level scanner/mission sampling, validate Recovery Center checkpoints above level 9, and collect additional discrete scanner-capacity upgrade costs.
 - Highest cost-formula validation: IAS 35
 - Highest calculator level: IAS 100
 - Highest combined planner target: IAS 1,000
