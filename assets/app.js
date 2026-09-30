@@ -3,54 +3,6 @@
 
   const data = window.ORION_DATA;
   const $ = (selector) => document.querySelector(selector);
-  const format = new Intl.NumberFormat("en-US");
-
-  function resourceTotal(cost) {
-    return cost.metal + cost.crystal + cost.deuterium;
-  }
-
-  function costAt(level) {
-    const scale = Math.pow(1.4, level - 1);
-    return {
-      metal: Math.floor(data.scanner.baseCost.metal * scale),
-      crystal: Math.floor(data.scanner.baseCost.crystal * scale),
-      deuterium: Math.floor(data.scanner.baseCost.deuterium * scale)
-    };
-  }
-
-  function cumulativeCost(level) {
-    const total = { metal: 0, crystal: 0, deuterium: 0 };
-    for (let current = 1; current <= level; current += 1) {
-      const cost = costAt(current);
-      total.metal += cost.metal;
-      total.crystal += cost.crystal;
-      total.deuterium += cost.deuterium;
-    }
-    return total;
-  }
-
-  function lithiumAt(level) {
-    return Math.floor(200 * level * Math.pow(1.1, level));
-  }
-
-  function costRows(cost) {
-    return [
-      ["Metal", cost.metal],
-      ["Crystal", cost.crystal],
-      ["Deuterium", cost.deuterium],
-      ["Total", resourceTotal(cost)]
-    ].map(([name, value]) => `<div class="cost-row"><dt>${name}</dt><dd>${format.format(value)}</dd></div>`).join("");
-  }
-
-  function updateCalculator(level) {
-    $("#level-output").textContent = level;
-    $("#lithium-hour").textContent = format.format(lithiumAt(level));
-    $("#level-cost").innerHTML = costRows(costAt(level));
-    $("#cumulative-cost").innerHTML = costRows(cumulativeCost(level));
-    document.querySelectorAll("[data-level]").forEach((button) => {
-      button.classList.toggle("active", Number(button.dataset.level) === level);
-    });
-  }
 
   function render() {
     $("#status-badge").textContent = data.meta.status;
@@ -68,8 +20,6 @@
 
     $("#scanner-fields").textContent = data.scanner.fieldUse;
     $("#scanner-stacking").textContent = data.scanner.stacking;
-    $("#production-formula").textContent = data.scanner.productionFormula;
-    $("#cost-formula").textContent = data.scanner.costFormula;
     $("#control-center-description").textContent = data.scanner.controlCenter.description;
     $("#unlock-rule").textContent = data.scanner.controlCenter.unlockRule;
     $("#milestone-track").innerHTML = data.scanner.controlCenter.unlockLevels.map((level, index) => `
@@ -120,13 +70,4 @@
   }
 
   render();
-  const levelInput = $("#level-input");
-  updateCalculator(Number(levelInput.value));
-  levelInput.addEventListener("input", () => updateCalculator(Number(levelInput.value)));
-  document.querySelectorAll("[data-level]").forEach((button) => {
-    button.addEventListener("click", () => {
-      levelInput.value = button.dataset.level;
-      updateCalculator(Number(button.dataset.level));
-    });
-  });
 })();

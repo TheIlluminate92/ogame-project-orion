@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Exact IAS level costs and cross-planet planning for OGame Project Orion.">
+  <meta name="theme-color" content="#06101d">
+  <title>Project Orion — IAS Calculators</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="data/orion-data.js"></script>
+  <script defer src="assets/calculators.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to calculators</a>
+  <header class="subpage-hero" id="top">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="index.html"><span class="brand-mark">OR</span><span>ORION // PTS</span></a>
+      <div class="nav-links">
+        <a class="active" href="calculators.html">Calculators</a>
+        <a href="index.html#scanner">Scanner</a>
+        <a href="index.html#missions">Missions</a>
+        <a href="index.html#intel">Intel status</a>
+      </div>
+    </nav>
+    <div class="shell subpage-title">
+      <p class="eyebrow">IAS // EXACT PLANNING DECK</p>
+      <h1>CALCULATORS</h1>
+      <p>Single-planet construction through level 100 and exact combined-IAS planning through level 1,000.</p>
+      <div class="status-row">
+        <span class="status warning">PTS — subject to change</span>
+        <span class="status neutral">Costs checked through IAS 35</span>
+        <a class="status neutral status-link" href="index.html">← Back to briefing</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section shell" id="level-calculator">
+      <div class="section-heading wide">
+        <p class="kicker">01 // LOCAL SCANNER</p>
+        <h2>Level cost and production</h2>
+        <p>Inspect one planet’s next-level cost, cumulative investment, and Lithium production. Exact construction math is used beyond JavaScript’s normal integer limit.</p>
+      </div>
+      <div class="scanner-layout">
+        <article class="panel calculator">
+          <div class="panel-head">
+            <div>
+              <p class="micro">LEVEL CALCULATOR</p>
+              <h3>Scanner level <output id="level-output" for="level-input">15</output></h3>
+            </div>
+            <span class="live-dot" id="calculator-status">PTS-CHECKED</span>
+          </div>
+          <input id="level-input" type="range" min="1" max="100" value="15" step="1" aria-label="Scanner level">
+          <div class="quick-levels" aria-label="Quick level selection">
+            <button type="button" data-level="1">1</button>
+            <button type="button" data-level="5">5</button>
+            <button type="button" data-level="10">10</button>
+            <button type="button" data-level="15">15</button>
+            <button type="button" data-level="30">30</button>
+            <button type="button" data-level="35">35</button>
+            <button type="button" data-level="60">60</button>
+            <button type="button" data-level="100">100</button>
+          </div>
+
+          <div class="metric featured">
+            <span>Lithium production</span>
+            <strong id="lithium-hour">12,531</strong>
+            <small>per hour</small>
+          </div>
+          <div class="cost-columns">
+            <div><p class="micro">BUILD THIS LEVEL</p><dl id="level-cost"></dl></div>
+            <div><p class="micro">CUMULATIVE 0 → LEVEL</p><dl id="cumulative-cost"></dl></div>
+          </div>
+        </article>
+
+        <aside class="panel formula-panel">
+          <p class="micro">CONFIRMED FORMULAS</p>
+          <div class="formula-block"><span>Lithium / hour</span><code id="production-formula"></code></div>
+          <div class="formula-block"><span>Build cost at level L</span><code id="cost-formula"></code></div>
+          <div class="ratio"><span>Base cost ratio</span><strong>6 : 3 : 1</strong><small>Metal · Crystal · Deuterium</small></div>
+          <p class="fine-print">Each resource component is floored independently. Levels through 35 have matched supplied PTS observations; higher levels are formula projections.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="network-calculator">
+      <div class="shell">
+        <div class="section-heading wide">
+          <p class="kicker">02 // ACCOUNT-WIDE IAS</p>
+          <h2>Cross-planet distribution</h2>
+          <p>Find the lowest-cost balanced layout for an account-wide IAS target and compare every usable planet count.</p>
+        </div>
+        <article class="panel network-planner">
+          <div class="planner-intro">
+            <div>
+              <p class="micro">COMBINED IAS TARGET</p>
+              <h3>Cheapest path to the level you need</h3>
+              <p>Scanner levels stack across planets. Because the cost curve is exponential, spreading levels evenly minimizes construction resources.</p>
+            </div>
+            <div class="planner-inputs">
+              <label>Target combined IAS<input id="target-ias" type="number" min="1" max="1000" value="350" inputmode="numeric"></label>
+              <label>Available planets<input id="available-planets" type="number" min="1" max="50" value="10" inputmode="numeric"></label>
+            </div>
+          </div>
+          <div class="planner-results" aria-live="polite">
+            <div class="planner-result primary-result"><span>Lowest-cost distribution</span><strong id="planner-distribution"></strong><small id="planner-fields"></small></div>
+            <div class="planner-result"><span>Total resources</span><strong id="planner-total"></strong><small id="planner-breakdown"></small></div>
+            <div class="planner-result savings-result"><span>Saved vs. one planet</span><strong id="planner-savings"></strong><small id="planner-savings-percent"></small></div>
+          </div>
+          <div class="planner-table-wrap">
+            <table class="planner-table">
+              <thead><tr><th>Planets used</th><th>Balanced IAS distribution</th><th>Total resources</th><th>Savings vs. one planet</th></tr></thead>
+              <tbody id="planner-comparison"></tbody>
+            </table>
+          </div>
+          <p class="fine-print">Assumes every selected planet starts at IAS 0. This optimizes construction cost for combined anomaly level—not Lithium output. Field availability, prerequisites, build time, and existing scanner levels are not included.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell footer-grid"><p><strong>Project Orion Calculator Deck</strong><br><span>Exact math · provisional PTS mechanics</span></p><a href="index.html">Return to briefing →</a></div></footer>
+</body>
+</html>

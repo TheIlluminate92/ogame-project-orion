@@ -16,6 +16,7 @@
     <nav class="nav shell" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="Project Orion home"><span class="brand-mark">OR</span><span>ORION // PTS</span></a>
       <div class="nav-links">
+        <a href="calculators.html">Calculators</a>
         <a href="#scanner">Scanner</a>
         <a href="#missions">Missions</a>
         <a href="#rewards">Rewards</a>
@@ -29,7 +30,7 @@
         <h1>PROJECT <span>ORION</span></h1>
         <p class="lede">A living field guide to Lithium, anomaly missions, reward mechanics, and the Interstellar Anomaly Scanner.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#scanner">Open calculator</a>
+          <a class="button primary" href="calculators.html">Open calculators</a>
           <a class="button secondary" href="downloads/Project_Orion_Alliance_Briefing.pdf">Download PDF</a>
         </div>
         <div class="status-row">
@@ -74,61 +75,14 @@
           <p class="stacking-callout"><strong>Account-wide:</strong> <span id="scanner-stacking"></span></p>
         </div>
 
-        <div class="scanner-layout">
-          <article class="panel calculator">
-            <div class="panel-head">
-              <div>
-                <p class="micro">LEVEL CALCULATOR</p>
-                <h3>Scanner level <output id="level-output" for="level-input">15</output></h3>
-              </div>
-              <span class="live-dot">LIVE FORMULA</span>
-            </div>
-            <input id="level-input" type="range" min="1" max="60" value="15" step="1" aria-label="Scanner level">
-            <div class="quick-levels" aria-label="Quick level selection">
-              <button type="button" data-level="1">1</button>
-              <button type="button" data-level="5">5</button>
-              <button type="button" data-level="10">10</button>
-              <button type="button" data-level="15">15</button>
-              <button type="button" data-level="30">30</button>
-              <button type="button" data-level="60">60</button>
-            </div>
-
-            <div class="metric featured">
-              <span>Lithium production</span>
-              <strong id="lithium-hour">12,531</strong>
-              <small>per hour</small>
-            </div>
-
-            <div class="cost-columns">
-              <div>
-                <p class="micro">BUILD THIS LEVEL</p>
-                <dl id="level-cost"></dl>
-              </div>
-              <div>
-                <p class="micro">CUMULATIVE 0 → LEVEL</p>
-                <dl id="cumulative-cost"></dl>
-              </div>
-            </div>
-          </article>
-
-          <aside class="panel formula-panel">
-            <p class="micro">CONFIRMED FORMULAS</p>
-            <div class="formula-block">
-              <span>Lithium / hour</span>
-              <code id="production-formula"></code>
-            </div>
-            <div class="formula-block">
-              <span>Build cost at level L</span>
-              <code id="cost-formula"></code>
-            </div>
-            <div class="ratio">
-              <span>Base cost ratio</span>
-              <strong>6 : 3 : 1</strong>
-              <small>Metal · Crystal · Deuterium</small>
-            </div>
-            <p class="fine-print">Each resource component is floored independently. The calculator reproduces the known level 1, 5, 10, 15, and 60 values.</p>
-          </aside>
-        </div>
+        <a class="calculator-portal" href="calculators.html">
+          <div>
+            <p class="micro">DEDICATED CALCULATOR DECK</p>
+            <h3>Level costs + cross-planet planning</h3>
+            <p>Run exact level 1–100 construction costs or distribute a combined IAS target up to 1,000 across as many as 50 planets.</p>
+          </div>
+          <span>Open calculators →</span>
+        </a>
 
         <article class="control-center">
           <div>
@@ -139,6 +93,7 @@
           <div class="milestone-track" id="milestone-track" aria-label="Control Center building unlock levels"></div>
           <p class="fine-print" id="unlock-rule"></p>
         </article>
+
       </div>
     </section>
 
