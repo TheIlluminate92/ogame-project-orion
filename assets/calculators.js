@@ -168,25 +168,66 @@
     $("#recovery-cumulative-cost").innerHTML = costRows(recoveryCumulativeCost(level));
   }
 
+  function recoveryEmpireBonusPercent(levels) {
+    const remaining = levels.reduce((product, level) => {
+      const localBonus = Math.min(99.999, level * recovery.bonusPerLevelPercent) / 100;
+      return product * (1 - localBonus);
+    }, 1);
+    return (1 - remaining) * 100;
+  }
+
+  function balancedRecoveryPlan(targetBonus, planets) {
+    const maxLevels = planets * recovery.maxCalculatorLevel;
+    for (let totalLevels = 1; totalLevels <= maxLevels; totalLevels += 1) {
+      const levels = balancedLevels(totalLevels, planets, recovery.maxCalculatorLevel);
+      const bonus = recoveryEmpireBonusPercent(levels);
+      if (bonus + 1e-9 >= targetBonus) {
+        return {
+          levels,
+          bonus,
+          cost: addCosts(levels.map(recoveryCumulativeCost))
+        };
+      }
+    }
+    const levels = Array.from({ length: planets }, () => recovery.maxCalculatorLevel);
+    return {
+      levels,
+      bonus: recoveryEmpireBonusPercent(levels),
+      cost: addCosts(levels.map(recoveryCumulativeCost)),
+      capped: true
+    };
+  }
+
   function updateRecoveryPlanner() {
     const targetInput = $("#recovery-target-bonus");
     const planetsInput = $("#recovery-planets");
-    const requestedBonus = Math.max(0.2, Math.min(150, Number.parseFloat(targetInput.value) || 0.2));
+    const requestedBonus = Math.max(0.2, Math.min(99.9, Number.parseFloat(targetInput.value) || 0.2));
     const available = Math.max(1, Math.min(50, Number.parseInt(planetsInput.value, 10) || 1));
-    const targetLevels = Math.max(1, Math.ceil((requestedBonus - 1e-9) / recovery.bonusPerLevelPercent));
-    const maxLevels = available * recovery.maxCalculatorLevel;
-    const clampedLevels = Math.min(targetLevels, maxLevels);
-    const levels = balancedLevels(clampedLevels, available, recovery.maxCalculatorLevel);
-    const cost = addCosts(levels.map(recoveryCumulativeCost));
-    const totalBonus = clampedLevels * recovery.bonusPerLevelPercent;
+
+    let best = null;
+    for (let planets = 1; planets <= available; planets += 1) {
+      const candidate = balancedRecoveryPlan(requestedBonus, planets);
+      if (candidate.capped && candidate.bonus + 1e-9 < requestedBonus) continue;
+      const candidateTotal = resourceTotal(candidate.cost);
+      if (!best || candidateTotal < resourceTotal(best.cost)) {
+        best = { ...candidate, planets };
+      }
+    }
+
+    if (!best) {
+      best = balancedRecoveryPlan(requestedBonus, available);
+      best.planets = available;
+    }
 
     targetInput.value = requestedBonus.toFixed(1);
     planetsInput.value = available;
-    $("#recovery-distribution").textContent = distributionLabel(levels, "L");
-    $("#recovery-fields").textContent = `${levels.length} planet${levels.length === 1 ? "" : "s"} contributing · max modeled local level ${recovery.maxCalculatorLevel}`;
-    $("#recovery-total").textContent = format.format(resourceTotal(cost));
-    $("#recovery-breakdown").textContent = `M ${format.format(cost.metal)} · C ${format.format(cost.crystal)} · D ${format.format(cost.deuterium)}`;
-    $("#recovery-result-bonus").textContent = `${totalBonus.toFixed(1)}%`;
+    $("#recovery-distribution").textContent = distributionLabel(best.levels, "IRC");
+    $("#recovery-fields").textContent = best.bonus + 1e-9 < requestedBonus
+      ? `Target exceeds modeled capacity · max with ${available} planets shown`
+      : `${best.levels.length} planet${best.levels.length === 1 ? "" : "s"} contributing · compared across 1–${available} available planets`;
+    $("#recovery-total").textContent = format.format(resourceTotal(best.cost));
+    $("#recovery-breakdown").textContent = `M ${format.format(best.cost.metal)} · C ${format.format(best.cost.crystal)} · D ${format.format(best.cost.deuterium)}`;
+    $("#recovery-result-bonus").textContent = `${best.bonus.toFixed(2)}%`;
   }
 
   function scannerUpgradeCumulative(upgradeKey, target) {
