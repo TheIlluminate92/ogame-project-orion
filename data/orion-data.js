@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.10.2"
+    revision: "0.10.3"
   },
 
   lithium: {
@@ -176,6 +176,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.10.3",
+      notes: "Capped all local building calculators and build-queue target levels at 100. Account-wide combined IAS planning remains separate."
+    },
     {
       date: "2026-09-30",
       version: "0.10.2",
