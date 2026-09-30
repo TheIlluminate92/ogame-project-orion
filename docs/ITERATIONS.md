@@ -4,6 +4,7 @@ This file tracks structural releases and provides continuity when development mo
 
 | Revision | Date | Major change |
 |---|---|---|
+| 0.10.0 | 2026-09-30 | Unified calculators behind a selector and added the Intergalactic Recovery Center planner. |
 | 0.9.0 | 2026-09-30 | Closed observed conversion ratios, added range-vs-scan-cost evidence, and expanded mission ROI samples. |
 | 0.8.1 | 2026-09-30 | Added level-11 pirate NPC wave sizes and high-level mission evidence. |
 | 0.8.0 | 2026-09-30 | Added combined-IAS-60 scans, delivery samples, and sequential wave claims. |
@@ -32,10 +33,10 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 ## Current continuation point
 
-- Working revision: 0.9.0
+- Working revision: 0.10.0
 - Local validation: passing
-- Deployment: revision 0.9.0 pushed to main; live verification still required
-- Next action: collect structured mission samples for ROI analysis while continuing PTS evidence intake
+- Deployment: revision 0.10.0 pushed to main; live verification still required
+- Next action: validate Recovery Center costs through level 5+, identify remaining Control Center buildings, and continue structured ROI evidence intake
 - Highest cost-formula validation: IAS 35
 - Highest calculator level: IAS 100
 - Highest combined planner target: IAS 1,000
