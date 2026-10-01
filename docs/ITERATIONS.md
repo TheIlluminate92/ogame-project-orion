@@ -50,7 +50,7 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 - Working revision: 0.15.1
 - Local validation: passing; desktop and 390px mobile browser checks completed
-- Deployment: revision 0.15.0 is published to `main`; revision 0.15.1 is pending publication and live verification
+- Deployment: revision 0.15.1 published and verified on GitHub Pages; revisioned data/script URLs added after a stale-cache check
 - Next action: collect Anomaly Analysis Center construction costs, confirm Catalytic Converter calculation semantics, independently confirm or reject the IRC empire-stacking formula, and collect full-precision cost checkpoints for the Control Center buildings.
 - Highest cost-formula validation: IAS 35
 - Highest calculator level: IAS 100

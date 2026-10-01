@@ -119,6 +119,9 @@ const htmlPages = ["index.html", "scanner.html", "missions.html", "calculators.h
 const htmlByPage = Object.fromEntries(htmlPages.map((page) => [page, readText(page)]));
 
 for (const [page, pageHtml] of Object.entries(htmlByPage)) {
+  if (!pageHtml.includes(`data/orion-data.js?v=${data.meta.revision}`)) {
+    throw new Error(`${page} must cache-bust Orion data with revision ${data.meta.revision}`);
+  }
   const currentPageLinks = pageHtml.match(/aria-current="page"/g) || [];
   if (currentPageLinks.length !== 1) {
     throw new Error(`${page} must identify exactly one current navigation link`);

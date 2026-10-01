@@ -8,7 +8,7 @@ Use this file when continuing the Project Orion guide from a blank chat.
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
 - Current revision: **0.15.1**
 - Branch: `main`
-- Deployment: revision 0.15.0 published to `main`; revision 0.15.1 pending publication and live verification
+- Deployment: revision 0.15.1 published and verified on GitHub Pages; revisioned asset URLs prevent stale data/script caching
 - Working tree at handoff: clean
 
 Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/orion-data.js` is the factual source of truth.
