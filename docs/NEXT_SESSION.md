@@ -13,6 +13,22 @@ Use this file when continuing the Project Orion guide from a blank chat.
 
 Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/orion-data.js` is the factual source of truth.
 
+## Usage-conscious start
+
+At the start of a blank chat, the agent should give this short, non-blocking prompt before substantial work:
+
+> **Usage check:** Luna with low reasoning is recommended for routine page edits and evidence intake. Use Sol with medium reasoning only for formulas, major refactors, or difficult debugging. I will batch the work, validate once, commit locally, ask you for one final push, and perform one live verification.
+
+Then follow these limits:
+
+- Combine supplied page feedback and screenshots into one implementation pass.
+- Prefer targeted repository reads instead of printing whole files.
+- Browse only for current official facts or source verification.
+- Run one proportional local validation pass after the batch.
+- Use browser testing only for changed layout or runtime behavior, followed by one live check after publication.
+- Never repeat GitHub device authentication inside Codex. The sandbox cannot access the Windows keyring; commit locally and have the user run `git push origin main` once.
+- Start a fresh chat when moving to a distinct project phase so the full prior conversation is not carried forward.
+
 ## Current public structure
 
 - `index.html` — Orion overview, Lithium basics, and the combined-IAS-350 starter path
@@ -42,8 +58,9 @@ Raw PTS observation records and the incomplete reward-scaling concept remain in 
 - Do not publish raw screenshots containing account identity, coordinates, planets, or resource balances.
 - Update the revision and changelog only when public facts or behavior change.
 - Run `node scripts/validate.mjs` and `git diff --check` before committing.
-- After pushing, verify the Pages build and the live revision.
+- Commit locally, then ask the user to run one `git push origin main` from normal PowerShell.
+- After the user confirms the push, verify the Pages build and live revision once.
 
 ## Blank-chat prompt
 
-> Continue the Project Orion field guide at https://github.com/TheIlluminate92/ogame-project-orion. Start by reading AGENTS.md and docs/NEXT_SESSION.md, then inspect docs/CURRENT_STATE.md and data/orion-data.js. Preserve the evidence boundaries, do not invent unknown costs or formulas, validate all changes, and verify GitHub Pages after publishing.
+> Continue the Project Orion field guide at https://github.com/TheIlluminate92/ogame-project-orion. Start by reading AGENTS.md and docs/NEXT_SESSION.md, then give me the usage-check recommendation before substantial work. Use the usage-conscious workflow: batch the edits, prefer targeted reads, browse only for current official facts, validate once, commit locally, ask me for one final `git push origin main`, and perform one live verification afterward. Preserve the evidence boundaries and do not invent unknown costs or formulas.

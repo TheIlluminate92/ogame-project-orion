@@ -4,10 +4,23 @@ This repository is a living OGame Project Orion PTS field guide. These instructi
 
 ## Start here
 
-1. Read `README.md`, `docs/NEXT_SESSION.md`, `docs/CURRENT_STATE.md`, and `docs/ITERATIONS.md`.
-2. Inspect `data/orion-data.js`; it is the source of truth for frequently changing facts.
-3. Run `node scripts/validate.mjs` before and after changes.
-4. Inspect `git status` and preserve unrelated user changes.
+1. Give the user the short usage prompt in the next section before substantial work begins.
+2. Read `README.md`, `docs/NEXT_SESSION.md`, `docs/CURRENT_STATE.md`, and `docs/ITERATIONS.md`.
+3. Inspect `data/orion-data.js`; it is the source of truth for frequently changing facts.
+4. Run `node scripts/validate.mjs` before and after changes.
+5. Inspect `git status` and preserve unrelated user changes.
+
+## Usage-conscious mode
+
+Use this mode by default so routine Project Orion maintenance does not consume an unnecessarily large share of the user's Codex allowance.
+
+- At the beginning of a new chat, briefly say: **Usage check: Luna with low reasoning is recommended for routine page edits and evidence intake; use Sol with medium reasoning only for formulas, major refactors, or difficult debugging. I will batch the work, validate once, and perform one final live check.** Do not block progress waiting for a response unless the user needs to change the selected model.
+- Treat all feedback supplied together as one batch. Inspect once, implement once, and avoid narrating or validating every small edit independently.
+- Prefer repository files and local validation. Browse only when current official facts, release notes, or source verification are required.
+- Perform one proportional local validation pass after the batch. Use browser testing only when layout or runtime behavior changed, and perform one live-site verification after publication.
+- Keep tool output focused. Avoid dumping entire large files, web pages, browser accessibility trees, or diffs when a targeted search or excerpt will answer the question.
+- Do not start or repeat GitHub device-authentication flows inside the Codex sandbox. It cannot access the user's Windows keyring. Commit locally, give the user one `git push origin main` command, and verify the result once after the user confirms the push.
+- Recommend a fresh chat when moving to a distinct phase such as calculator development, mission-database design, evidence intake, or release research. The handoff files exist so the full previous conversation does not need to be carried forward.
 
 ## Evidence rules
 
@@ -59,16 +72,16 @@ Keep calculation controls off the homepage. Keep raw observation dumps and specu
    git diff --check
    ```
 
-5. Commit with a short description of the evidence or feature.
-6. Push to `main`. GitHub Pages publishes from the repository root.
-7. Verify the live page and `data/orion-data.js` both return HTTP 200 and show the new revision.
+5. Commit locally with a short description of the evidence or feature.
+6. Give the user one `git push origin main` command. Do not attempt device authentication from the sandbox.
+7. After the user confirms the push, verify the live page and revision once.
 
 ## Deployment
 
 - Repository: `https://github.com/TheIlluminate92/ogame-project-orion`
 - Live site: `https://theilluminate92.github.io/ogame-project-orion/`
 - Publishing source: `main` branch, repository root.
-- Never request or commit a GitHub token. Use normal Git authentication or GitHub's device authorization flow.
+- Never request or commit a GitHub token. The user performs the final push from normal PowerShell using the persistent Windows GitHub login.
 
 ## Before handing off
 
