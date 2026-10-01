@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interstellar Anomaly Scanner mechanics, costs, milestones, and Control Center bonuses for Project Orion.">
+  <meta name="theme-color" content="#06101d">
+  <title>Project Orion — Scanner & Milestones</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="data/orion-data.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to scanner guide</a>
+  <header class="subpage-hero" id="top">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="index.html"><span class="brand-mark">OR</span><span>ORION // PTS</span></a>
+      <div class="nav-links"><a href="index.html">Overview</a><a class="active" href="scanner.html">Scanner</a><a href="missions.html">Missions</a><a href="calculators.html">Calculators</a><a href="research.html">Research</a><a href="about.html">About</a></div>
+    </nav>
+    <div class="shell subpage-title">
+      <p class="eyebrow">ORION // INFRASTRUCTURE</p>
+      <h1>SCANNER</h1>
+      <p id="scanner-role">The Interstellar Anomaly Scanner is the core building behind Lithium production and anomaly progression.</p>
+      <div class="status-row"><span class="status warning">PTS — subject to change</span><span class="status neutral">IAS costs checked through L35</span><span class="status neutral">First full target: combined 350</span></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section shell">
+      <div class="scanner-layout">
+        <article class="panel">
+          <p class="micro">HOW THE IAS WORKS</p><h2>One local building, account-wide progression</h2>
+          <p id="scanner-fields"></p><p class="stacking-callout"><strong>Account-wide:</strong> <span id="scanner-stacking"></span></p>
+          <div class="mechanic-list" id="scanner-mechanics"></div>
+        </article>
+        <aside class="panel formula-panel">
+          <p class="micro">CONFIRMED FORMULAS</p>
+          <div class="formula-block"><span>Lithium / hour at local IAS level L</span><code id="scanner-production-formula"></code></div>
+          <div class="formula-block"><span>Construction cost at level L</span><code id="scanner-cost-formula"></code></div>
+          <div class="ratio"><span>Base construction cost</span><strong>84 · 42 · 14</strong><small>Metal · Crystal · Deuterium</small></div>
+          <a class="button primary full-button" href="calculators.html?calc=ias-local">Calculate IAS costs →</a>
+        </aside>
+      </div>
+      <article class="lore-note"><p class="micro">IN-GAME LORE</p><p id="scanner-lore-status"></p></article>
+    </section>
+
+    <section class="section section-alt">
+      <div class="shell">
+        <div class="section-heading wide"><p class="kicker">MILESTONE LADDER</p><h2>Build toward level-350 missions</h2><p>Complete a mission at each threshold to unlock its Control Center building. Select a milestone for its evidence status and calculator.</p></div>
+        <article class="control-center"><div><p class="micro">CONTROL CENTER PROGRESSION</p><h3>Seven unlocks, seven specialized effects</h3><p id="control-center-description"></p></div><div class="milestone-track" id="milestone-track" aria-label="Control Center building unlock levels"></div><p class="fine-print" id="unlock-rule"></p></article>
+        <div class="table-wrap milestone-table-wrap"><table class="milestone-table"><thead><tr><th>Mission</th><th>Building</th><th>Effect</th><th>Bonus / level</th><th>Modeled L1 cost</th><th>Evidence status</th></tr></thead><tbody id="milestone-table-body"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="section-heading wide"><p class="kicker">SCANNER UPGRADES</p><h2>Capacity costs stay evidence-bound</h2><p>Discovery Limit and Max Results are separate upgrade tracks. Only directly observed prices are shown; missing levels are not extrapolated.</p></div>
+      <div class="capacity-grid" id="capacity-grid"></div>
+      <a class="calculator-portal" href="calculators.html?calc=build-queue"><div><p class="micro">BUILD QUEUE</p><h3>Price the known package</h3><p>Add IAS, Control Center buildings, Discovery Limit, and Max Results to one planet plan.</p></div><span>Open queue →</span></a>
+    </section>
+
+    <dialog id="control-building-dialog" class="building-dialog">
+      <button type="button" class="dialog-close" id="control-building-close" aria-label="Close building details">×</button>
+      <div class="building-dialog-head"><div class="building-mark" id="control-building-dialog-icon">?</div><div><p class="micro" id="control-building-dialog-unlock"></p><h3 id="control-building-dialog-name"></h3></div></div>
+      <p id="control-building-dialog-effect"></p>
+      <div class="building-detail-grid"><div><span>Bonus / level</span><strong id="control-building-dialog-bonus"></strong></div><div><span>Modeled base cost</span><strong id="control-building-dialog-cost"></strong></div></div>
+      <p class="fine-print" id="control-building-dialog-status"></p><a class="button primary" id="control-building-dialog-calc" href="calculators.html">Open calculator →</a>
+    </dialog>
+  </main>
+  <footer><div class="shell footer-grid"><p><strong>Scanner & Milestones</strong><br><span>Confirmed mechanics are separated from estimates and unknowns.</span></p><a href="#top">Return to top ↑</a></div></footer>
+</body>
+</html>

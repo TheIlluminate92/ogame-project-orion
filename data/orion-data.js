@@ -4,7 +4,18 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.13.1"
+    revision: "0.14.0"
+  },
+
+  project: {
+    summary: "Project Orion is OGame's anomaly progression system. Players build Interstellar Anomaly Scanners, convert ordinary resources into Lithium, scan the galaxy for anomaly missions, and spend Lithium to investigate and claim their rewards.",
+    loop: [
+      "Build IAS levels across your planets; the levels combine account-wide.",
+      "Convert a selected resource into Lithium on each scanner planet.",
+      "Spend Lithium to scan for anomaly missions and claim completed rewards.",
+      "Complete higher-level missions to unlock the seven Control Center buildings."
+    ],
+    firstGoal: "Reach combined IAS 350. That is the first complete progression target because it makes level-350 missions reachable and unlocks the final known Control Center building, the Catalytic Converter."
   },
 
   lithium: {
@@ -22,6 +33,9 @@ window.ORION_DATA = {
 
   scanner: {
     name: "Interstellar Anomaly Scanner",
+    role: "The IAS is the core Orion building: it produces Lithium through resource conversion, raises the account's selectable anomaly level, and opens the Control Center progression.",
+    lore: null,
+    loreStatus: "The original in-game lore text is not present in the retained source material. Add the exact Techinfo text when a clean capture is supplied.",
     fieldUse: "The scanner occupies one planet field; its Control Center sub-buildings use no additional fields.",
     stacking: "Interstellar Anomaly Scanner (IAS) levels stack across planets for account-wide anomaly progression.",
     costValidatedThrough: 35,
@@ -388,7 +402,27 @@ window.ORION_DATA = {
     "Exactly how the Catalytic Converter's displayed percentage is applied to Lithium conversion costs"
   ],
 
+  researchTasks: [
+    { question: "Which source resource is best to convert into Lithium?", help: "Record your universe settings, class, IAS level, selected resource, workload, hourly input cost, and hourly Lithium output. Comparable samples will let us measure opportunity cost instead of guessing." },
+    { question: "What is the complete mission-template list?", help: "Send a cropped mission card showing the template name, PvE/PvP tag, stars, mission level, waves, duration, and reward types. Hide coordinates and account details." },
+    { question: "What are the exact scan and reward-claim formulas?", help: "Capture two or more scans or claims while changing only one variable: IAS level, mission level, range, stars, waves, or PvP status." },
+    { question: "How do Discovery Limit and Max Results costs progress?", help: "Capture each upgrade screen before purchasing it. We need the current level, next level, and full Metal/Crystal/Deuterium cost." },
+    { question: "How do rewards scale and what are the caps?", help: "Record mission level, type, stars, PvE/PvP, distance, wave count, claim cost, and every displayed reward range from the same mission." },
+    { question: "What are the General and Mecha reward modifiers?", help: "Compare the same mission configuration before and after a single class or Mecha modifier change, including the exact percentage shown in Techinfo." },
+    { question: "How do enemy fleets and defenses scale?", help: "Capture every wave of one mission, including full fleet composition, defenses, combat techs, mission level, stars, and PvE/PvP status." },
+    { question: "Which mechanics use combined IAS and which use local IAS?", help: "Compare the same action from two planets with different local IAS levels while the account-wide total remains unchanged." },
+    { question: "What is the IAS construction-time formula?", help: "Report Robotics Factory, Nanite Factory, universe construction speed, current IAS level, next level, and the displayed build time." },
+    { question: "What are the exact Control Center construction costs?", help: "Use full-number displays when possible. Capture level 0→1 plus a later level for each building; Anomaly Analysis Center is the highest-priority missing sample." },
+    { question: "How is the Catalytic Converter bonus applied?", help: "Compare the exact Lithium cost of converting the same resource amount before and after one Catalytic Converter level, with every other setting unchanged." },
+    { question: "What is the original IAS lore text?", help: "Send a clean Techinfo screenshot or exact transcription. The repository currently has mechanics, but not a trustworthy source for the lore wording." }
+  ],
+
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.14.0",
+      notes: "Reorganized the guide into dedicated Overview, Scanner, Missions, Calculators, Research, and About pages; added an IAS-350 starter path, expanded milestone cost/bonus details, and moved revisions out of the main briefing."
+    },
     {
       date: "2026-09-30",
       version: "0.13.1",

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A frequently updated alliance field guide for OGame Project Orion on the public test server.">
+  <meta name="description" content="A practical introduction and starter path for OGame Project Orion on the public test server.">
   <meta name="theme-color" content="#06101d">
   <title>Project Orion — Alliance Field Guide</title>
   <link rel="stylesheet" href="assets/styles.css">
@@ -14,13 +14,14 @@
   <a class="skip-link" href="#main">Skip to briefing</a>
   <header class="hero" id="top">
     <nav class="nav shell" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Project Orion home"><span class="brand-mark">OR</span><span>ORION // PTS</span></a>
+      <a class="brand" href="index.html" aria-label="Project Orion home"><span class="brand-mark">OR</span><span>ORION // PTS</span></a>
       <div class="nav-links">
+        <a class="active" href="index.html">Overview</a>
+        <a href="scanner.html">Scanner</a>
+        <a href="missions.html">Missions</a>
         <a href="calculators.html">Calculators</a>
-        <a href="#scanner">Scanner</a>
-        <a href="#missions">Missions</a>
-        <a href="#rewards">Rewards</a>
-        <a href="#intel">Intel status</a>
+        <a href="research.html">Research</a>
+        <a href="about.html">About</a>
       </div>
     </nav>
 
@@ -28,15 +29,14 @@
       <section class="hero-copy">
         <p class="eyebrow">OGame v13.1.0 // Alliance intelligence</p>
         <h1>PROJECT <span>ORION</span></h1>
-        <p class="lede">A living field guide to Lithium, anomaly missions, reward mechanics, and the Interstellar Anomaly Scanner.</p>
+        <p class="lede" id="project-summary">Build scanners, produce Lithium, discover anomaly missions, and unlock a new account-wide progression track.</p>
         <div class="hero-actions">
-          <a class="button primary" href="calculators.html">Open calculators</a>
-          <a class="button secondary" href="downloads/Project_Orion_Alliance_Briefing.pdf">Download PDF</a>
+          <a class="button primary" href="scanner.html">Start with the scanner</a>
+          <a class="button secondary" href="calculators.html?calc=ias-network">Plan IAS 350</a>
         </div>
         <div class="status-row">
           <span class="status warning" id="status-badge">PTS — subject to change</span>
           <span class="status neutral">Updated <time id="updated-date">2026-09-30</time></span>
-          <span class="status neutral">Revision <span id="revision">0.1.0</span></span>
         </div>
       </section>
 
@@ -50,155 +50,49 @@
   </header>
 
   <main id="main">
-    <section class="section shell" id="overview">
-      <div class="section-heading">
-        <p class="kicker">01 // NEW RESOURCE</p>
-        <h2>Lithium changes the loop</h2>
-        <p id="lithium-description"></p>
+    <section class="section shell">
+      <div class="section-heading wide">
+        <p class="kicker">01 // WHAT ORION ADDS</p>
+        <h2>A new resource, mission loop, and progression ladder</h2>
+        <p>Orion connects planet infrastructure to account-wide exploration. Your scanner network produces the Lithium needed to discover anomalies and collect their rewards.</p>
       </div>
-      <div class="card-grid" id="lithium-cards"></div>
-      <article class="converter-bar">
-        <div>
-          <p class="micro">CONVERTER CONTROLS SEEN ON PTS</p>
-          <div class="chip-list" id="converter-ui"></div>
-        </div>
-        <div class="ratio-callout"><span>Observed Metal rate</span><strong>3 : 1</strong><small>Metal → Lithium</small></div>
-      </article>
+      <div class="journey-grid" id="project-loop"></div>
     </section>
 
-    <section class="section section-alt" id="scanner">
+    <section class="section section-alt">
       <div class="shell">
-        <div class="section-heading wide">
-          <p class="kicker">02 // INFRASTRUCTURE</p>
-          <h2>Interstellar Anomaly Scanner</h2>
-          <p id="scanner-fields"></p>
-          <p class="stacking-callout"><strong>Account-wide:</strong> <span id="scanner-stacking"></span></p>
+        <div class="section-heading">
+          <p class="kicker">02 // NEW RESOURCE</p>
+          <h2>Lithium powers the loop</h2>
+          <p id="lithium-description"></p>
         </div>
-
-        <a class="calculator-portal" href="calculators.html">
-          <div>
-            <p class="micro">DEDICATED CALCULATOR DECK</p>
-            <h3>Level costs + cross-planet planning</h3>
-            <p>Run exact level 1–100 construction costs or distribute a combined IAS target up to 1,000 across as many as 50 planets.</p>
-          </div>
-          <span>Open calculators →</span>
-        </a>
-
-        <article class="control-center">
-          <div>
-            <p class="micro">CONTROL CENTER PROGRESSION</p>
-            <h3>Mission milestones unlock anomaly bonuses</h3>
-            <p id="control-center-description"></p>
-          </div>
-          <div class="milestone-track" id="milestone-track" aria-label="Control Center building unlock levels"></div>
-          <p class="fine-print" id="unlock-rule"></p>
+        <div class="card-grid" id="lithium-cards"></div>
+        <article class="converter-bar">
+          <div><p class="micro">CONVERTER CONTROLS OBSERVED ON PTS</p><div class="chip-list" id="converter-ui"></div></div>
+          <div class="ratio-callout"><span>Observed Metal rate</span><strong>3 : 1</strong><small>Metal → Lithium</small></div>
         </article>
-
-        <dialog id="control-building-dialog" class="building-dialog">
-          <button type="button" class="dialog-close" id="control-building-close" aria-label="Close building details">×</button>
-          <div class="building-dialog-head">
-            <div class="building-mark" id="control-building-dialog-icon">?</div>
-            <div>
-              <p class="micro" id="control-building-dialog-unlock"></p>
-              <h3 id="control-building-dialog-name"></h3>
-            </div>
-          </div>
-          <p id="control-building-dialog-effect"></p>
-          <div class="building-detail-grid">
-            <div><span>Bonus / level</span><strong id="control-building-dialog-bonus"></strong></div>
-            <div><span>Modeled base cost</span><strong id="control-building-dialog-cost"></strong></div>
-          </div>
-          <p class="fine-print" id="control-building-dialog-status"></p>
-          <a class="button primary" id="control-building-dialog-calc" href="calculators.html">Open calculator →</a>
-        </dialog>
-
       </div>
     </section>
 
-    <section class="section shell" id="field-data">
-      <div class="section-heading">
-        <p class="kicker">03 // LIVE PTS OBSERVATIONS</p>
-        <h2>Field data, not guessed formulas</h2>
-        <p>These values were read directly from supplied PTS screenshots on 2026-09-30. They document specific configurations and should not yet be generalized.</p>
-      </div>
-      <div class="observation-grid" id="observation-grid"></div>
-    </section>
-
-    <section class="section section-alt" id="missions">
-      <div class="shell">
-      <div class="section-heading">
-        <p class="kicker">04 // ANOMALIES</p>
-        <h2>Mission profiles</h2>
-        <p>Gameforge says Orion includes <strong id="mission-count">25+ mission templates</strong>. The complete catalog has not been published.</p>
-      </div>
-      <div class="mission-grid" id="mission-grid"></div>
-      <article class="intel-strip">
-        <div><span class="alert-icon">!</span><strong>Operational rules</strong></div>
-        <ul id="mission-rules"></ul>
-      </article>
-      </div>
-    </section>
-
-    <section class="section" id="rewards">
-      <div class="shell">
-        <div class="section-heading wide">
-          <p class="kicker">05 // PAYOUTS</p>
-          <h2>Rewards and scaling</h2>
-          <p>Rewards scale, but PTS information currently reveals the structure—not every multiplier or cap.</p>
-        </div>
-        <div class="reward-layout">
-          <article class="panel">
-            <p class="micro">KNOWN REWARD TYPES</p>
-            <div class="chip-list" id="reward-types"></div>
-            <p class="micro spaced">CLAIM & DELIVERY RULES</p>
-            <ul class="check-list" id="reward-rules"></ul>
-          </article>
-          <article class="panel scaling-panel">
-            <p class="micro">CURRENT SCALING MODEL</p>
-            <div class="equation" aria-label="Reward scaling model">
-              <span>BASE</span><b>×</b><span>ANOMALY</span><b>×</b><span>PVP</span><b>×</b><span>CLASS</span>
-            </div>
-            <div id="scaling-list"></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="intel">
-      <div class="shell">
-      <div class="section-heading">
-        <p class="kicker">06 // INTELLIGENCE STATUS</p>
-        <h2>What we still need to learn</h2>
-        <p>These are open questions, not missing page content. They stay visible until PTS testing or an official post confirms them.</p>
-      </div>
-      <div class="unknown-grid" id="unknown-grid"></div>
-      </div>
-    </section>
-
-    <section class="section" id="updates">
-      <div class="shell update-layout">
-        <div>
-          <div class="section-heading wide">
-            <p class="kicker">07 // CHANGELOG</p>
-            <h2>Living briefing</h2>
-            <p>The facts live in one data file, so new discoveries can be added quickly without redesigning the page.</p>
-          </div>
-          <div id="changelog"></div>
-        </div>
-        <aside class="panel source-panel">
-          <p class="micro">OFFICIAL THREADS</p>
-          <div id="sources"></div>
-          <p class="fine-print">Treat every mechanic as provisional while Orion remains on the public test server.</p>
+    <section class="section shell">
+      <div class="section-heading wide"><p class="kicker">03 // BASIC BUILD PATH</p><h2>Your first target is combined IAS 350</h2><p id="first-goal"></p></div>
+      <div class="starter-layout">
+        <article class="panel starter-plan">
+          <ol>
+            <li><strong>Choose your scanner planets.</strong><span>IAS levels stack account-wide, so the cheapest construction path spreads levels as evenly as practical.</span></li>
+            <li><strong>Use the account-wide planner.</strong><span>Enter 350 and your available planet count to see the lowest-cost balanced distribution.</span></li>
+            <li><strong>Build, convert, scan, repeat.</strong><span>Generate Lithium, complete increasingly difficult missions, and unlock Control Center buildings at levels 50 through 350.</span></li>
+          </ol>
+          <a class="button primary" href="calculators.html?calc=ias-network">Open the IAS 350 planner →</a>
+        </article>
+        <aside class="expansion-stack">
+          <article class="panel expansion-card"><p class="micro">STRATEGY SLOT // OPEN</p><h3>Best resource to convert</h3><p>We have observed conversion ratios, but not enough evidence to recommend the best economic input for every account and universe.</p><a href="research.html">Help build the answer →</a></article>
+          <article class="panel expansion-card"><p class="micro">OPERATIONS SLOT // OPEN</p><h3>How to run conversion</h3><p>Future guidance will compare workload, planet selection, depletion risk, universe settings, and the real opportunity cost of each source resource.</p><a href="research.html">See the test plan →</a></article>
         </aside>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="shell footer-grid">
-      <p><strong>Project Orion Alliance Field Guide</strong><br><span>Community briefing · not affiliated with Gameforge</span></p>
-      <a href="#top">Return to orbit ↑</a>
-    </div>
-  </footer>
+  <footer><div class="shell footer-grid"><p><strong>Project Orion Alliance Field Guide</strong><br><span>Community briefing · not affiliated with Gameforge</span></p><a href="about.html">About this guide →</a></div></footer>
 </body>
 </html>

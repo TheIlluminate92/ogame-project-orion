@@ -3,110 +3,136 @@
 
   const data = window.ORION_DATA;
   const $ = (selector) => document.querySelector(selector);
+  const setText = (selector, value) => {
+    const element = $(selector);
+    if (element) element.textContent = value;
+  };
+  const setHtml = (selector, value) => {
+    const element = $(selector);
+    if (element) element.innerHTML = value;
+  };
+  const formatNumber = (value) => Number(value).toLocaleString();
+  const formatCost = (cost) => cost
+    ? `M ${formatNumber(cost.metal)} · C ${formatNumber(cost.crystal)} · D ${formatNumber(cost.deuterium)}`
+    : "Unknown";
+  const bonusText = (building) => {
+    const precision = building.bonusPerLevelPercent < 0.1 ? 2 : 1;
+    return `+${building.bonusPerLevelPercent.toFixed(precision)}% ${building.bonusResource || ""}`;
+  };
 
-  function render() {
-    $("#status-badge").textContent = data.meta.status;
-    $("#updated-date").textContent = data.meta.updated;
-    $("#updated-date").dateTime = data.meta.updated;
-    $("#revision").textContent = data.meta.revision;
+  function renderMeta() {
+    setText("#status-badge", data.meta.status);
+    setText("#revision", data.meta.revision);
+    const updated = $("#updated-date");
+    if (updated) {
+      updated.textContent = data.meta.updated;
+      updated.dateTime = data.meta.updated;
+    }
+  }
 
-    $("#lithium-description").textContent = data.lithium.description;
-    $("#lithium-cards").innerHTML = data.lithium.confirmed.map((item, index) => `
-      <article class="fact-card">
-        <span>${String(index + 1).padStart(2, "0")}</span>
-        <p>${item}</p>
-      </article>`).join("");
-    $("#converter-ui").innerHTML = data.lithium.converterUi.map((item) => `<span>${item}</span>`).join("");
+  function renderOverview() {
+    setText("#project-summary", data.project.summary);
+    setText("#first-goal", data.project.firstGoal);
+    setHtml("#project-loop", data.project.loop.map((item, index) => `
+      <article class="journey-card"><span>${String(index + 1).padStart(2, "0")}</span><p>${item}</p></article>`).join(""));
+    setText("#lithium-description", data.lithium.description);
+    setHtml("#lithium-cards", data.lithium.confirmed.map((item, index) => `
+      <article class="fact-card"><span>${String(index + 1).padStart(2, "0")}</span><p>${item}</p></article>`).join(""));
+    setHtml("#converter-ui", data.lithium.converterUi.map((item) => `<span>${item}</span>`).join(""));
+  }
 
-    $("#scanner-fields").textContent = data.scanner.fieldUse;
-    $("#scanner-stacking").textContent = data.scanner.stacking;
-    $("#control-center-description").textContent = data.scanner.controlCenter.description;
-    $("#unlock-rule").textContent = data.scanner.controlCenter.unlockRule;
-    const controlBuildings = Object.values(data.scanner.controlCenter.buildings);
-    $("#milestone-track").innerHTML = data.scanner.controlCenter.unlockLevels.map((level, index) => {
-      const building = controlBuildings.find((candidate) => candidate.unlockMissionLevel === level);
-      if (!building) {
-        return `<div class="milestone locked">
-          <span>${String(index + 1).padStart(2, "0")}</span>
-          <strong>${level}</strong>
-          <small>details pending</small>
-        </div>`;
-      }
+  function renderScannerBasics() {
+    setText("#scanner-role", data.scanner.role);
+    setText("#scanner-fields", data.scanner.fieldUse);
+    setText("#scanner-stacking", data.scanner.stacking);
+    setText("#scanner-production-formula", data.scanner.productionFormula);
+    setText("#scanner-cost-formula", data.scanner.costFormula);
+    setText("#scanner-lore-status", data.scanner.lore || data.scanner.loreStatus);
+    setHtml("#scanner-mechanics", Object.values(data.scanner.mechanics).map((mechanic) => `<p>${mechanic}</p>`).join(""));
+  }
+
+  function renderControlCenter() {
+    const track = $("#milestone-track");
+    if (!track) return;
+    const buildings = Object.values(data.scanner.controlCenter.buildings);
+    const buildingByKey = Object.fromEntries(buildings.map((building) => [building.calculatorKey, building]));
+
+    setText("#control-center-description", data.scanner.controlCenter.description);
+    setText("#unlock-rule", data.scanner.controlCenter.unlockRule);
+    track.innerHTML = data.scanner.controlCenter.unlockLevels.map((level, index) => {
+      const building = buildings.find((candidate) => candidate.unlockMissionLevel === level);
       const icon = building.iconImage
         ? `<img class="milestone-icon milestone-icon-image" src="${building.iconImage}" alt="">`
         : `<b class="milestone-icon">${building.iconLabel || "?"}</b>`;
       return `<button type="button" class="milestone known" data-control-building="${building.calculatorKey}">
-        <span>${String(index + 1).padStart(2, "0")}</span>
-        ${icon}
-        <strong>${level}</strong>
-        <small>${building.name}</small>
+        <span>${String(index + 1).padStart(2, "0")}</span>${icon}<strong>${level}</strong><small>${building.name}</small>
       </button>`;
     }).join("");
 
+    setHtml("#milestone-table-body", buildings.map((building) => `
+      <tr>
+        <td><strong>L${building.unlockMissionLevel}</strong></td>
+        <td><a href="calculators.html?calc=${encodeURIComponent(building.calculatorKey)}">${building.name}</a></td>
+        <td>${building.effect}</td>
+        <td>${bonusText(building)}</td>
+        <td>${formatCost(building.baseCost)}</td>
+        <td>${building.baseCostStatus}</td>
+      </tr>`).join(""));
+
     const dialog = $("#control-building-dialog");
-    const buildingByKey = Object.fromEntries(controlBuildings.map((building) => [building.calculatorKey, building]));
+    if (!dialog) return;
     document.querySelectorAll("[data-control-building]").forEach((button) => button.addEventListener("click", () => {
       const building = buildingByKey[button.dataset.controlBuilding];
       if (!building) return;
-      $("#control-building-dialog-icon").innerHTML = building.iconImage
-        ? `<img src="${building.iconImage}" alt="">`
-        : building.iconLabel || "?";
-      $("#control-building-dialog-unlock").textContent = `LEVEL ${building.unlockMissionLevel} MISSION UNLOCK`;
-      $("#control-building-dialog-name").textContent = building.name;
-      $("#control-building-dialog-effect").textContent = building.effect;
-      const precision = building.bonusPerLevelPercent < 0.1 ? 2 : 1;
-      $("#control-building-dialog-bonus").textContent = `+${building.bonusPerLevelPercent.toFixed(precision)}% ${building.bonusResource || ""}`;
-      $("#control-building-dialog-cost").textContent = building.baseCost
-        ? `M ${building.baseCost.metal.toLocaleString()} · C ${building.baseCost.crystal.toLocaleString()} · D ${building.baseCost.deuterium.toLocaleString()}`
-        : "Unknown";
-      $("#control-building-dialog-status").textContent = [building.baseCostStatus, building.costModelStatus, building.empireStackingStatus].filter(Boolean).join(" ");
+      $("#control-building-dialog-icon").innerHTML = building.iconImage ? `<img src="${building.iconImage}" alt="">` : building.iconLabel || "?";
+      setText("#control-building-dialog-unlock", `LEVEL ${building.unlockMissionLevel} MISSION UNLOCK`);
+      setText("#control-building-dialog-name", building.name);
+      setText("#control-building-dialog-effect", building.effect);
+      setText("#control-building-dialog-bonus", bonusText(building));
+      setText("#control-building-dialog-cost", formatCost(building.baseCost));
+      setText("#control-building-dialog-status", [building.baseCostStatus, building.costModelStatus, building.empireStackingStatus].filter(Boolean).join(" "));
       $("#control-building-dialog-calc").href = `calculators.html?calc=${encodeURIComponent(building.calculatorKey)}`;
       if (typeof dialog.showModal === "function") dialog.showModal();
     }));
-    $("#control-building-close").addEventListener("click", () => dialog.close());
-    dialog.addEventListener("click", (event) => {
-      if (event.target === dialog) dialog.close();
-    });
-
-    $("#observation-grid").innerHTML = data.observations.map((observation) => `
-      <article class="observation-card">
-        <p class="micro">${observation.label}</p>
-        <h3>${observation.title}</h3>
-        <div class="observation-metrics">${observation.metrics.map((metric) => `<span>${metric}</span>`).join("")}</div>
-        <p>${observation.note}</p>
-      </article>`).join("");
-
-    $("#mission-count").textContent = data.missions.officialCount;
-    $("#mission-grid").innerHTML = data.missions.categories.map((mission) => `
-      <article class="mission-card">
-        <span aria-hidden="true">${mission.icon}</span>
-        <h3>${mission.name}</h3>
-        <p>${mission.detail}</p>
-      </article>`).join("");
-    $("#mission-rules").innerHTML = data.missions.rules.map((rule) => `<li>${rule}</li>`).join("");
-
-    $("#reward-types").innerHTML = data.rewards.types.map((type) => `<span>${type}</span>`).join("");
-    $("#reward-rules").innerHTML = data.rewards.confirmed.map((rule) => `<li>${rule}</li>`).join("");
-    $("#scaling-list").innerHTML = data.rewards.scaling.map((item) => `
-      <div class="scale-row ${item.known ? "known" : "unknown"}">
-        <span>${item.factor}</span>
-        <strong>${item.known ? "CONFIRMED" : "UNKNOWN"}</strong>
-      </div>`).join("");
-
-    $("#unknown-grid").innerHTML = data.unknowns.map((item, index) => `
-      <article><span>Q${String(index + 1).padStart(2, "0")}</span><p>${item}</p></article>`).join("");
-
-    $("#changelog").innerHTML = data.changelog.map((entry) => `
-      <article class="change-entry">
-        <time datetime="${entry.date}">${entry.date}</time>
-        <div><strong>Revision ${entry.version}</strong><p>${entry.notes}</p></div>
-      </article>`).join("");
-
-    $("#sources").innerHTML = data.sources.map((source, index) => `
-      <a href="${source.url}" target="_blank" rel="noopener noreferrer">
-        <span>${String(index + 1).padStart(2, "0")}</span>${source.label}<b>↗</b>
-      </a>`).join("");
+    $("#control-building-close")?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
   }
 
-  render();
+  function renderCapacity() {
+    const host = $("#capacity-grid");
+    if (!host) return;
+    host.innerHTML = Object.values(data.scanner.scannerUpgrades).map((upgrade) => `
+      <article class="panel capacity-card">
+        <p class="micro">DEFAULT ${upgrade.defaultValue}</p><h3>${upgrade.name}</h3>
+        <div>${upgrade.observedCosts.map((cost) => `<p><strong>${cost.from} → ${cost.to}</strong><span>M ${formatNumber(cost.metal)} · C ${formatNumber(cost.crystal)} · D ${formatNumber(cost.deuterium)}</span></p>`).join("")}</div>
+      </article>`).join("");
+  }
+
+  function renderMissions() {
+    setText("#mission-count", data.missions.officialCount);
+    setHtml("#mission-grid", data.missions.categories.map((mission) => `
+      <article class="mission-card"><span aria-hidden="true">${mission.icon}</span><h3>${mission.name}</h3><p>${mission.detail}</p></article>`).join(""));
+    setHtml("#mission-rules", data.missions.rules.map((rule) => `<li>${rule}</li>`).join(""));
+  }
+
+  function renderResearch() {
+    setHtml("#research-grid", data.researchTasks.map((task, index) => `
+      <article class="research-card"><span>Q${String(index + 1).padStart(2, "0")}</span><div><h3>${task.question}</h3><p><strong>How to help:</strong> ${task.help}</p></div></article>`).join(""));
+  }
+
+  function renderAbout() {
+    setHtml("#changelog", data.changelog.map((entry) => `
+      <article class="change-entry"><time datetime="${entry.date}">${entry.date}</time><div><strong>Revision ${entry.version}</strong><p>${entry.notes}</p></div></article>`).join(""));
+    setHtml("#sources", data.sources.map((source, index) => `
+      <a href="${source.url}" target="_blank" rel="noopener noreferrer"><span>${String(index + 1).padStart(2, "0")}</span>${source.label}<b>↗</b></a>`).join(""));
+  }
+
+  renderMeta();
+  renderOverview();
+  renderScannerBasics();
+  renderControlCenter();
+  renderCapacity();
+  renderMissions();
+  renderResearch();
+  renderAbout();
 })();

@@ -20,15 +20,19 @@ This repository is a living OGame Project Orion PTS field guide. These instructi
 
 ## Architecture
 
-- `index.html` is the concise briefing homepage.
-- `calculators.html` contains both interactive calculators.
+- `index.html` is the concise Orion overview and IAS-350 starter path.
+- `scanner.html` contains IAS mechanics, formulas, milestones, Control Center costs/bonuses, and scanner-capacity observations.
+- `missions.html` contains the public mission profiles and operating rules.
+- `calculators.html` contains the selectable IAS, Control Center, and build-queue calculators.
+- `research.html` turns open questions into actionable evidence requests.
+- `about.html` contains the evidence policy, official sources, and changelog.
 - `data/orion-data.js` contains facts, observations, sources, unknowns, and changelog entries.
 - `assets/app.js` renders the homepage data.
 - `assets/calculators.js` performs exact single-planet and cross-planet calculations.
 - `assets/styles.css` is shared by both pages.
 - `scripts/validate.mjs` verifies required files, known formulas, level-60 totals, large-integer calculations, and balanced planet distributions.
 
-Keep calculation controls off the homepage. The homepage should remain easy to scan on a phone.
+Keep calculation controls off the homepage. Keep raw observation dumps and speculative reward modeling out of public navigation until a proper mission/reward database exists. Every page should remain easy to scan on a phone.
 
 ## Confirmed calculation model
 

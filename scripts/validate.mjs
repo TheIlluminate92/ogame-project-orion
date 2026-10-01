@@ -6,7 +6,11 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const required = [
   "index.html",
+  "scanner.html",
+  "missions.html",
   "calculators.html",
+  "research.html",
+  "about.html",
   "AGENTS.md",
   "docs/CURRENT_STATE.md",
   "docs/ITERATIONS.md",
@@ -103,8 +107,14 @@ for (let target = 1; target <= 1000; target += 1) {
 }
 
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
-for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/app.js", "calculators.html"]) {
+for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/app.js", "scanner.html", "missions.html", "calculators.html", "research.html", "about.html"]) {
   if (!html.includes(asset)) throw new Error(`index.html does not reference ${asset}`);
+}
+for (const page of ["scanner.html", "missions.html", "research.html", "about.html"]) {
+  const pageHtml = fs.readFileSync(path.join(root, page), "utf8");
+  for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/app.js"]) {
+    if (!pageHtml.includes(asset)) throw new Error(`${page} does not reference ${asset}`);
+  }
 }
 const calculatorHtml = fs.readFileSync(path.join(root, "calculators.html"), "utf8");
 for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/calculators.js"]) {
