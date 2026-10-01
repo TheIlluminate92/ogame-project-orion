@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-01
 
-Working revision: **0.17.0**
+Working revision: **0.18.0**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -31,9 +31,9 @@ Future revisions should be treated as published only after the Pages build and t
 - The local scanner and Control Center calculators support current-to-target level ranges through level 100.
 - The cross-planet planner supports combined IAS targets 1–1,000 and 1–50 available planets.
 - Control Center empire bonus planning uses additive stacking per the user's correction. The planner covers all seven bonus buildings, targets above 99.9%, and balanced layouts across up to 50 planets; reference tables compare local levels 10/20/30 across 10/15/20 planets. The prior IRC L3 + L8 sample displayed 2.19% versus a 2.20% additive sum, and that discrepancy remains unresolved. IRC's ×1.5 cost curve matches supplied PTS values through level 9 and projects higher levels.
-- All seven Control Center unlocks are now named in progression. Lithium Electrolysis Lab, Metal Recycling Unit, Crystal Finishing Station, High-Pressure Deuterium Tanks, and Catalytic Converter have local level calculators and build-queue entries using working ×1.5 cost estimates derived from abbreviated PTS screenshots.
+- All seven Control Center unlocks are now named in progression and have local calculators/build-queue entries. Most use working ×1.5 cost estimates from abbreviated PTS screenshots; Anomaly Analysis Center uses user-provided base costs with the same shared cost curve.
 - All seven Control Center buildings use the supplied image artwork in the progression cards and building-detail dialog; text badges remain implemented as a fallback for missing future assets.
-- Anomaly Analysis Center has a bonus calculator and queue entry, but its construction cost remains unknown and is excluded from numeric queue totals.
+- Anomaly Analysis Center base costs are user-provided (67,500 Metal / 37,500 Crystal / 22,500 Deuterium); its calculator and queue use the shared Control Center ×1.5-per-level model. Higher-level cost outputs are calculated and not independently verified.
 - Catalytic Converter uses a distinct +0.05 percentage-points-per-level progression and reduces Lithium conversion cost; it is not modeled as an anomaly mission-reward multiplier. The exact conversion formula application remains unknown.
 - The planner assumes all selected planets begin at IAS 0 and optimizes construction resources, not Lithium production.
 - The build queue accepts a starting and target level for each building up to local level 100 and reports only the remaining upgrade cost plus a grand total.
@@ -99,7 +99,7 @@ The canonical list is in `data/orion-data.js`. Important unresolved items includ
 - Complete mission-template list.
 - Exact scan, claim-cost, reward, enemy-scaling, and construction-time formulas.
 - Which mechanics use combined account IAS versus local planet IAS.
-- Full-precision construction costs for the recently identified Control Center buildings, especially Anomaly Analysis Center.
+- Full-precision construction costs and higher-level cost checkpoints for Control Center buildings with inferred or user-provided bases.
 - Exact Catalytic Converter calculation semantics.
 - General-class and Mecha bonus percentages.
 

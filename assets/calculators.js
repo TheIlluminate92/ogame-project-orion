@@ -396,8 +396,8 @@
       minTarget: 1,
       maxLevel: controlBuildings.anomalyAnalysisCenter.maxCalculatorLevel,
       baseLevel: 0,
-      cumulative: () => null,
-      validationMode: "unknown",
+      cumulative: (target) => controlBuildingCumulativeCost(controlBuildings.anomalyAnalysisCenter, target),
+      validationMode: "modeled",
       modelStatus: controlBuildings.anomalyAnalysisCenter.costModelStatus
     },
     deuteriumTanks: {
@@ -573,7 +573,7 @@
     "lithiumLab": "Lithium Electrolysis Lab level cost and Lithium mission-reward bonus.",
     "metalRecycling": "Metal Recycling Unit level cost and Metal mission-reward bonus.",
     "crystalFinishing": "Crystal Finishing Station level cost and Crystal mission-reward bonus.",
-    "anomalyAnalysis": "Anomaly Analysis Center Dark Matter bonus; construction costs remain unknown.",
+    "anomalyAnalysis": "Anomaly Analysis Center Dark Matter bonus and estimated construction costs using user-provided base costs.",
     "deuteriumTanks": "High-Pressure Deuterium Tanks level cost and Deuterium mission-reward bonus.",
     "catalyticConverter": "Catalytic Converter level cost and displayed Lithium conversion-cost reduction.",
     "build-queue": "Queue current-to-target Orion building levels and total the resources still needed."

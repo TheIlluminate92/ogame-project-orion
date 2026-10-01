@@ -232,8 +232,15 @@ if (controlBuildings.catalyticConverter.bonusPerLevelPercent !== 0.05) {
 if (controlBuildings.catalyticConverter.effect.toLowerCase().includes("mission reward")) {
   throw new Error("Catalytic Converter must not be described as a mission-reward building");
 }
-if (controlBuildings.anomalyAnalysisCenter.baseCost !== null) {
-  throw new Error("Anomaly Analysis Center costs must remain unknown until observed");
+const anomalyBaseCost = controlBuildings.anomalyAnalysisCenter.baseCost;
+if (anomalyBaseCost?.metal !== 67500 || anomalyBaseCost?.crystal !== 37500 || anomalyBaseCost?.deuterium !== 22500) {
+  throw new Error("Anomaly Analysis Center must use the user-provided 67,500 / 37,500 / 22,500 base costs");
+}
+if (controlBuildings.anomalyAnalysisCenter.costMultiplier !== 1.5) {
+  throw new Error("Anomaly Analysis Center must use the shared Control Center ×1.5 cost curve");
+}
+if (!calculatorJs.includes("cumulative: (target) => controlBuildingCumulativeCost(controlBuildings.anomalyAnalysisCenter, target)") || !calculatorJs.includes('validationMode: "modeled"')) {
+  throw new Error("Anomaly Analysis Center calculator and queue must use the shared modeled cost calculation");
 }
 for (const key of ["anomalyAnalysis", "deuteriumTanks", "catalyticConverter"]) {
   if (!calculatorHtml.includes(`value="${key}"`)) {

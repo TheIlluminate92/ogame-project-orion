@@ -6,10 +6,10 @@ Use this file when continuing the Project Orion guide from a blank chat.
 
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
-- Current revision: **0.17.0**
+- Current revision: **0.18.0**
 - Branch: `main`
-- Deployment: revision 0.15.1 was the last verified GitHub Pages release; local 0.17.0 changes are not yet pushed or deployed
-- Working tree at handoff: clean
+- Deployment: revision 0.15.1 was the last verified GitHub Pages release; local 0.18.0 changes are not yet pushed or deployed
+- Working tree at handoff: clean after the local 0.18.0 commit; push and live verification remain pending
 
 Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/orion-data.js` is the factual source of truth.
 
@@ -42,7 +42,7 @@ Raw PTS observation records and the incomplete reward-scaling concept remain in 
 
 ## Highest-priority evidence gaps
 
-1. Capture Anomaly Analysis Center construction costs; its queue cost is intentionally unknown.
+1. Verify higher-level Anomaly Analysis Center costs against its user-provided base values and shared ×1.5 curve.
 2. Run a controlled before/after test to determine exactly how Catalytic Converter percentages affect Lithium conversion.
 3. Reconcile the prior IRC L3 + L8 displayed empire bonus of 2.19% with the user-reported additive sum of 2.20%.
 4. Capture full-precision Control Center base costs instead of abbreviated `K` values.
@@ -55,7 +55,7 @@ Raw PTS observation records and the incomplete reward-scaling concept remain in 
 - Keep official, observed, calculated, projected, and unknown values distinct.
 - Catalytic Converter is `0.05%` per level and affects conversion cost; it is not a `0.2%` mission-reward building.
 - Control Center empire bonuses are modeled additively per the user's correction. The calculator covers all seven bonus buildings and leaves the earlier IRC 2.19% sample discrepancy unresolved.
-- Anomaly Analysis Center construction cost remains unknown.
+- Anomaly Analysis Center base costs are user-provided (67,500 / 37,500 / 22,500); higher-level shared-model outputs have not been independently verified.
 - Do not publish raw screenshots containing account identity, coordinates, planets, or resource balances.
 - Update the revision and changelog only when public facts or behavior change.
 - Run `node scripts/validate.mjs` and `git diff --check` before committing.

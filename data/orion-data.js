@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-10-01",
-    revision: "0.17.0"
+    revision: "0.18.0"
   },
 
   project: {
@@ -197,9 +197,10 @@ window.ORION_DATA = {
           bonusStatus: "Observed +0.2 percentage points per level through level 15.",
           maxObservedTechinfoLevel: 15,
           maxCalculatorLevel: 100,
-          baseCost: null,
-          baseCostStatus: "Unknown — no displayed construction-cost sample is available.",
-          costModelStatus: "No cost model is published. The calculator reports the observed bonus only, and the queue keeps this item's resource cost unknown."
+          baseCost: { metal: 67500, crystal: 37500, deuterium: 22500 },
+          baseCostStatus: "User-provided base costs; not independently cross-checked in this session.",
+          costMultiplier: 1.5,
+          costModelStatus: "Uses the shared Control Center ×1.5-per-level cost model with user-provided base costs; higher-level costs are calculated, not independently verified."
         },
         highPressureDeuteriumTanks: {
           calculatorKey: "deuteriumTanks",
@@ -286,7 +287,7 @@ window.ORION_DATA = {
       label: "CONTROL CENTER COMPLETION",
       title: "Level-250 / 300 / 350 unlocks",
       metrics: ["L250 Anomaly Analysis Center · +0.2% Dark Matter per level", "L300 High-Pressure Deuterium Tanks · +0.2% Deuterium per level", "L350 Catalytic Converter · 0.05% conversion-cost reduction per level"],
-      note: "The retained Deuterium Tanks and Catalytic Converter Techinfo screenshots show their level progressions through level 15. Catalytic Converter is not a mission-reward building: it changes Lithium conversion cost. Anomaly Analysis Center construction costs remain unknown."
+      note: "The retained Deuterium Tanks and Catalytic Converter Techinfo screenshots show their level progressions through level 15. Catalytic Converter is not a mission-reward building: it changes Lithium conversion cost. Anomaly Analysis Center base costs are user-provided; its higher-level cost curve is calculated with the shared Control Center model and is not independently verified."
     },
     {
       label: "HIGH-IAS SCAN",
@@ -414,7 +415,6 @@ window.ORION_DATA = {
     "Which mechanics use the combined account-wide scanner level versus the local planet level",
     "IAS construction-time formula and whether the displayed one-second time is the global minimum",
     "Full-precision base costs and high-level cost curves for the newly observed Control Center buildings",
-    "Anomaly Analysis Center construction costs",
     "Exactly how the Catalytic Converter's displayed percentage is applied to Lithium conversion costs"
   ],
 
@@ -428,11 +428,16 @@ window.ORION_DATA = {
     { question: "How do enemy fleets and defenses scale?", help: "Capture every wave of one mission, including full fleet composition, defenses, combat techs, mission level, stars, and PvE/PvP status." },
     { question: "Which mechanics use combined IAS and which use local IAS?", help: "Compare the same action from two planets with different local IAS levels while the account-wide total remains unchanged." },
     { question: "What is the IAS construction-time formula?", help: "Report Robotics Factory, Nanite Factory, universe construction speed, current IAS level, next level, and the displayed build time." },
-    { question: "What are the exact Control Center construction costs?", help: "Use full-number displays when possible. Capture level 0→1 plus a later level for each building; Anomaly Analysis Center is the highest-priority missing sample." },
+    { question: "What are the exact Control Center construction costs?", help: "Use full-number displays when possible. Capture level 0→1 plus a later level for each building; verify Anomaly Analysis Center higher-level costs against its user-provided base and shared curve." },
     { question: "How is the Catalytic Converter bonus applied?", help: "Compare the exact Lithium cost of converting the same resource amount before and after one Catalytic Converter level, with every other setting unchanged." }
   ],
 
   changelog: [
+    {
+      date: "2026-10-01",
+      version: "0.18.0",
+      notes: "Added user-provided Anomaly Analysis Center base costs (67,500 Metal / 37,500 Crystal / 22,500 Deuterium) and enabled the shared Control Center cost model in its calculator and build queue; higher-level costs remain unverified."
+    },
     {
       date: "2026-10-01",
       version: "0.17.0",
