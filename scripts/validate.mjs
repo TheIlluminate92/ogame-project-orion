@@ -13,6 +13,7 @@ const required = [
   "about.html",
   "AGENTS.md",
   "docs/CURRENT_STATE.md",
+  "docs/NEXT_SESSION.md",
   "docs/ITERATIONS.md",
   "docs/PHONE_UPDATES.md",
   ".github/ISSUE_TEMPLATE/intel-report.md",

@@ -4,7 +4,7 @@ This repository is a living OGame Project Orion PTS field guide. These instructi
 
 ## Start here
 
-1. Read `README.md`, `docs/CURRENT_STATE.md`, and `docs/ITERATIONS.md`.
+1. Read `README.md`, `docs/NEXT_SESSION.md`, `docs/CURRENT_STATE.md`, and `docs/ITERATIONS.md`.
 2. Inspect `data/orion-data.js`; it is the source of truth for frequently changing facts.
 3. Run `node scripts/validate.mjs` before and after changes.
 4. Inspect `git status` and preserve unrelated user changes.

@@ -7,6 +7,7 @@ A fast-moving, static GitHub Pages briefing for OGame Project Orion on the publi
 ## Continue development
 
 - [`AGENTS.md`](AGENTS.md) — authoritative instructions and technical context for ChatGPT, Codex, or another coding agent
+- [`docs/NEXT_SESSION.md`](docs/NEXT_SESSION.md) — concise blank-chat handoff, priorities, and copy-ready continuation prompt
 - [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md) — current verified findings, assumptions, unknowns, and active revision
 - [`docs/ITERATIONS.md`](docs/ITERATIONS.md) — human-readable development history and next-update template
 - [`docs/PHONE_UPDATES.md`](docs/PHONE_UPDATES.md) — safe update workflow from a phone or another computer
@@ -41,6 +42,7 @@ GitHub Pages publishes directly from the root of the `main` branch. This keeps r
 - `calculators.html` — unified selectable IAS and Control Center calculator deck
 - `research.html` — open questions with practical test ideas
 - `about.html` — evidence policy, sources, and changelog
+- `docs/NEXT_SESSION.md` — current blank-chat handoff
 - `assets/styles.css` — visual system and responsive layout
 - `assets/app.js` — homepage data renderer
 - `assets/calculators.js` — IAS, Control Center, and multi-building queue calculator logic

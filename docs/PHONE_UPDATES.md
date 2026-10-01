@@ -33,10 +33,11 @@ No build system or package installation is required. A current Node.js runtime i
 Provide the repository URL and ask the agent to read, in order:
 
 1. `AGENTS.md`
-2. `docs/CURRENT_STATE.md`
-3. `docs/ITERATIONS.md`
-4. `data/orion-data.js`
+2. `docs/NEXT_SESSION.md`
+3. `docs/CURRENT_STATE.md`
+4. `docs/ITERATIONS.md`
+5. `data/orion-data.js`
 
 Suggested opening prompt:
 
-> Continue development of the Project Orion field guide from this repository. Follow AGENTS.md, preserve the confirmed/observed/unknown evidence boundaries, run the validation script, update the iteration documentation when needed, and verify GitHub Pages after publishing. Do not publish raw account screenshots.
+> Continue the Project Orion field guide at https://github.com/TheIlluminate92/ogame-project-orion. Start by reading AGENTS.md and docs/NEXT_SESSION.md, then inspect docs/CURRENT_STATE.md and data/orion-data.js. Preserve the evidence boundaries, do not invent unknown costs or formulas, validate all changes, and verify GitHub Pages after publishing.
