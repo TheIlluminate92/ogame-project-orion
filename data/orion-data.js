@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-10-01",
-    revision: "0.16.0"
+    revision: "0.17.0"
   },
 
   project: {
@@ -433,6 +433,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-10-01",
+      version: "0.17.0",
+      notes: "Replaced the calculator dropdown with two rows of concise buttons, separating empire-wide planners and the planet queue from local building calculators."
+    },
     {
       date: "2026-10-01",
       version: "0.16.0",

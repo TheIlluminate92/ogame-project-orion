@@ -4,6 +4,7 @@ This file tracks structural releases and provides continuity when development mo
 
 | Revision | Date | Major change |
 |---|---|---|
+| 0.17.0 | 2026-10-01 | Replaced the calculator dropdown with concise two-row buttons for empire-wide planning/queue and local buildings. |
 | 0.16.0 | 2026-10-01 | Removed base-cost details from Scanner; added additive empire bonus targets and comparison tables for all seven Control Center buildings while preserving the unresolved IRC sample discrepancy. |
 | 0.15.1 | 2026-10-01 | Clarified game versus guide versions and added official v13.1.0 release context plus FAQ-backed mission operations. |
 | 0.15.0 | 2026-10-01 | Cleaned up four pages; added current-to-target calculators, queue starting levels, streamlined network totals, mission guidance, a database roadmap, and a compact changelog. |
@@ -49,9 +50,9 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 ## Current continuation point
 
-- Working revision: 0.16.0
+- Working revision: 0.17.0
 - Local validation: passing; desktop and 390px mobile browser checks completed
-- Deployment: revision 0.15.1 is the last verified GitHub Pages release; local 0.16.0 changes await the user's push and subsequent live check
+- Deployment: revision 0.15.1 is the last verified GitHub Pages release; local 0.17.0 changes await the user's push and subsequent live check
 - Next action: collect Anomaly Analysis Center construction costs, confirm Catalytic Converter calculation semantics, reconcile the prior IRC 2.19% display with the user-reported additive model, and collect full-precision cost checkpoints for the Control Center buildings.
 - Highest cost-formula validation: IAS 35
 - Highest calculator level: IAS 100

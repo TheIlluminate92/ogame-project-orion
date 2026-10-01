@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-01
 
-Working revision: **0.16.0**
+Working revision: **0.17.0**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -23,6 +23,7 @@ Future revisions should be treated as published only after the Pages build and t
 - `scanner.html` contains IAS mechanics, formulas, milestone progression, Control Center bonuses, and observed scanner-capacity upgrade costs; base construction costs are omitted from this page.
 - `missions.html` contains a practical mission quick-start, public-objective guidance, PvE/PvP/ACS help, useful mission profiles, and operating rules without publishing the raw observation dump as a standalone section.
 - `calculators.html` is a unified selectable calculator deck with current-to-target local ranges, streamlined cross-planet totals, additive empire bonus targets and reference tables for all seven Control Center bonus buildings, and starting levels in the build queue.
+- Calculator navigation uses a top row for IAS Network, Empire Bonus, and Planet Queue, plus a lower row of concise local building buttons.
 - `research.html` turns each major unknown into a suggested test or screenshot request and defines a staged path toward a searchable mission database.
 - `about.html` contains the evidence policy, official v13.1.0 release context, sources, and a compact changelog that keeps the latest five releases visible.
 - The incomplete reward-scaling concept and raw PTS observation section remain preserved in `data/orion-data.js` but are not in public navigation pending a proper mission/reward database.

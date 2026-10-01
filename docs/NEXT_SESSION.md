@@ -6,9 +6,9 @@ Use this file when continuing the Project Orion guide from a blank chat.
 
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
-- Current revision: **0.16.0**
+- Current revision: **0.17.0**
 - Branch: `main`
-- Deployment: revision 0.15.1 was the last verified GitHub Pages release; local 0.16.0 changes are not yet pushed or deployed
+- Deployment: revision 0.15.1 was the last verified GitHub Pages release; local 0.17.0 changes are not yet pushed or deployed
 - Working tree at handoff: clean
 
 Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/orion-data.js` is the factual source of truth.
@@ -34,7 +34,7 @@ Then follow these limits:
 - `index.html` — Orion overview, Lithium basics, and the combined-IAS-350 starter path
 - `scanner.html` — IAS mechanics, formulas, lore, milestone unlocks, Control Center artwork/lore/bonuses, and observed capacity-upgrade costs
 - `missions.html` — mission quick-start, public-objective guidance, ACS help, profiles, and operational rules
-- `calculators.html` — current-to-target building calculators, streamlined IAS network planning, additive empire bonus targets and reference tables for all seven Control Center bonus buildings, and a start-aware build queue
+- `calculators.html` — current-to-target building calculators, button navigation separating empire-wide planners/queue from local buildings, additive empire bonus targets and reference tables for all seven Control Center bonus buildings, and a start-aware build queue
 - `research.html` — unresolved questions, suggested tests, and the future mission-database roadmap
 - `about.html` — evidence policy, official v13.1.0 release context, sources, and a compact changelog
 

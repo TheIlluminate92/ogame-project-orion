@@ -175,6 +175,12 @@ const calculatorHtml = htmlByPage["calculators.html"];
 for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/calculators.js"]) {
   if (!calculatorHtml.includes(asset)) throw new Error(`calculators.html does not reference ${asset}`);
 }
+if (calculatorHtml.includes('id="calculator-select"')) throw new Error("calculators.html should use button navigation instead of a dropdown");
+const calculatorKeys = [...calculatorHtml.matchAll(/data-calculator-trigger="([^"]+)"/g)].map((match) => match[1]);
+const expectedCalculatorKeys = ["ias-network", "empire-bonus", "build-queue", "ias-local", "recovery", "lithiumLab", "metalRecycling", "crystalFinishing", "anomalyAnalysis", "deuteriumTanks", "catalyticConverter"];
+if (JSON.stringify(calculatorKeys) !== JSON.stringify(expectedCalculatorKeys)) {
+  throw new Error("Calculator buttons must list empire-wide planners and queue first, then all local buildings");
+}
 for (const id of ["level-start-input", "level-input", "level-cost", "cumulative-cost", "target-ias", "available-planets", "planner-breakdown", "recovery-level-start-input", "recovery-level-input", "control-building-level-start-input", "control-building-level-input", "control-building-level-cost", "control-building-cumulative-cost", "empire-bonus-building", "empire-target-bonus", "empire-planets", "empire-example-head", "empire-example-body", "queue-building-select", "queue-start-level", "queue-target-level", "queue-add-item", "queue-items", "queue-grand-total"]) {
   if (!calculatorHtml.includes(`id="${id}"`)) throw new Error(`calculators.html is missing #${id}`);
 }
@@ -183,7 +189,7 @@ if (/\b(?:projection|projected|provisional|observed|estimate)\b/i.test(calculato
 }
 
 const calculatorJs = fs.readFileSync(path.join(root, "assets/calculators.js"), "utf8");
-for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select", "queue-start-level", "normalizeLevelRange", "rangeCost", "updateControlBuildingCalculator", "updateEmpireBonusPlanner", "renderEmpireExamples", "empireDistributionLabel", '$$("[data-level]")', '$$("[data-calculator-view]")']) {
+for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select", "queue-start-level", "normalizeLevelRange", "rangeCost", "updateControlBuildingCalculator", "updateEmpireBonusPlanner", "renderEmpireExamples", "empireDistributionLabel", '$$("[data-level]")', '$$("[data-calculator-view]")', '$$("[data-calculator-trigger]")']) {
   if (!calculatorJs.includes(requiredSnippet)) throw new Error(`calculators.js is missing queue wiring: ${requiredSnippet}`);
 }
 if (calculatorJs.includes('addQueueItem("ias"')) {

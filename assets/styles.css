@@ -311,21 +311,30 @@ footer a { color: var(--cyan); text-decoration: none; font-size: 13px; }
 }
 
 
-/* Unified calculator selector */
+/* Calculator navigation */
 .calculator-deck { display: grid; gap: 34px; }
-.calculator-switcher { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, .7fr); gap: 24px; align-items: end; }
-.calculator-switcher label { display: grid; gap: 8px; }
-.calculator-switcher select {
-  width: 100%;
-  min-height: 48px;
-  padding: 10px 42px 10px 12px;
-  color: var(--ink);
-  background: var(--panel-2);
+.calculator-switcher { display: grid; gap: 18px; }
+.calculator-choice-group + .calculator-choice-group { padding-top: 16px; border-top: 1px solid var(--line); }
+.calculator-choice-group > .micro { margin: 0 0 9px; color: var(--muted); }
+.calculator-button-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.calculator-trigger {
+  min-height: 42px;
+  padding: 0 14px;
+  color: var(--muted);
+  background: rgba(255,255,255,.025);
   border: 1px solid var(--line);
   border-radius: 8px;
   font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .035em;
+  cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
 }
-.calculator-switcher p { margin: 0 0 4px; color: var(--muted); }
+.empire-calculator-buttons .calculator-trigger { flex: 1 1 150px; }
+.calculator-trigger:hover, .calculator-trigger:focus-visible { color: var(--cyan); border-color: rgba(109,228,255,.7); outline: none; }
+.calculator-trigger[aria-pressed="true"] { color: #041014; background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 18px rgba(109,228,255,.18); }
+.calculator-switcher > #calculator-summary { margin: -5px 0 0; color: var(--muted); font-size: 12px; }
 .calculator-view[hidden] { display: none !important; }
 .recovery-planner { margin-top: 28px; }
 .empire-planner-inputs { grid-template-columns: 1.35fr 1fr 1fr; }
@@ -335,11 +344,6 @@ footer a { color: var(--cyan); text-decoration: none; font-size: 13px; }
 .empire-example-table { min-width: 460px; }
 .empire-example-table td:not(:first-child) { color: var(--lime); font-weight: 800; }
 .input-error { color: #ffab96; min-height: 1.2em; margin: 14px 0 0; }
-
-@media (max-width: 700px) {
-  .calculator-switcher { grid-template-columns: 1fr; align-items: stretch; }
-}
-
 
 /* Planet build queue */
 .build-queue { display: grid; gap: 24px; }

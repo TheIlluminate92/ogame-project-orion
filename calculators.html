@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#06101d">
   <title>Project Orion — Calculators</title>
   <link rel="stylesheet" href="assets/styles.css">
-  <script defer src="data/orion-data.js?v=0.16.0"></script>
-  <script defer src="assets/calculators.js?v=0.16.0"></script>
+  <script defer src="data/orion-data.js?v=0.17.0"></script>
+  <script defer src="assets/calculators.js?v=0.17.0"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to calculators</a>
@@ -27,7 +27,7 @@
     <div class="shell subpage-title">
       <p class="eyebrow">ORION // UNIFIED PLANNING DECK</p>
       <h1>CALCULATORS</h1>
-      <p>One calculator page for scanner and Control Center planning. Choose the building or planner you need.</p>
+      <p>Choose an empire-wide planner or planet queue on the first row, or a local building calculator below.</p>
       <div class="status-row">
         <span class="status warning">PTS — subject to change</span>
         <span class="status neutral">IAS costs checked through L35</span>
@@ -40,24 +40,29 @@
 
   <main id="main">
     <section class="section shell calculator-deck">
-      <div class="calculator-switcher panel">
-        <label for="calculator-select">
-          <span class="micro">CALCULATOR</span>
-          <select id="calculator-select">
-            <option value="ias-local">Interstellar Anomaly Scanner — local level</option>
-            <option value="ias-network">Interstellar Anomaly Scanner — account-wide planner</option>
-            <option value="recovery">Intergalactic Recovery Center</option>
-            <option value="empire-bonus">Empire bonus planner — Control Center buildings</option>
-            <option value="lithiumLab">Lithium Electrolysis Lab</option>
-            <option value="metalRecycling">Metal Recycling Unit</option>
-            <option value="crystalFinishing">Crystal Finishing Station</option>
-            <option value="anomalyAnalysis">Anomaly Analysis Center</option>
-            <option value="deuteriumTanks">High-Pressure Deuterium Tanks</option>
-            <option value="catalyticConverter">Catalytic Converter</option>
-            <option value="build-queue">Planet build queue</option>
-          </select>
-        </label>
-        <p id="calculator-summary">Single-planet IAS cost and Lithium production.</p>
+      <div class="calculator-switcher panel" aria-label="Choose a calculator">
+        <section class="calculator-choice-group" aria-labelledby="empire-calculators-label">
+          <p class="micro" id="empire-calculators-label">EMPIRE WIDE &amp; QUEUE</p>
+          <div class="calculator-button-row empire-calculator-buttons" role="group" aria-label="Empire-wide calculators and queue">
+            <button type="button" class="calculator-trigger" data-calculator-trigger="ias-network" aria-controls="network-calculator" aria-pressed="false">IAS Network</button>
+            <button type="button" class="calculator-trigger" data-calculator-trigger="empire-bonus" aria-controls="empire-bonus-calculator" aria-pressed="false">Empire Bonus</button>
+            <button type="button" class="calculator-trigger" data-calculator-trigger="build-queue" aria-controls="build-queue-calculator" aria-pressed="false">Planet Queue</button>
+          </div>
+        </section>
+        <section class="calculator-choice-group" aria-labelledby="local-calculators-label">
+          <p class="micro" id="local-calculators-label">LOCAL BUILDINGS</p>
+          <div class="calculator-button-row local-calculator-buttons" role="group" aria-label="Local building calculators">
+            <button type="button" class="calculator-trigger" data-calculator-trigger="ias-local" aria-controls="level-calculator" aria-pressed="false">IAS Local</button>
+            <button type="button" class="calculator-trigger" data-calculator-trigger="recovery" aria-controls="recovery-calculator" aria-pressed="false">IRC</button>
+            <button type="button" class="calculator-trigger" data-calculator-trigger="lithiumLab" aria-controls="control-building-calculator" aria-pressed="false">Lithium Lab</button>
+            <button type="button" class="calculator-trigger" data-calculator-trigger="metalRecycling" aria-controls="control-building-calculator" aria-pressed="false">Metal Unit</button>
+            <button type="button" class="calculator-trigger" data-calculator-trigger="crystalFinishing" aria-controls="control-building-calculator" aria-pressed="false">Crystal Station</button>
+            <button type="button" class="calculator-trigger" data-calculator-trigger="anomalyAnalysis" aria-controls="control-building-calculator" aria-pressed="false">Anomaly Center</button>
+            <button type="button" class="calculator-trigger" data-calculator-trigger="deuteriumTanks" aria-controls="control-building-calculator" aria-pressed="false">Deut Tanks</button>
+            <button type="button" class="calculator-trigger" data-calculator-trigger="catalyticConverter" aria-controls="control-building-calculator" aria-pressed="false">Catalyst</button>
+          </div>
+        </section>
+        <p id="calculator-summary" aria-live="polite">Single-planet IAS cost and Lithium production.</p>
       </div>
 
       <section class="calculator-view" data-calculator-view="ias-local" id="level-calculator">

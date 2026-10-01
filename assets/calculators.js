@@ -585,6 +585,9 @@
     $$("[data-calculator-view]").forEach((section) => {
       section.hidden = section.dataset.calculatorView !== view;
     });
+    $$("[data-calculator-trigger]").forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.calculatorTrigger === value));
+    });
     if (isControlBuilding) updateControlBuildingCalculator(value);
     $("#calculator-summary").textContent = summaries[value] || "";
   }
@@ -612,7 +615,9 @@
   $("#empire-target-bonus").addEventListener("input", updateEmpireBonusPlanner);
   $("#empire-planets").addEventListener("input", updateEmpireBonusPlanner);
   empireBuildingSelect.addEventListener("change", updateEmpireBonusPlanner);
-  $("#calculator-select").addEventListener("change", (event) => selectCalculator(event.target.value));
+  $$("[data-calculator-trigger]").forEach((button) => {
+    button.addEventListener("click", () => selectCalculator(button.dataset.calculatorTrigger));
+  });
   $("#queue-building-select").addEventListener("change", () => {
     $("#queue-start-level").value = queueCatalog[$("#queue-building-select").value].baseLevel;
     syncQueueTargetLimits();
@@ -638,8 +643,8 @@
   syncQueueTargetLimits();
   renderQueue();
   const requestedCalc = new URLSearchParams(window.location.search).get("calc");
-  if (requestedCalc && Array.from($("#calculator-select").options).some((option) => option.value === requestedCalc)) {
-    $("#calculator-select").value = requestedCalc;
-  }
-  selectCalculator($("#calculator-select").value);
+  const initialCalc = requestedCalc && $$("[data-calculator-trigger]").some((button) => button.dataset.calculatorTrigger === requestedCalc)
+    ? requestedCalc
+    : "ias-local";
+  selectCalculator(initialCalc);
 })();
