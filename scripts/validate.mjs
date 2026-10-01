@@ -145,6 +145,9 @@ if (!aboutHtml.includes(`id="updated-date">${data.meta.updated}</time>`)) {
 }
 
 const html = htmlByPage["index.html"];
+if (!html.includes(`OGame PTS v13.1.0 // Guide v${data.meta.revision}`)) {
+  throw new Error("index.html must distinguish the OGame PTS version from the guide revision");
+}
 for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/app.js", "scanner.html", "missions.html", "calculators.html", "research.html", "about.html"]) {
   if (!html.includes(asset)) throw new Error(`index.html does not reference ${asset}`);
 }
@@ -153,6 +156,13 @@ for (const page of ["scanner.html", "missions.html", "research.html", "about.htm
   for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/app.js"]) {
     if (!pageHtml.includes(asset)) throw new Error(`${page} does not reference ${asset}`);
   }
+}
+const missionHtml = htmlByPage["missions.html"];
+for (const expected of ["Spawned missions are public and first come, first served", "claim a partial reward", "visible on phalanx"]) {
+  if (!missionHtml.includes(expected)) throw new Error(`missions.html is missing official guidance: ${expected}`);
+}
+if (!data.sources.some((source) => source.url.includes("568-september-28-version-13-1-0"))) {
+  throw new Error("Official OGame PTS v13.1.0 changelog source is missing");
 }
 const calculatorHtml = htmlByPage["calculators.html"];
 for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/calculators.js"]) {

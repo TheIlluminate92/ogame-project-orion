@@ -6,9 +6,9 @@ Use this file when continuing the Project Orion guide from a blank chat.
 
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
-- Current revision: **0.15.0**
+- Current revision: **0.15.1**
 - Branch: `main`
-- Deployment: revision 0.14.1 published and verified; revision 0.15.0 is local and not yet published
+- Deployment: revision 0.15.0 published to `main`; revision 0.15.1 pending publication and live verification
 - Working tree at handoff: clean
 
 Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/orion-data.js` is the factual source of truth.
@@ -17,10 +17,10 @@ Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/ori
 
 - `index.html` — Orion overview, Lithium basics, and the combined-IAS-350 starter path
 - `scanner.html` — IAS mechanics, formulas, lore, milestone unlocks, Control Center artwork/lore/costs/bonuses, and observed capacity-upgrade costs
-- `missions.html` — mission quick-start, ACS guidance, profiles, and operational rules
+- `missions.html` — mission quick-start, public-objective guidance, ACS help, profiles, and operational rules
 - `calculators.html` — current-to-target building calculators, streamlined network planning, and a start-aware build queue
 - `research.html` — unresolved questions, suggested tests, and the future mission-database roadmap
-- `about.html` — evidence policy, sources, and a compact changelog
+- `about.html` — evidence policy, official v13.1.0 release context, sources, and a compact changelog
 
 Raw PTS observation records and the incomplete reward-scaling concept remain in `data/orion-data.js`, but are intentionally absent from public navigation until a proper mission/reward database is designed.
 

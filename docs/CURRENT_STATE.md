@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-01
 
-Working revision: **0.15.0**
+Working revision: **0.15.1**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -11,9 +11,9 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
 - Publishing source: `main` branch, repository root
-- Latest verified deployment: revision 0.14.1 on 2026-09-30
+- Latest repository deployment: revision 0.15.0 on 2026-10-01
 
-Revision 0.15.0 is a local page-cleanup release and has not yet been published or verified on GitHub Pages.
+Revision 0.15.1 adds official release context and FAQ-backed mission operations and is pending publication and live verification.
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
@@ -21,10 +21,10 @@ Future revisions should be treated as published only after the Pages build and t
 
 - The homepage is a concise Orion overview with Lithium basics and a practical first goal of combined IAS 350.
 - `scanner.html` contains IAS mechanics, formulas, milestone progression, Control Center costs/bonuses, and observed scanner-capacity upgrade costs.
-- `missions.html` contains a practical mission quick-start, PvE/PvP/ACS guidance, useful mission profiles, and operating rules without publishing the raw observation dump as a standalone section.
+- `missions.html` contains a practical mission quick-start, public-objective guidance, PvE/PvP/ACS help, useful mission profiles, and operating rules without publishing the raw observation dump as a standalone section.
 - `calculators.html` is a unified selectable calculator deck with current-to-target local ranges, streamlined cross-planet totals, and starting levels in the build queue.
 - `research.html` turns each major unknown into a suggested test or screenshot request and defines a staged path toward a searchable mission database.
-- `about.html` contains the evidence policy, official sources, and a compact changelog that keeps the latest five releases visible.
+- `about.html` contains the evidence policy, official v13.1.0 release context, sources, and a compact changelog that keeps the latest five releases visible.
 - The incomplete reward-scaling concept and raw PTS observation section remain preserved in `data/orion-data.js` but are not in public navigation pending a proper mission/reward database.
 - Supplied in-game lore is published for the Interstellar Anomaly Scanner and all seven Control Center buildings.
 - The local scanner and Control Center calculators support current-to-target level ranges through level 100.
@@ -60,6 +60,11 @@ Future revisions should be treated as published only after the Pages build and t
 - A level-351 PvE two-star Small Alien Encounter showed four NPC waves of 1,881 / 1,971 / 374 / 988 ships; visible later-wave combat tech was Weapons 28 / Shielding 20 / Armor 28.
 - Newly observed mission templates include Lifeform Rescue, Resource: Metal, and Resource: Deuterium.
 - PvE missions cannot be attacked by other players; PvP missions can be targeted/sabotaged and award double rewards when completed successfully.
+- Spawned missions are publicly visible across the galaxy and are first come, first served.
+- Higher anomaly levels improve potential rewards but increase combat difficulty plus scan and claim costs.
+- Insufficient Lithium limits the player to a partial reward claim.
+- Claimed rewards travel to the discovery planet on a friendly NPC transport visible on phalanx.
+- General class mission rewards can be boosted further by the Mecha General Enhancement lifeform technology.
 - Mission rewards can be collected in order, wave by wave.
 - Partial collection is possible before a multi-wave mission fully ends.
 - Observed templates include Small Pirate Encounter, Delivery: Metal, and Valuable Delivery.
