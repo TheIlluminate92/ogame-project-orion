@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.13.0"
+    revision: "0.13.1"
   },
 
   lithium: {
@@ -75,6 +75,7 @@ window.ORION_DATA = {
         intergalacticRecoveryCenter: {
           calculatorKey: "recovery",
           iconLabel: "SHIP",
+          iconImage: "assets/control-center/intergalactic-recovery-center.png",
           name: "Intergalactic Recovery Center",
           unlockMissionLevel: 50,
           effect: "Increases the number of ships gained from anomaly missions.",
@@ -98,6 +99,7 @@ window.ORION_DATA = {
         lithiumElectrolysisLab: {
           calculatorKey: "lithiumLab",
           iconLabel: "Li",
+          iconImage: "assets/control-center/lithium-electrolysis-lab.png",
           name: "Lithium Electrolysis Lab",
           unlockMissionLevel: 100,
           effect: "Increases the amount of Lithium gained from anomaly missions with each level.",
@@ -120,6 +122,7 @@ window.ORION_DATA = {
         metalRecyclingUnit: {
           calculatorKey: "metalRecycling",
           iconLabel: "M",
+          iconImage: "assets/control-center/metal-recycling-unit.png",
           name: "Metal Recycling Unit",
           unlockMissionLevel: 150,
           effect: "Increases the amount of Metal gained from anomaly missions with each level.",
@@ -141,6 +144,7 @@ window.ORION_DATA = {
         crystalFinishingStation: {
           calculatorKey: "crystalFinishing",
           iconLabel: "C",
+          iconImage: "assets/control-center/crystal-finishing-station.png",
           name: "Crystal Finishing Station",
           unlockMissionLevel: 200,
           effect: "Increases the amount of Crystal gained from anomaly missions with each level.",
@@ -161,6 +165,7 @@ window.ORION_DATA = {
         anomalyAnalysisCenter: {
           calculatorKey: "anomalyAnalysis",
           iconLabel: "DM",
+          iconImage: "assets/control-center/anomaly-analysis-center.png",
           name: "Anomaly Analysis Center",
           unlockMissionLevel: 250,
           effect: "Increases the amount of Dark Matter gained from anomaly missions with each level.",
@@ -177,6 +182,7 @@ window.ORION_DATA = {
         highPressureDeuteriumTanks: {
           calculatorKey: "deuteriumTanks",
           iconLabel: "D",
+          iconImage: "assets/control-center/high-pressure-deuterium-tanks.png",
           name: "High-Pressure Deuterium Tanks",
           unlockMissionLevel: 300,
           effect: "Increases the amount of Deuterium gained from anomaly missions with each level.",
@@ -199,6 +205,7 @@ window.ORION_DATA = {
         catalyticConverter: {
           calculatorKey: "catalyticConverter",
           iconLabel: "CAT",
+          iconImage: "assets/control-center/catalytic-converter.png",
           name: "Catalytic Converter",
           unlockMissionLevel: 350,
           effect: "Reduces the cost to convert Lithium into other resources with each level.",
@@ -382,6 +389,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.13.1",
+      notes: "Added the complete supplied seven-icon Control Center artwork set to the progression and building-detail dialog."
+    },
     {
       date: "2026-09-30",
       version: "0.13.0",

@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-30
 
-Working revision: **0.13.0**
+Working revision: **0.13.1**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -11,7 +11,7 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
 - Publishing source: `main` branch, repository root
-- Revision 0.13.0 publication pending verification: 2026-09-30
+- Revision 0.13.1 publication pending verification: 2026-09-30
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
@@ -23,6 +23,7 @@ Future revisions should be treated as published only after the Pages build and t
 - The cross-planet planner supports combined IAS targets 1–1,000 and 1–50 available planets.
 - The Intergalactic Recovery Center calculator models +0.2% ship rewards per local level. Multiplicative empire stacking currently remains a candidate model because it reproduces the observed 2.19% total, but needs another independent confirmation. The ×1.5 cost curve matches supplied PTS values through level 9 and projects higher levels.
 - All seven Control Center unlocks are now named in progression. Lithium Electrolysis Lab, Metal Recycling Unit, Crystal Finishing Station, High-Pressure Deuterium Tanks, and Catalytic Converter have local level calculators and build-queue entries using working ×1.5 cost estimates derived from abbreviated PTS screenshots.
+- All seven Control Center buildings use the supplied image artwork in the progression cards and building-detail dialog; text badges remain implemented as a fallback for missing future assets.
 - Anomaly Analysis Center has a bonus calculator and queue entry, but its construction cost remains unknown and is excluded from numeric queue totals.
 - Catalytic Converter uses a distinct +0.05 percentage-points-per-level progression and reduces Lithium conversion cost; it is not modeled as an anomaly mission-reward multiplier. The exact conversion formula application remains unknown.
 - The planner assumes all selected planets begin at IAS 0 and optimizes construction resources, not Lithium production.

@@ -159,7 +159,7 @@ input[type="range"] { width: 100%; margin: 28px 0 12px; accent-color: var(--lime
 .control-center h3 { margin: 0 0 5px; font-size: 24px; }
 .control-center > div:first-child > p:last-child { margin: 0; color: var(--muted); }
 .milestone-track { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-top: 24px; }
-.milestone { position: relative; min-height: 105px; padding: 13px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border: 1px solid rgba(255, 173, 59, .25); border-radius: 9px; background: repeating-linear-gradient(135deg, rgba(255,173,59,.08) 0 8px, rgba(255,173,59,.02) 8px 16px); }
+.milestone { position: relative; min-height: 120px; padding: 13px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border: 1px solid rgba(255, 173, 59, .25); border-radius: 9px; background: repeating-linear-gradient(135deg, rgba(255,173,59,.08) 0 8px, rgba(255,173,59,.02) 8px 16px); }
 .milestone span { position: absolute; top: 10px; right: 10px; color: rgba(255,173,59,.65); font: 800 10px monospace; }
 .milestone strong { color: var(--orange); font-size: 27px; line-height: 1; }
 .milestone small { margin-top: 5px; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
@@ -427,6 +427,14 @@ footer a { color: var(--cyan); text-decoration: none; font-size: 13px; }
   background: rgba(109,228,255,.06);
   font: 800 11px/1 monospace;
 }
+.milestone-icon-image {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+  object-fit: cover;
+}
 .milestone.known small {
   line-height: 1.25;
   text-transform: none;
@@ -458,8 +466,10 @@ footer a { color: var(--cyan); text-decoration: none; font-size: 13px; }
 .building-dialog-head { display: flex; gap: 14px; align-items: center; padding-right: 40px; }
 .building-dialog-head h3 { margin: 2px 0 0; font-size: 26px; }
 .building-mark {
+  width: 56px;
   min-width: 56px;
   height: 56px;
+  flex: 0 0 56px;
   display: grid;
   place-items: center;
   border: 1px solid rgba(109,228,255,.35);
@@ -467,7 +477,9 @@ footer a { color: var(--cyan); text-decoration: none; font-size: 13px; }
   color: var(--cyan);
   background: rgba(109,228,255,.07);
   font: 900 15px monospace;
+  overflow: hidden;
 }
+.building-mark img { width: 100%; height: 100%; object-fit: cover; }
 .building-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
 .building-detail-grid > div { padding: 14px; border: 1px solid var(--line); border-radius: 9px; background: rgba(255,255,255,.025); }
 .building-detail-grid span { display: block; color: var(--muted); font-size: 11px; text-transform: uppercase; }

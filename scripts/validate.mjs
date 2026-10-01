@@ -140,6 +140,9 @@ for (const [key, level] of Object.entries(expectedUnlocks)) {
   if (!data.scanner.controlCenter.unlockLevels.includes(level)) {
     throw new Error(`${key} unlock level is missing from Control Center progression`);
   }
+  if (building.iconImage && !fs.existsSync(path.join(root, building.iconImage))) {
+    throw new Error(`${key} icon image is missing: ${building.iconImage}`);
+  }
 }
 
 if (controlBuildings.catalyticConverter.bonusPerLevelPercent !== 0.05) {

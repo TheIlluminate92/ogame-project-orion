@@ -32,9 +32,12 @@
           <small>details pending</small>
         </div>`;
       }
+      const icon = building.iconImage
+        ? `<img class="milestone-icon milestone-icon-image" src="${building.iconImage}" alt="">`
+        : `<b class="milestone-icon">${building.iconLabel || "?"}</b>`;
       return `<button type="button" class="milestone known" data-control-building="${building.calculatorKey}">
         <span>${String(index + 1).padStart(2, "0")}</span>
-        <b class="milestone-icon">${building.iconLabel || "?"}</b>
+        ${icon}
         <strong>${level}</strong>
         <small>${building.name}</small>
       </button>`;
@@ -45,7 +48,9 @@
     document.querySelectorAll("[data-control-building]").forEach((button) => button.addEventListener("click", () => {
       const building = buildingByKey[button.dataset.controlBuilding];
       if (!building) return;
-      $("#control-building-dialog-icon").textContent = building.iconLabel || "?";
+      $("#control-building-dialog-icon").innerHTML = building.iconImage
+        ? `<img src="${building.iconImage}" alt="">`
+        : building.iconLabel || "?";
       $("#control-building-dialog-unlock").textContent = `LEVEL ${building.unlockMissionLevel} MISSION UNLOCK`;
       $("#control-building-dialog-name").textContent = building.name;
       $("#control-building-dialog-effect").textContent = building.effect;
