@@ -12,7 +12,7 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
 - Publishing source: `main` branch, repository root
 - Revision 0.13.1 publication verified: 2026-09-30
-- Revision 0.14.0 publication pending verification: 2026-09-30
+- Revision 0.14.0 publication verified: 2026-09-30
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
