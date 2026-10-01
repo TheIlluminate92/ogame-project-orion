@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#06101d">
   <title>Project Orion — Calculators</title>
   <link rel="stylesheet" href="assets/styles.css">
-  <script defer src="data/orion-data.js?v=0.15.1"></script>
-  <script defer src="assets/calculators.js?v=0.15.1"></script>
+  <script defer src="data/orion-data.js?v=0.16.0"></script>
+  <script defer src="assets/calculators.js?v=0.16.0"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to calculators</a>
@@ -47,6 +47,7 @@
             <option value="ias-local">Interstellar Anomaly Scanner — local level</option>
             <option value="ias-network">Interstellar Anomaly Scanner — account-wide planner</option>
             <option value="recovery">Intergalactic Recovery Center</option>
+            <option value="empire-bonus">Empire bonus planner — Control Center buildings</option>
             <option value="lithiumLab">Lithium Electrolysis Lab</option>
             <option value="metalRecycling">Metal Recycling Unit</option>
             <option value="crystalFinishing">Crystal Finishing Station</option>
@@ -173,29 +174,43 @@
 
           <aside class="panel formula-panel">
             <p class="micro">CALCULATION</p>
-            <div class="formula-block"><span>Bonus</span><code>0.2% × level</code></div>
-            <div class="formula-block"><span>Build cost</span><code>Base × 1.5^(L − 1)</code></div>
-            <div class="ratio"><span>Empire stacking</span><strong>MULTIPLICATIVE</strong><small>Combines each planet's local bonus</small></div>
+            <div class="formula-block"><span>Local ship reward bonus</span><code>0.2% × level</code></div>
+            <div class="formula-block"><span>Empire stacking</span><code>Add each planet's bonus</code></div>
+            <a class="button secondary full-button" href="calculators.html?calc=empire-bonus">Plan empire bonus →</a>
           </aside>
         </div>
+      </section>
 
-        <article class="panel network-planner recovery-planner">
+      <section class="calculator-view" data-calculator-view="empire-bonus" id="empire-bonus-calculator" hidden>
+        <div class="section-heading wide">
+          <p class="kicker">CONTROL CENTER // EMPIRE PLANNING</p>
+          <h2>Plan additive empire bonuses</h2>
+          <p>Set a target percentage and available planet count. The planner finds a balanced layout using the selected building's displayed bonus per level.</p>
+        </div>
+        <article class="panel network-planner">
           <div class="planner-intro">
             <div>
               <p class="micro">EMPIRE BONUS TARGET</p>
-              <h3>Lowest-cost balanced Recovery Center layout</h3>
-               <p>Compares balanced layouts using multiplicative stacking across planets.</p>
+              <h3 id="empire-bonus-title">Intergalactic Recovery Center</h3>
+              <p id="empire-bonus-description">Empire bonus is the sum of each planet's local percentage-point contribution.</p>
             </div>
-            <div class="planner-inputs">
-              <label>Target bonus %<input id="recovery-target-bonus" type="number" min="0.2" max="99.9" value="3" step="0.2" inputmode="decimal"></label>
-              <label>Available planets<input id="recovery-planets" type="number" min="1" max="50" value="10" inputmode="numeric"></label>
+            <div class="planner-inputs empire-planner-inputs">
+              <label>Control Center building
+                <select id="empire-bonus-building"></select>
+              </label>
+              <label>Target bonus %<input id="empire-target-bonus" type="number" min="0.01" value="3" step="any" inputmode="decimal"></label>
+              <label>Available planets<input id="empire-planets" type="number" min="1" max="50" value="10" step="1" inputmode="numeric"></label>
             </div>
           </div>
-          <div class="planner-results" aria-live="polite">
-            <div class="planner-result primary-result"><span>Balanced distribution</span><strong id="recovery-distribution"></strong><small id="recovery-fields"></small></div>
-            <div class="planner-result"><span>Total resources</span><strong id="recovery-total"></strong><small id="recovery-breakdown"></small></div>
-            <div class="planner-result savings-result"><span>Resulting bonus</span><strong id="recovery-result-bonus"></strong><small>local +0.2% per level · multiplicative across planets</small></div>
+          <p id="empire-bonus-input-error" class="fine-print input-error" role="status" aria-live="polite"></p>
+          <div class="planner-results empire-planner-results" aria-live="polite">
+            <div class="planner-result primary-result"><span>Balanced planet levels</span><strong id="empire-distribution"></strong><small id="empire-fields"></small></div>
+            <div class="planner-result"><span>Total building levels</span><strong id="empire-total-levels"></strong><small id="empire-level-summary"></small></div>
+            <div class="planner-result savings-result"><span>Resulting empire bonus</span><strong id="empire-result-bonus"></strong><small id="empire-result-method">Additive total of local bonuses</small></div>
           </div>
+          <p class="micro empire-examples-heading">REFERENCE TABLE // SAME LEVEL ON EACH PLANET</p>
+          <div class="table-wrap empire-example-wrap"><table class="milestone-table empire-example-table"><thead id="empire-example-head"></thead><tbody id="empire-example-body"></tbody></table></div>
+          <p id="empire-bonus-evidence" class="fine-print"></p>
         </article>
       </section>
 

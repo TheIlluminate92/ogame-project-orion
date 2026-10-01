@@ -328,6 +328,13 @@ footer a { color: var(--cyan); text-decoration: none; font-size: 13px; }
 .calculator-switcher p { margin: 0 0 4px; color: var(--muted); }
 .calculator-view[hidden] { display: none !important; }
 .recovery-planner { margin-top: 28px; }
+.empire-planner-inputs { grid-template-columns: 1.35fr 1fr 1fr; }
+.empire-planner-inputs select { display: block; width: 100%; margin-top: 6px; padding: 11px 12px; color: var(--ink); background: #091522; border: 1px solid var(--line); border-radius: 7px; font-size: 15px; font-weight: 750; }
+.empire-examples-heading { margin: 10px 0; color: var(--cyan); }
+.empire-example-wrap { margin-top: 10px; }
+.empire-example-table { min-width: 460px; }
+.empire-example-table td:not(:first-child) { color: var(--lime); font-weight: 800; }
+.input-error { color: #ffab96; min-height: 1.2em; margin: 14px 0 0; }
 
 @media (max-width: 700px) {
   .calculator-switcher { grid-template-columns: 1fr; align-items: stretch; }

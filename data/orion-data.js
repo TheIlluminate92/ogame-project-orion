@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-10-01",
-    revision: "0.15.1"
+    revision: "0.16.0"
   },
 
   project: {
@@ -82,6 +82,10 @@ window.ORION_DATA = {
     ],
     controlCenter: {
       description: "The Control Center enables IAS upgrades and unlocks bonuses for anomaly missions.",
+      empireBonusStacking: {
+        model: "additive",
+        status: "User-reported correction: add each planet's local percentage-point bonus. The prior IRC sample displayed 2.19%, while the listed L3 and L8 contributions sum to 2.20%; the discrepancy remains unresolved."
+      },
       unlockLevels: [50, 100, 150, 200, 250, 300, 350],
       unlockRule: "Complete a mission of the listed level to unlock the corresponding Control Center building.",
       buildings: {
@@ -96,7 +100,7 @@ window.ORION_DATA = {
           bonusResource: "Ships",
           bonusPerLevelPercent: 0.2,
           stacksEmpireWide: true,
-          empireStackingStatus: "Observed empire total 2.19% is consistent with multiplicative stacking, but the rule still needs an independent confirmation.",
+          empireStackingStatus: "User-reported correction: empire bonuses stack additively. The prior L3 + L8 sample displayed 2.19% versus a 2.20% sum; the discrepancy remains unresolved.",
           maxObservedTechinfoLevel: 15,
           costValidatedThrough: 9,
           maxCalculatorLevel: 100,
@@ -190,7 +194,7 @@ window.ORION_DATA = {
           bonusResource: "Dark Matter",
           bonusLabel: "Dark Matter mission reward bonus",
           bonusPerLevelPercent: 0.2,
-          bonusStatus: "Observed +0.2 percentage points per level; construction costs were not captured in the retained screenshots.",
+          bonusStatus: "Observed +0.2 percentage points per level through level 15.",
           maxObservedTechinfoLevel: 15,
           maxCalculatorLevel: 100,
           baseCost: null,
@@ -324,7 +328,7 @@ window.ORION_DATA = {
       label: "CONTROL CENTER SAMPLE",
       title: "Intergalactic Recovery Center",
       metrics: ["Unlock: complete a level-50 mission", "+0.2% ships per level", "L3 contribution: 0.6%", "Observed L3 + L8 empire total: 2.19%", "Techinfo shown through level 15"],
-      note: "The ship-reward bonus applies empire-wide. The observed 0.6% and 1.6% planet contributions combine to 2.1904%, matching 1 − (1 − 0.006)(1 − 0.016), so empire stacking is multiplicative rather than simple addition. The ×1.5 cost model matches supplied PTS values through level 9; higher levels remain projections."
+      note: "The ship-reward bonus applies empire-wide. The user reports that planet contributions add. A prior L3 + L8 sample displayed 2.19% while the listed local contributions sum to 2.20%; the difference remains unresolved. The ×1.5 cost model matches supplied PTS values through level 9; higher levels remain projections."
     },
     {
       label: "BUILD-TIME SAMPLE",
@@ -400,6 +404,7 @@ window.ORION_DATA = {
   unknowns: [
     "The complete mission-template list",
     "Whether the observed conversion ratios change with scanner level, class, universe settings, or other modifiers",
+    "Why the earlier IRC L3 + L8 empire sample displayed 2.19% when the reported additive local bonuses sum to 2.20%",
     "Exact scan and claim cost formulas",
     "Cost progression beyond the observed Discovery Limit and Max Results upgrades",
     "Exact reward formulas, ranges, and caps",
@@ -428,6 +433,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-10-01",
+      version: "0.16.0",
+      notes: "Removed construction-base-cost details from the Scanner page; changed Control Center empire bonus planning to additive per the user's correction; added a target planner and 10/15/20-planet reference table for every bonus building, with the earlier IRC sample discrepancy left unresolved."
+    },
     {
       date: "2026-10-01",
       version: "0.15.1",

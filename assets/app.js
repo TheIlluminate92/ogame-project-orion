@@ -12,9 +12,6 @@
     if (element) element.innerHTML = value;
   };
   const formatNumber = (value) => Number(value).toLocaleString();
-  const formatCost = (cost) => cost
-    ? `M ${formatNumber(cost.metal)} · C ${formatNumber(cost.crystal)} · D ${formatNumber(cost.deuterium)}`
-    : "Unknown";
   const bonusText = (building) => {
     const precision = building.bonusPerLevelPercent < 0.1 ? 2 : 1;
     return `+${building.bonusPerLevelPercent.toFixed(precision)}% ${building.bonusResource || ""}`;
@@ -46,7 +43,6 @@
     setText("#scanner-fields", data.scanner.fieldUse);
     setText("#scanner-stacking", data.scanner.stacking);
     setText("#scanner-production-formula", data.scanner.productionFormula);
-    setText("#scanner-cost-formula", data.scanner.costFormula);
     setText("#scanner-lore-status", data.scanner.lore || data.scanner.loreStatus);
     setHtml("#scanner-mechanics", Object.values(data.scanner.mechanics).map((mechanic) => `<p>${mechanic}</p>`).join(""));
   }
@@ -75,8 +71,7 @@
         <td><a href="calculators.html?calc=${encodeURIComponent(building.calculatorKey)}">${building.name}</a></td>
         <td>${building.effect}</td>
         <td>${bonusText(building)}</td>
-        <td>${formatCost(building.baseCost)}</td>
-        <td>${building.baseCostStatus}</td>
+        <td>${[building.bonusStatus, building.empireStackingStatus].filter(Boolean).join(" ") || "Per-level effect shown; empire bonus planner uses additive stacking."}</td>
       </tr>`).join(""));
 
     const dialog = $("#control-building-dialog");
@@ -90,8 +85,7 @@
       setText("#control-building-dialog-lore", building.lore);
       setText("#control-building-dialog-effect", building.effect);
       setText("#control-building-dialog-bonus", bonusText(building));
-      setText("#control-building-dialog-cost", formatCost(building.baseCost));
-      setText("#control-building-dialog-status", [building.baseCostStatus, building.costModelStatus, building.empireStackingStatus].filter(Boolean).join(" "));
+      setText("#control-building-dialog-status", [building.bonusStatus, building.empireStackingStatus].filter(Boolean).join(" ") || "Empire bonus planner uses additive stacking.");
       $("#control-building-dialog-calc").href = `calculators.html?calc=${encodeURIComponent(building.calculatorKey)}`;
       if (typeof dialog.showModal === "function") dialog.showModal();
     }));

@@ -37,7 +37,7 @@ GitHub Pages publishes directly from the root of the `main` branch. This keeps r
 ## Files
 
 - `index.html` — Orion overview, Lithium basics, and IAS-350 starter path
-- `scanner.html` — IAS mechanics, costs, milestone unlocks, and Control Center bonuses
+- `scanner.html` — IAS mechanics, milestone unlocks, and Control Center bonuses
 - `missions.html` — mission quick-start, public-objective guidance, ACS help, profiles, and operating rules
 - `calculators.html` — current-to-target building calculators, streamlined network planning, and a start-aware build queue
 - `research.html` — open questions, practical tests, and the future mission-database roadmap
@@ -52,4 +52,4 @@ GitHub Pages publishes directly from the root of the `main` branch. This keeps r
 
 ## Status
 
-Current working revision: **0.15.1**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.
+Current working revision: **0.16.0**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.

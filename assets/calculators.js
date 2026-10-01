@@ -204,74 +204,91 @@
     updateDualRange("#recovery-level-range", start, target, 0, recovery.maxCalculatorLevel || 100);
   }
 
-  function recoveryEmpireBonusPercent(levels) {
-    const remaining = levels.reduce((product, level) => {
-      const localBonus = Math.min(99.999, level * recovery.bonusPerLevelPercent) / 100;
-      return product * (1 - localBonus);
-    }, 1);
-    return (1 - remaining) * 100;
-  }
-
-  function balancedRecoveryPlan(targetBonus, planets) {
-    const maxLevels = planets * recovery.maxCalculatorLevel;
-    for (let totalLevels = 1; totalLevels <= maxLevels; totalLevels += 1) {
-      const levels = balancedLevels(totalLevels, planets, recovery.maxCalculatorLevel);
-      const bonus = recoveryEmpireBonusPercent(levels);
-      if (bonus + 1e-9 >= targetBonus) {
-        return {
-          levels,
-          bonus,
-          cost: addCosts(levels.map(recoveryCumulativeCost))
-        };
-      }
-    }
-    const levels = Array.from({ length: planets }, () => recovery.maxCalculatorLevel);
-    return {
-      levels,
-      bonus: recoveryEmpireBonusPercent(levels),
-      cost: addCosts(levels.map(recoveryCumulativeCost)),
-      capped: true
-    };
-  }
-
-  function updateRecoveryPlanner() {
-    const targetInput = $("#recovery-target-bonus");
-    const planetsInput = $("#recovery-planets");
-    const requestedBonus = Math.max(0.2, Math.min(99.9, Number.parseFloat(targetInput.value) || 0.2));
-    const available = Math.max(1, Math.min(50, Number.parseInt(planetsInput.value, 10) || 1));
-
-    let best = null;
-    for (let planets = 1; planets <= available; planets += 1) {
-      const candidate = balancedRecoveryPlan(requestedBonus, planets);
-      if (candidate.capped && candidate.bonus + 1e-9 < requestedBonus) continue;
-      const candidateTotal = resourceTotal(candidate.cost);
-      if (!best || candidateTotal < resourceTotal(best.cost)) {
-        best = { ...candidate, planets };
-      }
-    }
-
-    if (!best) {
-      best = balancedRecoveryPlan(requestedBonus, available);
-      best.planets = available;
-    }
-
-    targetInput.value = requestedBonus.toFixed(1);
-    planetsInput.value = available;
-    $("#recovery-distribution").textContent = distributionLabel(best.levels, "IRC");
-    $("#recovery-fields").textContent = best.bonus + 1e-9 < requestedBonus
-      ? `Target exceeds modeled capacity · max with ${available} planets shown`
-      : `${best.levels.length} planet${best.levels.length === 1 ? "" : "s"} contributing · compared across 1–${available} available planets`;
-    $("#recovery-total").textContent = format.format(resourceTotal(best.cost));
-    $("#recovery-breakdown").textContent = `M ${format.format(best.cost.metal)} · C ${format.format(best.cost.crystal)} · D ${format.format(best.cost.deuterium)}`;
-    $("#recovery-result-bonus").textContent = `${best.bonus.toFixed(2)}%`;
-  }
-
   const controlCalculatorByKey = Object.fromEntries(
     Object.values(controlBuildings)
       .filter((building) => building.calculatorKey !== recovery.calculatorKey)
       .map((building) => [building.calculatorKey, building])
   );
   let activeControlBuildingKey = "lithiumLab";
+
+  const empireBonusBuildings = Object.values(controlBuildings).filter((building) => Number.isFinite(building.bonusPerLevelPercent));
+  const empireBuildingSelect = $("#empire-bonus-building");
+
+  function percentText(value) {
+    return `${Number(value.toFixed(2))}%`;
+  }
+
+  function renderEmpireExamples(building) {
+    const planetCounts = [10, 15, 20];
+    const levels = [10, 20, 30];
+    $("#empire-example-head").innerHTML = `<tr><th>Local level</th>${planetCounts.map((count) => `<th>${count} planets</th>`).join("")}</tr>`;
+    $("#empire-example-body").innerHTML = levels.map((level) => `<tr><td><strong>Level ${level}</strong></td>${planetCounts.map((count) => `<td>${percentText(level * count * building.bonusPerLevelPercent)}</td>`).join("")}</tr>`).join("");
+  }
+
+  function empireDistributionLabel(levels) {
+    const groups = levels.reduce((counts, level) => {
+      counts[level] = (counts[level] || 0) + 1;
+      return counts;
+    }, {});
+    return Object.entries(groups).sort((a, b) => Number(b[0]) - Number(a[0]))
+      .map(([level, count]) => `${count} planet${count === 1 ? "" : "s"} at L${level}`).join(" + ");
+  }
+
+  function clearEmpirePlan() {
+    $("#empire-distribution").textContent = "—";
+    $("#empire-fields").textContent = "";
+    $("#empire-total-levels").textContent = "—";
+    $("#empire-level-summary").textContent = "";
+    $("#empire-result-bonus").textContent = "—";
+  }
+
+  function updateEmpireBonusPlanner() {
+    const building = empireBonusBuildings.find((candidate) => candidate.calculatorKey === empireBuildingSelect.value) || recovery;
+    const targetRaw = $("#empire-target-bonus").value.trim();
+    const planetsRaw = $("#empire-planets").value.trim();
+    const requestedBonus = Number(targetRaw);
+    const available = Number(planetsRaw);
+    const maxLevel = building.maxCalculatorLevel || 100;
+    const error = $("#empire-bonus-input-error");
+
+    $("#empire-bonus-title").textContent = building.name;
+    $("#empire-bonus-description").textContent = `${building.bonusLabel || `${building.bonusResource} bonus`}: add the local percentage-point contribution from each planet.`;
+    $("#empire-result-method").textContent = `Additive: ${building.bonusPerLevelPercent}% per level per planet`;
+    $("#empire-bonus-evidence").textContent = data.scanner.controlCenter.empireBonusStacking.status;
+    $("#empire-example-head").setAttribute("aria-label", `${building.name} additive bonus reference table`);
+    renderEmpireExamples(building);
+
+    if (!targetRaw || !Number.isFinite(requestedBonus) || requestedBonus <= 0) {
+      error.textContent = "Enter a target bonus greater than 0% to calculate a layout.";
+      clearEmpirePlan();
+      return;
+    }
+    if (!planetsRaw || !Number.isInteger(available) || available < 1 || available > 50) {
+      error.textContent = "Enter a whole number of available planets from 1 to 50.";
+      clearEmpirePlan();
+      return;
+    }
+
+    const capacity = available * maxLevel * building.bonusPerLevelPercent;
+    if (requestedBonus > capacity + 1e-9) {
+      error.textContent = `Target exceeds the modeled maximum of ${percentText(capacity)} across ${available} planets at level ${maxLevel}.`;
+      clearEmpirePlan();
+      return;
+    }
+
+    error.textContent = "";
+    const totalLevels = Math.max(1, Math.ceil(requestedBonus / building.bonusPerLevelPercent - 1e-9));
+    const levels = balancedLevels(totalLevels, available, maxLevel);
+    const actualBonus = levels.reduce((sum, level) => sum + level * building.bonusPerLevelPercent, 0);
+    $("#empire-distribution").textContent = empireDistributionLabel(levels);
+    $("#empire-fields").textContent = `${levels.length} planet${levels.length === 1 ? "" : "s"} contributing · ${available - levels.length} unused`;
+    $("#empire-total-levels").textContent = format.format(totalLevels);
+    $("#empire-level-summary").textContent = `Across ${levels.length} contributing planet${levels.length === 1 ? "" : "s"}`;
+    $("#empire-result-bonus").textContent = percentText(actualBonus);
+  }
+
+  empireBuildingSelect.innerHTML = empireBonusBuildings.map((building) => `<option value="${building.calculatorKey}">${building.name}</option>`).join("");
+  empireBuildingSelect.value = recovery.calculatorKey;
 
   function updateControlBuildingCalculator(buildingKey = activeControlBuildingKey, changed = "target") {
     const building = controlCalculatorByKey[buildingKey];
@@ -552,6 +569,7 @@
     "ias-local": "Single-planet IAS cost and Lithium production.",
     "ias-network": "Cheapest balanced account-wide IAS distribution.",
     "recovery": "Intergalactic Recovery Center local cost and empire-wide ship-reward planning.",
+    "empire-bonus": "Additive empire bonus targets and reference tables for every Control Center bonus building.",
     "lithiumLab": "Lithium Electrolysis Lab level cost and Lithium mission-reward bonus.",
     "metalRecycling": "Metal Recycling Unit level cost and Metal mission-reward bonus.",
     "crystalFinishing": "Crystal Finishing Station level cost and Crystal mission-reward bonus.",
@@ -581,7 +599,7 @@
   updateLevelCalculator();
   updateNetworkPlanner();
   updateRecoveryLevel();
-  updateRecoveryPlanner();
+  updateEmpireBonusPlanner();
 
   levelStartInput.addEventListener("input", () => updateLevelCalculator("start"));
   levelInput.addEventListener("input", () => updateLevelCalculator("target"));
@@ -591,8 +609,9 @@
   recoveryLevelInput.addEventListener("input", () => updateRecoveryLevel("target"));
   $("#control-building-level-start-input").addEventListener("input", () => updateControlBuildingCalculator(activeControlBuildingKey, "start"));
   $("#control-building-level-input").addEventListener("input", () => updateControlBuildingCalculator(activeControlBuildingKey, "target"));
-  $("#recovery-target-bonus").addEventListener("input", updateRecoveryPlanner);
-  $("#recovery-planets").addEventListener("input", updateRecoveryPlanner);
+  $("#empire-target-bonus").addEventListener("input", updateEmpireBonusPlanner);
+  $("#empire-planets").addEventListener("input", updateEmpireBonusPlanner);
+  empireBuildingSelect.addEventListener("change", updateEmpireBonusPlanner);
   $("#calculator-select").addEventListener("change", (event) => selectCalculator(event.target.value));
   $("#queue-building-select").addEventListener("change", () => {
     $("#queue-start-level").value = queueCatalog[$("#queue-building-select").value].baseLevel;

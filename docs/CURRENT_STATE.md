@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-01
 
-Working revision: **0.15.1**
+Working revision: **0.16.0**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -20,16 +20,16 @@ Future revisions should be treated as published only after the Pages build and t
 ## Current site structure
 
 - The homepage is a concise Orion overview with Lithium basics and a practical first goal of combined IAS 350.
-- `scanner.html` contains IAS mechanics, formulas, milestone progression, Control Center costs/bonuses, and observed scanner-capacity upgrade costs.
+- `scanner.html` contains IAS mechanics, formulas, milestone progression, Control Center bonuses, and observed scanner-capacity upgrade costs; base construction costs are omitted from this page.
 - `missions.html` contains a practical mission quick-start, public-objective guidance, PvE/PvP/ACS help, useful mission profiles, and operating rules without publishing the raw observation dump as a standalone section.
-- `calculators.html` is a unified selectable calculator deck with current-to-target local ranges, streamlined cross-planet totals, and starting levels in the build queue.
+- `calculators.html` is a unified selectable calculator deck with current-to-target local ranges, streamlined cross-planet totals, additive empire bonus targets and reference tables for all seven Control Center bonus buildings, and starting levels in the build queue.
 - `research.html` turns each major unknown into a suggested test or screenshot request and defines a staged path toward a searchable mission database.
 - `about.html` contains the evidence policy, official v13.1.0 release context, sources, and a compact changelog that keeps the latest five releases visible.
 - The incomplete reward-scaling concept and raw PTS observation section remain preserved in `data/orion-data.js` but are not in public navigation pending a proper mission/reward database.
 - Supplied in-game lore is published for the Interstellar Anomaly Scanner and all seven Control Center buildings.
 - The local scanner and Control Center calculators support current-to-target level ranges through level 100.
 - The cross-planet planner supports combined IAS targets 1–1,000 and 1–50 available planets.
-- The Intergalactic Recovery Center calculator models +0.2% ship rewards per local level. Multiplicative empire stacking currently remains a candidate model because it reproduces the observed 2.19% total, but needs another independent confirmation. The ×1.5 cost curve matches supplied PTS values through level 9 and projects higher levels.
+- Control Center empire bonus planning uses additive stacking per the user's correction. The planner covers all seven bonus buildings, targets above 99.9%, and balanced layouts across up to 50 planets; reference tables compare local levels 10/20/30 across 10/15/20 planets. The prior IRC L3 + L8 sample displayed 2.19% versus a 2.20% additive sum, and that discrepancy remains unresolved. IRC's ×1.5 cost curve matches supplied PTS values through level 9 and projects higher levels.
 - All seven Control Center unlocks are now named in progression. Lithium Electrolysis Lab, Metal Recycling Unit, Crystal Finishing Station, High-Pressure Deuterium Tanks, and Catalytic Converter have local level calculators and build-queue entries using working ×1.5 cost estimates derived from abbreviated PTS screenshots.
 - All seven Control Center buildings use the supplied image artwork in the progression cards and building-detail dialog; text badges remain implemented as a fallback for missing future assets.
 - Anomaly Analysis Center has a bonus calculator and queue entry, but its construction cost remains unknown and is excluded from numeric queue totals.
@@ -47,7 +47,7 @@ Future revisions should be treated as published only after the Pages build and t
 - Control Center buildings unlock at completed mission levels 50, 100, 150, 200, 250, 300, and 350.
 - Known mappings: L50 Intergalactic Recovery Center (Ships), L100 Lithium Electrolysis Lab (Lithium), L150 Metal Recycling Unit (Metal), L200 Crystal Finishing Station (Crystal), L250 Anomaly Analysis Center (Dark Matter), L300 High-Pressure Deuterium Tanks (Deuterium), and L350 Catalytic Converter (Lithium conversion cost).
 - The mission-reward specialization buildings observed so far use +0.2 percentage points per level. This is not a universal Control Center rule: Catalytic Converter uses +0.05 points per level and affects conversion cost instead.
-- Intergalactic Recovery Center is the level-50 unlock and grants +0.2% ships per local level. The observed 2.19% empire total is consistent with multiplicative stacking, but that formula is not yet confirmed.
+- Intergalactic Recovery Center is the level-50 unlock and grants +0.2% ships per local level. Empire bonuses are modeled additively per the user's correction; the prior 2.19% sample differs by 0.01 percentage points from the additive sum and needs reconciliation.
 - Combined IAS 60 produced an observed scan cost of 112,454 Lithium at both 10- and 150-system range settings.
 - Observed range choices at IAS 60: 10, 50, and 150 systems.
 - Scanner tooltip: discovered anomaly level may differ by up to 20% from the selected/indicated anomaly level.

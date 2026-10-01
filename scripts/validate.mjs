@@ -167,11 +167,15 @@ for (const expected of ["Spawned missions are public and first come, first serve
 if (!data.sources.some((source) => source.url.includes("568-september-28-version-13-1-0"))) {
   throw new Error("Official OGame PTS v13.1.0 changelog source is missing");
 }
+const scannerHtml = htmlByPage["scanner.html"];
+if (/base construction cost|modeled l1 cost|modeled base cost/i.test(scannerHtml)) {
+  throw new Error("Scanner page must not show Control Center or scanner base construction costs");
+}
 const calculatorHtml = htmlByPage["calculators.html"];
 for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/calculators.js"]) {
   if (!calculatorHtml.includes(asset)) throw new Error(`calculators.html does not reference ${asset}`);
 }
-for (const id of ["level-start-input", "level-input", "level-cost", "cumulative-cost", "target-ias", "available-planets", "planner-breakdown", "recovery-level-start-input", "recovery-level-input", "control-building-level-start-input", "control-building-level-input", "control-building-level-cost", "control-building-cumulative-cost", "queue-building-select", "queue-start-level", "queue-target-level", "queue-add-item", "queue-items", "queue-grand-total"]) {
+for (const id of ["level-start-input", "level-input", "level-cost", "cumulative-cost", "target-ias", "available-planets", "planner-breakdown", "recovery-level-start-input", "recovery-level-input", "control-building-level-start-input", "control-building-level-input", "control-building-level-cost", "control-building-cumulative-cost", "empire-bonus-building", "empire-target-bonus", "empire-planets", "empire-example-head", "empire-example-body", "queue-building-select", "queue-start-level", "queue-target-level", "queue-add-item", "queue-items", "queue-grand-total"]) {
   if (!calculatorHtml.includes(`id="${id}"`)) throw new Error(`calculators.html is missing #${id}`);
 }
 if (/\b(?:projection|projected|provisional|observed|estimate)\b/i.test(calculatorHtml)) {
@@ -179,7 +183,7 @@ if (/\b(?:projection|projected|provisional|observed|estimate)\b/i.test(calculato
 }
 
 const calculatorJs = fs.readFileSync(path.join(root, "assets/calculators.js"), "utf8");
-for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select", "queue-start-level", "normalizeLevelRange", "rangeCost", "updateControlBuildingCalculator", '$$("[data-level]")', '$$("[data-calculator-view]")']) {
+for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select", "queue-start-level", "normalizeLevelRange", "rangeCost", "updateControlBuildingCalculator", "updateEmpireBonusPlanner", "renderEmpireExamples", "empireDistributionLabel", '$$("[data-level]")', '$$("[data-calculator-view]")']) {
   if (!calculatorJs.includes(requiredSnippet)) throw new Error(`calculators.js is missing queue wiring: ${requiredSnippet}`);
 }
 if (calculatorJs.includes('addQueueItem("ias"')) {
@@ -187,6 +191,12 @@ if (calculatorJs.includes('addQueueItem("ias"')) {
 }
 
 const controlBuildings = data.scanner.controlCenter?.buildings || {};
+if (data.scanner.controlCenter?.empireBonusStacking?.model !== "additive") {
+  throw new Error("Control Center empire bonus stacking must use the additive model");
+}
+if (Object.values(controlBuildings).filter((building) => Number.isFinite(building.bonusPerLevelPercent)).length !== 7) {
+  throw new Error("Empire bonus planner must cover all seven bonus-bearing Control Center buildings");
+}
 const expectedUnlocks = {
   intergalacticRecoveryCenter: 50,
   lithiumElectrolysisLab: 100,

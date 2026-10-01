@@ -6,9 +6,9 @@ Use this file when continuing the Project Orion guide from a blank chat.
 
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
-- Current revision: **0.15.1**
+- Current revision: **0.16.0**
 - Branch: `main`
-- Deployment: revision 0.15.1 published and verified on GitHub Pages; revisioned asset URLs prevent stale data/script caching
+- Deployment: revision 0.15.1 was the last verified GitHub Pages release; local 0.16.0 changes are not yet pushed or deployed
 - Working tree at handoff: clean
 
 Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/orion-data.js` is the factual source of truth.
@@ -32,9 +32,9 @@ Then follow these limits:
 ## Current public structure
 
 - `index.html` — Orion overview, Lithium basics, and the combined-IAS-350 starter path
-- `scanner.html` — IAS mechanics, formulas, lore, milestone unlocks, Control Center artwork/lore/costs/bonuses, and observed capacity-upgrade costs
+- `scanner.html` — IAS mechanics, formulas, lore, milestone unlocks, Control Center artwork/lore/bonuses, and observed capacity-upgrade costs
 - `missions.html` — mission quick-start, public-objective guidance, ACS help, profiles, and operational rules
-- `calculators.html` — current-to-target building calculators, streamlined network planning, and a start-aware build queue
+- `calculators.html` — current-to-target building calculators, streamlined IAS network planning, additive empire bonus targets and reference tables for all seven Control Center bonus buildings, and a start-aware build queue
 - `research.html` — unresolved questions, suggested tests, and the future mission-database roadmap
 - `about.html` — evidence policy, official v13.1.0 release context, sources, and a compact changelog
 
@@ -44,7 +44,7 @@ Raw PTS observation records and the incomplete reward-scaling concept remain in 
 
 1. Capture Anomaly Analysis Center construction costs; its queue cost is intentionally unknown.
 2. Run a controlled before/after test to determine exactly how Catalytic Converter percentages affect Lithium conversion.
-3. Independently confirm or reject the candidate multiplicative IRC empire-stacking formula.
+3. Reconcile the prior IRC L3 + L8 displayed empire bonus of 2.19% with the user-reported additive sum of 2.20%.
 4. Capture full-precision Control Center base costs instead of abbreviated `K` values.
 5. Expand the mission catalog toward a structured mission/reward database.
 6. Collect comparable data for deciding which resource is best to convert into Lithium.
@@ -54,6 +54,7 @@ Raw PTS observation records and the incomplete reward-scaling concept remain in 
 - Do not invent missing exact costs or formulas.
 - Keep official, observed, calculated, projected, and unknown values distinct.
 - Catalytic Converter is `0.05%` per level and affects conversion cost; it is not a `0.2%` mission-reward building.
+- Control Center empire bonuses are modeled additively per the user's correction. The calculator covers all seven bonus buildings and leaves the earlier IRC 2.19% sample discrepancy unresolved.
 - Anomaly Analysis Center construction cost remains unknown.
 - Do not publish raw screenshots containing account identity, coordinates, planets, or resource balances.
 - Update the revision and changelog only when public facts or behavior change.

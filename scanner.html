@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interstellar Anomaly Scanner mechanics, costs, milestones, and Control Center bonuses for Project Orion.">
+  <meta name="description" content="Interstellar Anomaly Scanner mechanics, milestones, and Control Center bonuses for Project Orion.">
   <meta name="theme-color" content="#06101d">
   <title>Project Orion — Scanner & Milestones</title>
   <link rel="stylesheet" href="assets/styles.css">
-  <script defer src="data/orion-data.js?v=0.15.1"></script>
-  <script defer src="assets/app.js?v=0.15.1"></script>
+  <script defer src="data/orion-data.js?v=0.16.0"></script>
+  <script defer src="assets/app.js?v=0.16.0"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to scanner guide</a>
@@ -36,8 +36,6 @@
         <aside class="panel formula-panel">
           <p class="micro">CONFIRMED FORMULAS</p>
           <div class="formula-block"><span>Lithium / hour at local IAS level L</span><code id="scanner-production-formula"></code></div>
-          <div class="formula-block"><span>Construction cost at level L</span><code id="scanner-cost-formula"></code></div>
-          <div class="ratio"><span>Base construction cost</span><strong>84 · 42 · 14</strong><small>Metal · Crystal · Deuterium</small></div>
           <a class="button primary full-button" href="calculators.html?calc=ias-local">Calculate IAS costs →</a>
         </aside>
       </div>
@@ -48,7 +46,7 @@
       <div class="shell">
         <div class="section-heading wide"><p class="kicker">MILESTONE LADDER</p><h2>Build toward level-350 missions</h2><p>Complete a mission at each threshold to unlock its Control Center building. Select a milestone for its evidence status and calculator.</p></div>
         <article class="control-center"><div><p class="micro">CONTROL CENTER PROGRESSION</p><h3>Seven unlocks, seven specialized effects</h3><p id="control-center-description"></p></div><div class="milestone-track" id="milestone-track" aria-label="Control Center building unlock levels"></div><p class="fine-print" id="unlock-rule"></p></article>
-        <div class="table-wrap milestone-table-wrap"><table class="milestone-table"><thead><tr><th>Mission</th><th>Building</th><th>Effect</th><th>Bonus / level</th><th>Modeled L1 cost</th><th>Evidence status</th></tr></thead><tbody id="milestone-table-body"></tbody></table></div>
+        <div class="table-wrap milestone-table-wrap"><table class="milestone-table"><thead><tr><th>Mission</th><th>Building</th><th>Effect</th><th>Bonus / level</th><th>Evidence status</th></tr></thead><tbody id="milestone-table-body"></tbody></table></div>
       </div>
     </section>
 
@@ -63,7 +61,7 @@
       <div class="building-dialog-head"><div class="building-mark" id="control-building-dialog-icon">?</div><div><p class="micro" id="control-building-dialog-unlock"></p><h3 id="control-building-dialog-name"></h3></div></div>
       <div class="dialog-lore"><p class="micro">IN-GAME LORE</p><p id="control-building-dialog-lore"></p></div>
       <p id="control-building-dialog-effect"></p>
-      <div class="building-detail-grid"><div><span>Bonus / level</span><strong id="control-building-dialog-bonus"></strong></div><div><span>Modeled base cost</span><strong id="control-building-dialog-cost"></strong></div></div>
+      <div class="building-detail-grid"><div><span>Bonus / level</span><strong id="control-building-dialog-bonus"></strong></div></div>
       <p class="fine-print" id="control-building-dialog-status"></p><a class="button primary" id="control-building-dialog-calc" href="calculators.html">Open calculator →</a>
     </dialog>
   </main>
