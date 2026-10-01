@@ -31,7 +31,7 @@ const context = { window: {} };
 vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, "data/orion-data.js"), "utf8"), context);
 const data = context.window.ORION_DATA;
-if (!data?.meta?.updated || !data?.scanner?.baseCost) throw new Error("Orion data is incomplete");
+if (!data?.meta?.updated || !data?.scanner?.baseCost || !data?.scanner?.lore) throw new Error("Orion data is incomplete");
 const currentState = fs.readFileSync(path.join(root, "docs/CURRENT_STATE.md"), "utf8");
 if (!currentState.includes(`Working revision: **${data.meta.revision}**`)) {
   throw new Error("docs/CURRENT_STATE.md does not match the data revision");
@@ -153,6 +153,7 @@ for (const [key, level] of Object.entries(expectedUnlocks)) {
   if (building.iconImage && !fs.existsSync(path.join(root, building.iconImage))) {
     throw new Error(`${key} icon image is missing: ${building.iconImage}`);
   }
+  if (!building.lore) throw new Error(`${key} is missing supplied in-game lore`);
 }
 
 if (controlBuildings.catalyticConverter.bonusPerLevelPercent !== 0.05) {

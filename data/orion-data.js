@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.14.0"
+    revision: "0.14.1"
   },
 
   project: {
@@ -34,8 +34,7 @@ window.ORION_DATA = {
   scanner: {
     name: "Interstellar Anomaly Scanner",
     role: "The IAS is the core Orion building: it produces Lithium through resource conversion, raises the account's selectable anomaly level, and opens the Control Center progression.",
-    lore: null,
-    loreStatus: "The original in-game lore text is not present in the retained source material. Add the exact Techinfo text when a clean capture is supplied.",
+    lore: "Detecting anomalies has never been an easy task, as the evidence of their existence is extremely faint for scanners to detect from large distances, whilst searching from relative proximity is an inefficient and indeed risky proposition. The boffins working on the Interstellar Anomaly Scanner ensure that not only can more Lithium be harvested from anomalies, but that ever stronger anomalies can be detected.",
     fieldUse: "The scanner occupies one planet field; its Control Center sub-buildings use no additional fields.",
     stacking: "Interstellar Anomaly Scanner (IAS) levels stack across planets for account-wide anomaly progression.",
     costValidatedThrough: 35,
@@ -91,6 +90,7 @@ window.ORION_DATA = {
           iconLabel: "SHIP",
           iconImage: "assets/control-center/intergalactic-recovery-center.png",
           name: "Intergalactic Recovery Center",
+          lore: "Not all of the ships lost to anomalies automatically become space flotsam. Some only need a system overhaul and a bit of work on their hulls before they can be put straight back into service! However it remains inadvisable to open the hatches on ships of unknown provenance if strange sounds emanate from within. Pilots who see unknown substances dripping from bulkheads, strange lights in the corridors, or who meet the ship’s former crew members, are obliged to report to their superiors immediately.",
           unlockMissionLevel: 50,
           effect: "Increases the number of ships gained from anomaly missions.",
           bonusResource: "Ships",
@@ -115,6 +115,7 @@ window.ORION_DATA = {
           iconLabel: "Li",
           iconImage: "assets/control-center/lithium-electrolysis-lab.png",
           name: "Lithium Electrolysis Lab",
+          lore: "Lithium is a highly reactive chemical, and hence not only rarely found in its pure form, but also somewhat hazardous when it is. However, using advanced electrolysis techniques in the lab, it can be extracted from a variety of chemical compounds. The higher you upgrade the lab, the more chemical compounds can be broken down, ultimately allowing ever more pure Lithium to be extracted.",
           unlockMissionLevel: 100,
           effect: "Increases the amount of Lithium gained from anomaly missions with each level.",
           bonusResource: "Lithium",
@@ -138,6 +139,7 @@ window.ORION_DATA = {
           iconLabel: "M",
           iconImage: "assets/control-center/metal-recycling-unit.png",
           name: "Metal Recycling Unit",
+          lore: "Anomalies harbor some of the strangest things. Indeed, entire fleets of deserted ships have allegedly been found within them (even if the stories of pilots who claim to have found their own ships in parallel dimensions are almost certainly bordering on the fantastical). While this means that anomalies can be a source of large quantities of metal, that metal must first be recycled before it can be made useful again. That is the purpose of the Metal Recycling Unit.",
           unlockMissionLevel: 150,
           effect: "Increases the amount of Metal gained from anomaly missions with each level.",
           bonusResource: "Metal",
@@ -160,6 +162,7 @@ window.ORION_DATA = {
           iconLabel: "C",
           iconImage: "assets/control-center/crystal-finishing-station.png",
           name: "Crystal Finishing Station",
+          lore: "The Crystal Finishing Station is where the Crystal pilots retrieve from anomalies is purged of any potential reality-altering residues. This increases the yield, while minimizing the risk of any potential negative consequences. Nevertheless, the workers refuse to reveal how they actually dispose of the residues they remove...",
           unlockMissionLevel: 200,
           effect: "Increases the amount of Crystal gained from anomaly missions with each level.",
           bonusResource: "Crystal",
@@ -181,6 +184,7 @@ window.ORION_DATA = {
           iconLabel: "DM",
           iconImage: "assets/control-center/anomaly-analysis-center.png",
           name: "Anomaly Analysis Center",
+          lore: "Anomalies aren’t only home to strange things. Some of them can be a source of incredible scientific knowledge about other forms of intelligent life in the cosmos! Others can, however, be extremely dangerous. The Anomaly Analysis Center is the place where benign findings can be investigated, and the dangerous ones sifted out and carefully disposed of (how, exactly, remains a secret).",
           unlockMissionLevel: 250,
           effect: "Increases the amount of Dark Matter gained from anomaly missions with each level.",
           bonusResource: "Dark Matter",
@@ -198,6 +202,7 @@ window.ORION_DATA = {
           iconLabel: "D",
           iconImage: "assets/control-center/high-pressure-deuterium-tanks.png",
           name: "High-Pressure Deuterium Tanks",
+          lore: "Your ships can be retrofitted with High-Pressure Deuterium Tanks here. These extremely robust and safe tanks allow your pilots to return from anomalies laden with more Deuterium. Further upgrades allow the production of even larger, stronger, yet lighter tanks!",
           unlockMissionLevel: 300,
           effect: "Increases the amount of Deuterium gained from anomaly missions with each level.",
           bonusResource: "Deuterium",
@@ -221,6 +226,7 @@ window.ORION_DATA = {
           iconLabel: "CAT",
           iconImage: "assets/control-center/catalytic-converter.png",
           name: "Catalytic Converter",
+          lore: "Catalysts are indispensable in the synthesis of many important resources. In this vein, the Catalytic Converter provides improved conditions for converting Lithium into a variety of other materials. Each upgrade level not only increases the amount of catalyst available, but also improves the conversion efficiency through measures such as more precisely calibrated internal reactor pressure, better coating materials and more.",
           unlockMissionLevel: 350,
           effect: "Reduces the cost to convert Lithium into other resources with each level.",
           bonusResource: "Lithium conversion",
@@ -413,11 +419,15 @@ window.ORION_DATA = {
     { question: "Which mechanics use combined IAS and which use local IAS?", help: "Compare the same action from two planets with different local IAS levels while the account-wide total remains unchanged." },
     { question: "What is the IAS construction-time formula?", help: "Report Robotics Factory, Nanite Factory, universe construction speed, current IAS level, next level, and the displayed build time." },
     { question: "What are the exact Control Center construction costs?", help: "Use full-number displays when possible. Capture level 0→1 plus a later level for each building; Anomaly Analysis Center is the highest-priority missing sample." },
-    { question: "How is the Catalytic Converter bonus applied?", help: "Compare the exact Lithium cost of converting the same resource amount before and after one Catalytic Converter level, with every other setting unchanged." },
-    { question: "What is the original IAS lore text?", help: "Send a clean Techinfo screenshot or exact transcription. The repository currently has mechanics, but not a trustworthy source for the lore wording." }
+    { question: "How is the Catalytic Converter bonus applied?", help: "Compare the exact Lithium cost of converting the same resource amount before and after one Catalytic Converter level, with every other setting unchanged." }
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.14.1",
+      notes: "Added the supplied in-game lore for the Interstellar Anomaly Scanner and all seven Control Center buildings."
+    },
     {
       date: "2026-09-30",
       version: "0.14.0",

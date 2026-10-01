@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-30
 
-Working revision: **0.14.0**
+Working revision: **0.14.1**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -13,6 +13,7 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Publishing source: `main` branch, repository root
 - Revision 0.13.1 publication verified: 2026-09-30
 - Revision 0.14.0 publication verified: 2026-09-30
+- Revision 0.14.1 publication pending verification: 2026-09-30
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
@@ -25,7 +26,7 @@ Future revisions should be treated as published only after the Pages build and t
 - `research.html` turns each major unknown into a suggested test or screenshot request.
 - `about.html` contains the evidence policy, official sources, and changelog.
 - The incomplete reward-scaling concept and raw PTS observation section remain preserved in `data/orion-data.js` but are not in public navigation pending a proper mission/reward database.
-- Exact IAS lore text is still missing from retained evidence and is explicitly marked as awaiting a clean Techinfo capture rather than being invented.
+- Supplied in-game lore is published for the Interstellar Anomaly Scanner and all seven Control Center buildings.
 - The local scanner calculator supports levels 1–100 with exact integer costs.
 - The cross-planet planner supports combined IAS targets 1–1,000 and 1–50 available planets.
 - The Intergalactic Recovery Center calculator models +0.2% ship rewards per local level. Multiplicative empire stacking currently remains a candidate model because it reproduces the observed 2.19% total, but needs another independent confirmation. The ×1.5 cost curve matches supplied PTS values through level 9 and projects higher levels.

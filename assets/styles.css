@@ -465,6 +465,9 @@ footer a { color: var(--cyan); text-decoration: none; font-size: 13px; }
 }
 .building-dialog-head { display: flex; gap: 14px; align-items: center; padding-right: 40px; }
 .building-dialog-head h3 { margin: 2px 0 0; font-size: 26px; }
+.dialog-lore { margin: 22px 0 18px; padding: 16px 18px; border-left: 2px solid var(--cyan); background: rgba(109,228,255,.045); }
+.dialog-lore .micro { margin-bottom: 7px; }
+.dialog-lore p:last-child { margin: 0; color: #c5d6e2; font-size: 14px; }
 .building-mark {
   width: 56px;
   min-width: 56px;

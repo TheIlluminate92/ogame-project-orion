@@ -87,6 +87,7 @@
       $("#control-building-dialog-icon").innerHTML = building.iconImage ? `<img src="${building.iconImage}" alt="">` : building.iconLabel || "?";
       setText("#control-building-dialog-unlock", `LEVEL ${building.unlockMissionLevel} MISSION UNLOCK`);
       setText("#control-building-dialog-name", building.name);
+      setText("#control-building-dialog-lore", building.lore);
       setText("#control-building-dialog-effect", building.effect);
       setText("#control-building-dialog-bonus", bonusText(building));
       setText("#control-building-dialog-cost", formatCost(building.baseCost));
