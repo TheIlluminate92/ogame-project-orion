@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-09-30",
-    revision: "0.12.1"
+    revision: "0.13.0"
   },
 
   lithium: {
@@ -157,6 +157,67 @@ window.ORION_DATA = {
             { level: 1, metal: "37K", crystal: "67K", deuterium: "27K" },
             { level: 10, metal: "1.4M", crystal: "2.6M", deuterium: "1.0M" }
           ]
+        },
+        anomalyAnalysisCenter: {
+          calculatorKey: "anomalyAnalysis",
+          iconLabel: "DM",
+          name: "Anomaly Analysis Center",
+          unlockMissionLevel: 250,
+          effect: "Increases the amount of Dark Matter gained from anomaly missions with each level.",
+          bonusResource: "Dark Matter",
+          bonusLabel: "Dark Matter mission reward bonus",
+          bonusPerLevelPercent: 0.2,
+          bonusStatus: "Observed +0.2 percentage points per level; construction costs were not captured in the retained screenshots.",
+          maxObservedTechinfoLevel: 15,
+          maxCalculatorLevel: 100,
+          baseCost: null,
+          baseCostStatus: "Unknown — no displayed construction-cost sample is available.",
+          costModelStatus: "No cost model is published. The calculator reports the observed bonus only, and the queue keeps this item's resource cost unknown."
+        },
+        highPressureDeuteriumTanks: {
+          calculatorKey: "deuteriumTanks",
+          iconLabel: "D",
+          name: "High-Pressure Deuterium Tanks",
+          unlockMissionLevel: 300,
+          effect: "Increases the amount of Deuterium gained from anomaly missions with each level.",
+          bonusResource: "Deuterium",
+          bonusLabel: "Deuterium mission reward bonus",
+          bonusPerLevelPercent: 0.2,
+          bonusStatus: "Techinfo directly shows +0.2 percentage points per level through level 15.",
+          maxObservedTechinfoLevel: 15,
+          maxCalculatorLevel: 100,
+          baseCost: { metal: 30000, crystal: 37500, deuterium: 45000 },
+          baseCostStatus: "Working base inferred from abbreviated PTS UI values; not an exact game-data constant.",
+          costMultiplier: 1.5,
+          costObservedLevels: [1, 4],
+          costModelStatus: "Working ×1.5 estimate fits the displayed L0→1 and L3→4 checkpoints; full-precision costs remain unknown.",
+          observedDisplayedCosts: [
+            { level: 1, metal: "30K", crystal: "37K", deuterium: "45K" },
+            { level: 4, metal: "101K", crystal: "126K", deuterium: "151K" }
+          ]
+        },
+        catalyticConverter: {
+          calculatorKey: "catalyticConverter",
+          iconLabel: "CAT",
+          name: "Catalytic Converter",
+          unlockMissionLevel: 350,
+          effect: "Reduces the cost to convert Lithium into other resources with each level.",
+          bonusResource: "Lithium conversion",
+          bonusLabel: "Displayed conversion-cost reduction",
+          bonusPerLevelPercent: 0.05,
+          bonusContext: "Techinfo progression; exact application to the conversion formula still needs a before/after test",
+          bonusStatus: "Techinfo directly shows +0.05 percentage points per level through level 15.",
+          maxObservedTechinfoLevel: 15,
+          maxCalculatorLevel: 100,
+          baseCost: { metal: 127500, crystal: 112500, deuterium: 52500 },
+          baseCostStatus: "Working base inferred from abbreviated PTS UI values; not an exact game-data constant.",
+          costMultiplier: 1.5,
+          costObservedLevels: [1, 4],
+          costModelStatus: "Working ×1.5 estimate fits the displayed L0→1 and L3→4 checkpoints; full-precision costs and exact conversion semantics remain unknown.",
+          observedDisplayedCosts: [
+            { level: 1, metal: "127K", crystal: "112K", deuterium: "52K" },
+            { level: 4, metal: "430K", crystal: "379K", deuterium: "177K" }
+          ]
         }
       }
     }
@@ -185,6 +246,12 @@ window.ORION_DATA = {
   },
 
   observations: [
+    {
+      label: "CONTROL CENTER COMPLETION",
+      title: "Level-250 / 300 / 350 unlocks",
+      metrics: ["L250 Anomaly Analysis Center · +0.2% Dark Matter per level", "L300 High-Pressure Deuterium Tanks · +0.2% Deuterium per level", "L350 Catalytic Converter · 0.05% conversion-cost reduction per level"],
+      note: "The retained Deuterium Tanks and Catalytic Converter Techinfo screenshots show their level progressions through level 15. Catalytic Converter is not a mission-reward building: it changes Lithium conversion cost. Anomaly Analysis Center construction costs remain unknown."
+    },
     {
       label: "HIGH-IAS SCAN",
       title: "Combined IAS 349",
@@ -309,10 +376,17 @@ window.ORION_DATA = {
     "Enemy fleet and defense scaling rules",
     "Which mechanics use the combined account-wide scanner level versus the local planet level",
     "IAS construction-time formula and whether the displayed one-second time is the global minimum",
-    "Control Center buildings at mission levels 250, 300, and 350, plus full-precision base costs and high-level curves for the newly observed buildings"
+    "Full-precision base costs and high-level cost curves for the newly observed Control Center buildings",
+    "Anomaly Analysis Center construction costs",
+    "Exactly how the Catalytic Converter's displayed percentage is applied to Lithium conversion costs"
   ],
 
   changelog: [
+    {
+      date: "2026-09-30",
+      version: "0.13.0",
+      notes: "Completed the Control Center progression with Anomaly Analysis Center, High-Pressure Deuterium Tanks, and Catalytic Converter; added calculators and queue entries while preserving unknown Anomaly costs and modeling Catalytic Converter at its distinct 0.05% per level."
+    },
     {
       date: "2026-09-30",
       version: "0.12.1",

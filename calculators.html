@@ -30,7 +30,7 @@
         <span class="status warning">PTS — subject to change</span>
         <span class="status neutral">IAS costs checked through L35</span>
         <span class="status neutral">IRC costs checked through L9</span>
-        <span class="status neutral">3 new Control Center models added</span>
+        <span class="status neutral">Full Control Center progression mapped</span>
         <a class="status neutral status-link" href="index.html">← Back to briefing</a>
       </div>
     </div>
@@ -48,6 +48,9 @@
             <option value="lithiumLab">Lithium Electrolysis Lab</option>
             <option value="metalRecycling">Metal Recycling Unit</option>
             <option value="crystalFinishing">Crystal Finishing Station</option>
+            <option value="anomalyAnalysis">Anomaly Analysis Center</option>
+            <option value="deuteriumTanks">High-Pressure Deuterium Tanks</option>
+            <option value="catalyticConverter">Catalytic Converter</option>
             <option value="build-queue">Planet build queue</option>
           </select>
         </label>
@@ -211,7 +214,7 @@
             <div class="metric featured">
               <span id="control-building-bonus-label">Mission reward bonus</span>
               <strong id="control-building-bonus">0.2%</strong>
-              <small>local building contribution</small>
+              <small id="control-building-bonus-context">local building contribution</small>
             </div>
             <div class="cost-columns">
               <div><p class="micro">BUILD THIS LEVEL</p><dl id="control-building-level-cost"></dl></div>
@@ -220,8 +223,8 @@
           </article>
           <aside class="panel formula-panel">
             <p class="micro">PTS MODEL STATUS</p>
-            <div class="formula-block"><span>Bonus</span><code>+0.2% × level</code></div>
-            <div class="formula-block"><span>Working cost curve</span><code>Base × 1.5^(L − 1)</code></div>
+            <div class="formula-block"><span>Displayed effect</span><code id="control-building-bonus-formula">+0.2% × level</code></div>
+            <div class="formula-block"><span>Cost model</span><code id="control-building-cost-formula">Estimated base × 1.5^(L − 1)</code></div>
             <div class="ratio"><span>Observed checkpoints</span><strong id="control-building-checkpoints">—</strong><small id="control-building-base-status"></small></div>
             <p class="fine-print" id="control-building-model-note"></p>
           </aside>
@@ -244,6 +247,9 @@
                 <option value="lithiumLab">Lithium Electrolysis Lab</option>
                 <option value="metalRecycling">Metal Recycling Unit</option>
                 <option value="crystalFinishing">Crystal Finishing Station</option>
+                <option value="anomalyAnalysis">Anomaly Analysis Center</option>
+                <option value="deuteriumTanks">High-Pressure Deuterium Tanks</option>
+                <option value="catalyticConverter">Catalytic Converter</option>
                 <option value="discoveryLimit">Anomaly Discovery Limit</option>
                 <option value="maxResults">Max Results</option>
               </select>
@@ -287,7 +293,7 @@
           <div class="queue-actions">
             <button type="button" class="button secondary" id="queue-clear">Clear queue</button>
           </div>
-          <p class="fine-print">IAS and Control Center buildings are cumulative from level 0. The three newly observed Control Center buildings use working ×1.5 models derived from abbreviated PTS values, so their totals are estimates rather than exact full-precision game costs. Scanner capacity upgrades use only discrete observed prices.</p>
+          <p class="fine-print">IAS and Control Center buildings are cumulative from level 0. Control Center totals based on abbreviated PTS values are estimates, not exact full-precision game costs. Anomaly Analysis Center stays in the queue with an unknown cost and is excluded from the numeric subtotal. Scanner capacity upgrades use only discrete observed prices.</p>
         </article>
       </section>
     </section>

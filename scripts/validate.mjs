@@ -115,7 +115,7 @@ for (const id of ["level-input", "level-cost", "cumulative-cost", "target-ias", 
 }
 
 const calculatorJs = fs.readFileSync(path.join(root, "assets/calculators.js"), "utf8");
-for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select", "updateControlBuildingCalculator", '$("[data-level]")']) {
+for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select", "updateControlBuildingCalculator", '$$("[data-level]")', '$$("[data-calculator-view]")']) {
   if (!calculatorJs.includes(requiredSnippet)) throw new Error(`calculators.js is missing queue wiring: ${requiredSnippet}`);
 }
 if (calculatorJs.includes('addQueueItem("ias"')) {
@@ -127,7 +127,10 @@ const expectedUnlocks = {
   intergalacticRecoveryCenter: 50,
   lithiumElectrolysisLab: 100,
   metalRecyclingUnit: 150,
-  crystalFinishingStation: 200
+  crystalFinishingStation: 200,
+  anomalyAnalysisCenter: 250,
+  highPressureDeuteriumTanks: 300,
+  catalyticConverter: 350
 };
 for (const [key, level] of Object.entries(expectedUnlocks)) {
   const building = controlBuildings[key];
@@ -136,6 +139,24 @@ for (const [key, level] of Object.entries(expectedUnlocks)) {
   }
   if (!data.scanner.controlCenter.unlockLevels.includes(level)) {
     throw new Error(`${key} unlock level is missing from Control Center progression`);
+  }
+}
+
+if (controlBuildings.catalyticConverter.bonusPerLevelPercent !== 0.05) {
+  throw new Error("Catalytic Converter must retain its observed 0.05% per-level progression");
+}
+if (controlBuildings.catalyticConverter.effect.toLowerCase().includes("mission reward")) {
+  throw new Error("Catalytic Converter must not be described as a mission-reward building");
+}
+if (controlBuildings.anomalyAnalysisCenter.baseCost !== null) {
+  throw new Error("Anomaly Analysis Center costs must remain unknown until observed");
+}
+for (const key of ["anomalyAnalysis", "deuteriumTanks", "catalyticConverter"]) {
+  if (!calculatorHtml.includes(`value="${key}"`)) {
+    throw new Error(`calculators.html is missing the ${key} calculator/queue option`);
+  }
+  if (!calculatorJs.includes(`${key}:`)) {
+    throw new Error(`calculators.js is missing ${key} calculator data`);
   }
 }
 

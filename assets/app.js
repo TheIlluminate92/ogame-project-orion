@@ -49,7 +49,8 @@
       $("#control-building-dialog-unlock").textContent = `LEVEL ${building.unlockMissionLevel} MISSION UNLOCK`;
       $("#control-building-dialog-name").textContent = building.name;
       $("#control-building-dialog-effect").textContent = building.effect;
-      $("#control-building-dialog-bonus").textContent = `+${building.bonusPerLevelPercent}% ${building.bonusResource || ""}`;
+      const precision = building.bonusPerLevelPercent < 0.1 ? 2 : 1;
+      $("#control-building-dialog-bonus").textContent = `+${building.bonusPerLevelPercent.toFixed(precision)}% ${building.bonusResource || ""}`;
       $("#control-building-dialog-cost").textContent = building.baseCost
         ? `M ${building.baseCost.metal.toLocaleString()} · C ${building.baseCost.crystal.toLocaleString()} · D ${building.baseCost.deuterium.toLocaleString()}`
         : "Unknown";

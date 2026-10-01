@@ -45,6 +45,7 @@
   }
 
   function controlBuildingCostAt(building, level) {
+    if (!building.baseCost) return null;
     let numerator = 1n;
     let denominator = 1n;
     for (let i = 1; i < level; i += 1) {
@@ -59,6 +60,7 @@
   }
 
   function controlBuildingCumulativeCost(building, level) {
+    if (!building.baseCost) return null;
     if (!controlCostCaches.has(building.calculatorKey)) {
       controlCostCaches.set(building.calculatorKey, [{ metal: 0n, crystal: 0n, deuterium: 0n }]);
     }
@@ -238,11 +240,11 @@
     $("#recovery-result-bonus").textContent = `${best.bonus.toFixed(2)}%`;
   }
 
-  const controlCalculatorByKey = {
-    lithiumLab: controlBuildings.lithiumElectrolysisLab,
-    metalRecycling: controlBuildings.metalRecyclingUnit,
-    crystalFinishing: controlBuildings.crystalFinishingStation
-  };
+  const controlCalculatorByKey = Object.fromEntries(
+    Object.values(controlBuildings)
+      .filter((building) => building.calculatorKey !== recovery.calculatorKey)
+      .map((building) => [building.calculatorKey, building])
+  );
   let activeControlBuildingKey = "lithiumLab";
 
   function updateControlBuildingCalculator(buildingKey = activeControlBuildingKey) {
@@ -259,11 +261,18 @@
     $("#control-building-effect").textContent = building.effect;
     $("#control-building-unlock").textContent = `UNLOCK: COMPLETE A LEVEL-${building.unlockMissionLevel} MISSION`;
     $("#control-building-level-output").textContent = level;
-    $("#control-building-bonus-label").textContent = `${building.bonusResource} mission reward bonus`;
-    $("#control-building-bonus").textContent = `${(level * building.bonusPerLevelPercent).toFixed(1)}%`;
-    $("#control-building-level-cost").innerHTML = costRows(controlBuildingCostAt(building, level));
-    $("#control-building-cumulative-cost").innerHTML = costRows(controlBuildingCumulativeCost(building, level));
-    $("#control-building-status").textContent = "WORKING ×1.5 MODEL";
+    const precision = building.bonusPerLevelPercent < 0.1 ? 2 : 1;
+    $("#control-building-bonus-label").textContent = building.bonusLabel || `${building.bonusResource} mission reward bonus`;
+    $("#control-building-bonus").textContent = `${(level * building.bonusPerLevelPercent).toFixed(precision)}%`;
+    $("#control-building-bonus-context").textContent = building.bonusContext || "local building contribution";
+    const levelCost = controlBuildingCostAt(building, level);
+    const cumulativeCost = controlBuildingCumulativeCost(building, level);
+    const unavailable = '<div class="cost-row"><dt>Resource cost</dt><dd>Unknown</dd></div>';
+    $("#control-building-level-cost").innerHTML = levelCost ? costRows(levelCost) : unavailable;
+    $("#control-building-cumulative-cost").innerHTML = cumulativeCost ? costRows(cumulativeCost) : unavailable;
+    $("#control-building-status").textContent = levelCost ? "WORKING ×1.5 ESTIMATE" : "COST UNKNOWN";
+    $("#control-building-bonus-formula").textContent = `+${building.bonusPerLevelPercent}% × level`;
+    $("#control-building-cost-formula").textContent = levelCost ? "Estimated base × 1.5^(L − 1)" : "No cost model available";
     $("#control-building-checkpoints").textContent = (building.costObservedLevels || []).map((value) => `L${value}`).join(" · ") || "PTS SAMPLES";
     $("#control-building-base-status").textContent = building.baseCostStatus || "";
     $("#control-building-model-note").textContent = building.costModelStatus || "";
@@ -334,6 +343,36 @@
       validationMode: "modeled",
       modelStatus: controlBuildings.crystalFinishingStation.costModelStatus
     },
+    anomalyAnalysis: {
+      label: controlBuildings.anomalyAnalysisCenter.name,
+      shortLabel: "ANOMALY ANALYSIS",
+      minTarget: 1,
+      maxLevel: controlBuildings.anomalyAnalysisCenter.maxCalculatorLevel,
+      baseLevel: 0,
+      cumulative: () => null,
+      validationMode: "unknown",
+      modelStatus: controlBuildings.anomalyAnalysisCenter.costModelStatus
+    },
+    deuteriumTanks: {
+      label: controlBuildings.highPressureDeuteriumTanks.name,
+      shortLabel: "DEUTERIUM TANKS",
+      minTarget: 1,
+      maxLevel: controlBuildings.highPressureDeuteriumTanks.maxCalculatorLevel,
+      baseLevel: 0,
+      cumulative: (target) => controlBuildingCumulativeCost(controlBuildings.highPressureDeuteriumTanks, target),
+      validationMode: "modeled",
+      modelStatus: controlBuildings.highPressureDeuteriumTanks.costModelStatus
+    },
+    catalyticConverter: {
+      label: controlBuildings.catalyticConverter.name,
+      shortLabel: "CATALYTIC CONVERTER",
+      minTarget: 1,
+      maxLevel: controlBuildings.catalyticConverter.maxCalculatorLevel,
+      baseLevel: 0,
+      cumulative: (target) => controlBuildingCumulativeCost(controlBuildings.catalyticConverter, target),
+      validationMode: "modeled",
+      modelStatus: controlBuildings.catalyticConverter.costModelStatus
+    },
     discoveryLimit: {
       label: "Anomaly Discovery Limit",
       shortLabel: "DISCOVERY LIMIT",
@@ -363,6 +402,7 @@
 
   function queueValidationLabel(item) {
     const building = queueCatalog[item.building];
+    if (building.validationMode === "unknown") return "cost unknown · excluded from resource totals";
     if (building.validationMode === "observed") return "observed upgrade cost";
     if (building.validationMode === "modeled") return "working ×1.5 model · abbreviated PTS inputs";
     return item.target <= building.validatedThrough
@@ -386,6 +426,9 @@
       host.innerHTML = queueItems.map((item) => {
         const building = queueCatalog[item.building];
         const cost = queueItemCost(item);
+        const costSummary = cost
+          ? `<strong>${format.format(resourceTotal(cost))}</strong><small>M ${format.format(cost.metal)} · C ${format.format(cost.crystal)} · D ${format.format(cost.deuterium)}</small>`
+          : '<strong>Unknown</strong><small>No construction-cost sample available</small>';
         return `<div class="queue-row queue-row-simple" data-queue-id="${item.id}">
           <div class="queue-name">
             <span>${building.shortLabel} → ${item.target}</span>
@@ -394,8 +437,7 @@
           </div>
           <div class="queue-row-cost">
             <span>Cumulative ${queueRangeLabel(item)}</span>
-            <strong>${format.format(resourceTotal(cost))}</strong>
-            <small>M ${format.format(cost.metal)} · C ${format.format(cost.crystal)} · D ${format.format(cost.deuterium)}</small>
+            ${costSummary}
           </div>
           <button type="button" class="queue-remove" aria-label="Remove ${building.label} target ${item.target} from queue">×</button>
         </div>`;
@@ -411,8 +453,10 @@
     const grouped = new Map();
     queueItems.forEach((item) => {
       const key = item.building;
-      const existing = grouped.get(key) || { cost: { metal: 0n, crystal: 0n, deuterium: 0n }, items: [] };
-      existing.cost = addCosts([existing.cost, queueItemCost(item)]);
+      const existing = grouped.get(key) || { cost: { metal: 0n, crystal: 0n, deuterium: 0n }, items: [], incomplete: false };
+      const itemCost = queueItemCost(item);
+      if (itemCost) existing.cost = addCosts([existing.cost, itemCost]);
+      else existing.incomplete = true;
       existing.items.push(item);
       grouped.set(key, existing);
     });
@@ -424,17 +468,21 @@
       buildingTotals.innerHTML = Array.from(grouped.entries()).map(([key, group]) => {
         const building = queueCatalog[key];
         const targets = group.items.map((item) => item.target).join(" + ");
+        const totalLabel = group.incomplete ? "Unknown" : format.format(resourceTotal(group.cost));
+        const breakdown = group.incomplete ? "No construction-cost sample available" : `M ${format.format(group.cost.metal)} · C ${format.format(group.cost.crystal)} · D ${format.format(group.cost.deuterium)}`;
         return `<div class="planner-result">
           <span>${building.shortLabel} · target ${targets}</span>
-          <strong>${format.format(resourceTotal(group.cost))}</strong>
-          <small>M ${format.format(group.cost.metal)} · C ${format.format(group.cost.crystal)} · D ${format.format(group.cost.deuterium)}</small>
+          <strong>${totalLabel}</strong>
+          <small>${breakdown}</small>
         </div>`;
       }).join("");
     }
 
-    const total = addCosts(queueItems.map(queueItemCost));
+    const knownCosts = queueItems.map(queueItemCost).filter(Boolean);
+    const unknownCostCount = queueItems.length - knownCosts.length;
+    const total = addCosts(knownCosts);
     $("#queue-grand-total").textContent = format.format(resourceTotal(total));
-    $("#queue-total-breakdown").textContent = `M ${format.format(total.metal)} · C ${format.format(total.crystal)} · D ${format.format(total.deuterium)}`;
+    $("#queue-total-breakdown").textContent = `M ${format.format(total.metal)} · C ${format.format(total.crystal)} · D ${format.format(total.deuterium)}${unknownCostCount ? ` · excludes ${unknownCostCount} unknown-cost item${unknownCostCount === 1 ? "" : "s"}` : ""}`;
     $("#queue-metal").textContent = format.format(total.metal);
     $("#queue-crystal").textContent = format.format(total.crystal);
     $("#queue-deuterium").textContent = format.format(total.deuterium);
@@ -473,13 +521,16 @@
     "lithiumLab": "Lithium Electrolysis Lab level cost and Lithium mission-reward bonus.",
     "metalRecycling": "Metal Recycling Unit level cost and Metal mission-reward bonus.",
     "crystalFinishing": "Crystal Finishing Station level cost and Crystal mission-reward bonus.",
+    "anomalyAnalysis": "Anomaly Analysis Center Dark Matter bonus; construction costs remain unknown.",
+    "deuteriumTanks": "High-Pressure Deuterium Tanks level cost estimate and Deuterium mission-reward bonus.",
+    "catalyticConverter": "Catalytic Converter level cost estimate and displayed Lithium conversion-cost reduction.",
     "build-queue": "Queue several Orion building targets and total the resources for a new planet or upgrade package."
   };
 
   function selectCalculator(value) {
     const isControlBuilding = Boolean(controlCalculatorByKey[value]);
     const view = isControlBuilding ? "control-building" : value;
-    $("[data-calculator-view]").forEach((section) => {
+    $$("[data-calculator-view]").forEach((section) => {
       section.hidden = section.dataset.calculatorView !== view;
     });
     if (isControlBuilding) updateControlBuildingCalculator(value);
@@ -514,7 +565,7 @@
     renderQueue();
   });
 
-  $("[data-level]").forEach((button) => button.addEventListener("click", () => {
+  $$("[data-level]").forEach((button) => button.addEventListener("click", () => {
     levelInput.value = button.dataset.level;
     updateLevelCalculator(Number(levelInput.value));
   }));
