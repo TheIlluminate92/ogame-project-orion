@@ -3,8 +3,8 @@ window.ORION_DATA = {
     title: "Project Orion",
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
-    updated: "2026-09-30",
-    revision: "0.14.1"
+    updated: "2026-10-01",
+    revision: "0.15.0"
   },
 
   project: {
@@ -268,7 +268,7 @@ window.ORION_DATA = {
       "PvP missions can be targeted and sabotaged by other players.",
       "PvP variants award 2× rewards when completed successfully.",
       "On ACS missions, rewards are divided by each participant’s contributed fleet resource value.",
-      "ACS participation is unavailable for missions that do not support ACS."
+      "ACS participation is unavailable for missions that do not support ACS or in universes with ACS disabled."
     ]
   },
 
@@ -423,6 +423,16 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-10-01",
+      version: "0.15.0",
+      notes: "Cleaned up the About, Research, Calculators, and Missions pages; added current-to-target building ranges and queue starting levels; simplified cross-planet results; added a mission quick-start and future database roadmap; and compressed older changelog entries."
+    },
+    {
+      date: "2026-10-01",
+      version: "0.14.2",
+      notes: "Maintenance cleanup: synchronized fallback metadata, improved active-page navigation semantics, and expanded validation for local links and revision drift."
+    },
     {
       date: "2026-09-30",
       version: "0.14.1",
@@ -581,7 +591,8 @@ window.ORION_DATA = {
   ],
 
   sources: [
-    { label: "Orion FAQ — OGame US Board", url: "https://board.us.ogame.gameforge.com/index.php?thread/108128-orion-faq/" },
+    { label: "Orion FAQ — OGame Origin PTS", url: "https://forum.origin.ogame.gameforge.com/forum/thread/572-orion-faq/" },
+    { label: "Project Orion announcement — OGame Origin PTS", url: "https://forum.origin.ogame.gameforge.com/forum/thread/571-pts-project-orion/" },
     { label: "PTS: Projeto Orion — OGame PT Board", url: "https://forum.pt.ogame.gameforge.com/forum/thread/24285-pts-projeto-orion/" },
     { label: "PTS v13.0.0 announcement — OGame EN Board", url: "https://board.en.ogame.gameforge.com/index.php?postID=7277905&thread%2F856579-pts-version-13-0-0-singularity%2F=" }
   ]

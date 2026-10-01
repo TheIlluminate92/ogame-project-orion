@@ -22,10 +22,10 @@ This repository is a living OGame Project Orion PTS field guide. These instructi
 
 - `index.html` is the concise Orion overview and IAS-350 starter path.
 - `scanner.html` contains IAS mechanics, formulas, milestones, Control Center costs/bonuses, and scanner-capacity observations.
-- `missions.html` contains the public mission profiles and operating rules.
-- `calculators.html` contains the selectable IAS, Control Center, and build-queue calculators.
-- `research.html` turns open questions into actionable evidence requests.
-- `about.html` contains the evidence policy, official sources, and changelog.
+- `missions.html` contains the mission quick-start, PvE/PvP/ACS guidance, public mission profiles, and operating rules.
+- `calculators.html` contains current-to-target IAS and Control Center ranges, streamlined network planning, and a start-aware build queue.
+- `research.html` turns open questions into actionable evidence requests and preserves the future mission-database roadmap.
+- `about.html` contains the evidence policy, official sources, and compact changelog.
 - `data/orion-data.js` contains facts, observations, sources, unknowns, and changelog entries.
 - `assets/app.js` renders the homepage data.
 - `assets/calculators.js` performs exact single-planet and cross-planet calculations.

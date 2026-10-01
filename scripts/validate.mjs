@@ -33,9 +33,17 @@ vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, "data/orion-data.js"), "utf8"), context);
 const data = context.window.ORION_DATA;
 if (!data?.meta?.updated || !data?.scanner?.baseCost || !data?.scanner?.lore) throw new Error("Orion data is incomplete");
-const currentState = fs.readFileSync(path.join(root, "docs/CURRENT_STATE.md"), "utf8");
-if (!currentState.includes(`Working revision: **${data.meta.revision}**`)) {
-  throw new Error("docs/CURRENT_STATE.md does not match the data revision");
+const readText = (file) => fs.readFileSync(path.join(root, file), "utf8");
+const revisionReferences = {
+  "README.md": `Current working revision: **${data.meta.revision}**`,
+  "docs/CURRENT_STATE.md": `Working revision: **${data.meta.revision}**`,
+  "docs/NEXT_SESSION.md": `Current revision: **${data.meta.revision}**`,
+  "docs/ITERATIONS.md": `- Working revision: ${data.meta.revision}`
+};
+for (const [file, expected] of Object.entries(revisionReferences)) {
+  if (!readText(file).includes(expected)) {
+    throw new Error(`${file} does not match data revision ${data.meta.revision}`);
+  }
 }
 
 const costAt = (level) => {
@@ -107,26 +115,58 @@ for (let target = 1; target <= 1000; target += 1) {
   }
 }
 
-const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
+const htmlPages = ["index.html", "scanner.html", "missions.html", "calculators.html", "research.html", "about.html"];
+const htmlByPage = Object.fromEntries(htmlPages.map((page) => [page, readText(page)]));
+
+for (const [page, pageHtml] of Object.entries(htmlByPage)) {
+  const currentPageLinks = pageHtml.match(/aria-current="page"/g) || [];
+  if (currentPageLinks.length !== 1) {
+    throw new Error(`${page} must identify exactly one current navigation link`);
+  }
+
+  for (const match of pageHtml.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+    const reference = match[1];
+    if (/^(?:[a-z][a-z\d+.-]*:|\/\/|#)/i.test(reference)) continue;
+    const localReference = reference.split(/[?#]/, 1)[0];
+    if (!localReference) continue;
+    const resolved = path.resolve(path.dirname(path.join(root, page)), decodeURIComponent(localReference));
+    if (!resolved.startsWith(`${root}${path.sep}`) || !fs.existsSync(resolved)) {
+      throw new Error(`${page} has a broken local reference: ${reference}`);
+    }
+  }
+}
+
+const aboutHtml = htmlByPage["about.html"];
+if (!aboutHtml.includes(`id="revision">${data.meta.revision}</span>`)) {
+  throw new Error("about.html fallback revision does not match Orion data");
+}
+if (!aboutHtml.includes(`id="updated-date">${data.meta.updated}</time>`)) {
+  throw new Error("about.html fallback update date does not match Orion data");
+}
+
+const html = htmlByPage["index.html"];
 for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/app.js", "scanner.html", "missions.html", "calculators.html", "research.html", "about.html"]) {
   if (!html.includes(asset)) throw new Error(`index.html does not reference ${asset}`);
 }
 for (const page of ["scanner.html", "missions.html", "research.html", "about.html"]) {
-  const pageHtml = fs.readFileSync(path.join(root, page), "utf8");
+  const pageHtml = htmlByPage[page];
   for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/app.js"]) {
     if (!pageHtml.includes(asset)) throw new Error(`${page} does not reference ${asset}`);
   }
 }
-const calculatorHtml = fs.readFileSync(path.join(root, "calculators.html"), "utf8");
+const calculatorHtml = htmlByPage["calculators.html"];
 for (const asset of ["assets/styles.css", "data/orion-data.js", "assets/calculators.js"]) {
   if (!calculatorHtml.includes(asset)) throw new Error(`calculators.html does not reference ${asset}`);
 }
-for (const id of ["level-input", "level-cost", "cumulative-cost", "target-ias", "available-planets", "planner-comparison", "control-building-level-input", "control-building-level-cost", "control-building-cumulative-cost", "queue-building-select", "queue-target-level", "queue-add-item", "queue-items", "queue-grand-total"]) {
+for (const id of ["level-start-input", "level-input", "level-cost", "cumulative-cost", "target-ias", "available-planets", "planner-breakdown", "recovery-level-start-input", "recovery-level-input", "control-building-level-start-input", "control-building-level-input", "control-building-level-cost", "control-building-cumulative-cost", "queue-building-select", "queue-start-level", "queue-target-level", "queue-add-item", "queue-items", "queue-grand-total"]) {
   if (!calculatorHtml.includes(`id="${id}"`)) throw new Error(`calculators.html is missing #${id}`);
+}
+if (/\b(?:projection|projected|provisional|observed|estimate)\b/i.test(calculatorHtml)) {
+  throw new Error("calculators.html still exposes projection-versus-observation language");
 }
 
 const calculatorJs = fs.readFileSync(path.join(root, "assets/calculators.js"), "utf8");
-for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select", "updateControlBuildingCalculator", '$$("[data-level]")', '$$("[data-calculator-view]")']) {
+for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select", "queue-start-level", "normalizeLevelRange", "rangeCost", "updateControlBuildingCalculator", '$$("[data-level]")', '$$("[data-calculator-view]")']) {
   if (!calculatorJs.includes(requiredSnippet)) throw new Error(`calculators.js is missing queue wiring: ${requiredSnippet}`);
 }
 if (calculatorJs.includes('addQueueItem("ias"')) {

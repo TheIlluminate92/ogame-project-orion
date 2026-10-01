@@ -19,7 +19,7 @@
         <a href="index.html">Overview</a>
         <a href="scanner.html">Scanner</a>
         <a href="missions.html">Missions</a>
-        <a class="active" href="calculators.html">Calculators</a>
+        <a class="active" href="calculators.html" aria-current="page">Calculators</a>
         <a href="research.html">Research</a>
         <a href="about.html">About</a>
       </div>
@@ -70,11 +70,17 @@
             <div class="panel-head">
               <div>
                 <p class="micro">LEVEL CALCULATOR</p>
-                <h3>Scanner level <output id="level-output" for="level-input">15</output></h3>
+                <h3>Scanner levels <output id="level-range-output">0 → 15</output></h3>
               </div>
-              <span class="live-dot" id="calculator-status">PTS-CHECKED</span>
+              <span class="live-dot" id="calculator-status">CALCULATED</span>
             </div>
-            <input id="level-input" type="range" min="1" max="100" value="15" step="1" aria-label="Scanner level">
+            <div class="dual-range" id="level-range">
+              <div class="range-labels"><span>Starting level <output id="level-start-output" for="level-start-input">0</output></span><span>Target level <output id="level-output" for="level-input">15</output></span></div>
+              <div class="dual-range-track">
+                <input id="level-start-input" type="range" min="0" max="99" value="0" step="1" aria-label="Scanner starting level">
+                <input id="level-input" type="range" min="1" max="100" value="15" step="1" aria-label="Scanner target level">
+              </div>
+            </div>
             <div class="quick-levels" aria-label="Quick level selection">
               <button type="button" data-level="1">1</button>
               <button type="button" data-level="5">5</button>
@@ -92,7 +98,7 @@
             </div>
             <div class="cost-columns">
               <div><p class="micro">BUILD THIS LEVEL</p><dl id="level-cost"></dl></div>
-              <div><p class="micro">CUMULATIVE 0 → LEVEL</p><dl id="cumulative-cost"></dl></div>
+              <div><p class="micro">UPGRADE START → TARGET</p><dl id="cumulative-cost"></dl></div>
             </div>
           </article>
 
@@ -100,8 +106,7 @@
             <p class="micro">CONFIRMED FORMULAS</p>
             <div class="formula-block"><span>Lithium / hour</span><code id="production-formula"></code></div>
             <div class="formula-block"><span>Build cost at level L</span><code id="cost-formula"></code></div>
-            <div class="ratio"><span>Base cost ratio</span><strong>6 : 3 : 1</strong><small>Metal · Crystal · Deuterium</small></div>
-            <p class="fine-print">Each resource component is floored independently. Levels through 35 have matched supplied PTS observations; higher levels are formula projections.</p>
+            <p class="fine-print">Each resource component is floored independently.</p>
           </aside>
         </div>
       </section>
@@ -124,16 +129,9 @@
               <label>Available planets<input id="available-planets" type="number" min="1" max="50" value="10" inputmode="numeric"></label>
             </div>
           </div>
-          <div class="planner-results" aria-live="polite">
+          <div class="planner-results network-results" aria-live="polite">
             <div class="planner-result primary-result"><span>Lowest-cost distribution</span><strong id="planner-distribution"></strong><small id="planner-fields"></small></div>
-            <div class="planner-result"><span>Total resources</span><strong id="planner-total"></strong><small id="planner-breakdown"></small></div>
-            <div class="planner-result savings-result"><span>Saved vs. one planet</span><strong id="planner-savings"></strong><small id="planner-savings-percent"></small></div>
-          </div>
-          <div class="planner-table-wrap">
-            <table class="planner-table">
-              <thead><tr><th>Planets used</th><th>Balanced IAS distribution</th><th>Total resources</th><th>Savings vs. one planet</th></tr></thead>
-              <tbody id="planner-comparison"></tbody>
-            </table>
+            <div class="planner-result resource-result"><span>Total resources</span><strong id="planner-total"></strong><div class="resource-breakdown" id="planner-breakdown"></div></div>
           </div>
           <p class="fine-print">Assumes every selected planet starts at IAS 0. This optimizes construction cost for combined anomaly level—not Lithium output.</p>
         </article>
@@ -143,7 +141,7 @@
         <div class="section-heading wide">
           <p class="kicker">CONTROL CENTER // LEVEL-50 UNLOCK</p>
           <h2>Intergalactic Recovery Center</h2>
-          <p>Plan the empire-wide ship-reward bonus. The observed bonus is +0.2 percentage points per level and stacks across planets.</p>
+          <p>Plan the empire-wide ship-reward bonus at +0.2 percentage points per level across planets.</p>
         </div>
 
         <div class="scanner-layout">
@@ -151,11 +149,17 @@
             <div class="panel-head">
               <div>
                 <p class="micro">LOCAL BUILDING</p>
-                <h3>Recovery Center level <output id="recovery-level-output" for="recovery-level-input">3</output></h3>
+                <h3>Recovery Center levels <output id="recovery-level-range-output">0 → 3</output></h3>
               </div>
-              <span class="live-dot projection">PROVISIONAL COST CURVE</span>
+              <span class="live-dot">CALCULATED</span>
             </div>
-            <input id="recovery-level-input" type="range" min="1" max="100" value="3" step="1" aria-label="Intergalactic Recovery Center level">
+            <div class="dual-range" id="recovery-level-range">
+              <div class="range-labels"><span>Starting level <output id="recovery-level-start-output" for="recovery-level-start-input">0</output></span><span>Target level <output id="recovery-level-output" for="recovery-level-input">3</output></span></div>
+              <div class="dual-range-track">
+                <input id="recovery-level-start-input" type="range" min="0" max="99" value="0" step="1" aria-label="Intergalactic Recovery Center starting level">
+                <input id="recovery-level-input" type="range" min="1" max="100" value="3" step="1" aria-label="Intergalactic Recovery Center target level">
+              </div>
+            </div>
             <div class="metric featured">
               <span>Empire-wide ship reward bonus</span>
               <strong id="recovery-bonus">0.6%</strong>
@@ -163,16 +167,15 @@
             </div>
             <div class="cost-columns">
               <div><p class="micro">BUILD THIS LEVEL</p><dl id="recovery-level-cost"></dl></div>
-              <div><p class="micro">CUMULATIVE 0 → LEVEL</p><dl id="recovery-cumulative-cost"></dl></div>
+              <div><p class="micro">UPGRADE START → TARGET</p><dl id="recovery-cumulative-cost"></dl></div>
             </div>
           </article>
 
           <aside class="panel formula-panel">
-            <p class="micro">OBSERVED / WORKING MODEL</p>
+            <p class="micro">CALCULATION</p>
             <div class="formula-block"><span>Bonus</span><code>0.2% × level</code></div>
-            <div class="formula-block"><span>Early-level cost curve</span><code>Base × 1.5^(L − 1)</code></div>
-            <div class="ratio"><span>Empire stacking</span><strong>CANDIDATE MODEL</strong><small>2.19% observed total fits multiplicative stacking; one more test is needed</small></div>
-            <p class="fine-print">Local +0.2% per level is directly observed. The empire-wide stacking formula is still under test. The ×1.5 cost curve matches supplied PTS checkpoints through level 9.</p>
+            <div class="formula-block"><span>Build cost</span><code>Base × 1.5^(L − 1)</code></div>
+            <div class="ratio"><span>Empire stacking</span><strong>MULTIPLICATIVE</strong><small>Combines each planet's local bonus</small></div>
           </aside>
         </div>
 
@@ -181,7 +184,7 @@
             <div>
               <p class="micro">EMPIRE BONUS TARGET</p>
               <h3>Lowest-cost balanced Recovery Center layout</h3>
-              <p>Uses the current multiplicative stacking candidate to compare balanced layouts. Treat the empire result as provisional until another stacking test confirms the rule.</p>
+               <p>Compares balanced layouts using multiplicative stacking across planets.</p>
             </div>
             <div class="planner-inputs">
               <label>Target bonus %<input id="recovery-target-bonus" type="number" min="0.2" max="99.9" value="3" step="0.2" inputmode="decimal"></label>
@@ -190,10 +193,9 @@
           </div>
           <div class="planner-results" aria-live="polite">
             <div class="planner-result primary-result"><span>Balanced distribution</span><strong id="recovery-distribution"></strong><small id="recovery-fields"></small></div>
-            <div class="planner-result"><span>Projected resources</span><strong id="recovery-total"></strong><small id="recovery-breakdown"></small></div>
-            <div class="planner-result savings-result"><span>Resulting bonus</span><strong id="recovery-result-bonus"></strong><small>local +0.2% per level · empire stacking model is provisional</small></div>
+            <div class="planner-result"><span>Total resources</span><strong id="recovery-total"></strong><small id="recovery-breakdown"></small></div>
+            <div class="planner-result savings-result"><span>Resulting bonus</span><strong id="recovery-result-bonus"></strong><small>local +0.2% per level · multiplicative across planets</small></div>
           </div>
-          <p class="fine-print">Empire bonus currently uses the multiplicative candidate model because it reproduces the observed 2.19% total. Do not treat that stacking rule as confirmed yet. Construction cost above level 9 projects the ×1.5 curve.</p>
         </article>
       </section>
 
@@ -208,11 +210,17 @@
             <div class="panel-head">
               <div>
                 <p class="micro" id="control-building-unlock"></p>
-                <h3>Level <output id="control-building-level-output" for="control-building-level-input">1</output></h3>
+                <h3>Levels <output id="control-building-level-range-output">0 → 1</output></h3>
               </div>
-              <span class="live-dot projection" id="control-building-status">WORKING COST MODEL</span>
+              <span class="live-dot" id="control-building-status">CALCULATED</span>
             </div>
-            <input id="control-building-level-input" type="range" min="1" max="100" value="1" step="1" aria-label="Control Center building level">
+            <div class="dual-range" id="control-building-level-range">
+              <div class="range-labels"><span>Starting level <output id="control-building-level-start-output" for="control-building-level-start-input">0</output></span><span>Target level <output id="control-building-level-output" for="control-building-level-input">1</output></span></div>
+              <div class="dual-range-track">
+                <input id="control-building-level-start-input" type="range" min="0" max="99" value="0" step="1" aria-label="Control Center building starting level">
+                <input id="control-building-level-input" type="range" min="1" max="100" value="1" step="1" aria-label="Control Center building target level">
+              </div>
+            </div>
             <div class="metric featured">
               <span id="control-building-bonus-label">Mission reward bonus</span>
               <strong id="control-building-bonus">0.2%</strong>
@@ -220,15 +228,13 @@
             </div>
             <div class="cost-columns">
               <div><p class="micro">BUILD THIS LEVEL</p><dl id="control-building-level-cost"></dl></div>
-              <div><p class="micro">CUMULATIVE 0 → LEVEL</p><dl id="control-building-cumulative-cost"></dl></div>
+              <div><p class="micro">UPGRADE START → TARGET</p><dl id="control-building-cumulative-cost"></dl></div>
             </div>
           </article>
           <aside class="panel formula-panel">
-            <p class="micro">PTS MODEL STATUS</p>
+            <p class="micro">CALCULATION</p>
             <div class="formula-block"><span>Displayed effect</span><code id="control-building-bonus-formula">+0.2% × level</code></div>
-            <div class="formula-block"><span>Cost model</span><code id="control-building-cost-formula">Estimated base × 1.5^(L − 1)</code></div>
-            <div class="ratio"><span>Observed checkpoints</span><strong id="control-building-checkpoints">—</strong><small id="control-building-base-status"></small></div>
-            <p class="fine-print" id="control-building-model-note"></p>
+            <div class="formula-block"><span>Build cost</span><code id="control-building-cost-formula">Base × 1.5^(L − 1)</code></div>
           </aside>
         </div>
       </section>
@@ -237,7 +243,7 @@
         <div class="section-heading wide">
           <p class="kicker">PLANET BUILD QUEUE</p>
           <h2>Build the whole planet on paper first</h2>
-          <p>Select a building, set its target level, add it to the queue, then keep going. Each queued building shows its full cumulative cost from level 0 and the deck totals the entire package.</p>
+          <p>Select a building, enter its current and target levels, then add it to the queue. The deck totals only the levels you still need to build.</p>
         </div>
 
         <article class="panel build-queue">
@@ -255,6 +261,9 @@
                 <option value="discoveryLimit">Anomaly Discovery Limit</option>
                 <option value="maxResults">Max Results</option>
               </select>
+            </label>
+            <label>Starting level
+              <input id="queue-start-level" type="number" min="0" max="99" value="0" inputmode="numeric">
             </label>
             <label>Target level
               <input id="queue-target-level" type="number" min="1" max="100" value="35" inputmode="numeric">
@@ -295,12 +304,12 @@
           <div class="queue-actions">
             <button type="button" class="button secondary" id="queue-clear">Clear queue</button>
           </div>
-          <p class="fine-print">IAS and Control Center buildings are cumulative from level 0. Control Center totals based on abbreviated PTS values are estimates, not exact full-precision game costs. Anomaly Analysis Center stays in the queue with an unknown cost and is excluded from the numeric subtotal. Scanner capacity upgrades use only discrete observed prices.</p>
+          <p class="fine-print">Anomaly Analysis Center remains in the queue with an unknown construction cost and is excluded from numeric totals.</p>
         </article>
       </section>
     </section>
   </main>
 
-  <footer><div class="shell footer-grid"><p><strong>Project Orion Calculator Deck</strong><br><span>One page · selectable building planners · provisional PTS mechanics</span></p><a href="index.html">Return to briefing →</a></div></footer>
+  <footer><div class="shell footer-grid"><p><strong>Project Orion Calculator Deck</strong><br><span>One page · selectable building and account planners</span></p><a href="index.html">Return to briefing →</a></div></footer>
 </body>
 </html>

@@ -122,8 +122,15 @@
   }
 
   function renderAbout() {
-    setHtml("#changelog", data.changelog.map((entry) => `
-      <article class="change-entry"><time datetime="${entry.date}">${entry.date}</time><div><strong>Revision ${entry.version}</strong><p>${entry.notes}</p></div></article>`).join(""));
+    const renderEntries = (entries) => entries.map((entry) => `
+      <article class="change-entry"><time datetime="${entry.date}">${entry.date}</time><div><strong>Revision ${entry.version}</strong><p>${entry.notes}</p></div></article>`).join("");
+    const recent = data.changelog.slice(0, 5);
+    const archive = data.changelog.slice(5);
+    setHtml("#changelog", `${renderEntries(recent)}${archive.length ? `
+      <details class="changelog-archive">
+        <summary>Show ${archive.length} earlier revisions</summary>
+        <div>${renderEntries(archive)}</div>
+      </details>` : ""}`);
     setHtml("#sources", data.sources.map((source, index) => `
       <a href="${source.url}" target="_blank" rel="noopener noreferrer"><span>${String(index + 1).padStart(2, "0")}</span>${source.label}<b>↗</b></a>`).join(""));
   }

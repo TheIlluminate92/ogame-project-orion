@@ -1,8 +1,8 @@
 # Current project state
 
-Last updated: 2026-09-30
+Last updated: 2026-10-01
 
-Working revision: **0.14.1**
+Working revision: **0.15.0**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -13,19 +13,21 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Publishing source: `main` branch, repository root
 - Latest verified deployment: revision 0.14.1 on 2026-09-30
 
+Revision 0.15.0 is a local page-cleanup release and has not yet been published or verified on GitHub Pages.
+
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
 ## Current site structure
 
 - The homepage is a concise Orion overview with Lithium basics and a practical first goal of combined IAS 350.
 - `scanner.html` contains IAS mechanics, formulas, milestone progression, Control Center costs/bonuses, and observed scanner-capacity upgrade costs.
-- `missions.html` contains the useful mission profiles and operating rules without publishing the raw observation dump as a standalone section.
-- `calculators.html` is a unified selectable calculator deck for IAS and Control Center buildings.
-- `research.html` turns each major unknown into a suggested test or screenshot request.
-- `about.html` contains the evidence policy, official sources, and changelog.
+- `missions.html` contains a practical mission quick-start, PvE/PvP/ACS guidance, useful mission profiles, and operating rules without publishing the raw observation dump as a standalone section.
+- `calculators.html` is a unified selectable calculator deck with current-to-target local ranges, streamlined cross-planet totals, and starting levels in the build queue.
+- `research.html` turns each major unknown into a suggested test or screenshot request and defines a staged path toward a searchable mission database.
+- `about.html` contains the evidence policy, official sources, and a compact changelog that keeps the latest five releases visible.
 - The incomplete reward-scaling concept and raw PTS observation section remain preserved in `data/orion-data.js` but are not in public navigation pending a proper mission/reward database.
 - Supplied in-game lore is published for the Interstellar Anomaly Scanner and all seven Control Center buildings.
-- The local scanner calculator supports levels 1–100 with exact integer costs.
+- The local scanner and Control Center calculators support current-to-target level ranges through level 100.
 - The cross-planet planner supports combined IAS targets 1–1,000 and 1–50 available planets.
 - The Intergalactic Recovery Center calculator models +0.2% ship rewards per local level. Multiplicative empire stacking currently remains a candidate model because it reproduces the observed 2.19% total, but needs another independent confirmation. The ×1.5 cost curve matches supplied PTS values through level 9 and projects higher levels.
 - All seven Control Center unlocks are now named in progression. Lithium Electrolysis Lab, Metal Recycling Unit, Crystal Finishing Station, High-Pressure Deuterium Tanks, and Catalytic Converter have local level calculators and build-queue entries using working ×1.5 cost estimates derived from abbreviated PTS screenshots.
@@ -33,7 +35,7 @@ Future revisions should be treated as published only after the Pages build and t
 - Anomaly Analysis Center has a bonus calculator and queue entry, but its construction cost remains unknown and is excluded from numeric queue totals.
 - Catalytic Converter uses a distinct +0.05 percentage-points-per-level progression and reduces Lithium conversion cost; it is not modeled as an anomaly mission-reward multiplier. The exact conversion formula application remains unknown.
 - The planner assumes all selected planets begin at IAS 0 and optimizes construction resources, not Lithium production.
-- The new-planet build queue accepts building + target-level entries up to local level 100 and reports cumulative cost for each queued building plus a grand total.
+- The build queue accepts a starting and target level for each building up to local level 100 and reports only the remaining upgrade cost plus a grand total.
 - Scanner capacity upgrades (Discovery Limit and Max Results) are available in the queue using only observed discrete costs; the calculator does not extrapolate unknown capacity-upgrade prices.
 
 ## Confirmed or repeatedly observed

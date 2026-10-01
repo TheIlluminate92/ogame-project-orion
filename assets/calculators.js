@@ -90,16 +90,59 @@
       .map(([name, value]) => `<div class="cost-row"><dt>${name}</dt><dd>${format.format(value)}</dd></div>`).join("");
   }
 
-  function updateLevelCalculator(level) {
-    $("#level-output").textContent = level;
-    $("#lithium-hour").textContent = format.format(lithiumAt(level));
-    $("#level-cost").innerHTML = costRows(costAtExact(level));
-    $("#cumulative-cost").innerHTML = costRows(cumulativeCostExact(level));
-    const status = $("#calculator-status");
-    const checked = level <= data.scanner.costValidatedThrough;
-    status.textContent = checked ? `PTS-CHECKED ≤ L${data.scanner.costValidatedThrough}` : `FORMULA PROJECTION > L${data.scanner.costValidatedThrough}`;
-    status.classList.toggle("projection", !checked);
-    $$("[data-level]").forEach((button) => button.classList.toggle("active", Number(button.dataset.level) === level));
+  function subtractCosts(total, previous) {
+    if (!total || !previous) return null;
+    return {
+      metal: total.metal - previous.metal,
+      crystal: total.crystal - previous.crystal,
+      deuterium: total.deuterium - previous.deuterium
+    };
+  }
+
+  function rangeCost(cumulative, start, target) {
+    return subtractCosts(cumulative(target), cumulative(start));
+  }
+
+  function normalizeLevelRange(startInput, targetInput, changed = "target", minimum = 0, maximum = 100) {
+    let start = Math.max(minimum, Math.min(maximum - 1, Number.parseInt(startInput.value, 10) || minimum));
+    let target = Math.max(minimum + 1, Math.min(maximum, Number.parseInt(targetInput.value, 10) || minimum + 1));
+    if (start >= target) {
+      if (changed === "start") target = Math.min(maximum, start + 1);
+      else start = Math.max(minimum, target - 1);
+    }
+    startInput.min = minimum;
+    startInput.max = maximum - 1;
+    targetInput.min = minimum + 1;
+    targetInput.max = maximum;
+    startInput.value = start;
+    targetInput.value = target;
+    return { start, target };
+  }
+
+  function updateDualRange(selector, start, target, minimum = 0, maximum = 100) {
+    const range = $(selector);
+    if (!range) return;
+    const span = maximum - minimum;
+    range.style.setProperty("--range-start", `${((start - minimum) / span) * 100}%`);
+    range.style.setProperty("--range-end", `${((target - minimum) / span) * 100}%`);
+  }
+
+  function resourceBreakdown(cost) {
+    return [["Metal", cost.metal], ["Crystal", cost.crystal], ["Deuterium", cost.deuterium]]
+      .map(([name, value]) => `<span><b>${name}</b><em>${format.format(value)}</em></span>`).join("");
+  }
+
+  function updateLevelCalculator(changed = "target") {
+    const { start, target } = normalizeLevelRange($("#level-start-input"), $("#level-input"), changed);
+    $("#level-start-output").textContent = start;
+    $("#level-output").textContent = target;
+    $("#level-range-output").textContent = `${start} → ${target}`;
+    $("#lithium-hour").textContent = format.format(lithiumAt(target));
+    $("#level-cost").innerHTML = costRows(costAtExact(target));
+    $("#cumulative-cost").innerHTML = costRows(rangeCost(cumulativeCostExact, start, target));
+    $("#calculator-status").textContent = `L${start} → L${target}`;
+    updateDualRange("#level-range", start, target);
+    $$("[data-level]").forEach((button) => button.classList.toggle("active", Number(button.dataset.level) === target));
   }
 
   function addCosts(costs) {
@@ -108,12 +151,6 @@
       crystal: total.crystal + cost.crystal,
       deuterium: total.deuterium + cost.deuterium
     }), { metal: 0n, crystal: 0n, deuterium: 0n });
-  }
-
-  function percent(part, whole) {
-    if (whole === 0n) return "0.00";
-    const hundredths = part * 10000n / whole;
-    return `${hundredths / 100n}.${(hundredths % 100n).toString().padStart(2, "0")}`;
   }
 
   function balancedLevels(targetLevel, availablePlanets, maxLocalLevel = Number.MAX_SAFE_INTEGER) {
@@ -148,34 +185,23 @@
     planetsInput.value = available;
 
     const plan = planNetwork(target, available);
-    const single = cumulativeCostExact(target);
-    const savings = { metal: single.metal - plan.cost.metal, crystal: single.crystal - plan.cost.crystal, deuterium: single.deuterium - plan.cost.deuterium };
     const total = resourceTotal(plan.cost);
-    const totalSavings = resourceTotal(savings);
-    const singleTotal = resourceTotal(single);
 
     $("#planner-distribution").textContent = distributionLabel(plan.levels);
     $("#planner-fields").textContent = `${plan.activePlanets} planet field${plan.activePlanets === 1 ? "" : "s"} used${available > plan.activePlanets ? ` · ${available - plan.activePlanets} unused` : ""}`;
     $("#planner-total").textContent = format.format(total);
-    $("#planner-breakdown").textContent = `M ${format.format(plan.cost.metal)} · C ${format.format(plan.cost.crystal)} · D ${format.format(plan.cost.deuterium)}`;
-    $("#planner-savings").textContent = format.format(totalSavings);
-    $("#planner-savings-percent").textContent = `${percent(totalSavings, singleTotal)}% fewer resources`;
-
-    const rows = [];
-    for (let planets = 1; planets <= Math.min(available, target); planets += 1) {
-      const option = planNetwork(target, planets);
-      const optionTotal = resourceTotal(option.cost);
-      const optionSavings = singleTotal - optionTotal;
-      rows.push(`<tr${planets === plan.activePlanets ? ' class="selected"' : ""}><td>${planets}</td><td>${distributionLabel(option.levels)}</td><td>${format.format(optionTotal)}</td><td>${planets === 1 ? "—" : `${format.format(optionSavings)} (${percent(optionSavings, singleTotal)}%)`}</td></tr>`);
-    }
-    $("#planner-comparison").innerHTML = rows.join("");
+    $("#planner-breakdown").innerHTML = resourceBreakdown(plan.cost);
   }
 
-  function updateRecoveryLevel(level) {
-    $("#recovery-level-output").textContent = level;
-    $("#recovery-bonus").textContent = `${(level * recovery.bonusPerLevelPercent).toFixed(1)}%`;
-    $("#recovery-level-cost").innerHTML = costRows(recoveryCostAt(level));
-    $("#recovery-cumulative-cost").innerHTML = costRows(recoveryCumulativeCost(level));
+  function updateRecoveryLevel(changed = "target") {
+    const { start, target } = normalizeLevelRange($("#recovery-level-start-input"), $("#recovery-level-input"), changed, 0, recovery.maxCalculatorLevel || 100);
+    $("#recovery-level-start-output").textContent = start;
+    $("#recovery-level-output").textContent = target;
+    $("#recovery-level-range-output").textContent = `${start} → ${target}`;
+    $("#recovery-bonus").textContent = `${(target * recovery.bonusPerLevelPercent).toFixed(1)}%`;
+    $("#recovery-level-cost").innerHTML = costRows(recoveryCostAt(target));
+    $("#recovery-cumulative-cost").innerHTML = costRows(rangeCost(recoveryCumulativeCost, start, target));
+    updateDualRange("#recovery-level-range", start, target, 0, recovery.maxCalculatorLevel || 100);
   }
 
   function recoveryEmpireBonusPercent(levels) {
@@ -247,35 +273,39 @@
   );
   let activeControlBuildingKey = "lithiumLab";
 
-  function updateControlBuildingCalculator(buildingKey = activeControlBuildingKey) {
+  function updateControlBuildingCalculator(buildingKey = activeControlBuildingKey, changed = "target") {
     const building = controlCalculatorByKey[buildingKey];
     if (!building) return;
     activeControlBuildingKey = buildingKey;
-    const input = $("#control-building-level-input");
-    input.max = building.maxCalculatorLevel || 100;
-    const level = Math.max(1, Math.min(Number(input.max), Number(input.value) || 1));
-    input.value = level;
+    const maximum = building.maxCalculatorLevel || 100;
+    const { start, target } = normalizeLevelRange(
+      $("#control-building-level-start-input"),
+      $("#control-building-level-input"),
+      changed,
+      0,
+      maximum
+    );
 
     $("#control-building-kicker").textContent = `CONTROL CENTER // LEVEL-${building.unlockMissionLevel} UNLOCK`;
     $("#control-building-name").textContent = building.name;
     $("#control-building-effect").textContent = building.effect;
     $("#control-building-unlock").textContent = `UNLOCK: COMPLETE A LEVEL-${building.unlockMissionLevel} MISSION`;
-    $("#control-building-level-output").textContent = level;
+    $("#control-building-level-start-output").textContent = start;
+    $("#control-building-level-output").textContent = target;
+    $("#control-building-level-range-output").textContent = `${start} → ${target}`;
     const precision = building.bonusPerLevelPercent < 0.1 ? 2 : 1;
     $("#control-building-bonus-label").textContent = building.bonusLabel || `${building.bonusResource} mission reward bonus`;
-    $("#control-building-bonus").textContent = `${(level * building.bonusPerLevelPercent).toFixed(precision)}%`;
+    $("#control-building-bonus").textContent = `${(target * building.bonusPerLevelPercent).toFixed(precision)}%`;
     $("#control-building-bonus-context").textContent = building.bonusContext || "local building contribution";
-    const levelCost = controlBuildingCostAt(building, level);
-    const cumulativeCost = controlBuildingCumulativeCost(building, level);
+    const levelCost = controlBuildingCostAt(building, target);
+    const cumulativeCost = rangeCost((level) => controlBuildingCumulativeCost(building, level), start, target);
     const unavailable = '<div class="cost-row"><dt>Resource cost</dt><dd>Unknown</dd></div>';
     $("#control-building-level-cost").innerHTML = levelCost ? costRows(levelCost) : unavailable;
     $("#control-building-cumulative-cost").innerHTML = cumulativeCost ? costRows(cumulativeCost) : unavailable;
-    $("#control-building-status").textContent = levelCost ? "WORKING ×1.5 ESTIMATE" : "COST UNKNOWN";
+    $("#control-building-status").textContent = levelCost ? `L${start} → L${target}` : "COST UNKNOWN";
     $("#control-building-bonus-formula").textContent = `+${building.bonusPerLevelPercent}% × level`;
-    $("#control-building-cost-formula").textContent = levelCost ? "Estimated base × 1.5^(L − 1)" : "No cost model available";
-    $("#control-building-checkpoints").textContent = (building.costObservedLevels || []).map((value) => `L${value}`).join(" · ") || "PTS SAMPLES";
-    $("#control-building-base-status").textContent = building.baseCostStatus || "";
-    $("#control-building-model-note").textContent = building.costModelStatus || "";
+    $("#control-building-cost-formula").textContent = levelCost ? "Base × 1.5^(L − 1)" : "Construction cost unavailable";
+    updateDualRange("#control-building-level-range", start, target, 0, maximum);
   }
 
   function scannerUpgradeCumulative(upgradeKey, target) {
@@ -397,24 +427,18 @@
   let queueItems = [];
 
   function queueItemCost(item) {
-    return queueCatalog[item.building].cumulative(item.target);
+    const building = queueCatalog[item.building];
+    return rangeCost(building.cumulative, item.start, item.target);
   }
 
   function queueValidationLabel(item) {
     const building = queueCatalog[item.building];
     if (building.validationMode === "unknown") return "cost unknown · excluded from resource totals";
-    if (building.validationMode === "observed") return "observed upgrade cost";
-    if (building.validationMode === "modeled") return "working ×1.5 model · abbreviated PTS inputs";
-    return item.target <= building.validatedThrough
-      ? `PTS-checked through L${building.validatedThrough}`
-      : `projection above L${building.validatedThrough}`;
+    return "calculated resource cost";
   }
 
   function queueRangeLabel(item) {
-    const building = queueCatalog[item.building];
-    return building.baseLevel === 0
-      ? `L0 → L${item.target}`
-      : `${building.baseLevel} → ${item.target}`;
+    return `L${item.start} → L${item.target}`;
   }
 
   function renderQueue() {
@@ -431,7 +455,7 @@
           : '<strong>Unknown</strong><small>No construction-cost sample available</small>';
         return `<div class="queue-row queue-row-simple" data-queue-id="${item.id}">
           <div class="queue-name">
-            <span>${building.shortLabel} → ${item.target}</span>
+            <span>${building.shortLabel} · ${item.start} → ${item.target}</span>
             <strong>${building.label}</strong>
             <small>${queueValidationLabel(item)}</small>
           </div>
@@ -467,11 +491,11 @@
     } else {
       buildingTotals.innerHTML = Array.from(grouped.entries()).map(([key, group]) => {
         const building = queueCatalog[key];
-        const targets = group.items.map((item) => item.target).join(" + ");
+        const targets = group.items.map((item) => `${item.start}→${item.target}`).join(" + ");
         const totalLabel = group.incomplete ? "Unknown" : format.format(resourceTotal(group.cost));
         const breakdown = group.incomplete ? "No construction-cost sample available" : `M ${format.format(group.cost.metal)} · C ${format.format(group.cost.crystal)} · D ${format.format(group.cost.deuterium)}`;
         return `<div class="planner-result">
-          <span>${building.shortLabel} · target ${targets}</span>
+          <span>${building.shortLabel} · levels ${targets}</span>
           <strong>${totalLabel}</strong>
           <small>${breakdown}</small>
         </div>`;
@@ -490,26 +514,36 @@
 
   function syncQueueTargetLimits() {
     const building = queueCatalog[$("#queue-building-select").value];
-    const input = $("#queue-target-level");
-    input.min = building.minTarget;
-    input.max = building.maxLevel;
-    const parsed = Number.parseInt(input.value, 10) || building.minTarget;
-    input.value = Math.max(building.minTarget, Math.min(building.maxLevel, parsed));
+    const startInput = $("#queue-start-level");
+    const targetInput = $("#queue-target-level");
+    startInput.min = building.baseLevel;
+    startInput.max = building.maxLevel - 1;
+    targetInput.min = building.minTarget;
+    targetInput.max = building.maxLevel;
+    const start = Math.max(building.baseLevel, Math.min(building.maxLevel - 1, Number.parseInt(startInput.value, 10) || building.baseLevel));
+    const requestedTarget = Number.parseInt(targetInput.value, 10) || building.minTarget;
+    const target = Math.max(start + 1, building.minTarget, Math.min(building.maxLevel, requestedTarget));
+    startInput.value = Math.min(start, target - 1);
+    targetInput.value = target;
   }
 
   function addSelectedQueueItem() {
     const buildingKey = $("#queue-building-select").value;
     const building = queueCatalog[buildingKey];
+    const startInput = $("#queue-start-level");
     const targetInput = $("#queue-target-level");
-    const target = Math.max(building.minTarget, Math.min(building.maxLevel, Number.parseInt(targetInput.value, 10) || building.minTarget));
+    const start = Math.max(building.baseLevel, Math.min(building.maxLevel - 1, Number.parseInt(startInput.value, 10) || building.baseLevel));
+    const target = Math.max(start + 1, building.minTarget, Math.min(building.maxLevel, Number.parseInt(targetInput.value, 10) || building.minTarget));
 
     const existing = queueItems.find((item) => item.building === buildingKey);
     if (existing) {
+      existing.start = start;
       existing.target = target;
     } else {
       queueId += 1;
-      queueItems.push({ id: queueId, building: buildingKey, target });
+      queueItems.push({ id: queueId, building: buildingKey, start, target });
     }
+    startInput.value = start;
     targetInput.value = target;
     renderQueue();
   }
@@ -517,14 +551,14 @@
   const summaries = {
     "ias-local": "Single-planet IAS cost and Lithium production.",
     "ias-network": "Cheapest balanced account-wide IAS distribution.",
-    "recovery": "Intergalactic Recovery Center local cost and provisional empire-wide ship-reward planning.",
+    "recovery": "Intergalactic Recovery Center local cost and empire-wide ship-reward planning.",
     "lithiumLab": "Lithium Electrolysis Lab level cost and Lithium mission-reward bonus.",
     "metalRecycling": "Metal Recycling Unit level cost and Metal mission-reward bonus.",
     "crystalFinishing": "Crystal Finishing Station level cost and Crystal mission-reward bonus.",
     "anomalyAnalysis": "Anomaly Analysis Center Dark Matter bonus; construction costs remain unknown.",
-    "deuteriumTanks": "High-Pressure Deuterium Tanks level cost estimate and Deuterium mission-reward bonus.",
-    "catalyticConverter": "Catalytic Converter level cost estimate and displayed Lithium conversion-cost reduction.",
-    "build-queue": "Queue several Orion building targets and total the resources for a new planet or upgrade package."
+    "deuteriumTanks": "High-Pressure Deuterium Tanks level cost and Deuterium mission-reward bonus.",
+    "catalyticConverter": "Catalytic Converter level cost and displayed Lithium conversion-cost reduction.",
+    "build-queue": "Queue current-to-target Orion building levels and total the resources still needed."
   };
 
   function selectCalculator(value) {
@@ -540,23 +574,35 @@
   $("#production-formula").textContent = data.scanner.productionFormula;
   $("#cost-formula").textContent = data.scanner.costFormula;
 
+  const levelStartInput = $("#level-start-input");
   const levelInput = $("#level-input");
+  const recoveryLevelStartInput = $("#recovery-level-start-input");
   const recoveryLevelInput = $("#recovery-level-input");
-  updateLevelCalculator(Number(levelInput.value));
+  updateLevelCalculator();
   updateNetworkPlanner();
-  updateRecoveryLevel(Number(recoveryLevelInput.value));
+  updateRecoveryLevel();
   updateRecoveryPlanner();
 
-  levelInput.addEventListener("input", () => updateLevelCalculator(Number(levelInput.value)));
+  levelStartInput.addEventListener("input", () => updateLevelCalculator("start"));
+  levelInput.addEventListener("input", () => updateLevelCalculator("target"));
   $("#target-ias").addEventListener("input", updateNetworkPlanner);
   $("#available-planets").addEventListener("input", updateNetworkPlanner);
-  recoveryLevelInput.addEventListener("input", () => updateRecoveryLevel(Number(recoveryLevelInput.value)));
-  $("#control-building-level-input").addEventListener("input", () => updateControlBuildingCalculator());
+  recoveryLevelStartInput.addEventListener("input", () => updateRecoveryLevel("start"));
+  recoveryLevelInput.addEventListener("input", () => updateRecoveryLevel("target"));
+  $("#control-building-level-start-input").addEventListener("input", () => updateControlBuildingCalculator(activeControlBuildingKey, "start"));
+  $("#control-building-level-input").addEventListener("input", () => updateControlBuildingCalculator(activeControlBuildingKey, "target"));
   $("#recovery-target-bonus").addEventListener("input", updateRecoveryPlanner);
   $("#recovery-planets").addEventListener("input", updateRecoveryPlanner);
   $("#calculator-select").addEventListener("change", (event) => selectCalculator(event.target.value));
-  $("#queue-building-select").addEventListener("change", syncQueueTargetLimits);
+  $("#queue-building-select").addEventListener("change", () => {
+    $("#queue-start-level").value = queueCatalog[$("#queue-building-select").value].baseLevel;
+    syncQueueTargetLimits();
+  });
   $("#queue-add-item").addEventListener("click", addSelectedQueueItem);
+  $("#queue-start-level").addEventListener("input", syncQueueTargetLimits);
+  $("#queue-start-level").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") addSelectedQueueItem();
+  });
   $("#queue-target-level").addEventListener("keydown", (event) => {
     if (event.key === "Enter") addSelectedQueueItem();
   });
@@ -567,7 +613,7 @@
 
   $$("[data-level]").forEach((button) => button.addEventListener("click", () => {
     levelInput.value = button.dataset.level;
-    updateLevelCalculator(Number(levelInput.value));
+    updateLevelCalculator("target");
   }));
 
   syncQueueTargetLimits();
