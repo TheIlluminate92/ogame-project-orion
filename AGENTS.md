@@ -31,6 +31,16 @@ Use this mode by default so routine Project Orion maintenance does not consume a
 - PTS mechanics can change. Update `meta.updated`, increment `meta.revision`, and add a changelog entry whenever facts or behavior change.
 - Do not publish raw screenshots that expose the user's account interface, coordinates, planet names, resources, or other personal game state. Extract only the relevant mechanic or value.
 
+## Revision rules
+
+Use `major.minor.patch` for guide revisions; keep OGame's game version separate.
+
+- Patch (`0.18.1`): evidence additions or corrections, copy edits, styling fixes, and bug fixes that do not add a new capability.
+- Minor (`0.19.0`): a new page, calculator, or other user-facing capability.
+- Major (`1.0.0`): a substantial redesign or a stable post-PTS edition that changes the guide's overall structure or status.
+
+When changing a revision, update `data/orion-data.js`, its changelog, the visible guide version, and revisioned asset URLs together. Do not create a new minor revision for routine evidence updates or small fixes.
+
 ## Architecture
 
 - `index.html` is the concise Orion overview and IAS-350 starter path.
@@ -61,7 +71,7 @@ Keep calculation controls off the homepage. Keep raw observation dumps and specu
 
 1. Add or revise the smallest relevant record in `data/orion-data.js`.
 2. Keep observed samples separate from confirmed formulas.
-3. Increment the semantic revision and prepend a changelog entry.
+3. Increment the revision using the rules above and prepend a changelog entry.
 4. Run:
 
    ```text

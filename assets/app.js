@@ -36,6 +36,8 @@
     setHtml("#lithium-cards", data.lithium.confirmed.map((item, index) => `
       <article class="fact-card"><span>${String(index + 1).padStart(2, "0")}</span><p>${item}</p></article>`).join(""));
     setHtml("#converter-ui", data.lithium.converterUi.map((item) => `<span>${item}</span>`).join(""));
+    setHtml("#conversion-ratios", data.lithium.conversionRatios.map((ratio) => `
+      <article class="ratio-card"><span>Observed ${ratio.resource} input</span><strong>${ratio.inputPerLithium} : 1</strong><small>${ratio.resource} → Lithium</small></article>`).join(""));
   }
 
   function renderScannerBasics() {

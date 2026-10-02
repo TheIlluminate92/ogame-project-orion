@@ -4,6 +4,7 @@ This file tracks structural releases and provides continuity when development mo
 
 | Revision | Date | Major change |
 |---|---|---|
+| 0.19.0 | 2026-10-01 | Added local IAS sustainment estimates using combined Catalytic Converter levels, surfaced all four observed conversion ratios, recorded scanner-capacity checkpoints and ACS fleet/Alliance Depot limits, and documented the four-wave Delivery: Metal reward/cost split. |
 | 0.18.0 | 2026-10-01 | Added user-provided AAC base costs and enabled the shared Control Center cost model in its calculator and queue; higher levels remain unverified. |
 | 0.17.0 | 2026-10-01 | Replaced the calculator dropdown with concise two-row buttons for empire-wide planning/queue and local buildings. |
 | 0.16.0 | 2026-10-01 | Removed base-cost details from Scanner; added additive empire bonus targets and comparison tables for all seven Control Center buildings while preserving the unresolved IRC sample discrepancy. |
@@ -51,10 +52,10 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 ## Current continuation point
 
-- Working revision: 0.18.0
-- Local validation: passing for revision 0.18.0; desktop and 390px mobile browser checks were completed for the 0.17.0 navigation change
-- Deployment: revision 0.15.1 is the last verified GitHub Pages release; local 0.18.0 changes await the user's push and subsequent live check
-- Next action: verify higher-level Anomaly Analysis Center costs against its user-provided base values and shared ×1.5 curve; confirm Catalytic Converter calculation semantics; reconcile the prior IRC 2.19% display with the user-reported additive model; and collect full-precision cost checkpoints for other Control Center buildings.
+- Working revision: 0.19.0
+- The 0.19.0 feature and evidence batch is not yet validated, committed, pushed, or deployed; desktop and 390px mobile browser checks were completed for the 0.17.0 navigation change
+- Deployment: revision 0.15.1 is the last verified GitHub Pages release
+- Next action: validate the current batch; verify higher-level Anomaly Analysis Center costs against its user-provided base values and shared ×1.5 curve; reconcile the prior IRC 2.19% display with the user-reported additive model; and collect full-precision cost checkpoints for other Control Center buildings.
 - Highest cost-formula validation: IAS 35
 - Highest calculator level: IAS 100
 - Highest combined planner target: IAS 1,000

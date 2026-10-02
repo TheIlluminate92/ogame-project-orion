@@ -46,23 +46,7 @@ for (const [file, expected] of Object.entries(revisionReferences)) {
   }
 }
 
-const costAt = (level) => {
-  const scale = 1.4 ** (level - 1);
-  return {
-    metal: Math.floor(data.scanner.baseCost.metal * scale),
-    crystal: Math.floor(data.scanner.baseCost.crystal * scale),
-    deuterium: Math.floor(data.scanner.baseCost.deuterium * scale)
-  };
-};
 const lithiumAt = (level) => Math.floor(200 * level * 1.1 ** level);
-const cumulativeAt = (level) => {
-  const sum = { metal: 0, crystal: 0, deuterium: 0 };
-  for (let current = 1; current <= level; current += 1) {
-    const cost = costAt(current);
-    for (const resource of Object.keys(sum)) sum[resource] += cost[resource];
-  }
-  return sum;
-};
 const balancedLevels = (target, planets) => {
   const active = Math.min(target, planets);
   const base = Math.floor(target / active);
@@ -84,6 +68,18 @@ const exactCumulativeAt = (level) => {
   }
   return sum;
 };
+const exactCostAt = (level) => {
+  let powerSeven = 1n;
+  let powerFive = 1n;
+  for (let current = 1; current < level; current += 1) {
+    powerSeven *= 7n;
+    powerFive *= 5n;
+  }
+  return Object.fromEntries(Object.entries(data.scanner.baseCost).map(([resource, base]) => [
+    resource,
+    Number(BigInt(base) * powerSeven / powerFive)
+  ]));
+};
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 for (const example of data.scanner.examples) {
@@ -91,9 +87,11 @@ for (const example of data.scanner.examples) {
     throw new Error(`Lithium mismatch at level ${example.level}`);
   }
 }
-if (!same(costAt(60), data.scanner.level60.final)) throw new Error("Level 60 final cost mismatch");
-if (!same(cumulativeAt(60), data.scanner.level60.cumulative)) throw new Error("Level 60 cumulative cost mismatch");
+if (!same(exactCostAt(60), data.scanner.level60.final)) throw new Error("Level 60 final cost mismatch");
 const exactLevel60 = exactCumulativeAt(60);
+if (!same(Object.fromEntries(Object.entries(exactLevel60).map(([resource, value]) => [resource, Number(value)])), data.scanner.level60.cumulative)) {
+  throw new Error("Level 60 cumulative cost mismatch");
+}
 for (const resource of Object.keys(data.scanner.level60.cumulative)) {
   if (exactLevel60[resource] !== BigInt(data.scanner.level60.cumulative[resource])) {
     throw new Error(`Exact level 60 ${resource} mismatch`);
@@ -181,15 +179,15 @@ const expectedCalculatorKeys = ["ias-network", "empire-bonus", "build-queue", "i
 if (JSON.stringify(calculatorKeys) !== JSON.stringify(expectedCalculatorKeys)) {
   throw new Error("Calculator buttons must list empire-wide planners and queue first, then all local buildings");
 }
-for (const id of ["level-start-input", "level-input", "level-cost", "cumulative-cost", "target-ias", "available-planets", "planner-breakdown", "recovery-level-start-input", "recovery-level-input", "control-building-level-start-input", "control-building-level-input", "control-building-level-cost", "control-building-cumulative-cost", "empire-bonus-building", "empire-target-bonus", "empire-planets", "empire-example-head", "empire-example-body", "queue-building-select", "queue-start-level", "queue-target-level", "queue-add-item", "queue-items", "queue-grand-total"]) {
+for (const id of ["level-start-input", "level-input", "level-cost", "cumulative-cost", "target-ias", "available-planets", "planner-breakdown", "recovery-level-start-input", "recovery-level-input", "control-building-level-start-input", "control-building-level-input", "control-building-level-cost", "control-building-cumulative-cost", "empire-bonus-building", "empire-target-bonus", "empire-planets", "empire-example-head", "empire-example-body", "queue-building-select", "queue-start-level", "queue-target-level", "queue-add-item", "queue-feedback", "queue-items", "queue-grand-total"]) {
   if (!calculatorHtml.includes(`id="${id}"`)) throw new Error(`calculators.html is missing #${id}`);
 }
-if (/\b(?:projection|projected|provisional|observed|estimate)\b/i.test(calculatorHtml)) {
-  throw new Error("calculators.html still exposes projection-versus-observation language");
+for (const expected of ['id="cc-total-levels"', 'id="conversion-sustainment-body"', "Observed ratio", "beyond tested totals are projections"]) {
+  if (!calculatorHtml.includes(expected)) throw new Error(`calculators.html is missing IAS sustainment guidance: ${expected}`);
 }
 
 const calculatorJs = fs.readFileSync(path.join(root, "assets/calculators.js"), "utf8");
-for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select", "queue-start-level", "normalizeLevelRange", "rangeCost", "updateControlBuildingCalculator", "updateEmpireBonusPlanner", "renderEmpireExamples", "empireDistributionLabel", '$$("[data-level]")', '$$("[data-calculator-view]")', '$$("[data-calculator-trigger]")']) {
+for (const requiredSnippet of ["addSelectedQueueItem", "syncQueueTargetLimits", "renderQueue()", "queue-building-select", "queue-start-level", "queue-feedback", "Math.max(start, item.start) < Math.min(target, item.target)", "normalizeLevelRange", "rangeCost", "updateControlBuildingCalculator", "updateEmpireBonusPlanner", "renderEmpireExamples", "empireDistributionLabel", '$$("[data-level]")', '$$("[data-calculator-view]")', '$$("[data-calculator-trigger]")']) {
   if (!calculatorJs.includes(requiredSnippet)) throw new Error(`calculators.js is missing queue wiring: ${requiredSnippet}`);
 }
 if (calculatorJs.includes('addQueueItem("ias"')) {

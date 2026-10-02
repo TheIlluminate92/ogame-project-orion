@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#06101d">
   <title>Project Orion — Calculators</title>
   <link rel="stylesheet" href="assets/styles.css">
-  <script defer src="data/orion-data.js?v=0.18.0"></script>
-  <script defer src="assets/calculators.js?v=0.18.0"></script>
+  <script defer src="data/orion-data.js?v=0.19.0"></script>
+  <script defer src="assets/calculators.js?v=0.19.0"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to calculators</a>
@@ -102,6 +102,24 @@
               <strong id="lithium-hour">12,531</strong>
               <small>per hour</small>
             </div>
+            <section class="conversion-sustainment" aria-labelledby="conversion-sustainment-title">
+              <div class="conversion-sustainment-head">
+                <div>
+                  <p class="micro">INPUT TO SUSTAIN THIS OUTPUT</p>
+                  <h4 id="conversion-sustainment-title">Estimated resource use per hour</h4>
+                  <p>Equivalent input needed to maintain this planet’s Lithium production.</p>
+                </div>
+                <label>Combined Catalytic Converter levels (all planets)<input id="cc-total-levels" type="number" min="0" step="1" value="0" inputmode="numeric"></label>
+              </div>
+              <div class="conversion-sustainment-bonus"><span>Calculated conversion-cost reduction</span><strong id="cc-total-bonus">0%</strong></div>
+              <div class="table-wrap">
+                <table class="conversion-sustainment-table">
+                  <thead><tr><th>Input resource</th><th>Observed ratio</th><th>To sustain output / hour</th></tr></thead>
+                  <tbody id="conversion-sustainment-body"></tbody>
+                </table>
+              </div>
+              <p id="conversion-sustainment-note" class="fine-print">Estimates use observed 100% workload ratios and the combined Catalytic Converter level total. The per-level reduction is shown in Techinfo; results beyond tested totals are projections.</p>
+            </section>
             <div class="cost-columns">
               <div><p class="micro">BUILD THIS LEVEL</p><dl id="level-cost"></dl></div>
               <div><p class="micro">UPGRADE START → TARGET</p><dl id="cumulative-cost"></dl></div>
@@ -290,6 +308,8 @@
             </label>
             <button type="button" class="button primary" id="queue-add-item">Add to queue</button>
           </div>
+
+          <p id="queue-feedback" class="queue-feedback" role="status" aria-live="polite" hidden></p>
 
           <div id="queue-items" class="queue-items" aria-live="polite"></div>
 

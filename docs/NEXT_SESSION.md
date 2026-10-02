@@ -6,10 +6,10 @@ Use this file when continuing the Project Orion guide from a blank chat.
 
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
-- Current revision: **0.18.0**
+- Current revision: **0.19.0**
 - Branch: `main`
-- Deployment: revision 0.15.1 was the last verified GitHub Pages release; local 0.18.0 changes are not yet pushed or deployed
-- Working tree at handoff: clean after the local 0.18.0 commit; push and live verification remain pending
+- Deployment: revision 0.15.1 was the last verified GitHub Pages release; local 0.19.0 changes are not yet pushed or deployed
+- Working tree at handoff: local 0.19.0 IAS sustainment calculator, conversion ratios, capacity upgrade checkpoints, Delivery: Metal wave evidence, Catalytic Converter evidence, and calculator label-layout fix are uncommitted; preserve the unrelated local `ERIS_STATE.md`
 
 Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/orion-data.js` is the factual source of truth.
 
@@ -34,7 +34,7 @@ Then follow these limits:
 - `index.html` — Orion overview, Lithium basics, and the combined-IAS-350 starter path
 - `scanner.html` — IAS mechanics, formulas, lore, milestone unlocks, Control Center artwork/lore/bonuses, and observed capacity-upgrade costs
 - `missions.html` — mission quick-start, public-objective guidance, ACS help, profiles, and operational rules
-- `calculators.html` — current-to-target building calculators, button navigation separating empire-wide planners/queue from local buildings, additive empire bonus targets and reference tables for all seven Control Center bonus buildings, and a start-aware build queue
+- `calculators.html` — IAS Lithium sustainment estimates using combined Catalytic Converter levels, current-to-target building calculators, empire-wide planners, and a start-aware build queue
 - `research.html` — unresolved questions, suggested tests, and the future mission-database roadmap
 - `about.html` — evidence policy, official v13.1.0 release context, sources, and a compact changelog
 
@@ -43,17 +43,23 @@ Raw PTS observation records and the incomplete reward-scaling concept remain in 
 ## Highest-priority evidence gaps
 
 1. Verify higher-level Anomaly Analysis Center costs against its user-provided base values and shared ×1.5 curve.
-2. Run a controlled before/after test to determine exactly how Catalytic Converter percentages affect Lithium conversion.
-3. Reconcile the prior IRC L3 + L8 displayed empire bonus of 2.19% with the user-reported additive sum of 2.20%.
-4. Capture full-precision Control Center base costs instead of abbreviated `K` values.
-5. Expand the mission catalog toward a structured mission/reward database.
-6. Collect comparable data for deciding which resource is best to convert into Lithium.
+2. Reconcile the prior IRC L3 + L8 displayed empire bonus of 2.19% with the user-reported additive sum of 2.20%.
+3. Capture full-precision Control Center base costs instead of abbreviated `K` values.
+4. Expand the mission catalog toward a structured mission/reward database.
+5. Collect comparable data for deciding which resource is best to convert into Lithium.
+6. If needed, test how Catalytic Converter reductions scale at different bonus totals and workloads.
 
 ## Guardrails
 
 - Do not invent missing exact costs or formulas.
 - Keep official, observed, calculated, projected, and unknown values distinct.
 - Catalytic Converter is `0.05%` per level and affects conversion cost; it is not a `0.2%` mission-reward building.
+- Direct PTS tests confirmed that increasing the Catalytic Converter empire bonus lowers input costs for Metal, Crystal, Deuterium, and Food while hourly Lithium output stays constant at the same workload; scaling at other workloads remains untested.
+- Local IAS sustainment estimates apply the observed 100% workload ratios (Metal 3:1, Crystal 2:1, Deuterium 1:1, Food 100:1) and the entered combined Catalytic Converter level total; beyond-tested reductions are projections.
+- One four-wave PvE Delivery: Metal dialog showed 59,634,076 total Metal and 14,073,696 Lithium total cost, each divided into four equal wave amounts. Do not generalize equal splitting to other templates without evidence.
+- ACS tooltip: Alliance Depot levels across all planets add one to the group member cap per 20 levels, up to +5; screenshot showed level 13, with baseline/resulting cap not established.
+- User-reported ACS constraint: a free fleet slot is needed to start or join; full fleet slots prevent ACS participation.
+- Capacity upgrade checkpoints now include Discovery Limit 5→6 and Max Results 4→5; costs are discrete observations, not an inferred formula.
 - Control Center empire bonuses are modeled additively per the user's correction. The calculator covers all seven bonus buildings and leaves the earlier IRC 2.19% sample discrepancy unresolved.
 - Anomaly Analysis Center base costs are user-provided (67,500 / 37,500 / 22,500); higher-level shared-model outputs have not been independently verified.
 - Do not publish raw screenshots containing account identity, coordinates, planets, or resource balances.

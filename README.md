@@ -19,7 +19,7 @@ Most routine updates only require editing [`data/orion-data.js`](data/orion-data
 
 1. Change the affected facts.
 2. Set `meta.updated` to the date of the update.
-3. Increment `meta.revision`.
+3. Increment `meta.revision` using the versioning rules in [`AGENTS.md`](AGENTS.md): patch for evidence/copy/style/bug fixes, minor for new user-facing capabilities, and major for a substantial redesign or stable post-PTS edition.
 4. Add one short entry at the top of `changelog`.
 5. Run `node scripts/validate.mjs`.
 6. Commit and push to `main`; GitHub Pages redeploys automatically from the repository root.
@@ -52,4 +52,4 @@ GitHub Pages publishes directly from the root of the `main` branch. This keeps r
 
 ## Status
 
-Current working revision: **0.18.0**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.
+Current working revision: **0.19.0**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.

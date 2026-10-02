@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-01
 
-Working revision: **0.18.0**
+Working revision: **0.19.0**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -22,7 +22,7 @@ Future revisions should be treated as published only after the Pages build and t
 - The homepage is a concise Orion overview with Lithium basics and a practical first goal of combined IAS 350.
 - `scanner.html` contains IAS mechanics, formulas, milestone progression, Control Center bonuses, and observed scanner-capacity upgrade costs; base construction costs are omitted from this page.
 - `missions.html` contains a practical mission quick-start, public-objective guidance, PvE/PvP/ACS help, useful mission profiles, and operating rules without publishing the raw observation dump as a standalone section.
-- `calculators.html` is a unified selectable calculator deck with current-to-target local ranges, streamlined cross-planet totals, additive empire bonus targets and reference tables for all seven Control Center bonus buildings, and starting levels in the build queue.
+- `calculators.html` is a unified selectable calculator deck with local IAS Lithium sustainment estimates, combined Catalytic Converter levels, current-to-target building ranges, streamlined cross-planet totals, additive empire bonus targets, and starting levels in the build queue.
 - Calculator navigation uses a top row for IAS Network, Empire Bonus, and Planet Queue, plus a lower row of concise local building buttons.
 - `research.html` turns each major unknown into a suggested test or screenshot request and defines a staged path toward a searchable mission database.
 - `about.html` contains the evidence policy, official v13.1.0 release context, sources, and a compact changelog that keeps the latest five releases visible.
@@ -34,7 +34,7 @@ Future revisions should be treated as published only after the Pages build and t
 - All seven Control Center unlocks are now named in progression and have local calculators/build-queue entries. Most use working ×1.5 cost estimates from abbreviated PTS screenshots; Anomaly Analysis Center uses user-provided base costs with the same shared cost curve.
 - All seven Control Center buildings use the supplied image artwork in the progression cards and building-detail dialog; text badges remain implemented as a fallback for missing future assets.
 - Anomaly Analysis Center base costs are user-provided (67,500 Metal / 37,500 Crystal / 22,500 Deuterium); its calculator and queue use the shared Control Center ×1.5-per-level model. Higher-level cost outputs are calculated and not independently verified.
-- Catalytic Converter uses a distinct +0.05 percentage-points-per-level progression and reduces Lithium conversion cost; it is not modeled as an anomaly mission-reward multiplier. The exact conversion formula application remains unknown.
+- Catalytic Converter uses a distinct +0.05 percentage-points-per-level progression and reduces Lithium conversion cost; it is not a mission-reward multiplier. Direct PTS tests confirmed that a higher empire bonus lowers hourly input costs for Metal, Crystal, Deuterium, and Food while hourly Lithium output stays unchanged at the same workload. The displayed total matched the sum of local planet percentages. Scaling at other workloads remains untested.
 - The planner assumes all selected planets begin at IAS 0 and optimizes construction resources, not Lithium production.
 - The build queue accepts a starting and target level for each building up to local level 100 and reports only the remaining upgrade cost plus a grand total.
 - Scanner capacity upgrades (Discovery Limit and Max Results) are available in the queue using only observed discrete costs; the calculator does not extrapolate unknown capacity-upgrade prices.
@@ -44,6 +44,11 @@ Future revisions should be treated as published only after the Pages build and t
 - IAS levels stack across planets for account-wide anomaly progression.
 - Scanner construction-cost formula matches supplied PTS values through level 35.
 - Observed 100% workload conversion ratios: Metal 3:1, Crystal 2:1, Deuterium 1:1, Lifeform Food 100:1.
+- The local IAS calculator estimates hourly Metal, Crystal, Deuterium, and Food inputs for a selected Lithium output, using the combined Catalytic Converter level total; reductions beyond directly tested totals are projections.
+- Four-wave PvE Delivery: Metal sample: 59,634,076 Metal mission total divided into four equal 14,908,519 wave claims; total cost 14,073,696 Lithium divided into 3,518,424 per-wave claims. Even splitting is confirmed only for this mission sample.
+- The ACS tooltip states Alliance Depot levels across all planets increase the group member cap by one per 20 levels, up to five increases. One screenshot showed current level 13; the baseline cap and current resulting cap were not visible.
+- User-reported ACS constraint: keep one fleet slot free; ACS cannot be started or joined with all fleet slots occupied.
+- Increasing the displayed Catalytic Converter empire bonus lowered hourly input costs for Metal, Crystal, Deuterium, and Food while hourly Lithium output remained constant at the same workload. Other workload conditions remain untested.
 - Multiple planets can convert different resources to Lithium simultaneously with independent controls.
 - Control Center buildings unlock at completed mission levels 50, 100, 150, 200, 250, 300, and 350.
 - Known mappings: L50 Intergalactic Recovery Center (Ships), L100 Lithium Electrolysis Lab (Lithium), L150 Metal Recycling Unit (Metal), L200 Crystal Finishing Station (Crystal), L250 Anomaly Analysis Center (Dark Matter), L300 High-Pressure Deuterium Tanks (Deuterium), and L350 Catalytic Converter (Lithium conversion cost).
@@ -56,6 +61,7 @@ Future revisions should be treated as published only after the Pages build and t
 - Anomaly Discovery Limit defaults to 2 and controls simultaneous anomaly investigations.
 - Observed Discovery Limit upgrade costs: 2→3 = 3M/1.5M/750K; 3→4 = 45M/22.5M/11.25M; 4→5 = 160M/80M/40M.
 - Observed Max Results upgrade cost: 3→4 = 300M/150M/75M.
+- Additional observed capacity upgrades: Discovery Limit 5→6 = 2.5B/1.25B/625M; Max Results 4→5 = 4.5B/2.25B/1.125B.
 - High-level 150-system scan checkpoints include L171 = 406,624 Lithium, L207 = 567,901, and L212 = 590,371.
 - Combined IAS 349 at 10-system range showed a scan cost of 961,980 Lithium, Max Results 3, and Discovery Limit 1/4.
 - A level-351 PvE two-star Small Alien Encounter showed four NPC waves of 1,881 / 1,971 / 374 / 988 ships; visible later-wave combat tech was Weapons 28 / Shielding 20 / Armor 28.
@@ -100,7 +106,7 @@ The canonical list is in `data/orion-data.js`. Important unresolved items includ
 - Exact scan, claim-cost, reward, enemy-scaling, and construction-time formulas.
 - Which mechanics use combined account IAS versus local planet IAS.
 - Full-precision construction costs and higher-level cost checkpoints for Control Center buildings with inferred or user-provided bases.
-- Exact Catalytic Converter calculation semantics.
+- How Catalytic Converter cost reductions scale at different bonus totals and workloads.
 - General-class and Mecha bonus percentages.
 
 ## Privacy boundary

@@ -85,6 +85,29 @@
     return Math.floor(200 * level * Math.pow(1.1, level));
   }
 
+  function updateConversionSustainment(lithiumPerHour) {
+    const levelsInput = $("#cc-total-levels");
+    const rawLevels = Number.parseInt(levelsInput.value, 10);
+    const totalLevels = Number.isFinite(rawLevels) ? Math.max(0, rawLevels) : 0;
+    levelsInput.value = totalLevels;
+
+    const catalyticConverter = Object.values(controlBuildings).find((building) => building.calculatorKey === "catalyticConverter");
+    const reductionPercent = totalLevels * (catalyticConverter?.bonusPerLevelPercent || 0);
+    const appliedReduction = Math.min(100, reductionPercent);
+    $("#cc-total-bonus").textContent = `${Number(reductionPercent.toFixed(2))}%`;
+
+    $("#conversion-sustainment-body").innerHTML = data.lithium.conversionRatios.map(({ resource, inputPerLithium }) => {
+      const inputPerHour = Math.round(lithiumPerHour * inputPerLithium * (1 - appliedReduction / 100));
+      const unit = resource === "Lifeform Food" ? "Food" : resource;
+      return `<tr><th scope="row">${resource}</th><td>${format.format(inputPerLithium)} : 1</td><td>${format.format(inputPerHour)} ${unit} / hour</td></tr>`;
+    }).join("");
+
+    const note = $("#conversion-sustainment-note");
+    note.textContent = reductionPercent > 100
+      ? "The calculated reduction exceeds 100%, so estimated input is shown as zero. In-game behavior at that level is unknown."
+      : "Estimates use observed 100% workload ratios and the combined Catalytic Converter level total. The per-level reduction is shown in Techinfo; results beyond tested totals are projections.";
+  }
+
   function costRows(cost) {
     return [["Metal", cost.metal], ["Crystal", cost.crystal], ["Deuterium", cost.deuterium], ["Total", resourceTotal(cost)]]
       .map(([name, value]) => `<div class="cost-row"><dt>${name}</dt><dd>${format.format(value)}</dd></div>`).join("");
@@ -137,7 +160,9 @@
     $("#level-start-output").textContent = start;
     $("#level-output").textContent = target;
     $("#level-range-output").textContent = `${start} → ${target}`;
-    $("#lithium-hour").textContent = format.format(lithiumAt(target));
+    const lithiumPerHour = lithiumAt(target);
+    $("#lithium-hour").textContent = format.format(lithiumPerHour);
+    updateConversionSustainment(lithiumPerHour);
     $("#level-cost").innerHTML = costRows(costAtExact(target));
     $("#cumulative-cost").innerHTML = costRows(rangeCost(cumulativeCostExact, start, target));
     $("#calculator-status").textContent = `L${start} → L${target}`;
@@ -552,21 +577,26 @@
     const start = Math.max(building.baseLevel, Math.min(building.maxLevel - 1, Number.parseInt(startInput.value, 10) || building.baseLevel));
     const target = Math.max(start + 1, building.minTarget, Math.min(building.maxLevel, Number.parseInt(targetInput.value, 10) || building.minTarget));
 
-    const existing = queueItems.find((item) => item.building === buildingKey);
-    if (existing) {
-      existing.start = start;
-      existing.target = target;
-    } else {
-      queueId += 1;
-      queueItems.push({ id: queueId, building: buildingKey, start, target });
+    const overlapping = queueItems.find((item) => item.building === buildingKey
+      && Math.max(start, item.start) < Math.min(target, item.target));
+    const feedback = $("#queue-feedback");
+    if (overlapping) {
+      feedback.textContent = `${building.label} levels ${start} → ${target} overlap the queued range ${overlapping.start} → ${overlapping.target}. Remove or change one range before adding it.`;
+      feedback.hidden = false;
+      return;
     }
+
+    queueId += 1;
+    queueItems.push({ id: queueId, building: buildingKey, start, target });
+    feedback.textContent = "";
+    feedback.hidden = true;
     startInput.value = start;
     targetInput.value = target;
     renderQueue();
   }
 
   const summaries = {
-    "ias-local": "Single-planet IAS cost and Lithium production.",
+    "ias-local": "Single-planet IAS build costs, Lithium production, and estimated resource input needed to sustain it.",
     "ias-network": "Cheapest balanced account-wide IAS distribution.",
     "recovery": "Intergalactic Recovery Center local cost and empire-wide ship-reward planning.",
     "empire-bonus": "Additive empire bonus targets and reference tables for every Control Center bonus building.",
@@ -606,6 +636,7 @@
 
   levelStartInput.addEventListener("input", () => updateLevelCalculator("start"));
   levelInput.addEventListener("input", () => updateLevelCalculator("target"));
+  $("#cc-total-levels").addEventListener("input", () => updateConversionSustainment(lithiumAt(Number.parseInt(levelInput.value, 10))));
   $("#target-ias").addEventListener("input", updateNetworkPlanner);
   $("#available-planets").addEventListener("input", updateNetworkPlanner);
   recoveryLevelStartInput.addEventListener("input", () => updateRecoveryLevel("start"));

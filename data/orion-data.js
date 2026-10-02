@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-10-01",
-    revision: "0.18.0"
+    revision: "0.19.0"
   },
 
   project: {
@@ -27,6 +27,12 @@ window.ORION_DATA = {
       "Production stops when the selected source resource is depleted.",
       "Lithium is spent on anomaly scans and reward claims.",
       "Observed PTS 100% workload conversion ratios: Metal 3:1, Crystal 2:1, Deuterium 1:1, and Lifeform Food 100:1."
+    ],
+    conversionRatios: [
+      { resource: "Metal", inputPerLithium: 3 },
+      { resource: "Crystal", inputPerLithium: 2 },
+      { resource: "Deuterium", inputPerLithium: 1 },
+      { resource: "Lifeform Food", inputPerLithium: 100 }
     ],
     converterUi: ["Selectable source resource", "Adjustable workload", "Cost and Lithium rates per hour", "Endless conversion mode", "Per-planet conversion overview"]
   },
@@ -63,14 +69,16 @@ window.ORION_DATA = {
         observedCosts: [
           { from: 2, to: 3, metal: 3000000, crystal: 1500000, deuterium: 750000 },
           { from: 3, to: 4, metal: 45000000, crystal: 22500000, deuterium: 11250000 },
-          { from: 4, to: 5, metal: 160000000, crystal: 80000000, deuterium: 40000000 }
+          { from: 4, to: 5, metal: 160000000, crystal: 80000000, deuterium: 40000000 },
+          { from: 5, to: 6, metal: 2500000000, crystal: 1250000000, deuterium: 625000000 }
         ]
       },
       maxResults: {
         name: "Max Results",
         defaultValue: 3,
         observedCosts: [
-          { from: 3, to: 4, metal: 300000000, crystal: 150000000, deuterium: 75000000 }
+          { from: 3, to: 4, metal: 300000000, crystal: 150000000, deuterium: 75000000 },
+          { from: 4, to: 5, metal: 4500000000, crystal: 2250000000, deuterium: 1125000000 }
         ]
       }
     },
@@ -233,19 +241,20 @@ window.ORION_DATA = {
           name: "Catalytic Converter",
           lore: "Catalysts are indispensable in the synthesis of many important resources. In this vein, the Catalytic Converter provides improved conditions for converting Lithium into a variety of other materials. Each upgrade level not only increases the amount of catalyst available, but also improves the conversion efficiency through measures such as more precisely calibrated internal reactor pressure, better coating materials and more.",
           unlockMissionLevel: 350,
-          effect: "Reduces the cost to convert Lithium into other resources with each level.",
+          effect: "Reduces the resource input needed for Lithium conversion as levels increase, while Lithium output stays the same at the selected workload.",
           bonusResource: "Lithium conversion",
-          bonusLabel: "Displayed conversion-cost reduction",
+          bonusLabel: "Resource transformation cost reduction",
           bonusPerLevelPercent: 0.05,
-          bonusContext: "Techinfo progression; exact application to the conversion formula still needs a before/after test",
-          bonusStatus: "Techinfo directly shows +0.05 percentage points per level through level 15.",
+          bonusContext: "Techinfo shows +0.05 percentage points per level through level 15. Direct PTS tests showed that increasing the empire bonus lowers Metal, Crystal, Deuterium, and Food input costs while hourly Lithium output stays constant at the same workload. Other workload conditions remain untested.",
+          bonusStatus: "PTS test: increasing the empire bonus lowered input costs for Metal, Crystal, Deuterium, and Food at the same workload while hourly Lithium output stayed constant.",
+          empireStackingStatus: "The displayed total matched the sum of local planet percentages.",
           maxObservedTechinfoLevel: 15,
           maxCalculatorLevel: 100,
           baseCost: { metal: 127500, crystal: 112500, deuterium: 52500 },
           baseCostStatus: "Working base inferred from abbreviated PTS UI values; not an exact game-data constant.",
           costMultiplier: 1.5,
           costObservedLevels: [1, 4],
-          costModelStatus: "Working ×1.5 estimate fits the displayed L0→1 and L3→4 checkpoints; full-precision costs and exact conversion semantics remain unknown.",
+          costModelStatus: "Working ×1.5 estimate fits the displayed L0→1 and L3→4 checkpoints; full-precision costs remain unknown.",
           observedDisplayedCosts: [
             { level: 1, metal: "127K", crystal: "112K", deuterium: "52K" },
             { level: 4, metal: "430K", crystal: "379K", deuterium: "177K" }
@@ -262,7 +271,7 @@ window.ORION_DATA = {
       { icon: "☠", name: "Pirate fleets", detail: "Engage hostile pirate forces." },
       { icon: "⌁", name: "Fortified targets", detail: "Fight hostile defenses and heavy targets." },
       { icon: "◎", name: "Death Stars", detail: "Some combat missions explicitly feature Death Stars." },
-      { icon: "⇄", name: "Delivery", detail: "Observed templates include Delivery: Metal and Valuable Delivery, with one to three waves." },
+      { icon: "⇄", name: "Delivery", detail: "A four-wave PvE Delivery: Metal sample showed the mission-wide reward split evenly across its wave claims; whether other missions split evenly is unknown." },
       { icon: "⚔", name: "PvE / PvP", detail: "Mission variants may invite direct player interference." },
       { icon: "⌬", name: "ACS co-op", detail: "Alliance members can contribute fleet value to supported missions." },
       { icon: "✚", name: "Lifeform Rescue", detail: "Observed PvP rescue mission can award Lifeform XP plus an additional unidentified reward type." },
@@ -275,6 +284,8 @@ window.ORION_DATA = {
       "PvP variants award 2× rewards when completed successfully.",
       "On ACS missions, rewards are divided by each participant’s contributed fleet resource value.",
       "ACS participation is unavailable for missions that do not support ACS or in universes with ACS disabled.",
+      "A free fleet slot is required to start or join ACS; all fleet slots occupied prevents ACS participation.",
+      "Alliance Depot levels across all planets increase the ACS group member cap by one per 20 levels, up to five increases.",
       "Higher anomaly levels improve potential rewards but also increase combat difficulty plus scan and claim costs.",
       "When available Lithium cannot cover a full reward, the reward can only be claimed partially.",
       "Claimed rewards are delivered to the discovery planet by a friendly NPC transport visible on phalanx.",
@@ -284,10 +295,28 @@ window.ORION_DATA = {
 
   observations: [
     {
+      label: "ACS FLEET SLOTS",
+      title: "Starting or joining ACS",
+      metrics: ["Keep at least one fleet slot free to participate in ACS"],
+      note: "User-reported PTS behavior: ACS cannot be started or joined when all fleet slots are occupied."
+    },
+    {
+      label: "ALLIANCE DEPOT CAP",
+      title: "ACS group member limit",
+      metrics: ["+1 group member per 20 Alliance Depot levels across all planets", "Maximum increase: +5", "Observed displayed level: 13"],
+      note: "The in-game tooltip states the progression and maximum. One screenshot showed current level 13; it does not establish the current cap at that level or the cap's baseline."
+    },
+    {
+      label: "FOUR-WAVE DELIVERY REWARDS",
+      title: "Delivery: Metal",
+      metrics: ["PvE · 4 waves", "Mission reward total: 59,634,076 Metal", "Each wave: 14,908,519 Metal", "Total claim cost: 14,073,696 Lithium", "Per-wave claim cost: 3,518,424 Lithium"],
+      note: "The collect dialog listed the full mission reward and cost as the sum of four equal wave claims. This confirms an even split for this mission sample only; reward distribution on other templates remains unknown. Player and planet identifiers are omitted."
+    },
+    {
       label: "CONTROL CENTER COMPLETION",
       title: "Level-250 / 300 / 350 unlocks",
       metrics: ["L250 Anomaly Analysis Center · +0.2% Dark Matter per level", "L300 High-Pressure Deuterium Tanks · +0.2% Deuterium per level", "L350 Catalytic Converter · 0.05% conversion-cost reduction per level"],
-      note: "The retained Deuterium Tanks and Catalytic Converter Techinfo screenshots show their level progressions through level 15. Catalytic Converter is not a mission-reward building: it changes Lithium conversion cost. Anomaly Analysis Center base costs are user-provided; its higher-level cost curve is calculated with the shared Control Center model and is not independently verified."
+      note: "The retained Deuterium Tanks and Catalytic Converter Techinfo screenshots show their level progressions through level 15. Direct PTS tests showed that increasing the Catalytic Converter empire bonus lowers hourly input costs for Metal, Crystal, Deuterium, and Food while Lithium output stays constant at the same workload. The displayed empire total matched the sum of local planet percentages. How the effect scales at other workloads remains unknown. Anomaly Analysis Center base costs are user-provided; its higher-level cost curve is calculated with the shared Control Center model and is not independently verified."
     },
     {
       label: "HIGH-IAS SCAN",
@@ -310,7 +339,7 @@ window.ORION_DATA = {
     {
       label: "SCANNER CAPACITY UPGRADES",
       title: "Discovery Limit and Max Results",
-      metrics: ["Discovery Limit default: 2", "2→3: 3M / 1.5M / 750K", "3→4: 45M / 22.5M / 11.25M", "4→5: 160M / 80M / 40M", "Max Results default: 3", "3→4: 300M / 150M / 75M"],
+      metrics: ["Discovery Limit default: 2", "2→3: 3M / 1.5M / 750K", "3→4: 45M / 22.5M / 11.25M", "4→5: 160M / 80M / 40M", "5→6: 2.5B / 1.25B / 625M", "Max Results default: 3", "3→4: 300M / 150M / 75M", "4→5: 4.5B / 2.25B / 1.125B"],
       note: "The two tracks are independent. Discovery Limit controls simultaneous anomaly investigations; Max Results controls how many missions a single scan can discover. Costs are stored as discrete observed upgrades; no extrapolated formula is assumed."
     },
     {
@@ -415,7 +444,7 @@ window.ORION_DATA = {
     "Which mechanics use the combined account-wide scanner level versus the local planet level",
     "IAS construction-time formula and whether the displayed one-second time is the global minimum",
     "Full-precision base costs and high-level cost curves for the newly observed Control Center buildings",
-    "Exactly how the Catalytic Converter's displayed percentage is applied to Lithium conversion costs"
+    "How Catalytic Converter cost reductions scale at different bonus totals and workloads"
   ],
 
   researchTasks: [
@@ -429,10 +458,20 @@ window.ORION_DATA = {
     { question: "Which mechanics use combined IAS and which use local IAS?", help: "Compare the same action from two planets with different local IAS levels while the account-wide total remains unchanged." },
     { question: "What is the IAS construction-time formula?", help: "Report Robotics Factory, Nanite Factory, universe construction speed, current IAS level, next level, and the displayed build time." },
     { question: "What are the exact Control Center construction costs?", help: "Use full-number displays when possible. Capture level 0→1 plus a later level for each building; verify Anomaly Analysis Center higher-level costs against its user-provided base and shared curve." },
-    { question: "How is the Catalytic Converter bonus applied?", help: "Compare the exact Lithium cost of converting the same resource amount before and after one Catalytic Converter level, with every other setting unchanged." }
+    { question: "How do Catalytic Converter cost reductions scale at different workloads?", help: "Compare hourly input costs and Lithium output at different workloads, keeping the resource and other settings unchanged." }
   ],
 
   changelog: [
+    {
+      date: "2026-10-01",
+      version: "0.19.0",
+      notes: "Added single-planet IAS sustainment estimates with combined Catalytic Converter levels, all four conversion ratios to the overview, scanner-capacity upgrade checkpoints, a four-wave Delivery: Metal reward split, and ACS guidance for fleet slots and Alliance Depot group capacity."
+    },
+    {
+      date: "2026-10-01",
+      version: "0.18.1",
+      notes: "Added generalized Catalytic Converter input/output evidence to the Control Center progression and fixed clipped Empire Bonus calculator labels."
+    },
     {
       date: "2026-10-01",
       version: "0.18.0",
