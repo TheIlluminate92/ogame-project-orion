@@ -21,6 +21,10 @@ const required = [
   "assets/app.js",
   "assets/calculators.js",
   "data/orion-data.js",
+  "data/mission-roi-samples.json",
+  "docs/MISSION_ROI.md",
+  "scripts/mission-roi.mjs",
+  "downloads/orion-mission-research.xlsx",
   "downloads/Project_Orion_Alliance_Briefing.pdf"
 ];
 

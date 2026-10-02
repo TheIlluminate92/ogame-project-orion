@@ -6,10 +6,10 @@ Use this file when continuing the Project Orion guide from a blank chat.
 
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
-- Current revision: **0.19.0**
+- Current revision: **0.19.2**
 - Branch: `main`
-- Deployment: revision 0.15.1 was the last verified GitHub Pages release; local 0.19.0 changes are not yet pushed or deployed
-- Working tree at handoff: local 0.19.0 IAS sustainment calculator, conversion ratios, capacity upgrade checkpoints, Delivery: Metal wave evidence, Catalytic Converter evidence, and calculator label-layout fix are uncommitted; preserve the unrelated local `ERIS_STATE.md`
+- Deployment: revision 0.19.0 was verified live on GitHub Pages; revisions 0.19.1–0.19.2 are locally prepared and await the user's push
+- Working tree at handoff: local mission database, workbook, general guidance, and prior 0.19.1 edits are uncommitted; preserve the unrelated local `ERIS_STATE.md`
 
 Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/orion-data.js` is the factual source of truth.
 
@@ -35,10 +35,10 @@ Then follow these limits:
 - `scanner.html` — IAS mechanics, formulas, lore, milestone unlocks, Control Center artwork/lore/bonuses, and observed capacity-upgrade costs
 - `missions.html` — mission quick-start, public-objective guidance, ACS help, profiles, and operational rules
 - `calculators.html` — IAS Lithium sustainment estimates using combined Catalytic Converter levels, current-to-target building calculators, empire-wide planners, and a start-aware build queue
-- `research.html` — unresolved questions, suggested tests, and the future mission-database roadmap
+- `research.html` — unresolved questions, suggested tests, and link to the working mission workbook
 - `about.html` — evidence policy, official v13.1.0 release context, sources, and a compact changelog
 
-Raw PTS observation records and the incomplete reward-scaling concept remain in `data/orion-data.js`, but are intentionally absent from public navigation until a proper mission/reward database is designed.
+Raw PTS observation records and the incomplete reward-scaling concept remain in `data/orion-data.js`. The working comparison database lives in `data/mission-roi-samples.json`; its Excel workbook is published at `downloads/orion-mission-research.xlsx`. General lessons appear on Missions with provisional wording.
 
 ## Highest-priority evidence gaps
 
@@ -48,6 +48,7 @@ Raw PTS observation records and the incomplete reward-scaling concept remain in 
 4. Expand the mission catalog toward a structured mission/reward database.
 5. Collect comparable data for deciding which resource is best to convert into Lithium.
 6. If needed, test how Catalytic Converter reductions scale at different bonus totals and workloads.
+7. Add the next mission cards to `data/mission-roi-samples.json`, keeping scan range separate from mission-card Distance and marking rounded costs and possible rewards. Rebuild and replace `downloads/orion-mission-research.xlsx` in the same update.
 
 ## Guardrails
 
@@ -60,6 +61,7 @@ Raw PTS observation records and the incomplete reward-scaling concept remain in 
 - ACS tooltip: Alliance Depot levels across all planets add one to the group member cap per 20 levels, up to +5; screenshot showed level 13, with baseline/resulting cap not established.
 - User-reported ACS constraint: a free fleet slot is needed to start or join; full fleet slots prevent ACS participation.
 - Capacity upgrade checkpoints now include Discovery Limit 5→6 and Max Results 4→5; costs are discrete observations, not an inferred formula.
+- Mission resource comparisons use 3:2:1 MSU (Metal + 1.5×Crystal + 3×Deuterium) and a comparison benchmark of 3 MSU per Lithium. Lithium rewards are valued at that same rate. After population growth, surplus Food may have little other use for this account, making Lithium converted from it much cheaper in marginal resource terms; initial investment and conversion throughput still matter. Completed PTS missions have paid the displayed possible resource rewards so far. PvP missions can be attacked by other players. The comparison excludes scan costs, fleet losses, non-resource rewards, time, and Catalytic Converter reductions. Scan range is distinct from each card's Distance. The published workbook is `downloads/orion-mission-research.xlsx`.
 - Control Center empire bonuses are modeled additively per the user's correction. The calculator covers all seven bonus buildings and leaves the earlier IRC 2.19% sample discrepancy unresolved.
 - Anomaly Analysis Center base costs are user-provided (67,500 / 37,500 / 22,500); higher-level shared-model outputs have not been independently verified.
 - Do not publish raw screenshots containing account identity, coordinates, planets, or resource balances.

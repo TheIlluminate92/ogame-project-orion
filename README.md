@@ -40,16 +40,19 @@ GitHub Pages publishes directly from the root of the `main` branch. This keeps r
 - `scanner.html` — IAS mechanics, milestone unlocks, and Control Center bonuses
 - `missions.html` — mission quick-start, public-objective guidance, ACS help, profiles, and operating rules
 - `calculators.html` — button-based empire-wide and local building calculators, streamlined network planning, and a start-aware planet queue
-- `research.html` — open questions, practical tests, and the future mission-database roadmap
+- `research.html` — open questions, practical tests, and links to the working mission workbook
 - `about.html` — evidence policy, official release context, sources, and compact changelog
 - `docs/NEXT_SESSION.md` — current blank-chat handoff
 - `assets/styles.css` — visual system and responsive layout
 - `assets/app.js` — homepage data renderer
 - `assets/calculators.js` — IAS, Control Center, and multi-building queue calculator logic
 - `data/orion-data.js` — frequently updated PTS facts
-- `downloads/` — alliance-ready PDF briefing
+- `data/mission-roi-samples.json` — raw mission resource samples with stars, scan range, mission distance, and cost precision
+- `scripts/mission-roi.mjs` — prints the resource-only 3:2:1 MSU comparison table
+- `docs/MISSION_ROI.md` — intake fields, calculation method, and limitations for future samples
+- `downloads/` — alliance-ready PDF briefing and the published mission research workbook
 - `scripts/validate.mjs` — formula and file checks
 
 ## Status
 
-Current working revision: **0.19.0**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.
+Current working revision: **0.19.2**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.

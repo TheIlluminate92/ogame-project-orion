@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-10-01",
-    revision: "0.19.0"
+    revision: "0.19.2"
   },
 
   project: {
@@ -462,6 +462,16 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-10-01",
+      version: "0.19.2",
+      notes: "Published general mission reward comparison guidance and the downloadable Excel sample workbook; clarified that observed reward, mission-type, PvP, and reward-factor patterns are provisional."
+    },
+    {
+      date: "2026-10-01",
+      version: "0.19.1",
+      notes: "Started a structured mission resource comparison database with 24 ten-system, 20 fifty-system, and 20 150-system scan cards, star levels, mission distances, and 3:2:1 MSU calculations; retained an earlier collected Delivery sample separately."
+    },
     {
       date: "2026-10-01",
       version: "0.19.0",

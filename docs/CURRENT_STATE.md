@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-01
 
-Working revision: **0.19.0**
+Working revision: **0.19.2**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -11,9 +11,9 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
 - Publishing source: `main` branch, repository root
-- Latest verified deployment: revision 0.15.1 on 2026-10-01
+- Latest verified deployment: revision 0.19.0 on 2026-10-01
 
-Revision 0.15.1 is published on GitHub Pages. Revisioned data and script URLs prevent an older cached data file from overriding the newly deployed HTML.
+Revision 0.19.0 is the last verified GitHub Pages release. Revision 0.19.2 is prepared locally and awaits the user's push. Revisioned data and script URLs prevent an older cached data file from overriding newly deployed HTML.
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
@@ -21,12 +21,13 @@ Future revisions should be treated as published only after the Pages build and t
 
 - The homepage is a concise Orion overview with Lithium basics and a practical first goal of combined IAS 350.
 - `scanner.html` contains IAS mechanics, formulas, milestone progression, Control Center bonuses, and observed scanner-capacity upgrade costs; base construction costs are omitted from this page.
-- `missions.html` contains a practical mission quick-start, public-objective guidance, PvE/PvP/ACS help, useful mission profiles, and operating rules without publishing the raw observation dump as a standalone section.
+- `missions.html` contains a practical mission quick-start, public-objective guidance, PvE/PvP/ACS help, useful mission profiles, operating rules, and general reward-comparison lessons with provisional wording.
 - `calculators.html` is a unified selectable calculator deck with local IAS Lithium sustainment estimates, combined Catalytic Converter levels, current-to-target building ranges, streamlined cross-planet totals, additive empire bonus targets, and starting levels in the build queue.
 - Calculator navigation uses a top row for IAS Network, Empire Bonus, and Planet Queue, plus a lower row of concise local building buttons.
-- `research.html` turns each major unknown into a suggested test or screenshot request and defines a staged path toward a searchable mission database.
+- `research.html` turns each major unknown into a suggested test or screenshot request and links to the working downloadable mission workbook.
 - `about.html` contains the evidence policy, official v13.1.0 release context, sources, and a compact changelog that keeps the latest five releases visible.
-- The incomplete reward-scaling concept and raw PTS observation section remain preserved in `data/orion-data.js` but are not in public navigation pending a proper mission/reward database.
+- The incomplete reward-scaling concept and raw PTS observation section remain preserved in `data/orion-data.js` and are not reproduced as account-specific public page text.
+- `data/mission-roi-samples.json` holds 24 scan cards at a 10-system range, 20 at a 50-system range, and 20 at a 150-system range, plus one collected reward sample with unknown scan range. `downloads/orion-mission-research.xlsx` is the published, filterable workbook generated from this source. The data tracks stars and each card's separate mission distance; `scripts/mission-roi.mjs` calculates resource-only 3:2:1 MSU values, valuing Lithium rewards at the observed 3:1 Metal-to-Lithium rate. User-observed completed missions have paid the displayed possible resource rewards so far; PvP missions can be attacked by other players. Public page lessons remain general and provisional.
 - Supplied in-game lore is published for the Interstellar Anomaly Scanner and all seven Control Center buildings.
 - The local scanner and Control Center calculators support current-to-target level ranges through level 100.
 - The cross-planet planner supports combined IAS targets 1–1,000 and 1–50 available planets.

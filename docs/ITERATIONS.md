@@ -4,6 +4,7 @@ This file tracks structural releases and provides continuity when development mo
 
 | Revision | Date | Major change |
 |---|---|---|
+| 0.19.2 | 2026-10-01 | Added general mission reward comparison notes, published the structured sample workbook, and marked reward/ROI patterns as provisional. |
 | 0.19.0 | 2026-10-01 | Added local IAS sustainment estimates using combined Catalytic Converter levels, surfaced all four observed conversion ratios, recorded scanner-capacity checkpoints and ACS fleet/Alliance Depot limits, and documented the four-wave Delivery: Metal reward/cost split. |
 | 0.18.0 | 2026-10-01 | Added user-provided AAC base costs and enabled the shared Control Center cost model in its calculator and queue; higher levels remain unverified. |
 | 0.17.0 | 2026-10-01 | Replaced the calculator dropdown with concise two-row buttons for empire-wide planning/queue and local buildings. |
@@ -52,10 +53,10 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 ## Current continuation point
 
-- Working revision: 0.19.0
-- The 0.19.0 feature and evidence batch is not yet validated, committed, pushed, or deployed; desktop and 390px mobile browser checks were completed for the 0.17.0 navigation change
-- Deployment: revision 0.15.1 is the last verified GitHub Pages release
-- Next action: validate the current batch; verify higher-level Anomaly Analysis Center costs against its user-provided base values and shared ×1.5 curve; reconcile the prior IRC 2.19% display with the user-reported additive model; and collect full-precision cost checkpoints for other Control Center buildings.
+- Working revision: 0.19.2
+- The mission resource database and MSU comparison are included with the 0.19.2 public guidance and workbook link; this combined batch is local and awaits the user's push.
+- Deployment: revision 0.19.0 is the last verified GitHub Pages release
+- Next action: add future mission-card samples to the database, keeping scan range, mission distance, stars, reward precision, and claim-cost precision separate; refresh the published workbook in the same batch.
 - Highest cost-formula validation: IAS 35
 - Highest calculator level: IAS 100
 - Highest combined planner target: IAS 1,000

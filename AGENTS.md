@@ -30,6 +30,7 @@ Use this mode by default so routine Project Orion maintenance does not consume a
 - Preserve missing data as unknown. Never interpolate missing mission waves, fleet compositions, timers, or reward values without labeling the result as an estimate.
 - PTS mechanics can change. Update `meta.updated`, increment `meta.revision`, and add a changelog entry whenever facts or behavior change.
 - Do not publish raw screenshots that expose the user's account interface, coordinates, planet names, resources, or other personal game state. Extract only the relevant mechanic or value.
+- In `data/mission-roi-samples.json`, keep the scan range in systems separate from the mission card's Distance. Preserve stars, PvE/PvP mode, possible versus collected reward status, and whether costs are rounded. Calculate 3:2:1 MSU comparisons with `scripts/mission-roi.mjs`; do not store calculated comparisons as observations.
 
 ## Revision rules
 
@@ -47,15 +48,18 @@ When changing a revision, update `data/orion-data.js`, its changelog, the visibl
 - `scanner.html` contains IAS mechanics, formulas, milestones, Control Center costs/bonuses, and scanner-capacity observations.
 - `missions.html` contains the mission quick-start, public-objective guidance, PvE/PvP/ACS help, public mission profiles, and operating rules.
 - `calculators.html` contains current-to-target IAS and Control Center ranges, streamlined network planning, and a start-aware build queue.
-- `research.html` turns open questions into actionable evidence requests and preserves the future mission-database roadmap.
+- `research.html` turns open questions into actionable evidence requests and links to the working mission workbook.
 - `about.html` contains the evidence policy, official release context, sources, and compact changelog.
 - `data/orion-data.js` contains facts, observations, sources, unknowns, and changelog entries.
+- `data/mission-roi-samples.json` holds structured mission observations for later comparisons; `docs/MISSION_ROI.md` describes the intake method.
+- `scripts/mission-roi.mjs` derives resource-only 3:2:1 MSU comparisons from those observations.
+- `downloads/orion-mission-research.xlsx` is the public workbook; refresh it when mission records change.
 - `assets/app.js` renders the homepage data.
 - `assets/calculators.js` performs exact single-planet and cross-planet calculations.
 - `assets/styles.css` is shared by both pages.
 - `scripts/validate.mjs` verifies required files, known formulas, level-60 totals, large-integer calculations, and balanced planet distributions.
 
-Keep calculation controls off the homepage. Keep raw observation dumps and speculative reward modeling out of public navigation until a proper mission/reward database exists. Every page should remain easy to scan on a phone.
+Keep calculation controls off the homepage. Keep raw observation dumps out of public page text; structured mission records and the workbook may be published as downloadable files. Keep general guidance provisional and free of account-specific samples. Every page should remain easy to scan on a phone.
 
 ## Confirmed calculation model
 
@@ -79,6 +83,7 @@ Keep calculation controls off the homepage. Keep raw observation dumps and specu
    node --check assets/calculators.js
    node --check data/orion-data.js
    node scripts/validate.mjs
+   node scripts/mission-roi.mjs
    git diff --check
    ```
 
