@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-01
 
-Working revision: **0.19.2**
+Working revision: **0.19.3**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -11,9 +11,9 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
 - Publishing source: `main` branch, repository root
-- Latest verified deployment: revision 0.19.0 on 2026-10-01
+- Latest verified deployment: revision 0.19.2 on 2026-10-01
 
-Revision 0.19.0 is the last verified GitHub Pages release. Revision 0.19.2 is prepared locally and awaits the user's push. Revisioned data and script URLs prevent an older cached data file from overriding newly deployed HTML.
+Revision 0.19.2 is published on GitHub and verified on GitHub Pages. Revision 0.19.3 corrects the static About-page guide-version label and is prepared locally pending the user's push. Revisioned data and script URLs prevent an older cached data file from overriding newly deployed HTML.
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 

@@ -4,7 +4,7 @@ window.ORION_DATA = {
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
     updated: "2026-10-01",
-    revision: "0.19.2"
+    revision: "0.19.3"
   },
 
   project: {
@@ -462,6 +462,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-10-01",
+      version: "0.19.3",
+      notes: "Updated the static guide-version label and synchronized deployment records after verifying revision 0.19.2 on GitHub and Pages."
+    },
     {
       date: "2026-10-01",
       version: "0.19.2",
