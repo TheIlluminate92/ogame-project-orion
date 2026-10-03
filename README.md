@@ -49,10 +49,11 @@ GitHub Pages publishes directly from the root of the `main` branch. This keeps r
 - `data/orion-data.js` — frequently updated PTS facts
 - `data/mission-roi-samples.json` — raw mission resource samples with stars, scan range, mission distance, and cost precision
 - `scripts/mission-roi.mjs` — prints the resource-only 3:2:1 MSU comparison table
+- `scripts/build-mission-workbook.mjs` — rebuilds the downloadable Excel file from the JSON source
 - `docs/MISSION_ROI.md` — intake fields, calculation method, and limitations for future samples
 - `downloads/` — alliance-ready PDF briefing and the published mission research workbook
 - `scripts/validate.mjs` — formula and file checks
 
 ## Status
 
-Current working revision: **0.19.4**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.
+Current working revision: **0.19.5**. Everything here is provisional while Project Orion remains on PTS. This is a community briefing and is not affiliated with Gameforge.

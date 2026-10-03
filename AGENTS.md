@@ -53,6 +53,7 @@ When changing a revision, update `data/orion-data.js`, its changelog, the visibl
 - `data/orion-data.js` contains facts, observations, sources, unknowns, and changelog entries.
 - `data/mission-roi-samples.json` holds structured mission observations for later comparisons; `docs/MISSION_ROI.md` describes the intake method.
 - `scripts/mission-roi.mjs` derives resource-only 3:2:1 MSU comparisons from those observations.
+- `scripts/build-mission-workbook.mjs` rebuilds the public Excel workbook from the JSON source, leaving obscured claim costs blank and preserving their visible notes.
 - `downloads/orion-mission-research.xlsx` is the public workbook; refresh it when mission records change.
 - `assets/app.js` renders the homepage data.
 - `assets/calculators.js` performs exact single-planet and cross-planet calculations.
@@ -84,6 +85,7 @@ Keep calculation controls off the homepage. Keep raw observation dumps out of pu
    node --check data/orion-data.js
    node scripts/validate.mjs
    node scripts/mission-roi.mjs
+   node scripts/build-mission-workbook.mjs
    git diff --check
    ```
 

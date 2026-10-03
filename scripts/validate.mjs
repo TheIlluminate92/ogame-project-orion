@@ -24,6 +24,7 @@ const required = [
   "data/mission-roi-samples.json",
   "docs/MISSION_ROI.md",
   "scripts/mission-roi.mjs",
+  "scripts/build-mission-workbook.mjs",
   "downloads/orion-mission-research.xlsx",
   "downloads/Project_Orion_Alliance_Briefing.pdf"
 ];

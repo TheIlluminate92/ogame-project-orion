@@ -3,8 +3,8 @@ window.ORION_DATA = {
     title: "Project Orion",
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
-    updated: "2026-10-02",
-    revision: "0.19.4"
+    updated: "2026-10-03",
+    revision: "0.19.5"
   },
 
   project: {
@@ -462,6 +462,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-10-03",
+      version: "0.19.5",
+      notes: "Added 19 mission cards from 150-system scans and refreshed the downloadable workbook. A partly obscured claim cost is retained as unknown rather than inferred."
+    },
     {
       date: "2026-10-02",
       version: "0.19.4",
