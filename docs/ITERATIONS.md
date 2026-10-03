@@ -4,6 +4,7 @@ This file tracks structural releases and provides continuity when development mo
 
 | Revision | Date | Major change |
 |---|---|---|
+| 0.19.4 | 2026-10-02 | Added 35 mission-card observations across three scan reaches and refreshed the published research workbook. |
 | 0.19.3 | 2026-10-01 | Corrected the static About-page guide version and recorded the verified 0.19.2 deployment. |
 | 0.19.2 | 2026-10-01 | Added general mission reward comparison notes, published the structured sample workbook, and marked reward/ROI patterns as provisional. |
 | 0.19.0 | 2026-10-01 | Added local IAS sustainment estimates using combined Catalytic Converter levels, surfaced all four observed conversion ratios, recorded scanner-capacity checkpoints and ACS fleet/Alliance Depot limits, and documented the four-wave Delivery: Metal reward/cost split. |
@@ -54,9 +55,9 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 ## Current continuation point
 
-- Working revision: 0.19.3
-- The 0.19.2 mission guidance and workbook are live; 0.19.3 corrects the About page's static version label and awaits the user's push.
-- Deployment: revision 0.19.2 is verified on GitHub and GitHub Pages; 0.19.3 is the local follow-up correction.
+- Working revision: 0.19.4
+- Revision 0.19.3 is live; 0.19.4 adds 35 new mission observations and a refreshed workbook, awaiting the user's push.
+- Deployment: revision 0.19.3 is verified on GitHub and GitHub Pages.
 - Next action: add future mission-card samples to the database, keeping scan range, mission distance, stars, reward precision, and claim-cost precision separate; refresh the published workbook in the same batch.
 - Highest cost-formula validation: IAS 35
 - Highest calculator level: IAS 100

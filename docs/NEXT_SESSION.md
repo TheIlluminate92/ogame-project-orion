@@ -6,10 +6,10 @@ Use this file when continuing the Project Orion guide from a blank chat.
 
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion
 - Live site: https://theilluminate92.github.io/ogame-project-orion/
-- Current revision: **0.19.3**
+- Current revision: **0.19.4**
 - Branch: `main`
-- Deployment: revision 0.19.2 is verified on GitHub Pages; revision 0.19.3 is a local follow-up correction awaiting the user's push
-- Working tree at handoff: revision 0.19.3 is locally prepared; preserve the unrelated local `ERIS_STATE.md`
+- Deployment: revision 0.19.3 is verified on GitHub Pages; revision 0.19.4 adds 35 mission samples and is locally prepared awaiting the user's push
+- Working tree at handoff: revision 0.19.4 mission data and workbook are locally prepared; preserve the unrelated local `ERIS_STATE.md`
 
 Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/orion-data.js` is the factual source of truth.
 

@@ -3,8 +3,8 @@ window.ORION_DATA = {
     title: "Project Orion",
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
-    updated: "2026-10-01",
-    revision: "0.19.3"
+    updated: "2026-10-02",
+    revision: "0.19.4"
   },
 
   project: {
@@ -462,6 +462,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-10-02",
+      version: "0.19.4",
+      notes: "Added 35 observed mission cards across 10-, 50-, and 150-system scan reaches and refreshed the downloadable Excel workbook; card Distance remains separate from scan reach."
+    },
     {
       date: "2026-10-01",
       version: "0.19.3",
