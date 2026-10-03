@@ -465,7 +465,7 @@ window.ORION_DATA = {
     {
       date: "2026-10-02",
       version: "0.19.4",
-      notes: "Added 35 observed mission cards across 10-, 50-, and 150-system scan reaches and refreshed the downloadable Excel workbook; card Distance remains separate from scan reach."
+      notes: "Merged 64 new observed mission cards from two scan batches across 10-, 50-, and 150-system scan reaches, then refreshed the downloadable Excel workbook; card Distance remains separate from scan reach."
     },
     {
       date: "2026-10-01",

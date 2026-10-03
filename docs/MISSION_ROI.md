@@ -2,7 +2,7 @@
 
 The working sample database is [`data/mission-roi-samples.json`](../data/mission-roi-samples.json). Each record keeps the displayed mission details, resource rewards, and Lithium claim cost. Planet names, coordinates, and account details are excluded. Ship and other non-resource rewards are recorded only as excluded, not valued.
 
-The dataset now has 36 scan cards at a **10-system range**, 32 at a **50-system range**, and 31 at a **150-system range**, plus one collected Delivery reward sample with unknown scan range. Each scan reach is stored separately from the **Distance** displayed on the mission card. The published Excel workbook is [`downloads/orion-mission-research.xlsx`](../downloads/orion-mission-research.xlsx); refresh it from the JSON source after adding new samples.
+The dataset now has 39 scan cards at a **10-system range**, 38 at a **50-system range**, and 51 at a **150-system range**, plus one collected Delivery reward sample with unknown scan range. Each scan reach is stored separately from the **Distance** displayed on the mission card. The published Excel workbook is [`downloads/orion-mission-research.xlsx`](../downloads/orion-mission-research.xlsx); refresh it from the JSON source after adding new samples.
 
 ## Shared method
 

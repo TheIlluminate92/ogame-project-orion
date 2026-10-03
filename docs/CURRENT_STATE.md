@@ -13,7 +13,7 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Publishing source: `main` branch, repository root
 - Latest verified deployment: revision 0.19.3 on 2026-10-02
 
-Revision 0.19.3 is published on GitHub and verified on GitHub Pages. Revision 0.19.4 adds new mission-card observations and refreshes the workbook; it is prepared locally pending the user's push. Revisioned data and script URLs prevent an older cached data file from overriding newly deployed HTML.
+Revision 0.19.3 is published on GitHub and verified on GitHub Pages. Revision 0.19.4 merges two new mission-card batches and refreshes the workbook; it is prepared locally pending the user's push. Revisioned data and script URLs prevent an older cached data file from overriding newly deployed HTML.
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
@@ -27,7 +27,7 @@ Future revisions should be treated as published only after the Pages build and t
 - `research.html` turns each major unknown into a suggested test or screenshot request and links to the working downloadable mission workbook.
 - `about.html` contains the evidence policy, official v13.1.0 release context, sources, and a compact changelog that keeps the latest five releases visible.
 - The incomplete reward-scaling concept and raw PTS observation section remain preserved in `data/orion-data.js` and are not reproduced as account-specific public page text.
-- `data/mission-roi-samples.json` holds 36 scan cards at a 10-system range, 32 at a 50-system range, and 31 at a 150-system range, plus one collected reward sample with unknown scan range. `downloads/orion-mission-research.xlsx` is the published, filterable workbook generated from this source. The data tracks stars and each card's separate mission distance; `scripts/mission-roi.mjs` calculates resource-only 3:2:1 MSU values, valuing Lithium rewards at the observed 3:1 Metal-to-Lithium rate. User-observed completed missions have paid the displayed possible resource rewards so far; PvP missions can be attacked by other players. Public page lessons remain general and provisional.
+- `data/mission-roi-samples.json` holds 39 scan cards at a 10-system range, 38 at a 50-system range, and 51 at a 150-system range, plus one collected reward sample with unknown scan range. `downloads/orion-mission-research.xlsx` is the published, filterable workbook generated from this source. The data tracks stars and each card's separate mission distance; `scripts/mission-roi.mjs` calculates resource-only 3:2:1 MSU values, valuing Lithium rewards at the observed 3:1 Metal-to-Lithium rate. User-observed completed missions have paid the displayed possible resource rewards so far; PvP missions can be attacked by other players. Public page lessons remain general and provisional.
 - Supplied in-game lore is published for the Interstellar Anomaly Scanner and all seven Control Center buildings.
 - The local scanner and Control Center calculators support current-to-target level ranges through level 100.
 - The cross-planet planner supports combined IAS targets 1–1,000 and 1–50 available planets.
