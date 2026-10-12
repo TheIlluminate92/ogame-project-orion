@@ -1,8 +1,8 @@
 # Current project state
 
-Last updated: 2026-10-03
+Last updated: 2026-10-11
 
-Working revision: **0.19.5**
+Working revision: **0.19.6**
 
 Target game version: **OGame PTS v13.1.0 / Project Orion**
 
@@ -13,7 +13,7 @@ Target game version: **OGame PTS v13.1.0 / Project Orion**
 - Publishing source: `main` branch, repository root
 - Latest verified deployment: revision 0.19.3 on 2026-10-02
 
-Revision 0.19.3 is the latest deployment verified on GitHub Pages. Revisions 0.19.4 and 0.19.5 are prepared locally pending the user's push. Revisioned data and script URLs prevent an older cached data file from overriding newly deployed HTML.
+Revision 0.19.3 is the latest deployment verified on GitHub Pages. Revisions 0.19.4 through 0.19.6 are prepared locally pending the user's push. Revisioned data and script URLs prevent an older cached data file from overriding newly deployed HTML.
 
 Future revisions should be treated as published only after the Pages build and the live revision have been checked.
 
@@ -42,8 +42,11 @@ Future revisions should be treated as published only after the Pages build and t
 
 ## Confirmed or repeatedly observed
 
+- Beta13 official update notes supplied by the user: IAS scaling is ×1.5; Lithium base production is 15.36; the NPC flight bonus applies only to the first wave; Collector and General receive economy-speed scaling for expedition rewards. No screenshot yet validates the new IAS or Lithium model outputs.
+- Beta13 fixes: partial participation no longer awards full rewards; partial Delivery claims use proportional Lithium cost; General bonus applies to Lithium rewards; Lithium production pauses in vacation mode; Lithium can be bought with Dark Matter (price not captured).
+
 - IAS levels stack across planets for account-wide anomaly progression.
-- Scanner construction-cost formula matches supplied PTS values through level 35.
+- The current IAS model uses official beta13 ×1.5 scaling; prior validation through level 35 is pre-rebalance and does not validate the new curve. Level-60 totals are projections.
 - Observed 100% workload conversion ratios: Metal 3:1, Crystal 2:1, Deuterium 1:1, Lifeform Food 100:1.
 - The local IAS calculator estimates hourly Metal, Crystal, Deuterium, and Food inputs for a selected Lithium output, using the combined Catalytic Converter level total; reductions beyond directly tested totals are projections.
 - Four-wave PvE Delivery: Metal sample: 59,634,076 Metal mission total divided into four equal 14,908,519 wave claims; total cost 14,073,696 Lithium divided into 3,518,424 per-wave claims. Even splitting is confirmed only for this mission sample.

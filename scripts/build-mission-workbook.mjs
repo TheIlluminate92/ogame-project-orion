@@ -93,7 +93,6 @@ overview.getRange("A5:I7").format.font = { name: "Arial", size: 10, color: dark 
 overview.getRange("B5:E7").format.numberFormat = "#,##0";
 overview.getRange("F5:G7").format.numberFormat = "0.00x";
 overview.getRange("H5:I7").format.numberFormat = "#,##0.0,,\"M\";[Red](#,##0.0,,\"M\")";
-overview.getRange("A5:I7").format.borders = { preset: "insideHorizontal", style: "thin", color: "#D9E2F3" };
 overview.getRange("A9:B13").values = [
   ["Current coverage", "Value"],
   ["Total records", null],

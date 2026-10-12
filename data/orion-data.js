@@ -3,8 +3,8 @@ window.ORION_DATA = {
     title: "Project Orion",
     subtitle: "Alliance field guide for OGame PTS v13.1.0",
     status: "PTS — subject to change",
-    updated: "2026-10-03",
-    revision: "0.19.5"
+    updated: "2026-10-11",
+    revision: "0.19.6"
   },
 
   project: {
@@ -26,6 +26,9 @@ window.ORION_DATA = {
       "Lithium cannot be traded or stolen.",
       "Production stops when the selected source resource is depleted.",
       "Lithium is spent on anomaly scans and reward claims.",
+      "Beta13 sets Lithium base production to 15.36; calculator examples use an economy-speed factor of 10 implied by the prior model and await fresh PTS verification.",
+      "Lithium production pauses during vacation mode (beta13 fix).",
+      "Lithium can be purchased with Dark Matter; exact price and purchase limits are unknown.",
       "Observed PTS 100% workload conversion ratios: Metal 3:1, Crystal 2:1, Deuterium 1:1, and Lifeform Food 100:1."
     ],
     conversionRatios: [
@@ -43,19 +46,19 @@ window.ORION_DATA = {
     lore: "Detecting anomalies has never been an easy task, as the evidence of their existence is extremely faint for scanners to detect from large distances, whilst searching from relative proximity is an inefficient and indeed risky proposition. The boffins working on the Interstellar Anomaly Scanner ensure that not only can more Lithium be harvested from anomalies, but that ever stronger anomalies can be detected.",
     fieldUse: "The scanner occupies one planet field; its Control Center sub-buildings use no additional fields.",
     stacking: "Interstellar Anomaly Scanner (IAS) levels stack across planets for account-wide anomaly progression.",
-    costValidatedThrough: 35,
-    productionFormula: "floor(200 × L × 1.1^L)",
-    costFormula: "floor(Base × 1.4^(L − 1))",
+    costValidatedThrough: 0,
+    productionFormula: "floor(15.36 x 10 x L x 1.1^L) (economy-speed factor 10 assumed)",
+    costFormula: "floor(Base x 1.5^(L - 1))",
     baseCost: { metal: 84, crystal: 42, deuterium: 14 },
     examples: [
-      { level: 1, lithium: 220 },
-      { level: 5, lithium: 1610 },
-      { level: 10, lithium: 5187 },
-      { level: 15, lithium: 12531 }
+      { level: 1, lithium: 168 },
+      { level: 5, lithium: 1236 },
+      { level: 10, lithium: 3983 },
+      { level: 15, lithium: 9624 }
     ],
     level60: {
-      final: { metal: 35142559683, crystal: 17571279841, deuterium: 5857093280 },
-      cumulative: { metal: 122998958649, crystal: 61499479308, deuterium: 20499826416 }
+      final: { metal: 2059034248148, crystal: 1029517124074, deuterium: 343172374691 },
+      cumulative: { metal: 6177102744246, crystal: 3088551372108, deuterium: 1029517124016 }
     },
     mechanics: {
       anomalyLevel: "The maximum selectable anomaly level depends on IAS levels across all planets. A discovered anomaly's actual level may differ by up to 20% from the indicated level.",
@@ -417,6 +420,8 @@ window.ORION_DATA = {
       "The Lithium claim cost is split across mission waves.",
       "Partial reward claims are possible.",
       "Completed-wave rewards are collected in order, wave by wave; the claim dialog lets the player choose how many completed waves to collect.",
+      "Beta13 fixes prevent full rewards when only partially participating and charge Delivery Lithium in proportion to the reward actually collected.",
+      "The General bonus now applies to Lithium rewards.",
       "Unclaimed rewards expire one hour after the final wave.",
       "Delivery uses a phalanx-visible system transport to the planet where the mission was accepted, even when accepted from a moon.",
       "Artifacts remain subject to the 3,600 storage cap."
@@ -438,8 +443,9 @@ window.ORION_DATA = {
     "Exact scan and claim cost formulas",
     "Cost progression beyond the observed Discovery Limit and Max Results upgrades",
     "Exact reward formulas, ranges, and caps",
+    "Dark Matter cost and purchase limits for Lithium",
     "General and Mecha modifier percentages",
-    "Whether economy speed, score, fleet value, or universe age affects rewards",
+    "Whether economy speed affects Orion anomaly rewards; beta13 extends economy-speed scaling to Collector and General expedition rewards, but its Orion interaction is unspecified.",
     "Enemy fleet and defense scaling rules",
     "Which mechanics use the combined account-wide scanner level versus the local planet level",
     "IAS construction-time formula and whether the displayed one-second time is the global minimum",
@@ -448,6 +454,8 @@ window.ORION_DATA = {
   ],
 
   researchTasks: [
+    { question: "Do post-beta13 IAS costs and Lithium output match the revised models?", help: "Capture a scanner next-level cost and Lithium/hour readout at a known local IAS level. Include universe economy speed, resource, workload, class, and Catalytic Converter bonus; hide coordinates and account details." },
+    { question: "What is the Dark Matter price and limit for buying Lithium?", help: "Capture the purchase screen with amount, Dark Matter price, available bundles or limits, and any server/class context. Do not include account balances." },
     { question: "Which source resource is best to convert into Lithium?", help: "Record your universe settings, class, IAS level, selected resource, workload, hourly input cost, and hourly Lithium output. Comparable samples will let us measure opportunity cost instead of guessing." },
     { question: "What is the complete mission-template list?", help: "Send a cropped mission card showing the template name, PvE/PvP tag, stars, mission level, waves, duration, and reward types. Hide coordinates and account details." },
     { question: "What are the exact scan and reward-claim formulas?", help: "Capture two or more scans or claims while changing only one variable: IAS level, mission level, range, stars, waves, or PvP status." },
@@ -462,6 +470,11 @@ window.ORION_DATA = {
   ],
 
   changelog: [
+    {
+      date: "2026-10-11",
+      version: "0.19.6",
+      notes: "Recorded beta13 rebalance and fixes: IAS scaling ×1.5; Lithium base 15.36; +10 IAS builds and Lithium/DM purchases; mission coordinate/simulator/report improvements; corrected partial claims, delivery costs, General Lithium bonus, vacation-mode production, fleet visibility, activity, duplicate ACS, and UI issues. NPC time bonus now affects wave one; Collector/General economy scaling applies to expedition rewards. Updated model projections await PTS verification."
+    },
     {
       date: "2026-10-03",
       version: "0.19.5",
@@ -685,6 +698,7 @@ window.ORION_DATA = {
   ],
 
   sources: [
+    { label: "Orion beta13 rebalance and fixes (official notes supplied by user)", url: "https://forum.origin.ogame.gameforge.com/forum/user-post-list/11-prongs/" },
     { label: "PTS v13.1.0 changelog — OGame Origin PTS", url: "https://forum.origin.ogame.gameforge.com/forum/thread/568-september-28-version-13-1-0/" },
     { label: "Orion FAQ — OGame Origin PTS", url: "https://forum.origin.ogame.gameforge.com/forum/thread/572-orion-faq/" },
     { label: "Project Orion announcement — OGame Origin PTS", url: "https://forum.origin.ogame.gameforge.com/forum/thread/571-pts-project-orion/" },

@@ -51,7 +51,7 @@ for (const [file, expected] of Object.entries(revisionReferences)) {
   }
 }
 
-const lithiumAt = (level) => Math.floor(200 * level * 1.1 ** level);
+const lithiumAt = (level) => Math.floor(15.36 * 10 * level * 1.1 ** level);
 const balancedLevels = (target, planets) => {
   const active = Math.min(target, planets);
   const base = Math.floor(target / active);
@@ -60,29 +60,29 @@ const balancedLevels = (target, planets) => {
 };
 const exactCumulativeAt = (level) => {
   const sum = { metal: 0n, crystal: 0n, deuterium: 0n };
-  let powerSeven = 1n;
-  let powerFive = 1n;
+  let powerThree = 1n;
+  let powerTwo = 1n;
   for (let current = 1; current <= level; current += 1) {
     if (current > 1) {
-      powerSeven *= 7n;
-      powerFive *= 5n;
+      powerThree *= 3n;
+      powerTwo *= 2n;
     }
-    sum.metal += BigInt(data.scanner.baseCost.metal) * powerSeven / powerFive;
-    sum.crystal += BigInt(data.scanner.baseCost.crystal) * powerSeven / powerFive;
-    sum.deuterium += BigInt(data.scanner.baseCost.deuterium) * powerSeven / powerFive;
+    sum.metal += BigInt(data.scanner.baseCost.metal) * powerThree / powerTwo;
+    sum.crystal += BigInt(data.scanner.baseCost.crystal) * powerThree / powerTwo;
+    sum.deuterium += BigInt(data.scanner.baseCost.deuterium) * powerThree / powerTwo;
   }
   return sum;
 };
 const exactCostAt = (level) => {
-  let powerSeven = 1n;
-  let powerFive = 1n;
+  let powerThree = 1n;
+  let powerTwo = 1n;
   for (let current = 1; current < level; current += 1) {
-    powerSeven *= 7n;
-    powerFive *= 5n;
+    powerThree *= 3n;
+    powerTwo *= 2n;
   }
   return Object.fromEntries(Object.entries(data.scanner.baseCost).map(([resource, base]) => [
     resource,
-    Number(BigInt(base) * powerSeven / powerFive)
+    Number(BigInt(base) * powerThree / powerTwo)
   ]));
 };
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);

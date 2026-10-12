@@ -4,6 +4,7 @@ This file tracks structural releases and provides continuity when development mo
 
 | Revision | Date | Major change |
 |---|---|---|
+| 0.19.6 | 2026-10-11 | Applied beta13 rebalance and fixes; recalculated IAS model and marked post-rebalance validation gaps. |
 | 0.19.5 | 2026-10-03 | Added 19 mission observations from 150-system scans and a repeatable workbook build; preserved a screenshot-obscured claim cost as unknown. |
 | 0.19.4 | 2026-10-02 | Merged 64 mission-card observations from two batches across three scan reaches and refreshed the published research workbook. |
 | 0.19.3 | 2026-10-01 | Corrected the static About-page guide version and recorded the verified 0.19.2 deployment. |
@@ -56,8 +57,8 @@ Then follow `AGENTS.md`, update `docs/CURRENT_STATE.md` if the mechanic or proje
 
 ## Current continuation point
 
-- Working revision: 0.19.5
-- Revision 0.19.3 is the latest verified live release; 0.19.4 and 0.19.5 include the reconciled mission database and refreshed workbook, awaiting the user's push.
+- Working revision: 0.19.6
+- Revision 0.19.3 is the latest verified live release; 0.19.4 through 0.19.6 include the reconciled mission database and refreshed workbook, awaiting the user's push.
 - Deployment: revision 0.19.3 is verified on GitHub and GitHub Pages.
 - Next action: add future mission-card samples to the database, keeping scan range, mission distance, stars, reward precision, and claim-cost precision separate; refresh the published workbook in the same batch.
 - Highest cost-formula validation: IAS 35

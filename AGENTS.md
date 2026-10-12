@@ -64,8 +64,8 @@ Keep calculation controls off the homepage. Keep raw observation dumps out of pu
 
 ## Confirmed calculation model
 
-- Lithium production: `floor(200 × L × 1.1^L)`.
-- Per-level construction cost: `floor(Base × 1.4^(L − 1))` with base costs Metal 84, Crystal 42, Deuterium 14.
+- Lithium production after beta13 uses floor(15.36 × 10 × L × 1.1^L); the ×10 economy-speed factor is inferred from the previous model and needs fresh PTS verification.
+- Per-level construction cost after beta13: `floor(Base × 1.5^(L − 1))` with base costs Metal 84, Crystal 42, Deuterium 14.
 - Each resource component is floored independently.
 - IAS levels stack across planets for account-wide anomaly progression.
 - The cross-planet planner balances levels as evenly as possible because the construction curve is exponential.

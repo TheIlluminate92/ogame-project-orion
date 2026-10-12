@@ -6,8 +6,8 @@
   const $$ = (selector) => Array.from(document.querySelectorAll(selector));
   const format = new Intl.NumberFormat("en-US");
   const exactCumulativeCosts = [{ metal: 0n, crystal: 0n, deuterium: 0n }];
-  let sevenPower = 1n;
-  let fivePower = 1n;
+  let threePower = 1n;
+  let twoPower = 1n;
 
   const controlBuildings = data.scanner.controlCenter.buildings;
   const recovery = controlBuildings.intergalacticRecoveryCenter;
@@ -21,14 +21,14 @@
     while (exactCumulativeCosts.length <= level) {
       const currentLevel = exactCumulativeCosts.length;
       if (currentLevel > 1) {
-        sevenPower *= 7n;
-        fivePower *= 5n;
+        threePower *= 3n;
+        twoPower *= 2n;
       }
       const previous = exactCumulativeCosts[currentLevel - 1];
       exactCumulativeCosts.push({
-        metal: previous.metal + BigInt(data.scanner.baseCost.metal) * sevenPower / fivePower,
-        crystal: previous.crystal + BigInt(data.scanner.baseCost.crystal) * sevenPower / fivePower,
-        deuterium: previous.deuterium + BigInt(data.scanner.baseCost.deuterium) * sevenPower / fivePower
+        metal: previous.metal + BigInt(data.scanner.baseCost.metal) * threePower / twoPower,
+        crystal: previous.crystal + BigInt(data.scanner.baseCost.crystal) * threePower / twoPower,
+        deuterium: previous.deuterium + BigInt(data.scanner.baseCost.deuterium) * threePower / twoPower
       });
     }
     return exactCumulativeCosts[level];
@@ -82,7 +82,7 @@
   const recoveryCumulativeCost = (level) => controlBuildingCumulativeCost(recovery, level);
 
   function lithiumAt(level) {
-    return Math.floor(200 * level * Math.pow(1.1, level));
+    return Math.floor(15.36 * 10 * level * Math.pow(1.1, level));
   }
 
   function updateConversionSustainment(lithiumPerHour) {
