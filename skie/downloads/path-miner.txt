@@ -1,0 +1,64 @@
+The miner path: reliable income, planned growth.
+Skie Field Manual · Conditional Skie strategy; compare current Collector, lifeform and universe bonuses before choosing
+
+You will learn:
+- Prioritize economic upgrades without ignoring energy, cargo or fleet safety.
+- Use a Rock’tal-oriented building plan as a candidate, not an automatic empire-wide switch.
+- Compare mine, crawler, energy and lifeform investments on the same net-income basis.
+
+Choose the routine before the bonuses
+
+This path fits an account whose income should keep arriving when the player cannot repeatedly launch expeditions or hunt targets. Collector is the natural class to compare for production and crawler support, but choose it against your current bonuses and real activity. A class switch has a cost and can alter logistics. A few excellent expedition days do not prove that a permanently active schedule will suit you.
+
+Passive income still needs collection
+Mines do not need relaunching, but storage fills, ships return and resources become targets. The miner routine is less click-intensive, not unattended.
+
+Stage 1: make every existing planet productive
+
+Use the economy guide’s incremental payback method. Resource weights must be consistent across cost and extra net production. If you value Deuterium differently because of trading or a fuel goal, state that assumption instead of hiding it inside the result.
+
+1. Audit each planet’s next mine level, available energy, storage window and collection route. Fix a production shortage before buying more capacity that cannot run.
+
+2. Compare the next useful mine upgrades across planets. Include supporting energy and the resource that limits your current account goal.
+
+3. Maintain cargo and flight fuel for regular collection. Leave enough capacity to protect your stock between visits.
+
+4. Expand a weak colony in manageable batches. Do not spend all available resources bringing every planet to the same arbitrary level if a smaller plan has better return.
+
+Stage 2: solve the power and crawler system together
+
+Crawlers connect production directly to power demand. Before filling the active crawler limit, check the next batch’s actual energy requirement and net mine gain. If you need additional fusion, include the reactor cost and operating Deuterium. If you need satellites, account for their vulnerability and your ability to rebuild power after a raid.
+
+Read the fusion table before deciding that more Solar Plant levels are always the cheapest option. Higher Energy Technology improves fusion output across the account. At a fixed energy demand it may allow lower reactor utilization and less fuel consumption. Research is an empire-wide purchase; compare its effect across every reactor that will benefit, not just the planet you happen to be viewing.
+
+After any crawler or energy change, compare final total production and net Deuterium with the old setup. The attractive number is the additional income you keep after supplying the power, not only the displayed percentage boost.
+
+Stage 3: develop a production lifeform plan
+
+Rock’tal is a candidate for its mining-focused buildings. Start with one planet, identify the next useful population slot and price the housing, food, tier infrastructure and technology together. Reaching a distant slot is not automatically better than improving an affordable technology you already have.
+
+Choose production, energy or cost-saving technologies for the job you need. The selected species determines local buildings; available Lifeform technologies are not restricted to that species after discovery. Use the Lifeforms guide to compare named options and keep Intergalactic Envoys active where needed for continued discovery.
+
+Spread early, economical research levels where they are affordable rather than chasing one very high local level without comparison. Compare the cost of unlocking another planet’s slot against the gain from a higher level on an established planet. A reset or species switch can interrupt the current setup, so plan it deliberately instead of converting every planet at once.
+
+Run one investment queue, not four competing ones
+
+Keep a short queue: one funded improvement, one next target and one optional alternative. Recheck after class changes, new colonies or an expiring bonus. Keep a reserve for transport, energy recovery and fleet safety. A miner with a fragile logistics chain can lose more in one neglected return than a carefully chosen upgrade earns in weeks.
+
+Illustrative priority decision
+A mine project costs 12 million planning units and adds 300,000 net per day: 40 days. A crawler-plus-power project costs 9 million and adds 300,000: 30 days. The crawler project wins this simple comparison, unless it consumes fuel or Crystal reserved for a more important near-term unlock. Include the same resource weights and supporting costs on both sides.
+
+Before moving on:
+- My storage and collection plan fit my actual offline interval.
+- Crawler comparisons include power and net Deuterium costs.
+- I evaluated Energy Technology across the reactors that benefit.
+- My next Lifeform purchase has a specific output benefit and full unlock cost.
+
+Sources:
+Lifeforms FAQ · building and research strategy context
+https://forum.origin.ogame.gameforge.com/forum/thread/153-lifeforms-faq/
+
+Buildings tutorial · foundational economy mechanics
+https://board.en.ogame.gameforge.com/index.php?thread/813417-tutorial-02-buildings/=
+
+Skie v1.0.0 · reviewed 2026-11-08

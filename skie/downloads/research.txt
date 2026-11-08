@@ -1,0 +1,69 @@
+Research toward a useful unlock.
+Skie Field Manual · Source review: 8 November 2026. Check live universe settings; historical Orion beta13 is excluded.
+
+You will learn:
+- Trace prerequisites backward from a goal.
+- Separate unlocks from incremental improvements.
+- Schedule research around the rest of the account.
+
+Start with a capability
+
+Pick one result you will actually use: a colony ship, additional fleet capacity, a particular ship, or a production improvement. Research levels are means to those results. A long technology list can tempt you to buy one of everything without ever completing a useful chain.
+
+Open the target’s technology tree and write down every unmet prerequisite. Include building levels as well as research levels. Then order them so each requirement becomes available before you need it. Keep this plan short enough to finish; a list of every late-game technology is not a near-term plan.
+
+Classify the benefit
+
+Core research applies across the account, unlike lifeform technology levels developed separately on each planet. A Research Lab enables technologies and influences research duration. The classic research system runs one normal research at a time; a queue is a schedule, not multiple simultaneous completions. Use the current interface to check duration and any restrictions around lab upgrades.
+
+Unused capacity earns nothing
+An extra slot helps only if you can fund and manage the additional mission. Research should match your real activity rather than an idealized day with unlimited time.
+
+Benefit | Question to ask | Evidence of success
+Unlock | What action becomes possible? | The ship, mission or building is available
+Capacity | Am I consistently reaching this limit? | The extra capacity is used
+Efficiency | What recurring cost or delay improves? | A measurable change in a normal session
+Prerequisite | What is the next step in the chain? | The intended follow-on research is ready
+
+Build a small research worksheet
+
+1. Write the target, its prerequisites and the resources needed for each missing step. Use current costs from your account.
+
+2. Estimate when the slowest resource will be ready. Account for planned spending elsewhere before promising a start time.
+
+3. Check the lab requirement and displayed duration on the planet where you will start. Compare a lab upgrade only if its total delay and cost are justified.
+
+4. Schedule any lab work before the long research begins, after checking the current queue restrictions.
+
+5. Reserve resources for using the unlock. A newly available ship is not helpful if no budget remains to build it or fuel it.
+
+Buy time deliberately
+
+An expensive lab investment may make sense when you have a sustained research program. It may be wasteful when one affordable unlock is the only immediate objective. Compare the completion date of the entire plan, including the time to fund and construct the lab, rather than only the shorter research timer.
+
+Later, Intergalactic Research Network can combine eligible laboratories; do not assume every lab you own contributes automatically. Read its current description and the technology’s lab requirement before distributing upgrades. The right question is which additional lab actually shortens the research you intend to run.
+
+Illustrative schedule comparison
+A technology takes 20 hours now. Preparing a better lab takes 8 hours and reduces that research to 14 hours. For this single goal, 8 + 14 = 22 hours is slower than starting now. If several future researches benefit, the lab may still be worthwhile. Include resource waiting time before deciding.
+
+Test the unlocked capability
+
+When research finishes, confirm that the intended action is now available. Recalculate relevant fleet times after drive research; an old fleetsave timetable may no longer fit. If you bought mission capacity, try the additional mission during a session you can supervise. If you expected a production gain, compare the resource screen before and after under the same settings.
+
+Record what the upgrade changed and choose the next bottleneck. Do not immediately buy another level by habit. A useful research plan is revised as the account gains colonies, changes play style or loses the time needed to use an active fleet.
+
+Before moving on:
+- The target is a usable capability.
+- Every prerequisite is accounted for.
+- Lab preparation is included in the schedule.
+- Resources remain to use the unlock.
+- Any changed flight times have been rechecked.
+
+Sources:
+Research tutorial · official forum archive, 2019; check current prerequisites
+https://board.en.ogame.gameforge.com/index.php?thread/813419-tutorial-04-research/=
+
+Lifeforms FAQ · contrast with normal research
+https://forum.origin.ogame.gameforge.com/forum/thread/153-lifeforms-faq/
+
+Skie v1.0.0 · reviewed 2026-11-08

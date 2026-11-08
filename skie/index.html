@@ -1,35 +1,796 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#080f13">
-<title>Skie · An OGame alliance</title>
-<meta name="description" content="Skie alliance. Shared knowledge, considered strategy, and a place to build together. OGame guides for building, lifeforms, expeditions, and Project Orion.">
-<link rel="icon" href="assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
-<a href="#home" class="brand" aria-label="Skie home"><svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M11 38V10l13 10 13-10v28M11 24l13 10 13-10M24 20v20"/><circle cx="11" cy="10" r="2"/><circle cx="37" cy="10" r="2"/><circle cx="24" cy="40" r="2"/></svg><span>SKIE</span></a>
-<button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav"><span>Menu</span><span aria-hidden="true">☰</span></button>
-<nav id="nav" aria-label="Main navigation"><a href="#alliance">The alliance</a><a href="#guides">Field guide</a><a href="#orion">Project Orion</a><a class="nav-cta" href="#join">Find your place <span class="arrow-ne" aria-hidden="true"></span></a></nav>
-</header>
-<main id="main">
-<section class="hero" id="home" aria-labelledby="hero-title">
-<div class="hero-grid" aria-hidden="true"></div>
-<div class="planet-art" aria-hidden="true"><svg viewBox="0 0 1000 1000"><defs><radialGradient id="planet" cx="25%" cy="18%" r="79%"><stop stop-color="#627e81"/><stop offset=".19" stop-color="#314a53"/><stop offset=".44" stop-color="#182c37"/><stop offset=".7" stop-color="#09151c"/><stop offset="1" stop-color="#030a0e"/></radialGradient><radialGradient id="halo"><stop offset=".70" stop-color="#7ccbc9" stop-opacity="0"/><stop offset=".75" stop-color="#9df9cd" stop-opacity=".09"/><stop offset=".81" stop-color="#6d9eaa" stop-opacity="0"/></radialGradient><pattern id="terrain" width="100" height="140" patternUnits="userSpaceOnUse" patternTransform="rotate(-23)"><path d="M-10 28C40-25 90 80 120 19M-10 60C30 7 90 92 120 51M-10 90C40 37 90 130 120 88M-10 119C40 67 90 150 120 118" fill="none" stroke="#8fbac0" stroke-width="2" opacity=".11"/></pattern><clipPath id="planet-clip"><circle cx="500" cy="500" r="339"/></clipPath><linearGradient id="shadow"><stop stop-color="#02090e" stop-opacity="0"/><stop offset="1" stop-color="#02090e" stop-opacity=".9"/></linearGradient></defs><circle cx="500" cy="500" r="450" fill="url(#halo)"/><g fill="none" stroke="#61777e" opacity=".32"><circle cx="500" cy="500" r="400" stroke-dasharray="1 12"/><ellipse cx="500" cy="500" rx="465" ry="145" transform="rotate(-38 500 500)"/><path d="M94 191h90l40 40v72m630 464h-90l-40-40v-72"/></g><circle cx="500" cy="500" r="339" fill="url(#planet)" stroke="#90d6d8" stroke-opacity=".18"/><g clip-path="url(#planet-clip)"><rect x="130" y="130" width="740" height="740" fill="url(#terrain)"/><path d="M160 330l140-84 50 70 103 45 30 87 80 21-30 91 90 57-51 110-107 98-107-70-60-120-93-32-70-96z" fill="#060e14" opacity=".3"/><rect x="130" y="130" width="740" height="740" fill="url(#shadow)"/></g><g fill="none" stroke="#b7efb2" stroke-width="1.5" opacity=".9"><path d="M230 682l44-44v-50l24-24v-83l24-24v-44l28-28v-61m-52 240 30-30v-62m-54 116 29 29v37m47-330 19 19v40l-19 19m-28 64 26 26v28m-118 206-28 28h-35"/><circle cx="350" cy="324" r="3"/><circle cx="303" cy="654" r="3"/><circle cx="167" cy="710" r="3"/><circle cx="328" cy="502" r="3"/></g><g fill="#b7efb2"><circle cx="839" cy="251" r="4"/><circle cx="167" cy="710" r="4"/></g></svg></div>
-<div class="hero-content"><p class="eyebrow"><span class="signal-dot"></span> AN OGAME ALLIANCE</p><h1 id="hero-title">Beyond the<br>known <em>sky.</em></h1><p class="hero-description">We build. We explore. We move together.<br>A shared horizon for the pilots of Skie.</p><div class="hero-actions"><a class="button primary" href="#guides">Enter the field guide <span class="arrow-ne" aria-hidden="true"></span></a><a class="text-link" href="#alliance">Meet the alliance <span aria-hidden="true">↓</span></a></div></div>
-<div class="hero-foot"><span><i></i> DESTINATION UNDER DISCUSSION</span><span>MARS / NEMBUS</span><a href="#alliance" aria-label="Explore the alliance">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
-</section>
-<section class="alliance section" id="alliance" aria-labelledby="alliance-title"><div class="section-heading"><p class="eyebrow">01 / THE ALLIANCE</p><div><h2 id="alliance-title">A common direction.<br>Room for your own path.</h2><p class="section-intro">Good company. Useful knowledge. A stronger next move.<br>That is the idea behind Skie.</p></div></div><div id="principles" class="principles"></div><div class="command-strip"><div><span class="small-label">ALLIANCE LEAD</span><strong>Lance</strong></div><div><span class="small-label">SECOND IN COMMAND</span><strong>Erik</strong></div><div class="command-note"><svg viewBox="0 0 80 50" aria-hidden="true"><path d="M8 40V10l18 12 15-12v30m0-18 17 13 14-12V5M26 22v22"/><circle cx="26" cy="44" r="2"/><circle cx="72" cy="5" r="2"/></svg><p>Different strengths.<br>One alliance.</p></div></div></section>
-<section class="guide-section section" id="guides" aria-labelledby="guides-title"><div class="section-heading"><p class="eyebrow">02 / THE FIELD GUIDE</p><div><h2 id="guides-title">Knowledge is an advantage.</h2><p class="section-intro">Build a better plan with focused guides, clear sources,<br>and the details that deserve a second look.</p></div></div><div class="guide-toolbar"><div class="filter-list" role="group" aria-label="Filter guides"><button class="filter active" data-filter="all" aria-pressed="true">All guides</button><button class="filter" data-filter="Building" aria-pressed="false">Building</button><button class="filter" data-filter="Lifeforms" aria-pressed="false">Lifeforms</button><button class="filter" data-filter="Expeditions" aria-pressed="false">Expeditions</button><button class="filter" data-filter="Project Orion" aria-pressed="false">Orion / PTS</button></div><label class="search-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><span class="sr-only">Search guides</span><input id="guide-search" type="search" placeholder="Search the field guide"></label></div><p id="guide-count" class="sr-only" aria-live="polite"></p><div id="guide-cards" class="guide-cards"></div><p id="no-results" class="no-results" hidden>No guides match that search. Try a broader term.</p><div class="source-note"><span class="note-cross" aria-hidden="true">+</span><p>Context matters. Guides distinguish general planning advice, official references, and historical PTS research. Always check your universe and current game version.</p></div></section>
-<section class="orion-section section" id="orion" aria-labelledby="orion-title"><div class="orion-intro"><p class="eyebrow">03 / THE ORION ARCHIVE</p><h2 id="orion-title">Built on curiosity.<br>Grounded in evidence.</h2><p>Project Orion is where this field guide began. Its research stays connected, with its original sources and testing limits intact.</p><button class="text-link" data-guide="orion">Read the Orion reference <span class="arrow-ne" aria-hidden="true"></span></button><div class="archive-stamp"><span>ARCHIVED MODEL</span><strong>PTS v13.1.0 · beta13</strong><small>Guide 0.19.6 · 11 October 2026</small></div></div><div class="calculator"><div class="calc-header"><span class="small-label">IAS BUILDING COST</span><span class="tag amber">HISTORICAL PTS</span></div><h3>Plan the next level.</h3><p class="calc-description">A transparent model from the original Orion guide.<br>For reference, not current live-server pricing.</p><form id="ias-form"><div class="field"><label for="from-level">Current level</label><input id="from-level" type="number" min="0" max="99" step="1" value="0" required></div><div class="field"><label for="to-level">Target level</label><input id="to-level" type="number" min="1" max="100" step="1" value="10" required></div><button class="button calc-button" type="submit">Calculate <span class="arrow-ne" aria-hidden="true"></span></button></form><p id="calc-error" class="error" role="alert" hidden></p><div class="calc-results" aria-live="polite"><div><span>Metal</span><strong id="cost-metal">—</strong></div><div><span>Crystal</span><strong id="cost-crystal">—</strong></div><div><span>Deuterium</span><strong id="cost-deuterium">—</strong></div></div><p class="calc-caveat">Exact integer evaluation of the source model: floor(Base × 1.5<sup>level − 1</sup>) per resource, per level. Beta13 outputs await fresh PTS validation.</p></div></section>
-<section class="join-section section" id="join" aria-labelledby="join-title"><div class="join-decoration" aria-hidden="true"><svg viewBox="0 0 240 240"><path d="M50 190V45l70 50 70-50v145M50 110l70 50 70-50M120 95v110m-70-45-25-25V70m165 70 25-25V70"/><circle cx="50" cy="45" r="4"/><circle cx="190" cy="45" r="4"/><circle cx="120" cy="205" r="4"/></svg></div><div><p class="eyebrow">04 / FIND YOUR PLACE</p><h2 id="join-title">Your next chapter<br>could start here.</h2><p>100 million points is a guideline, not a gate. Every application is considered.</p><button class="button primary" id="open-application">Prepare an introduction <span class="arrow-ne" aria-hidden="true"></span></button></div><aside class="join-note"><span class="small-label">BEFORE YOU SET COURSE</span><p>Our destination is still being discussed: <strong>Mars or Nembus.</strong></p><p>Speak with Lance or Erik through your existing alliance contact. An invitation link will be added when approved.</p></aside></section>
-<section class="shared-strip section" aria-labelledby="shared-title"><div><p class="eyebrow">ONE SOURCE. A SHARED PICTURE.</p><h3 id="shared-title">The same information, wherever we meet.</h3><p>Copy a concise alliance brief for Discord from this page’s shared content.</p></div><button class="button secondary" id="copy-brief">Copy alliance brief <span class="arrow-ne" aria-hidden="true"></span></button></section>
-</main>
-<footer class="site-footer"><a class="brand" href="#home">SKIE<span class="footer-version">/ 0.1</span></a><p>An independent OGame alliance website.<br>Not affiliated with Gameforge. OGame belongs to its respective owners.</p><div><span>REVIEW BUILD · 2026-11-08</span><a href="https://github.com/TheIlluminate92/ogame-project-orion/tree/56a951bbeca850d00ff1ccca106b05475daa7fb3" target="_blank" rel="noopener noreferrer">Project Orion foundation</a></div></footer>
-<dialog id="guide-dialog" aria-labelledby="guide-dialog-title"><div class="dialog-inner"><button class="close-dialog" data-close aria-label="Close guide">×</button><p class="eyebrow" id="guide-dialog-label"></p><h2 id="guide-dialog-title"></h2><p class="dialog-status" id="guide-dialog-status"></p><div id="guide-dialog-body"></div><div id="guide-dialog-sources" class="guide-sources"></div><button class="button secondary" id="copy-guide">Copy guide for Discord</button></div></dialog>
-<dialog id="application-dialog" aria-labelledby="application-title"><div class="dialog-inner"><button class="close-dialog" data-close aria-label="Close introduction">×</button><p class="eyebrow">A GOOD PLACE TO START</p><h2 id="application-title">Introduce yourself.</h2><p>Use this as a starting point in your existing conversation with Lance or Erik. Nothing is sent from this website.</p><form id="application-form"><label for="player-name">In-game name</label><input id="player-name" maxlength="80" autocomplete="off" placeholder="Your commander name"><label for="player-universe">Current universe</label><input id="player-universe" maxlength="80" autocomplete="off" placeholder="Where you play now"><label for="player-style">What do you enjoy about OGame?</label><textarea id="player-style" rows="3" maxlength="800" placeholder="Your play style, goals, or what you are looking for"></textarea><button class="button primary" type="submit">Create introduction</button></form><div id="intro-result" hidden><label for="intro-text">Your introduction</label><textarea id="intro-text" rows="7" readonly></textarea><button class="button secondary" id="copy-intro">Copy introduction</button><p class="privacy-note">Draft only. Stored in this page’s memory, not saved or submitted.</p></div></div></dialog>
-<dialog id="copy-dialog" aria-labelledby="copy-title"><div class="dialog-inner"><button class="close-dialog" data-close aria-label="Close copied text">×</button><h2 id="copy-title">Your text is ready.</h2><p>Your browser did not allow automatic copying. Select and copy the text below.</p><textarea id="copy-fallback" rows="12" readonly aria-label="Text to copy"></textarea></div></dialog>
-<div class="toast" id="toast" role="status" hidden></div>
-<script src="assets/content.js"></script><script type="module" src="assets/app.js"></script>
-</body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0b141b"><meta name="description" content="A practical OGame learning path: economy, fleetsaving, colonies, research, expeditions and lifeforms. In-depth guides from the Skie alliance."><title>Learn to play OGame · Skie Field Manual</title><link rel="icon" href="assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css?v=1.0.0"><noscript><style>.menu-toggle{display:none!important}@media(max-width:780px){.sidebar{display:block;position:static;height:auto;border-bottom:1px solid #29404c}.sidebar-bottom{display:none}.sidebar nav{display:grid;grid-template-columns:1fr 1fr}.nav-label{grid-column:1/-1;margin-top:12px}}</style></noscript></head><body><a class="skip" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="index.html" aria-label="Skie Field Manual home"><img src="assets/mark.svg" alt="" width="34" height="34"><span>SKIE<small>THE ALLIANCE FIELD MANUAL</small></span></a><div class="top-links"><span class="edition">LEARN / PRACTISE / PROGRESS</span><a href="index.html#guides">All guides</a><a href="index.html#play-styles">Play styles</a><a href="alliance.html">The alliance</a><button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters ☰</button></div></header><div class="shell"><aside class="sidebar" id="sidebar" aria-label="Guide navigation"><nav aria-label="Manual chapters"><p class="nav-label">FIELD MANUAL</p><a href="index.html" aria-current="page"><span>⌂</span>Guide library</a><p class="nav-label">LEARN TO PLAY</p><a href="guide-starter.html" ><span>00</span>Start here: first steps</a><a href="guide-building.html" ><span>01</span>Build your economy</a><a href="guide-fleetsaving.html" ><span>02</span>Fleetsave with a plan</a><a href="guide-colonization.html" ><span>03</span>Choose and grow colonies</a><a href="guide-research.html" ><span>04</span>Plan your research</a><a href="guide-energy.html" ><span>05</span>Power mines with fusion</a><a href="guide-crawlers.html" ><span>06</span>Use crawlers effectively</a><a href="guide-expeditions.html" ><span>07</span>Run better expeditions</a><a href="guide-lifeforms.html" ><span>08</span>Develop your lifeforms</a><p class="nav-label">CHOOSE YOUR PLAY STYLE</p><a href="guide-path-miner.html" ><span>P1</span>Miner / steady economy</a><a href="guide-path-expedition.html" ><span>P2</span>Expeditions / active growth</a><a href="guide-path-fleet.html" ><span>P3</span>Active fleet / combat</a><p class="nav-label">KEEP CLOSE</p><a href="glossary.html" ><span>A–Z</span>OGame glossary</a><a href="guide-orion.html" ><span>↗</span>Orion / PTS archive</a><a href="cooperation.html" ><span>…</span>Alliance cooperation</a><a href="alliance.html" ><span>◇</span>About Skie</a></nav><div class="sidebar-bottom"><strong>Learn it. Try it. Check it.</strong><p>Use the lesson in your own account. Confirm the result before moving on.</p></div></aside><main id="main" class="main"><section class="hero"><div><p class="eyebrow">THE SKIE FIELD MANUAL</p><h1>Learn the game.<br><em>Build your advantage.</em></h1><p class="lead">In-depth OGame guides, from your first mine to fusion power, crawlers and a reliable expedition routine. Follow the steps, understand the decisions, and check your work.</p><div class="meta-row"><span>9 PRACTICAL GUIDES</span><span>BEGINNER TO DEVELOPING ACCOUNT</span><span>NO ACCOUNT LOGIN</span></div></div><svg class="orbit-map" viewBox="0 0 210 210" aria-hidden="true"><g fill="none" stroke="currentColor"><circle cx="105" cy="105" r="83" opacity=".25"/><circle cx="105" cy="105" r="53" opacity=".3" stroke-dasharray="3 7"/><ellipse cx="105" cy="105" rx="100" ry="40" transform="rotate(-37 105 105)" opacity=".4"/><path d="M88 127V79l17 13 17-13v48M88 104l17 13 17-13M105 92v47" stroke-width="1.5"/><path d="M20 48h28l15 15m120 100h-28l-12-12" opacity=".6"/></g><g fill="currentColor"><circle cx="39" cy="55" r="4"/><circle cx="162" cy="164" r="3"/><circle cx="153" cy="83" r="3"/></g></svg></section><section class="start-panel" aria-labelledby="start-heading"><div><span class="eyebrow">NEW HERE? START WITH THE FOUNDATIONS</span><h2 id="start-heading">Your first account, step by step.</h2><p>Learn the screens and the first production loop. Then follow the lessons, or choose a path that matches how you want to play.</p></div><a class="button primary" href="guide-starter.html">Start learning <span aria-hidden="true">→</span></a></section><section id="play-styles" aria-labelledby="paths-title"><div class="section-top"><h2 id="paths-title">Choose your play style</h2><p>Different goals. Different investment priorities.</p></div><div class="path-grid"><a class="path-card" href="guide-path-miner.html"><span class="eyebrow">PATH 01</span><h3>Miner / steady economy</h3><p>Steady production, mines, energy and crawlers.</p><span class="inline-link">Follow this path →</span></a><a class="path-card" href="guide-path-expedition.html"><span class="eyebrow">PATH 02</span><h3>Expeditions / active growth</h3><p>Regular launches, cargo, yield and lifeforms.</p><span class="inline-link">Follow this path →</span></a><a class="path-card" href="guide-path-fleet.html"><span class="eyebrow">PATH 03</span><h3>Active fleet / combat</h3><p>Fleet roles, fuel, simulation and safe returns.</p><span class="inline-link">Follow this path →</span></a></div></section><section id="guides" aria-labelledby="guides-title"><div class="section-top"><h2 id="guides-title">Your learning path</h2><p>Read in order, or go straight to the skill you need.</p></div><div class="search-row"><label class="search"><span class="sr-only">Search all lesson content</span><input id="guide-search" type="search" placeholder="Search guides, mechanics, or questions…" autocomplete="off"><kbd aria-hidden="true">/</kbd></label><span class="result-count" id="guide-count" role="status">9 guides</span></div><div class="filter-row" aria-label="Filter guides"><button class="filter" data-filter="all" aria-pressed="true">All lessons</button><button class="filter" data-filter="Getting started" aria-pressed="false">Getting started</button><button class="filter" data-filter="Economy" aria-pressed="false">Economy</button><button class="filter" data-filter="Fleet safety" aria-pressed="false">Fleet safety</button><button class="filter" data-filter="Expansion" aria-pressed="false">Expansion</button><button class="filter" data-filter="Research" aria-pressed="false">Research</button><button class="filter" data-filter="Energy" aria-pressed="false">Energy</button><button class="filter" data-filter="Crawlers" aria-pressed="false">Crawlers</button><button class="filter" data-filter="Expeditions" aria-pressed="false">Expeditions</button><button class="filter" data-filter="Lifeforms" aria-pressed="false">Lifeforms</button></div><div class="guide-grid"><article class="guide-card" data-guide-card data-progress-guide="starter" data-category="Getting started" data-search="your first account, one useful step at a time.
+skie field manual · beginner workflow; current costs and unlocks must be confirmed in the in-game technology tree
+
+you will learn:
+- find production, construction, research, fleet and event information.
+- complete and check one small economic upgrade without breaking your energy balance.
+- separate an account class, a planet’s lifeform and a play style.
+- plan your next login before leaving ships or resources behind.
+
+know what you are managing
+
+ogame is a persistent game: production, timers and fleet movements continue while you are away. your account is a network of planets and, later, moons. you spend metal, crystal and deuterium on mines, facilities, research, ships and defenses. energy supports production; it is not a resource you can load into a cargo ship.
+
+start by finding the selected planet, your resource balances, the event list and the server clock. open resources to inspect mines and power, facilities for supporting buildings, research for technologies and fleet for dispatch. names and positions can differ between desktop and mobile interfaces. before buying something, open its details and technology prerequisites. a disabled button often means a requirement is missing, not that the page is broken.
+
+screen or concept | what you use it for | first check
+resources / production settings | mines, energy and hourly output | is production fully powered?
+facilities / technology details | construction, labs, shipyard and unlocks | what is actually blocking my next goal?
+research | account-wide technologies and prerequisites | what capability does the next level add?
+fleet / event list | ship missions, timers and returns | will i be online when valuable ships return?
+galaxy | positions, nearby players and potential destinations | am i looking at the intended system and location type?
+
+make your first production loop work
+
+1. select your starting planet and inspect metal mine, crystal mine, deuterium synthesizer and solar plant. compare available resources with the next upgrade cost rather than selecting a large target from an old build list.
+
+2. choose a small mine upgrade you can fund. if its energy requirement would leave the planet short, add the necessary power first. for a new account, solar plant is a straightforward starting source; the energy guide explains when fusion becomes attractive.
+
+3. use metal and crystal production to support the early construction loop. add deuterium production as your next research, ship or fuel requirement calls for it. avoid spending every last unit on a mine if it prevents the prerequisite you actually need.
+
+4. wait for the upgrade to finish, then reopen production settings. confirm that the level changed, energy is sufficient and hourly output increased. this gives you a baseline for comparing future upgrades.
+
+5. write down the next specific goal and its missing resource. if the limiting resource is crystal, do not assume another metal upgrade will solve the wait. build for the bottleneck, then review it again.
+
+a method, not a rigid 10/8/6 build
+a fixed mine ratio can be a rough reference, but universe speed, rewards, existing levels and your next unlock change the useful order. the economy guide teaches you how to compare the actual next level on each mine.
+
+use the technology tree as your map
+
+pick the first capability you need: move resources, explore, settle another planet or progress research. open that item’s technology details and work backward through the prerequisites. build only the missing facilities and research levels needed for that near-term goal. a mine makes income; a laboratory or shipyard enables something else. judge each on the job it performs.
+
+once you have cargo ships, practise a small transport between suitable owned locations before depending on a large shipment. confirm the mission, destination type, fuel, payload and return time. transport does not station the fleet permanently. read the fleetsaving lesson before treating any dispatch as safe storage.
+
+early rewards and tutorials can accelerate progression. read what a reward does before claiming or spending it, and do not build a permanent strategy around a temporary event. more stored resources also require a plan to keep them from becoming an easy target.
+
+class, lifeform and play style are different
+
+collector, discoverer and general are account classes with different bonuses. lifeform species are chosen on planets and unlock their own buildings; lifeform technologies are another layer again. a miner is a play style, not a requirement to choose one species everywhere. an expedition player still needs mines, cargo, power and fleet safety.
+
+you do not need to settle every advanced choice immediately. establish production and a reliable routine, then choose the miner, expedition or active-fleet path that fits the time you will actually spend playing. the play-style pages give a staged development order and explain when to postpone an upgrade.
+
+end the session before closing the game
+
+1. read all active fleet events and queued ship completions. note what will arrive or finish while you are away.
+
+2. estimate resources at your next login: current stock plus hourly production multiplied by hours away. check storage limits and whether a collection or sensible purchase is needed first.
+
+3. keep flight fuel and transport capacity available. do not spend your entire reserve on a last-minute upgrade.
+
+4. follow the fleetsaving lesson for ships and movable resources you cannot afford to lose. defense is a deterrent, not a substitute for a safe fleet return.
+
+5. choose a realistic next login and one objective for that visit. a sustainable routine is more valuable than a plan that requires you to watch timers all night.
+
+your first small exercise
+record a mine’s level, hourly production and the planet’s energy balance. complete one affordable upgrade with enough supporting energy. record the same three values afterward. explain the difference in one sentence. then check how much stock will accumulate before your next login. you have now practised the same measurement loop used for advanced account planning.
+
+before moving on:
+- i can find the current planet, production settings, technology details and fleet events.
+- i completed or planned a mine upgrade with enough energy and resources for its support.
+- i can explain the difference between account class, lifeform species and play style.
+- i know when my next valuable fleet movement ends and when i will log in.
+
+sources:
+buildings tutorial · official forum archive, foundational mechanics
+https://board.en.ogame.gameforge.com/index.php?thread/813417-tutorial-02-buildings/=
+
+research tutorial · official forum archive
+https://board.en.ogame.gameforge.com/index.php?thread/813419-tutorial-04-research/=
+
+lifeforms faq · species, research and discovery
+https://forum.origin.ogame.gameforge.com/forum/thread/153-lifeforms-faq/
+
+skie v1.0.0 · reviewed 2026-11-08
+"><a href="guide-starter.html"><div class="card-top"><span class="lesson-number">00 / GETTING STARTED</span><span class="tag">START HERE</span></div><h3>Your first account, one useful step at a time.</h3><p>Learn what the main screens do, build a small resource loop, and finish your first session with a plan for the time you are away.</p><div class="card-bottom"><span>5 CHAPTERS · 6 MIN READ <span class="complete-label">✓ COMPLETE</span></span><b aria-hidden="true">↗</b></div></a></article><article class="guide-card" data-guide-card data-progress-guide="building" data-category="Economy" data-search="build an economy that keeps growing.
+skie field manual · source review: 8 november 2026. check live universe settings; historical orion beta13 is excluded.
+
+you will learn:
+- read the bottleneck in your own resource screen.
+- compare two upgrades using incremental output.
+- keep storage, energy and transport ahead of production.
+
+know what each mine does
+
+metal funds much of your construction and fleet growth. crystal is often the limiting material for research and advanced infrastructure. deuterium is both a construction/research resource and the fuel for operations. mines provide recurring income while you are offline, but only within energy and storage constraints. an upgrade raises future production; it does not immediately deliver a lump sum of resources.
+
+the standard mine-output terms at full power and ×1 economy are 30 × l × 1.1^l for metal, 20 × l × 1.1^l for crystal, and 10 × l × 1.1^l × (1.44 − 0.004 × tmax) for deuterium. tmax is the planet’s maximum temperature. these terms exclude natural base income, slot bonuses, class, plasma technology, lifeforms and other modifiers. multiply resource production by economy speed, then account for your actual bonuses. do not multiply the power requirement by economy speed.
+
+these are computed teaching values
+the table shows formula terms rounded to two decimals, not a promise of the total shown in your resource screen. compare the screen’s base mine row and modifier rows separately.
+
+example at mine level 10 | unmodified mine output/hour | why it matters
+metal mine | 778.12 metal | construction material; slot bonuses can change the comparison
+crystal mine | 518.75 crystal | research needs can justify prioritizing it despite lower volume
+deuterium synthesizer, tmax +40°c | 332.00 deuterium | temperature-dependent fuel production
+deuterium synthesizer, tmax −90°c | 466.87 deuterium | same level, more output because the planet is colder
+
+follow the first-planet loop
+
+1. open resources and inspect the metal mine, crystal mine, deuterium synthesizer and solar plant. read the next-level cost, completion time and energy demand.
+
+2. use the solar plant to support the next mine increase. check the energy balance after completion; persistent shortages mean the mine is not delivering its intended full output.
+
+3. build metal and crystal capacity toward a named early unlock. if crystal is delaying that unlock, increase crystal rather than following a fixed metal-to-crystal level ratio.
+
+4. develop deuterium before research and ship fuel become the bottleneck. do not drain all fuel into a queue once you have ships to move.
+
+5. open facilities for robotics factory, shipyard and research lab only as the next unlock requires them. use the technology tree to see the missing levels.
+
+6. before your break, check when each resource will fill storage. spend on the planned upgrade, improve storage when justified, and establish cargo logistics as ships become available. return to resources to verify the result.
+
+measure before you spend
+
+start on one planet. write down hourly metal, crystal and deuterium output, available energy, storage space and free fields. record your class and the universe economy speed next to those numbers. use the values actually displayed, including active bonuses. a guide written for a different universe cannot supply your production forecast. refresh the screen after a queue finishes before comparing the result.
+
+mines need energy, storage limits production, and facilities provide infrastructure rather than direct mine output. these are different problems. an energy shortage is not fixed by another mine, and more storage will not help if you habitually leave a large, profitable stockpile undefended.
+
+name the next constraint
+
+1. choose one concrete goal: start the next mine, unlock a colony ship, or fund the next research. write down the required resources and deadline.
+
+2. subtract resources already available and safe incoming deliveries. identify which missing resource will take longest to obtain at current production.
+
+3. check whether energy, fields, storage or construction time will block the upgrade. add the necessary supporting work to the plan.
+
+4. reserve flight fuel and enough cargo capacity to protect the remaining resources. spend only the balance.
+
+resource value is contextual
+a metal-heavy account saving for crystal-heavy research should not blindly choose the biggest metal production increase. reducing the actual waiting time can matter more than a tidy mine ratio.
+
+compare the complete investment
+
+for an income upgrade, divide its full cost by the additional daily income it enables. keep unlike resources separate unless you explicitly choose a conversion ratio for planning. that ratio is an assumption, not a guaranteed trade offer. include required energy infrastructure and subtract additional operating costs where relevant.
+
+compare the next level on several planets, not just your largest planet. a small improvement to a developing colony may be easier to fund and leave the account less dependent on one location. do not call a facility a bad investment simply because it has no direct payback: evaluate the construction delay it removes.
+
+illustrative payback, not game costs
+upgrade a costs 1,200,000 planning units including its energy support and adds 30,000 units per day: 40 days. upgrade b costs 800,000 and adds 25,000 per day: 32 days. b has the shorter simple payback. but if b consumes crystal reserved for tomorrow’s colony unlock, delaying it may still be sensible. neither estimate includes future reinvestment or losses.
+
+make the offline interval affordable
+
+calculate the stock that will accumulate before your next collection: current stock plus hourly output multiplied by hours away. compare each resource with its storage capacity. if a tank fills sooner, schedule an earlier collection, spend before leaving, or budget the storage upgrade. storage is a buffer, not a security system.
+
+solar satellites are ships and can be destroyed. fusion consumes deuterium. evaluate energy options with their operational risks and net production rather than only their purchase price. keep a small written recovery plan for a power loss: which mines can be reduced temporarily and what you would rebuild first.
+
+verify the result
+
+after completion, check actual output, energy balance and the next storage limit. if the gain differs from your estimate, inspect production settings and bonus expiry before making the same purchase elsewhere. end the session with a named next upgrade and a resource target. avoid filling queues merely because something is affordable; a deliberate empty queue can be better than an irrelevant expense.
+
+before moving on:
+- i know my next resource bottleneck.
+- the upgrade includes its energy and infrastructure cost.
+- storage covers my planned absence.
+- fleet fuel and cargo are reserved.
+- i will verify the actual production increase.
+
+sources:
+buildings tutorial · official forum archive, 2019; core mechanics only
+https://board.en.ogame.gameforge.com/index.php?thread/813417-tutorial-02-buildings/=
+
+formula thread v3 · unmodified mine terms; exclude obsolete unrelated sections
+https://board.en.ogame.gameforge.com/index.php?thread/548906-formula-thread-v3/=
+
+skie v1.0.0 · reviewed 2026-11-08
+"><a href="guide-building.html"><div class="card-top"><span class="lesson-number">01 / ECONOMY</span><span class="tag">Beginner</span></div><h3>Build an economy that keeps growing.</h3><p>Choose the next upgrade with a production audit, a full-cost comparison, and a practical spending plan.</p><div class="card-bottom"><span>7 CHAPTERS · 7 MIN READ <span class="complete-label">✓ COMPLETE</span></span><b aria-hidden="true">↗</b></div></a></article><article class="guide-card" data-guide-card data-progress-guide="fleetsaving" data-category="Fleet safety" data-search="keep your fleet alive while you are away.
+skie field manual · source review: 8 november 2026. check live universe settings; historical orion beta13 is excluded.
+
+you will learn:
+- understand why a flying fleet still needs a safe return.
+- distinguish deployment from transport.
+- verify every launch instead of relying on habit.
+
+protect the return, not only the departure
+
+fleetsaving means moving ships and movable resources off a location during your absence. the dangerous moment is often the landing: another player may arrange an attack to arrive immediately afterward. defenses can discourage a casual raid but do not make a valuable fleet safe.
+
+decide when you can genuinely be online before choosing a route. use the game’s arrival display and server clock, not an estimate from yesterday. research, ship composition and speed settings can change the duration. leave time to reconnect, inspect events and act; an alarm at the landing second is too late.
+
+choose a method you understand
+
+without a moon, deployment between your own planets is the usual training route. a normal deployment can be visible to a sensor phalanx; a recalled deployment is not shown by phalanx. that does not make it impossible to catch: an observer may infer a recall from repeated scans. with suitable moons, moon-to-moon deployment reduces phalanx exposure, but moon destruction and predictable habits still create risk.
+
+transport is not deployment
+transport unloads and returns. deployment stations the ships at the destination unless recalled. verify the mission name and both location types, not just the coordinates.
+
+situation | practical approach | what still needs attention
+two planets, no moon | practice deployment and recall with a small fleet | visible outbound movement; timing inference
+suitable pair of moons | plan a moon-to-moon deployment | moon destruction; arrival security
+only one useful departure point | get an alliance review of available routes | do not assume any long mission is safe
+
+run the departure checklist
+
+1. gather the ships you intend to protect. check outstanding returns and shipyard completions that could leave ships behind after departure.
+
+2. select the destination and confirm whether each end is a planet or moon. pick deployment only when that is your intended method.
+
+3. set speed and read the resulting arrival time. for a recalled save, first practice and inspect the return timer with a small, expendable fleet.
+
+4. load resources within capacity, accounting for flight fuel. make sure the destination or return location will have what you need for the next launch.
+
+5. send, then reopen the event list. confirm the mission exists with the expected ships, cargo and time. a clicked button is not proof of launch.
+
+plan around real life
+
+use two reminders if helpful: one before you need to log in and one before the critical event. an unreliable connection is a reason for more margin, not tighter timing. if you cannot reliably cover any return window, investigate vacation mode and its current conditions before the absence. it is not an emergency button to assume will fix an already developing attack.
+
+illustrative schedule
+you expect to be home at 18:00 but might be delayed 30 minutes. a landing at 18:05 is a poor plan. select a route that gives you a comfortable margin after the latest realistic return, then confirm its exact timing in game. if your schedule changes, reassess before leaving rather than hoping the old plan still fits.
+
+rehearse before the fleet matters
+
+do one small deployment while you stay online. inspect its outbound event, recall it, and observe the displayed return. repeat with the ship mix you normally use, because the slowest ship affects travel. this is a navigation exercise, not a promise of invulnerability.
+
+when threatened, first read the incoming mission and time. avoid panicked, repeated recalls that create a new return you cannot cover. ask an experienced ally to review the precise situation privately. do not publish live fleet coordinates or return times in a public alliance guide. after every save, inspect the original location for leftovers and new production.
+
+before moving on:
+- the mission and planet/moon types are correct.
+- cargo and fuel fit.
+- the event list confirms the launch.
+- i can be online before arrival.
+- outstanding returns and queued ships are accounted for.
+
+sources:
+fleetsaving guide · official forum archive; fundamental tactics
+https://board.en.ogame.gameforge.com/index.php?thread/810303-guide-04-fleetsaving-guide/=
+
+sensor phalanx · supplemental community reference
+https://ogame.fandom.com/wiki/sensor_phalanx
+
+skie v1.0.0 · reviewed 2026-11-08
+"><a href="guide-fleetsaving.html"><div class="card-top"><span class="lesson-number">02 / FLEET SAFETY</span><span class="tag">Essential</span></div><h3>Keep your fleet alive while you are away.</h3><p>Choose a save route, test the timing, and build a repeatable departure and return routine.</p><div class="card-bottom"><span>5 CHAPTERS · 5 MIN READ <span class="complete-label">✓ COMPLETE</span></span><b aria-hidden="true">↗</b></div></a></article><article class="guide-card" data-guide-card data-progress-guide="colonization" data-category="Expansion" data-search="turn a new colony into a useful planet.
+skie field manual · source review: 8 november 2026. check live universe settings; historical orion beta13 is excluded.
+
+you will learn:
+- choose a colony for an explicit role.
+- budget the full expansion rather than only the ship.
+- evaluate fields, logistics and safety after arrival.
+
+decide what the colony is for
+
+a new planet is an investment with several costs: the research that opens capacity, the colony ship, the flight, startup resources and the time spent developing it. name the purpose first. it could be additional production, a shorter supply route, a deployment partner or access to another area. a good location for one purpose can be poor for another.
+
+do not copy a coordinate pattern without considering your fleet speed and login schedule. a distant colony can make deliveries inconvenient; a tightly clustered account may be convenient but offer fewer operating areas. neither layout is universally correct.
+
+check capacity and prerequisites
+
+use the current astrophysics panel and technology tree to confirm that another planet is allowed and that the intended position can be colonized. the colony ship requires shipyard 4 and impulse drive 3. the october 2026 administrator guide lists its cost as 10,000 metal, 20,000 crystal and 10,000 deuterium. include the missing prerequisites and flight fuel in your own budget.
+
+do not interpret an empty slot as proof that your account can settle it. check capacity again after any other colonization mission resolves. this lesson deliberately does not prescribe a maximum planet count or a universal class bonus: the live interface is the final check.
+
+compare candidate locations
+
+the october 2026 colonisation guide identifies these broad position differences. planet temperature affects solar satellites and deuterium production, not solar plant output. check the generated planet and your universe field bonus rather than assuming the best possible roll.
+
+1. make a shortlist of empty positions in areas that fit the colony’s role. note supply distance and useful nearby planets or moons.
+
+2. check the surrounding activity. look for active neighbors and whether your proposed logistics would be comfortable to operate, not merely possible.
+
+3. compare the position’s production and temperature implications using current game information. do not assume proximity to the sun improves every energy source.
+
+4. estimate the first supply shipment and its timing. keep your main account’s next essential upgrade and fleetsave fuel funded.
+
+5. recheck the destination immediately before launching the colonization mission. record when you will be available to inspect the result.
+
+position tendency | what it helps | tradeoff to investigate
+slots 1–3 | crystal production bonuses | small planets and extra astrophysics requirements
+slots 6–10 | metal bonuses and generally larger planets | compare supply routes; slot 8 has the largest metal bonus
+slot 15 | cold temperatures favor deuterium | small planets, weak satellite output and extra astrophysics requirements
+
+compare all fifteen positions
+
+published unmodified colony ranges from the official 2021 colonization reference; the october 2026 guide confirms the production bonuses. fields exclude universe, class, item and lifeform adjustments. temperature ranges below describe possible maximum-temperature values used for production calculations. a range is not a guaranteed roll.
+
+slot 15 has no flat deuterium percentage bonus
+cold temperature improves synthesizer output. it also weakens satellites. compare net deuterium after the power system’s fuel use, alongside fields and supply distance.
+
+slot | base fields min–max | tmax range °c | position production bonus
+1 | 96–172 | 220 to 260 | +40% crystal
+2 | 104–176 | 170 to 210 | +30% crystal
+3 | 112–182 | 120 to 160 | +20% crystal
+4 | 118–208 | 70 to 110 | none; temperature affects deuterium
+5 | 133–232 | 60 to 100 | none; temperature affects deuterium
+6 | 146–242 | 50 to 90 | +17% metal
+7 | 152–248 | 40 to 80 | +23% metal
+8 | 156–252 | 30 to 70 | +35% metal
+9 | 150–246 | 20 to 60 | +23% metal
+10 | 142–232 | 10 to 50 | +17% metal
+11 | 136–210 | 0 to 40 | none; temperature affects deuterium
+12 | 125–186 | -10 to 30 | none; temperature affects deuterium
+13 | 114–172 | -50 to -10 | none; temperature affects deuterium
+14 | 100–168 | -90 to -50 | none; temperature affects deuterium
+15 | 90–164 | -130 to -90 | none; temperature affects deuterium
+
+apply field bonuses in the right place
+
+base fields derive from planet diameter squared: (diameter / 1,000)^2. discoverer’s 10% and the researchers alliance class’s 5% colonization bonuses affect diameter, not fields directly. the 2026 official example turns a 15,000-km, 225-field base planet into 297 fields with both bonuses. universe extra fields are then added separately. do not apply a 15% field increase instead.
+
+lifeform buildings and field items can alter the usable result after settlement; do not treat them as guaranteed base colonization size. the lifeforms faq specifically warns that leaving kaelesh removes bio modifier bonus fields. reserve room for the infrastructure your plan needs rather than accepting a tight colony only because a temporary setup makes it appear roomy.
+
+position bonuses increase the mine-production base used by subsequent production bonuses. do not simply add the position percentage to all other percentage bonuses. for example, unmodified metal production of 1,000 becomes a slot-8 base of 1,350. a separate 10% mine-production bonus then contributes 135 rather than 100. this isolates the position interaction; a full account calculation must still apply the other bonuses correctly.
+
+a practical slot choice
+for a metal-focused general mining planet, slot 8 offers +35% base metal and a 156–252 base-field range. slot 1 offers +40% crystal but only 96–172 base fields and much warmer temperatures. neither bonus describes total account income. choose according to the resource you need, your field plan, and the energy system you can support.
+
+inspect before heavily investing
+
+the generated planet must be evaluated after arrival. review its fields, temperature and how it serves the intended role. set a reasonable acceptance criterion before launching, so you do not endlessly reroll looking for a mythical perfect planet. if it does not meet your needs, pause major spending and compare alternatives. abandonment is a separate, consequential decision; check its warnings and all assets first.
+
+ships accompanying colonization are not automatically a permanent local fleet. the administrator guide notes that accompanying ships return after delivering resources. if you need cargo ships stationed there, arrange a separate deployment and verify the mission type.
+
+illustrative expansion budget
+suppose research and prerequisites need 700,000 resource units, the ship and travel budget need 50,000, and initial development needs 250,000. your expansion costs 1,000,000 in this planning example, not merely 50,000. if you have only 800,000 available after fuel reserves, postpone optional development or save more before committing.
+
+develop in stages and connect the route
+
+first establish usable production and the energy to support it. then add only the facilities required by the colony’s next job. send startup resources in manageable waves rather than leaving the entire future build budget on an undeveloped planet. do not neglect the supplier while funding the new world.
+
+treat the colony as operational when it can contribute resources, receive supplies and participate in your safety plan without constant emergency fixes. test a small transfer, check available cargo and note its next storage deadline. review the colony after a few sessions: is it reducing a bottleneck, or have you created a location that continually consumes attention without meeting its intended purpose?
+
+before moving on:
+- astrophysics permits another planet and the chosen position.
+- the full expansion budget is covered.
+- the colony has a specific role.
+- fields and temperature were inspected.
+- supply and fleetsave routes have been tested.
+
+sources:
+colonisation guide · ogame us administrator, 10 october 2026
+https://board.us.ogame.gameforge.com/index.php?thread/108135-colonisation-guide/=
+
+research tutorial · official forum archive, 2019; check current prerequisites
+https://board.en.ogame.gameforge.com/index.php?thread/813419-tutorial-04-research/=
+
+colonization · official baseline field and temperature table, 2021
+https://board.us.ogame.gameforge.com/index.php?thread/101991-colonization/=
+
+lifeforms faq · field changes when switching away from kaelesh
+https://forum.origin.ogame.gameforge.com/forum/thread/153-lifeforms-faq/
+
+skie v1.0.0 · reviewed 2026-11-08
+"><a href="guide-colonization.html"><div class="card-top"><span class="lesson-number">03 / EXPANSION</span><span class="tag">Beginner</span></div><h3>Turn a new colony into a useful planet.</h3><p>Plan the location, unlock the ship, fund the first upgrades, and connect the colony to your account.</p><div class="card-bottom"><span>7 CHAPTERS · 8 MIN READ <span class="complete-label">✓ COMPLETE</span></span><b aria-hidden="true">↗</b></div></a></article><article class="guide-card" data-guide-card data-progress-guide="research" data-category="Research" data-search="research toward a useful unlock.
+skie field manual · source review: 8 november 2026. check live universe settings; historical orion beta13 is excluded.
+
+you will learn:
+- trace prerequisites backward from a goal.
+- separate unlocks from incremental improvements.
+- schedule research around the rest of the account.
+
+start with a capability
+
+pick one result you will actually use: a colony ship, additional fleet capacity, a particular ship, or a production improvement. research levels are means to those results. a long technology list can tempt you to buy one of everything without ever completing a useful chain.
+
+open the target’s technology tree and write down every unmet prerequisite. include building levels as well as research levels. then order them so each requirement becomes available before you need it. keep this plan short enough to finish; a list of every late-game technology is not a near-term plan.
+
+classify the benefit
+
+core research applies across the account, unlike lifeform technology levels developed separately on each planet. a research lab enables technologies and influences research duration. the classic research system runs one normal research at a time; a queue is a schedule, not multiple simultaneous completions. use the current interface to check duration and any restrictions around lab upgrades.
+
+unused capacity earns nothing
+an extra slot helps only if you can fund and manage the additional mission. research should match your real activity rather than an idealized day with unlimited time.
+
+benefit | question to ask | evidence of success
+unlock | what action becomes possible? | the ship, mission or building is available
+capacity | am i consistently reaching this limit? | the extra capacity is used
+efficiency | what recurring cost or delay improves? | a measurable change in a normal session
+prerequisite | what is the next step in the chain? | the intended follow-on research is ready
+
+build a small research worksheet
+
+1. write the target, its prerequisites and the resources needed for each missing step. use current costs from your account.
+
+2. estimate when the slowest resource will be ready. account for planned spending elsewhere before promising a start time.
+
+3. check the lab requirement and displayed duration on the planet where you will start. compare a lab upgrade only if its total delay and cost are justified.
+
+4. schedule any lab work before the long research begins, after checking the current queue restrictions.
+
+5. reserve resources for using the unlock. a newly available ship is not helpful if no budget remains to build it or fuel it.
+
+buy time deliberately
+
+an expensive lab investment may make sense when you have a sustained research program. it may be wasteful when one affordable unlock is the only immediate objective. compare the completion date of the entire plan, including the time to fund and construct the lab, rather than only the shorter research timer.
+
+later, intergalactic research network can combine eligible laboratories; do not assume every lab you own contributes automatically. read its current description and the technology’s lab requirement before distributing upgrades. the right question is which additional lab actually shortens the research you intend to run.
+
+illustrative schedule comparison
+a technology takes 20 hours now. preparing a better lab takes 8 hours and reduces that research to 14 hours. for this single goal, 8 + 14 = 22 hours is slower than starting now. if several future researches benefit, the lab may still be worthwhile. include resource waiting time before deciding.
+
+test the unlocked capability
+
+when research finishes, confirm that the intended action is now available. recalculate relevant fleet times after drive research; an old fleetsave timetable may no longer fit. if you bought mission capacity, try the additional mission during a session you can supervise. if you expected a production gain, compare the resource screen before and after under the same settings.
+
+record what the upgrade changed and choose the next bottleneck. do not immediately buy another level by habit. a useful research plan is revised as the account gains colonies, changes play style or loses the time needed to use an active fleet.
+
+before moving on:
+- the target is a usable capability.
+- every prerequisite is accounted for.
+- lab preparation is included in the schedule.
+- resources remain to use the unlock.
+- any changed flight times have been rechecked.
+
+sources:
+research tutorial · official forum archive, 2019; check current prerequisites
+https://board.en.ogame.gameforge.com/index.php?thread/813419-tutorial-04-research/=
+
+lifeforms faq · contrast with normal research
+https://forum.origin.ogame.gameforge.com/forum/thread/153-lifeforms-faq/
+
+skie v1.0.0 · reviewed 2026-11-08
+"><a href="guide-research.html"><div class="card-top"><span class="lesson-number">04 / RESEARCH</span><span class="tag">Beginner</span></div><h3>Research toward a useful unlock.</h3><p>Build a prerequisite plan, choose the right lab investment, and make the new capability usable.</p><div class="card-bottom"><span>5 CHAPTERS · 5 MIN READ <span class="complete-label">✓ COMPLETE</span></span><b aria-hidden="true">↗</b></div></a></article><article class="guide-card" data-guide-card data-progress-guide="energy" data-category="Energy" data-search="why fusion scales beyond solar.
+skie field manual · source review: 8 november 2026. standard live-game baseline; apply your universe and account modifiers. historical orion beta13 is excluded.
+
+you will learn:
+- calculate solar and fusion output on the same baseline.
+- understand why energy technology improves every reactor.
+- plan a transition without losing mine production.
+
+compare three different power sources
+
+solar plants are stable, consume fields and have no deuterium operating bill. solar satellites use no building fields but can be destroyed; their output depends on the planet’s maximum temperature. fusion reactors use fields and deuterium, but their output scales with both reactor level and energy technology. ordinary attacks do not destroy these buildings.
+
+that is fusion’s late-game advantage: large, durable power output from relatively few fields, especially where cold temperatures make satellites weak. it is not automatically the cheapest starting choice. a small account can reasonably prefer solar while it funds colonies and essential research. a mature mining account should compare fusion seriously before committing to another expensive solar plant level or a huge satellite fleet.
+
+understand the scaling
+
+for the standard unmodified formulas, solar plant energy = 20 × l × 1.1^l. fusion energy = 30 × f × (1.05 + 0.01 × e)^f, where l is solar plant level, f is fusion reactor level and e is energy technology level. full-output fusion fuel use = 10 × f × 1.1^f deuterium per hour at ×1 economy; multiply the fuel use by economy speed. energy output itself is not multiplied by economy speed.
+
+energy technology raises fusion output without raising this baseline reactor fuel bill. it does not improve solar plant or satellite output. because normal research is account-wide, one energy technology upgrade benefits reactors on every planet. evaluate its combined power gain across the whole account, not only the planet paying for the research.
+
+read the worked comparison
+
+assumptions: 100% operation, no class, officer, item or lifeform energy bonuses and no consumption reductions. energy is rounded down; hourly fuel is rounded up after applying the example economy speed. live display rounding may differ by a unit. these are calculated outputs, not account screenshots.
+
+output comparison, not equal-cost comparison
+fusion 20 with energy technology 20 supplies 52,041 energy versus 36,207 from solar plant 40, using 20 rather than 40 power-building fields. the technology is a separate account-wide investment. these rows do not say the two routes cost the same.
+
+power setup | energy | building fields | deut/hour ×1 | deut/hour ×8
+solar plant 20 | 2,690 | 20 | 0 | 0
+solar plant 30 | 10,469 | 30 | 0 | 0
+solar plant 40 | 36,207 | 40 | 0 | 0
+fusion 20 / energy tech 12 | 13,863 | 20 | 1,346 | 10,764
+fusion 20 / energy tech 16 | 27,155 | 20 | 1,346 | 10,764
+fusion 20 / energy tech 20 | 52,041 | 20 | 1,346 | 10,764
+fusion 20 / energy tech 24 | 97,711 | 20 | 1,346 | 10,764
+
+why the same reactor becomes better
+
+at fusion 20, raising energy technology from 16 to 20 increases baseline output from 27,155 to 52,041, about 91.6%, with unchanged baseline fuel consumption. at ×8 economy that reactor consumes about 10,764 deuterium per hour, roughly 258,336 per day before modifiers. compare that expense with the income enabled by the power, not with your total deuterium stock.
+
+for another perspective, at a maximum temperature of +40°c, the baseline satellite formula floor((tmax + 140) / 6) gives 30 energy per satellite. matching the 52,041-energy reactor requires 1,735 satellites. at tmax −90°c, it gives 8 energy and needs 6,506 satellites. satellites may still be cheaper upfront; the question is whether you want that much power exposed to destruction.
+
+price the next decision, not the whole past
+if you already own fusion 20 on ten planets, a new energy technology level benefits all ten. compare its cost with ten local reactor upgrades. if you own no reactors, include their construction and the research together. do not demolish existing solar power simply because a new calculation favors fusion.
+
+switch in a controlled sequence
+
+1. record current energy demand, normal net deuterium income and the next mine/crawler demand. set a fuel reserve you will not consume.
+
+2. check the live prerequisites: fusion requires deuterium synthesizer 5 and energy technology 3. price the intended reactor and research levels.
+
+3. build enough new capacity before reducing existing supply. keep mines powered during the transition.
+
+4. adjust fusion operation only as needed and verify the resource screen. the table models full output, not every partial-output setting.
+
+5. check net production after bonus expiries and after a satellite loss. revisit the next energy technology level across all reactors.
+
+6. for an established reactor network, test whether the new energy technology level lets you lower reactor operation while meeting the same demand. compare the resulting net deuterium on every planet; spare energy is not the only benefit.
+
+read total energy, not just the satellite row
+bonuses can appear separately from base satellite output. when checking a safe proposed change, compare the total energy balance and all affected bonus rows. do not invent an extra slot-15 penalty or assume the satellite base row already includes every bonus.
+
+the decision rule
+
+prefer fusion when durable power and field efficiency solve a real constraint, the shared research investment is affordable, and net income remains attractive after fuel. prefer or retain solar when it meets your present demand cheaply, or when the fusion investment would delay more valuable growth. a mixed supply is valid: existing solar can reduce reactor workload while fusion provides the scalable backbone.
+
+before moving on:
+- my comparison uses the same bonuses and workload.
+- economy speed scales fuel, not baseline energy.
+- i included research and fuel costs.
+- the gain was checked across all reactors.
+- the transition keeps mines powered.
+
+sources:
+fusion reactor use? · game operator formula explanation, 2020
+https://board.en.ogame.gameforge.com/index.php?thread/817798-fusion-reactor-use/=
+
+formula thread v3 · baseline formulas and economy-speed treatment
+https://board.en.ogame.gameforge.com/index.php?thread/548906-formula-thread-v3/=
+
+fusion comparison · solar/satellite formulas, archived community analysis
+https://board.en.ogame.gameforge.com/index.php?pageno=2&amp;thread/657422-fusion-reactor-some-help-required/=
+
+skie v1.0.0 · reviewed 2026-11-08
+"><a href="guide-energy.html"><div class="card-top"><span class="lesson-number">05 / ENERGY</span><span class="tag">Intermediate</span></div><h3>Why fusion scales beyond solar.</h3><p>Compare actual power output, field use and fuel burn. Learn when Energy Technology makes fusion the stronger long-term choice.</p><div class="card-bottom"><span>6 CHAPTERS · 6 MIN READ <span class="complete-label">✓ COMPLETE</span></span><b aria-hidden="true">↗</b></div></a></article><article class="guide-card" data-guide-card data-progress-guide="crawlers" data-category="Crawlers" data-search="make crawlers earn their power bill.
+skie field manual · source review: 8 november 2026. standard live-game baseline; apply your universe and account modifiers. historical orion beta13 is excluded.
+
+you will learn:
+- calculate the mine-based active crawler limit.
+- separate collector output, geologist capacity and overload.
+- check net income after energy costs and production caps.
+
+understand what you are buying
+
+crawlers are stationary production support. they cannot accompany a fleetsave, so budget them as vulnerable local infrastructure rather than mobile fleet. the official class faq lists collector as required for construction, with shipyard 5, combustion drive 4, armour technology 4 and laser technology 4. the base unit cost is 2,000 metal, 2,000 crystal and 1,000 deuterium. confirm the current technology tree before starting a large queue.
+
+start with a planet that already has meaningful mine output and reliable power. a crawler bonus on weak mines is small, while its energy requirement still needs funding. build in batches so you can verify the displayed gain before repeating the purchase across the account.
+
+calculate the working limit
+
+the standard active-count limit is 8 × (metal mine level + crystal mine level + deuterium synthesizer level). before lifeform class enhancement, a collector with an active geologist has 10% more working capacity. rock’tal collector enhancement can increase that capacity bonus; read the allowed working count in your account. this is not a multiplier from economy speed. collector’s 50% crawler-output improvement is also not a 50% increase in the number that can work.
+
+keep three quantities distinct: crawlers owned, crawlers allowed to work, and the production bonus actually realized. a separate 50% crawler-production cap is documented in the official 22 july 2026 pts 13.0.0-r5 changelog. that is test-server patch evidence, not a fresh measurement of every live universe; confirm the current bonus row in your account. more working capacity does not guarantee more income once that bonus ceiling is reached. lifeform changes can make the ceiling relevant earlier; inspect the current bonus row rather than blindly filling the count limit.
+
+work through one planet
+
+example: mines 30/25/25 total 80 levels. the base active limit is 640; with collector and geologist it is 704. the table uses the baseline bonus of 0.02% per crawler, collector’s ×1.5 output, and no lifeform effects. all rows assume sufficient energy and stay below the 50% bonus ceiling.
+
+150% workload is not 150% energy
+the class faq states that each 10-point workload increase above 100% costs 20% more energy. at 150% workload, a baseline 50-energy crawler needs 100 energy. lifeform reductions must be applied separately.
+
+setup | working crawlers | crawler bonus | energy draw
+non-collector, 100% workload | 640 | 12.80% | 32,000
+collector, 100% workload | 640 | 19.20% | 32,000
+collector, 150% workload | 640 | 28.80% | 64,000
+collector + geologist, 150% workload | 704 | 31.68% | 70,400
+
+stop before extra spending stops helping
+
+without lifeform modifiers, a collector at 150% workload gains 0.045% per active crawler before the cap. thus 1,111 yields 49.995%; 1,112 reaches the 50% ceiling if the mine-based limit permits it. this is an arithmetic illustration, not a universal recommended fleet size. enhanced efficiency, operating settings and your working limit change the useful number.
+
+if raising the workload or building another batch does not raise the crawler production row, stop and check the cap. do not assume a production enhancement is broken merely because a capped output remains unchanged. if the higher workload only draws more power, reduce it to the lowest setting that preserves the desired output.
+
+measure the marginal return
+
+in the worked 640-crawler example, moving a collector from 100% to 150% workload adds 9.6 percentage points of baseline crawler production and 32,000 energy demand. it does not add 50% to the entire planet’s total income. if your relevant mine base were 100,000 metal/hour, the uncapped extra crawler metal would be 9,600/hour before other applicable effects. repeat for crystal and deuterium, then subtract any extra fusion fuel.
+
+price the extra energy infrastructure as part of the crawler investment. if you use satellites, include replacement exposure in the decision. if you use fusion, compare a shared energy technology upgrade with local reactor levels. there is no reason to overcharge simply because the slider allows it.
+
+add crawlers in verified batches
+
+1. read mine levels, working limit, current crawler count, energy balance and production bonus on one planet.
+
+2. check that the next batch fits the active limit and still produces a useful gain below the bonus cap.
+
+3. fund the energy supply and reserve replacement resources before starting the batch.
+
+4. compare the resource screen at 100% and at the intended collector workload. record net deuterium, not just gross mine output.
+
+5. recheck after mine upgrades, class changes, geologist expiry and lifeform changes. then repeat only where the result is worthwhile.
+
+before moving on:
+- the shipyard prerequisites and class are satisfied.
+- count limit and 50% production cap are separate.
+- overload energy has been budgeted.
+- net income rises after extra fusion fuel.
+- stationary assets and replacements are affordable.
+
+sources:
+faq: player classes · official collector requirements and workload rules
+https://board.en.ogame.gameforge.com/index.php?thread/828039-faq-player-classes/=
+
+crawlers limit · official-forum player observations, 2024
+https://board.en.ogame.gameforge.com/index.php?thread/842537-crawlers-limit/=
+
+version 7.1.0 · official baseline crawler formula
+https://board.us.ogame.gameforge.com/index.php?thread/97308-version-7-1-0/=
+
+official pts 13.0.0-r5 changelog, 22 july 2026 · restores 50% mine production cap; pts evidence
+https://board.us.ogame.gameforge.com/index.php?postid=747781&amp;thread/107868-pts-may-13-version-13-0-0/=
+
+official-forum moderator discussion · lifeform collector enhancement and active crawler capacity
+https://board.de.ogame.gameforge.com/index.php?pageno=2&amp;thread/217817-crawler/=
+
+skie v1.0.0 · reviewed 2026-11-08
+"><a href="guide-crawlers.html"><div class="card-top"><span class="lesson-number">06 / CRAWLERS</span><span class="tag">Intermediate</span></div><h3>Make crawlers earn their power bill.</h3><p>Calculate working capacity, distinguish it from the production cap, and compare normal operation with Collector overload.</p><div class="card-bottom"><span>6 CHAPTERS · 6 MIN READ <span class="complete-label">✓ COMPLETE</span></span><b aria-hidden="true">↗</b></div></a></article><article class="guide-card" data-guide-card data-progress-guide="expeditions" data-category="Expeditions" data-search="run expeditions as a repeatable operation.
+skie field manual · source review: 8 november 2026. check live universe settings; historical orion beta13 is excluded.
+
+you will learn:
+- identify the inputs behind an expedition fleet.
+- avoid mistaking long holding time for larger rewards.
+- measure net results and operational risk.
+
+what an expedition actually does
+
+an expedition sends a fleet to position 16, holds there to explore, resolves an event and returns surviving ships. it is a chance-based income activity, not a raid on another player. unlock astrophysics 1 to start. its baseline simultaneous-expedition allowance is floor(square root of astrophysics): levels 1, 4, 9, 16 and 25 allow 1, 2, 3, 4 and 5 respectively, before extra slots.
+
+you also need an available ordinary fleet slot. expedition capacity and total mission capacity are separate limits: an unused expedition allowance does not help when all fleet slots are busy. discoverer, admiral and slot items can add capacity; inspect the current totals before planning a batch.
+
+outcome family | what it means for your plan
+resources or ships | income varies; resources need available cargo capacity
+dark matter, items or other special finds | separate reward rules; do not value everything as spendable metal
+nothing useful | a normal possible result, not proof that the fleet is wrong
+pirates or aliens | combat can damage or destroy ships
+fleet loss / black hole | the working fleet can be lost entirely
+timing event | arrival can differ from the ordinary schedule
+
+build the slot count correctly
+
+the october 2026 administrator guide lists these additions to the astrophysics-based expedition limit. ordinary fleet slots are a separate constraint: having enough expedition slots does not guarantee enough free fleet slots to launch them. recheck the displayed limit when bonuses or items expire.
+
+source | additional expedition slots | condition
+discoverer class | +2 | while discoverer is active
+admiral | +1 | while the officer is active
+bronze / silver / gold expedition-slot items | +1 / +2 / +3 | different tiers can combine for +6 while active
+kaelesh discoverer enhancement | +1 per 50% enhancement | for the active discoverer; verify the current total
+
+record the account you are calculating for
+
+expedition fleet recommendations are conditional. record your class, economy speed, relevant research and lifeform bonuses, available expedition slots and the current top-player points bracket. these affect the useful fleet size or the number of missions you can run. the october 2026 ogame us administrator guide recommends a calculator instead of a fixed cargo count.
+
+verify that any calculator supports your current game version and modifiers. a mathematically precise answer based on the wrong class is still wrong. save the input assumptions next to the result so you know when to recalculate.
+
+separate reward value from cargo capacity
+
+two questions determine a useful fleet: is its expedition value sufficient for the relevant reward bracket, and can it carry the resource find? they are not the same statistic. expedition points in the 2026 guide are fleet structural integrity × 5 / 1,000. above the useful point threshold, adding ships does not indefinitely raise the reward cap; the account, universe and top-player bracket still matter. cargo capacity is the ceiling on what the returning ships can hold.
+
+a pathfinder provides the expedition reward multiplier described in the official guide; adding more pathfinders does not repeatedly double that multiplier. more cargo can prevent a large find being truncated, but excess ships add fuel and loss exposure. a probe helps you read depletion, not multiply the reward.
+
+illustrative cargo check
+if your current calculation permits a 12-million resource find but the selected fleet has only 8-million available cargo, that fleet cannot bring home all 12 million. increasing capacity to cover the find solves that bottleneck. increasing it to 30 million does not make the reward cap 30 million. recalculate expedition value and cargo separately.
+
+build a replaceable working fleet
+
+a practical starting concept is cargo capacity supported by a pathfinder when available and an espionage probe for depletion information. the official guide also discusses a single strong combat ship for the find pool. check the recommended composition against your unlocks and risk tolerance before copying it. sending your entire battle fleet is not a substitute for calculating the expedition requirement.
+
+treat every expedition fleet as something you may lose. keep essential transport ships and fleetsave capacity outside the expedition budget. if losing one launch would strand your account’s resources, make the working fleet smaller or build a replacement reserve first.
+
+test one cycle before scaling
+
+1. select an expedition destination at position 16 and confirm that the mission is expedition. review the selected ships and cargo capacity.
+
+2. choose holding time and speed together. read the complete schedule and ensure you can cover a delayed return rather than only the normal one.
+
+3. launch a single test mission. keep enough capacity and fuel at home for ordinary logistics.
+
+4. read the full report, including depletion information. check the returning fleet and actual cargo rather than only the headline reward.
+
+5. only then fill additional expedition slots that fit your available attention and replacement budget.
+
+an expedition is not a guaranteed overnight fleetsave
+events can delay the return or destroy ships. keep your main fleet safety plan separate from your expedition income plan.
+
+avoid the two common scheduling traps
+
+the administrator guide states that longer holding time increases the chance of an event, not the maximum reward, and can increase delays. do not extend a hold merely because you want a bigger payout. depletion at a system’s position 16 is shared with other players; use reports to decide when to vary destinations.
+
+the practical goal is a schedule you can repeat. a theoretically high number of launches means little if ships sit unattended after returning or you repeatedly miss your final collection. plan the last batch backward from the time you want to stop playing, with room for disruption.
+
+keep a simple performance log
+
+for a batch, record launches, elapsed time, resource finds, useful ship finds, fuel consumed and losses. count ship value separately from spendable resources unless you have a realistic way to use or convert those ships. a large ship find does not automatically fund tomorrow’s crystal-heavy research.
+
+illustrative batch accounting
+twenty launches return 12 million resources, use 1 million in fuel and lose ships costing 3 million. the simplified net is 8 million resource units before any conversion assumptions. that is 400,000 per launch, not the 600,000 suggested by gross rewards. this example is bookkeeping, not an expected ogame return.
+
+change one thing at a time
+
+review a meaningful batch rather than reacting to a single black hole or exceptional reward. change one input, such as cargo capacity or destination rotation, and note why. recheck the calculation after class changes, substantial bonuses or a new points bracket. do not spend your entire reserve chasing the best recent result. stable logistics and the ability to replace a lost working fleet matter more than a spectacular screenshot.
+
+before moving on:
+- the calculator matches my current modifiers.
+- the launch is affordable to replace.
+- the return window includes disruption.
+- reports are checked for depletion.
+- results include fuel and losses.
+
+sources:
+expeditions &amp; you: the advanced guide · ogame us, 10 october 2026
+https://board.us.ogame.gameforge.com/index.php?thread/108136-expeditions-you-the-advanced-guide/=
+
+expedition guide · archived baseline astrophysics/mission mechanics; reward tables not reused
+https://board.en.ogame.gameforge.com/index.php?thread/810634-guide-10-expedition-guide/=
+
+skie v1.0.0 · reviewed 2026-11-08
+"><a href="guide-expeditions.html"><div class="card-top"><span class="lesson-number">07 / EXPEDITIONS</span><span class="tag">Intermediate</span></div><h3>Run expeditions as a repeatable operation.</h3><p>Size the fleet for your account, protect the return window, and evaluate results across a batch.</p><div class="card-bottom"><span>9 CHAPTERS · 7 MIN READ <span class="complete-label">✓ COMPLETE</span></span><b aria-hidden="true">↗</b></div></a></article><article class="guide-card" data-guide-card data-progress-guide="lifeforms" data-category="Lifeforms" data-search="build a lifeform plan you can afford.
+skie field manual · source review: 8 november 2026. check live universe settings; historical orion beta13 is excluded.
+
+you will learn:
+- separate species buildings from research choices.
+- work backward from the next useful population threshold.
+- avoid costly tier resets and unfunded expansion.
+
+separate three different decisions
+
+a planet’s selected species determines its available lifeform buildings. research slots determine which technologies you select, and each selected technology has a level developed on that planet. these are related decisions, not one choice. the origin faq explains that lifeform research bonuses combine across the account even though the research levels are purchased locally.
+
+begin with a measurable goal: more recurring mine income, better expedition results or support for a fleet you actually fly. do not choose a species merely because its description sounds powerful. compare the buildings and the budget needed to reach the research you want.
+
+follow a concrete human starter sequence
+
+use one planet as a discovery pilot before buying the same setup everywhere. the official balance notes set the human research centre prerequisites to residential sector 21 and biosphere farm 22; confirm these in your current technology tree. these levels open the route, but the actual population must still grow enough to activate the research slot.
+
+1. select humans. increase residential sector for housing and biosphere farm for food together, rather than creating unsupported housing.
+
+2. reach the research centre prerequisites and construct it. check that food supports the growing population and wait for the first slot to become available.
+
+3. choose intergalactic envoys in the first slot and research level 1. launch discovery missions through the galaxy view dna icons, not the position-16 expedition menu.
+
+4. continue discoveries until the species needed for your planned technology choices are found. do not assume every mission will find something useful.
+
+5. keep intergalactic envoys level 1 active somewhere before changing the pilot planet’s species or first-slot selection. a species does not need its own permanent planet just to keep its technologies available.
+
+unlock tiers without buying unnecessary population
+
+there are eighteen research slots arranged in three tiers. housing and food support the population; conversion buildings make higher-tier population available. for humans, academy of sciences converts toward tier 2 and neuro-calibration centre toward tier 3. for rock’tal, the analogous progression uses rune forge and oriktorium. inspect the population tier required by your target slot: a large tier-1 population does not automatically satisfy a tier-2 requirement.
+
+1. pick the next useful research slot and write down its displayed population requirement and tier.
+
+2. price the missing housing, food, research-building prerequisites and conversion levels as one package.
+
+3. build food and housing support, then the required conversion infrastructure. check actual tier counters rather than total population alone.
+
+4. wait for stable population and confirm that the research stays active. a population shortfall can deactivate unlocked technologies.
+
+5. buy a useful research level and compare the actual gain before pursuing the next population threshold. do not rush tier 3 simply because a template shows all eighteen slots.
+
+plan the tier before spending artefacts
+
+artefacts let you select a desired technology rather than rely on a random choice. the official information describes different costs by tier. before spending, write out your desired selections for the whole tier and compare the total with your inventory. the faq warns that changing selections can involve resetting the tier and selecting its technologies again.
+
+the published artefact prices are 200 for a tier-1 selection, 400 for tier 2 and 600 for tier 3. four deliberate tier-1 selections therefore need 800 artefacts; that is selection currency, not the resources needed to research the chosen technologies. record the other selections before resetting, because they may also need to be selected again.
+
+treat a reset as a small migration project: record current selections, check the current interface warnings and costs, and know the desired end state. do not reset while tired simply because one technology looks better. if a species switch is also involved, evaluate the new building setup and population unlocks before expecting the old bonus to remain active.
+
+illustrative comparison
+imagine one new research level produces an estimated 20,000 additional resources per day across your account and costs 400,000. its simple payback is 20 days. a second option appears cheaper at 150,000 but requires 500,000 of population infrastructure first: compare 650,000 with its benefit. these figures illustrate total-cost reasoning, not real technology costs.
+
+choose a build strategy for your actual income
+
+these are candidate paths, not an instruction to choose every listed technology. options in the same slot compete with one another. preview the slot’s four candidates and their current descriptions before committing artefacts.
+
+account pattern | early research candidates | later direction and decision rule
+passive miner | high-performance extractors: all-resource production; acoustic scanning: crystal; high energy pump systems: deuterium | compare income gained per full upgrade cost. consider rock’tal production buildings and collector enhancement if collector is active.
+regular expeditions | telekinetic tractor beam: ship finds; enhanced sensor technology: resource finds | add sixth sense for resource finds and consider kaelesh discoverer enhancement for an active discoverer. value these using actual launches, not an imagined maximum.
+active fleet | plasma drive: speed except deathstars; efficiency module: flight fuel reduction | choose a ship-specific general overhaul only for ships you use, such as battlecruisers. simulate the fleet after updating bonuses.
+logistics-limited account | cargo hold expansion: civilian cargo capacity | compare fewer ships or trips against the production or expedition technology sacrificed in the same slot. more cargo does not by itself raise the expedition reward cap.
+
+develop the species buildings in phases
+
+for a mining-oriented rock’tal pilot, first use meditation enclave, crystal farm and rune technologium to reach the useful early research slots. then price magma forge for metal, crystal refinery for crystal and the lifeform deuterium synthesiser for deuterium against another ordinary mine level. the lifeform synthesiser is a different building from the normal resource-menu synthesizer.
+
+before a large development phase, compare the cost savings from megalith with the cost of buying it. develop rune forge only when a useful tier-2 slot justifies the extra population infrastructure; use the same test for oriktorium and tier 3. add disruption chamber when the energy benefit or reduced demand solves a measured constraint. this gives a sequence with stop points rather than an unfunded all-buildings shopping list.
+
+an expedition-focused player can still use rock’tal buildings while selecting expedition technologies discovered from another species. humans and mecha deserve comparison when their research-amplifying buildings fit a developed, active account. species, player class and research selection are not required to match names.
+
+pilot the plan, then roll it out
+
+try the intended setup on one suitable planet before repeating it everywhere. record the cost to reach the slot, the research cost and the actual bonus change. if you cannot explain where the improvement appears, investigate before scaling. a copied template may depend on a different class, income mix or activity level.
+
+compare another level on a mature planet with an early level on a less-developed planet, including prerequisites. keep core economy, cargo and fleetsave reserves funded. revisit the plan when your play pattern changes: an expedition-heavy setup deserves a new review if you stop launching regularly. your account should support the game you actually play, not a schedule you no longer keep.
+
+a species switch preserves previously developed levels for later reuse, but the new species must support and unlock its own selected research. expect a transition, not an instant replacement of every bonus. before changing a working setup, record selections, fields, population and account totals. compare the gain using the production breakdown: a one-percentage-point bonus is not necessarily one percent of an already-bonused total.
+
+before moving on:
+- species buildings and technology selections are planned separately.
+- discovery and expedition budgets are distinct.
+- the next slot has a complete prerequisite budget.
+- artefact costs and reset warnings were checked.
+- one planet has been tested before wider rollout.
+
+sources:
+lifeforms faq · origin tooldevs administrator
+https://forum.origin.ogame.gameforge.com/forum/thread/153-lifeforms-faq/
+
+lifeforms and artefacts information · official announcements
+https://board.en.ogame.gameforge.com/index.php?thread/834308-lifeforms-information/=
+
+official lifeforms balance notes · human starter prerequisites and conversion buildings
+https://board.en.ogame.gameforge.com/index.php?thread/832271-lifeforms-balance-notes/=
+
+expeditions &amp; you · official 2026 expedition technology guidance
+https://board.us.ogame.gameforge.com/index.php?thread/108136-expeditions-you-the-advanced-guide/=
+
+lifeform research question · all-planet research example
+https://board.en.ogame.gameforge.com/index.php?thread/833426-lifeform-research-question/=
+
+rock’tal overview · community reference for building/technology roles
+https://sidian.app/s/ogame-wiki/lifeforms/rocktal/overview
+
+mecha overview · community reference for fleet technology roles
+https://sidian.app/s/ogame-wiki/lifeforms/mecha/overview
+
+cargo hold expansion · community reference
+https://sidian.app/s/ogame-wiki/lifeforms/rocktal/research/cargo-hold-expansion-civilian-ships
+
+skie v1.0.0 · reviewed 2026-11-08
+"><a href="guide-lifeforms.html"><div class="card-top"><span class="lesson-number">08 / LIFEFORMS</span><span class="tag">Intermediate</span></div><h3>Build a lifeform plan you can afford.</h3><p>Unlock the right research slots, select technologies deliberately, and measure their contribution.</p><div class="card-bottom"><span>7 CHAPTERS · 8 MIN READ <span class="complete-label">✓ COMPLETE</span></span><b aria-hidden="true">↗</b></div></a></article></div><div id="no-results" class="no-results" hidden><p>No lessons match that search and filter.</p><button class="button small" id="clear-search">Clear search and filters</button></div></section><aside class="note"><span aria-hidden="true">↳</span><p><strong>Your universe is the final check.</strong> The steps teach a repeatable method. Exact prices, prerequisites, speeds, class bonuses, and research effects should be checked in your own game. Worked numbers are examples, not a prescribed build.</p></aside><div class="lower-grid"><section class="compact-panel" id="orion"><p class="eyebrow">A SEPARATE RULESET</p><h2>Project Orion archive</h2><p>The original beta13 research, preserved with its date and limitations. Later changes are flagged before the historical calculator.</p><a class="inline-link" href="guide-orion.html">Open the historical reference →</a></section><section class="compact-panel"><p class="eyebrow">COME BACK TO WHAT MATTERS</p><h2>Make the manual your own</h2><p>Check off lesson exercises and mark guides complete. Progress stays in this browser. Print a lesson or copy its text for your alliance.</p><button class="button small" id="reset-progress">Reset my reading progress</button></section></div><footer class="footer"><p>SKIE FIELD MANUAL / 1.0.0<br>Independent OGame guides. Not affiliated with Gameforge. OGame belongs to its respective owners.</p><p>Sources reviewed 2026-11-08<br>Universe settings and game updates can change the details.</p></footer></main></div><div class="status-toast" id="toast" role="status" hidden></div><script type="module" src="assets/app.js?v=1.0.0"></script></body></html>

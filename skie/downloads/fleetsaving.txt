@@ -1,0 +1,66 @@
+Keep your fleet alive while you are away.
+Skie Field Manual · Source review: 8 November 2026. Check live universe settings; historical Orion beta13 is excluded.
+
+You will learn:
+- Understand why a flying fleet still needs a safe return.
+- Distinguish deployment from transport.
+- Verify every launch instead of relying on habit.
+
+Protect the return, not only the departure
+
+Fleetsaving means moving ships and movable resources off a location during your absence. The dangerous moment is often the landing: another player may arrange an attack to arrive immediately afterward. Defenses can discourage a casual raid but do not make a valuable fleet safe.
+
+Decide when you can genuinely be online before choosing a route. Use the game’s arrival display and server clock, not an estimate from yesterday. Research, ship composition and speed settings can change the duration. Leave time to reconnect, inspect events and act; an alarm at the landing second is too late.
+
+Choose a method you understand
+
+Without a moon, deployment between your own planets is the usual training route. A normal deployment can be visible to a Sensor Phalanx; a recalled deployment is not shown by phalanx. That does not make it impossible to catch: an observer may infer a recall from repeated scans. With suitable moons, moon-to-moon deployment reduces phalanx exposure, but moon destruction and predictable habits still create risk.
+
+Transport is not deployment
+Transport unloads and returns. Deployment stations the ships at the destination unless recalled. Verify the mission name and both location types, not just the coordinates.
+
+Situation | Practical approach | What still needs attention
+Two planets, no moon | Practice deployment and recall with a small fleet | Visible outbound movement; timing inference
+Suitable pair of moons | Plan a moon-to-moon deployment | Moon destruction; arrival security
+Only one useful departure point | Get an alliance review of available routes | Do not assume any long mission is safe
+
+Run the departure checklist
+
+1. Gather the ships you intend to protect. Check outstanding returns and shipyard completions that could leave ships behind after departure.
+
+2. Select the destination and confirm whether each end is a planet or moon. Pick deployment only when that is your intended method.
+
+3. Set speed and read the resulting arrival time. For a recalled save, first practice and inspect the return timer with a small, expendable fleet.
+
+4. Load resources within capacity, accounting for flight fuel. Make sure the destination or return location will have what you need for the next launch.
+
+5. Send, then reopen the event list. Confirm the mission exists with the expected ships, cargo and time. A clicked button is not proof of launch.
+
+Plan around real life
+
+Use two reminders if helpful: one before you need to log in and one before the critical event. An unreliable connection is a reason for more margin, not tighter timing. If you cannot reliably cover any return window, investigate vacation mode and its current conditions before the absence. It is not an emergency button to assume will fix an already developing attack.
+
+Illustrative schedule
+You expect to be home at 18:00 but might be delayed 30 minutes. A landing at 18:05 is a poor plan. Select a route that gives you a comfortable margin after the latest realistic return, then confirm its exact timing in game. If your schedule changes, reassess before leaving rather than hoping the old plan still fits.
+
+Rehearse before the fleet matters
+
+Do one small deployment while you stay online. Inspect its outbound event, recall it, and observe the displayed return. Repeat with the ship mix you normally use, because the slowest ship affects travel. This is a navigation exercise, not a promise of invulnerability.
+
+When threatened, first read the incoming mission and time. Avoid panicked, repeated recalls that create a new return you cannot cover. Ask an experienced ally to review the precise situation privately. Do not publish live fleet coordinates or return times in a public alliance guide. After every save, inspect the original location for leftovers and new production.
+
+Before moving on:
+- The mission and planet/moon types are correct.
+- Cargo and fuel fit.
+- The event list confirms the launch.
+- I can be online before arrival.
+- Outstanding returns and queued ships are accounted for.
+
+Sources:
+Fleetsaving guide · official forum archive; fundamental tactics
+https://board.en.ogame.gameforge.com/index.php?thread/810303-guide-04-fleetsaving-guide/=
+
+Sensor Phalanx · supplemental community reference
+https://ogame.fandom.com/wiki/Sensor_Phalanx
+
+Skie v1.0.0 · reviewed 2026-11-08

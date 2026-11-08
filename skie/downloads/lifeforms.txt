@@ -1,0 +1,112 @@
+Build a lifeform plan you can afford.
+Skie Field Manual · Source review: 8 November 2026. Check live universe settings; historical Orion beta13 is excluded.
+
+You will learn:
+- Separate species buildings from research choices.
+- Work backward from the next useful population threshold.
+- Avoid costly tier resets and unfunded expansion.
+
+Separate three different decisions
+
+A planet’s selected species determines its available lifeform buildings. Research slots determine which technologies you select, and each selected technology has a level developed on that planet. These are related decisions, not one choice. The Origin FAQ explains that lifeform research bonuses combine across the account even though the research levels are purchased locally.
+
+Begin with a measurable goal: more recurring mine income, better expedition results or support for a fleet you actually fly. Do not choose a species merely because its description sounds powerful. Compare the buildings and the budget needed to reach the research you want.
+
+Follow a concrete Human starter sequence
+
+Use one planet as a discovery pilot before buying the same setup everywhere. The official balance notes set the Human Research Centre prerequisites to Residential Sector 21 and Biosphere Farm 22; confirm these in your current technology tree. These levels open the route, but the actual population must still grow enough to activate the research slot.
+
+1. Select Humans. Increase Residential Sector for housing and Biosphere Farm for food together, rather than creating unsupported housing.
+
+2. Reach the Research Centre prerequisites and construct it. Check that food supports the growing population and wait for the first slot to become available.
+
+3. Choose Intergalactic Envoys in the first slot and research level 1. Launch discovery missions through the Galaxy view DNA icons, not the position-16 expedition menu.
+
+4. Continue discoveries until the species needed for your planned technology choices are found. Do not assume every mission will find something useful.
+
+5. Keep Intergalactic Envoys level 1 active somewhere before changing the pilot planet’s species or first-slot selection. A species does not need its own permanent planet just to keep its technologies available.
+
+Unlock tiers without buying unnecessary population
+
+There are eighteen research slots arranged in three tiers. Housing and food support the population; conversion buildings make higher-tier population available. For Humans, Academy of Sciences converts toward tier 2 and Neuro-Calibration Centre toward tier 3. For Rock’tal, the analogous progression uses Rune Forge and Oriktorium. Inspect the population tier required by your target slot: a large tier-1 population does not automatically satisfy a tier-2 requirement.
+
+1. Pick the next useful research slot and write down its displayed population requirement and tier.
+
+2. Price the missing housing, food, research-building prerequisites and conversion levels as one package.
+
+3. Build food and housing support, then the required conversion infrastructure. Check actual tier counters rather than total population alone.
+
+4. Wait for stable population and confirm that the research stays active. A population shortfall can deactivate unlocked technologies.
+
+5. Buy a useful research level and compare the actual gain before pursuing the next population threshold. Do not rush tier 3 simply because a template shows all eighteen slots.
+
+Plan the tier before spending artefacts
+
+Artefacts let you select a desired technology rather than rely on a random choice. The official information describes different costs by tier. Before spending, write out your desired selections for the whole tier and compare the total with your inventory. The FAQ warns that changing selections can involve resetting the tier and selecting its technologies again.
+
+The published artefact prices are 200 for a tier-1 selection, 400 for tier 2 and 600 for tier 3. Four deliberate tier-1 selections therefore need 800 artefacts; that is selection currency, not the resources needed to research the chosen technologies. Record the other selections before resetting, because they may also need to be selected again.
+
+Treat a reset as a small migration project: record current selections, check the current interface warnings and costs, and know the desired end state. Do not reset while tired simply because one technology looks better. If a species switch is also involved, evaluate the new building setup and population unlocks before expecting the old bonus to remain active.
+
+Illustrative comparison
+Imagine one new research level produces an estimated 20,000 additional resources per day across your account and costs 400,000. Its simple payback is 20 days. A second option appears cheaper at 150,000 but requires 500,000 of population infrastructure first: compare 650,000 with its benefit. These figures illustrate total-cost reasoning, not real technology costs.
+
+Choose a build strategy for your actual income
+
+These are candidate paths, not an instruction to choose every listed technology. Options in the same slot compete with one another. Preview the slot’s four candidates and their current descriptions before committing artefacts.
+
+Account pattern | Early research candidates | Later direction and decision rule
+Passive miner | High-Performance Extractors: all-resource production; Acoustic Scanning: crystal; High Energy Pump Systems: deuterium | Compare income gained per full upgrade cost. Consider Rock’tal production buildings and Collector Enhancement if Collector is active.
+Regular expeditions | Telekinetic Tractor Beam: ship finds; Enhanced Sensor Technology: resource finds | Add Sixth Sense for resource finds and consider Kaelesh Discoverer Enhancement for an active Discoverer. Value these using actual launches, not an imagined maximum.
+Active fleet | Plasma Drive: speed except Deathstars; Efficiency Module: flight fuel reduction | Choose a ship-specific General Overhaul only for ships you use, such as Battlecruisers. Simulate the fleet after updating bonuses.
+Logistics-limited account | Cargo Hold Expansion: civilian cargo capacity | Compare fewer ships or trips against the production or expedition technology sacrificed in the same slot. More cargo does not by itself raise the expedition reward cap.
+
+Develop the species buildings in phases
+
+For a mining-oriented Rock’tal pilot, first use Meditation Enclave, Crystal Farm and Rune Technologium to reach the useful early research slots. Then price Magma Forge for metal, Crystal Refinery for crystal and the lifeform Deuterium Synthesiser for deuterium against another ordinary mine level. The lifeform synthesiser is a different building from the normal resource-menu synthesizer.
+
+Before a large development phase, compare the cost savings from Megalith with the cost of buying it. Develop Rune Forge only when a useful tier-2 slot justifies the extra population infrastructure; use the same test for Oriktorium and tier 3. Add Disruption Chamber when the energy benefit or reduced demand solves a measured constraint. This gives a sequence with stop points rather than an unfunded all-buildings shopping list.
+
+An expedition-focused player can still use Rock’tal buildings while selecting expedition technologies discovered from another species. Humans and Mecha deserve comparison when their research-amplifying buildings fit a developed, active account. Species, player class and research selection are not required to match names.
+
+Pilot the plan, then roll it out
+
+Try the intended setup on one suitable planet before repeating it everywhere. Record the cost to reach the slot, the research cost and the actual bonus change. If you cannot explain where the improvement appears, investigate before scaling. A copied template may depend on a different class, income mix or activity level.
+
+Compare another level on a mature planet with an early level on a less-developed planet, including prerequisites. Keep core economy, cargo and fleetsave reserves funded. Revisit the plan when your play pattern changes: an expedition-heavy setup deserves a new review if you stop launching regularly. Your account should support the game you actually play, not a schedule you no longer keep.
+
+A species switch preserves previously developed levels for later reuse, but the new species must support and unlock its own selected research. Expect a transition, not an instant replacement of every bonus. Before changing a working setup, record selections, fields, population and account totals. Compare the gain using the production breakdown: a one-percentage-point bonus is not necessarily one percent of an already-bonused total.
+
+Before moving on:
+- Species buildings and technology selections are planned separately.
+- Discovery and expedition budgets are distinct.
+- The next slot has a complete prerequisite budget.
+- Artefact costs and reset warnings were checked.
+- One planet has been tested before wider rollout.
+
+Sources:
+Lifeforms FAQ · Origin ToolDevs administrator
+https://forum.origin.ogame.gameforge.com/forum/thread/153-lifeforms-faq/
+
+Lifeforms and artefacts information · official announcements
+https://board.en.ogame.gameforge.com/index.php?thread/834308-lifeforms-information/=
+
+Official Lifeforms balance notes · Human starter prerequisites and conversion buildings
+https://board.en.ogame.gameforge.com/index.php?thread/832271-lifeforms-balance-notes/=
+
+Expeditions & You · official 2026 expedition technology guidance
+https://board.us.ogame.gameforge.com/index.php?thread/108136-expeditions-you-the-advanced-guide/=
+
+Lifeform Research Question · all-planet research example
+https://board.en.ogame.gameforge.com/index.php?thread/833426-lifeform-research-question/=
+
+Rock’tal overview · community reference for building/technology roles
+https://sidian.app/s/ogame-wiki/lifeforms/rocktal/overview
+
+Mecha overview · community reference for fleet technology roles
+https://sidian.app/s/ogame-wiki/lifeforms/mecha/overview
+
+Cargo Hold Expansion · community reference
+https://sidian.app/s/ogame-wiki/lifeforms/rocktal/research/cargo-hold-expansion-civilian-ships
+
+Skie v1.0.0 · reviewed 2026-11-08

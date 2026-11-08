@@ -1,0 +1,81 @@
+Make crawlers earn their power bill.
+Skie Field Manual · Source review: 8 November 2026. Standard live-game baseline; apply your universe and account modifiers. Historical Orion beta13 is excluded.
+
+You will learn:
+- Calculate the mine-based active crawler limit.
+- Separate Collector output, Geologist capacity and overload.
+- Check net income after energy costs and production caps.
+
+Understand what you are buying
+
+Crawlers are stationary production support. They cannot accompany a fleetsave, so budget them as vulnerable local infrastructure rather than mobile fleet. The official class FAQ lists Collector as required for construction, with Shipyard 5, Combustion Drive 4, Armour Technology 4 and Laser Technology 4. The base unit cost is 2,000 metal, 2,000 crystal and 1,000 deuterium. Confirm the current technology tree before starting a large queue.
+
+Start with a planet that already has meaningful mine output and reliable power. A crawler bonus on weak mines is small, while its energy requirement still needs funding. Build in batches so you can verify the displayed gain before repeating the purchase across the account.
+
+Calculate the working limit
+
+The standard active-count limit is 8 × (Metal Mine level + Crystal Mine level + Deuterium Synthesizer level). Before Lifeform class enhancement, a Collector with an active Geologist has 10% more working capacity. Rock’tal Collector Enhancement can increase that capacity bonus; read the allowed working count in your account. This is not a multiplier from economy speed. Collector’s 50% crawler-output improvement is also not a 50% increase in the number that can work.
+
+Keep three quantities distinct: crawlers owned, crawlers allowed to work, and the production bonus actually realized. A separate 50% crawler-production cap is documented in the official 22 July 2026 PTS 13.0.0-r5 changelog. That is test-server patch evidence, not a fresh measurement of every live universe; confirm the current bonus row in your account. More working capacity does not guarantee more income once that bonus ceiling is reached. Lifeform changes can make the ceiling relevant earlier; inspect the current bonus row rather than blindly filling the count limit.
+
+Work through one planet
+
+Example: mines 30/25/25 total 80 levels. The base active limit is 640; with Collector and Geologist it is 704. The table uses the baseline bonus of 0.02% per crawler, Collector’s ×1.5 output, and no lifeform effects. All rows assume sufficient energy and stay below the 50% bonus ceiling.
+
+150% workload is not 150% energy
+The class FAQ states that each 10-point workload increase above 100% costs 20% more energy. At 150% workload, a baseline 50-energy crawler needs 100 energy. Lifeform reductions must be applied separately.
+
+Setup | Working crawlers | Crawler bonus | Energy draw
+Non-Collector, 100% workload | 640 | 12.80% | 32,000
+Collector, 100% workload | 640 | 19.20% | 32,000
+Collector, 150% workload | 640 | 28.80% | 64,000
+Collector + Geologist, 150% workload | 704 | 31.68% | 70,400
+
+Stop before extra spending stops helping
+
+Without lifeform modifiers, a Collector at 150% workload gains 0.045% per active crawler before the cap. Thus 1,111 yields 49.995%; 1,112 reaches the 50% ceiling if the mine-based limit permits it. This is an arithmetic illustration, not a universal recommended fleet size. Enhanced efficiency, operating settings and your working limit change the useful number.
+
+If raising the workload or building another batch does not raise the crawler production row, stop and check the cap. Do not assume a production enhancement is broken merely because a capped output remains unchanged. If the higher workload only draws more power, reduce it to the lowest setting that preserves the desired output.
+
+Measure the marginal return
+
+In the worked 640-crawler example, moving a Collector from 100% to 150% workload adds 9.6 percentage points of baseline crawler production and 32,000 energy demand. It does not add 50% to the entire planet’s total income. If your relevant mine base were 100,000 metal/hour, the uncapped extra crawler metal would be 9,600/hour before other applicable effects. Repeat for crystal and deuterium, then subtract any extra fusion fuel.
+
+Price the extra energy infrastructure as part of the crawler investment. If you use satellites, include replacement exposure in the decision. If you use fusion, compare a shared Energy Technology upgrade with local reactor levels. There is no reason to overcharge simply because the slider allows it.
+
+Add crawlers in verified batches
+
+1. Read mine levels, working limit, current crawler count, energy balance and production bonus on one planet.
+
+2. Check that the next batch fits the active limit and still produces a useful gain below the bonus cap.
+
+3. Fund the energy supply and reserve replacement resources before starting the batch.
+
+4. Compare the resource screen at 100% and at the intended Collector workload. Record net deuterium, not just gross mine output.
+
+5. Recheck after mine upgrades, class changes, Geologist expiry and lifeform changes. Then repeat only where the result is worthwhile.
+
+Before moving on:
+- The shipyard prerequisites and class are satisfied.
+- Count limit and 50% production cap are separate.
+- Overload energy has been budgeted.
+- Net income rises after extra fusion fuel.
+- Stationary assets and replacements are affordable.
+
+Sources:
+FAQ: Player Classes · official Collector requirements and workload rules
+https://board.en.ogame.gameforge.com/index.php?thread/828039-faq-player-classes/=
+
+Crawlers limit · official-forum player observations, 2024
+https://board.en.ogame.gameforge.com/index.php?thread/842537-crawlers-limit/=
+
+Version 7.1.0 · official baseline crawler formula
+https://board.us.ogame.gameforge.com/index.php?thread/97308-version-7-1-0/=
+
+Official PTS 13.0.0-r5 changelog, 22 July 2026 · restores 50% mine production cap; PTS evidence
+https://board.us.ogame.gameforge.com/index.php?postID=747781&thread/107868-pts-may-13-version-13-0-0/=
+
+Official-forum moderator discussion · Lifeform Collector Enhancement and active crawler capacity
+https://board.de.ogame.gameforge.com/index.php?pageNo=2&thread/217817-crawler/=
+
+Skie v1.0.0 · reviewed 2026-11-08

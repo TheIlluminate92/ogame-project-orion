@@ -1,0 +1,73 @@
+Read Orion in its original context.
+Skie Field Manual · Historical PTS v13.1.0 beta13 / source guide 0.19.6 / 11 October 2026. Not a current live-server guide
+
+You will learn:
+- Recognize where the preserved beta13 research stops being a current rule.
+- Use the IAS calculator only as a dated construction-cost projection.
+- Check patch context and evidence before making an Orion investment.
+
+Start with the date, not the calculator
+
+The original Project Orion field guide records research from the OGame public test server. This archive is pinned to guide 0.19.6, dated 11 October 2026, at repository commit 56a951b. It is useful for understanding what was tested and how the model was constructed. It does not certify the mechanics of your current universe.
+
+Read the version label before borrowing a build target or cost. A guide revision is the website’s revision, not the game’s patch number. A test-server result is not automatically a live-server result. Your server must actually have the relevant Orion features before any of this becomes an actionable plan.
+
+Do not use the old unlimited-storage claim
+The official 13 October beta15 changelog added a Lithium storage limit. Any earlier “unlimited” description is superseded. This archive does not claim a verified current storage cap.
+
+Understand the historical progression loop
+
+The source describes Interstellar Anomaly Scanners across planets, resource conversion into Lithium, scanning for anomaly missions, and completing missions to unlock Control Center buildings. It records IAS levels combining across the account for anomaly progression. Those relationships explain why the original planner compares investment across multiple planets rather than treating one scanner in isolation.
+
+The research distinguishes official patch notes, direct PTS observations, projections and unresolved questions. Preserve those distinctions when reading a table. A computed value can be arithmetically exact while still relying on an unverified model.
+
+Know what changed after the snapshot
+
+This list highlights known changes that make the snapshot incomplete. It is not a complete changelog or a claim that beta17 is the newest release. Follow the official announcement for subsequent updates.
+
+Date / PTS patch | Verified official change | Consequence for an old guide
+13 Oct 2026 / beta15 | Lithium storage limit added | Discard unlimited-storage assumptions.
+16 Oct 2026 / beta16 | Lithium removed as an explicit anomaly reward; reward claims can provide additional Lithium by chance | Do not price the old Lithium reward as guaranteed income.
+21 Oct 2026 / beta17 | Anomaly mission ship rewards rebalanced | Old ship-reward observations need fresh confirmation.
+
+What the preserved cost model calculates
+
+For the historical IAS model, the base resource costs are 84 Metal, 42 Crystal and 14 Deuterium. At target level L, the formula is floor(Base × 1.5^(L − 1)) separately for each resource. A current-to-target result sums each next level through the target. The implementation uses exact integer arithmetic with 3/2, not floating-point estimates.
+
+The beta13 official notes increased the scaling factor from 1.4 to 1.5. The original repository’s older prose still mentions 7/5 in one instruction, but its beta13 data and calculator use 3/2. This archive follows the actual beta13 model. Post-rebalance outputs still need fresh PTS observations before being labeled observed prices.
+
+Worked historical example: IAS 0 → 2
+Level 1: 84 Metal + 42 Crystal + 14 Deuterium.
+Level 2: 126 Metal + 63 Crystal + 21 Deuterium.
+Combined projection: 210 Metal + 105 Crystal + 35 Deuterium.
+This verifies the calculation method, not today’s in-game pricing.
+
+Revalidate before investing
+
+1. Confirm that Orion is enabled in the universe you are actually playing. Read its current patch context.
+
+2. Compare one displayed in-game construction price against the dated model. A mismatch is a stop signal, not a rounding error to ignore.
+
+3. Check production, storage, conversion costs, mission restrictions and reward mechanics separately. A matching building price does not validate the rest.
+
+4. Keep personal coordinates, planet names, resource balances and account screenshots out of public research. Record only the mechanic and necessary test conditions.
+
+No universal Lithium income calculator
+The source production example includes an inferred ×10 economy factor and incomplete post-rebalance validation. It is intentionally not reproduced here as a universal income estimate.
+
+Before moving on:
+- I know which guide and game version this archive describes.
+- I will verify current in-game prices before using the cost projection.
+- I am not treating old storage or reward observations as current rules.
+
+Sources:
+Pinned original guide 0.19.6 and source files
+https://github.com/TheIlluminate92/ogame-project-orion/tree/56a951bbeca850d00ff1ccca106b05475daa7fb3
+
+Official Orion 13.1 PTS changelog, including later patches
+https://forum.origin.ogame.gameforge.com/forum/thread/568-orion-version-13-1/?postID=1640
+
+Original Project Orion website (historical content may remain)
+https://theilluminate92.github.io/ogame-project-orion/
+
+Skie v1.0.0 · reviewed 2026-11-08

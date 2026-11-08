@@ -1,0 +1,83 @@
+Your first account, one useful step at a time.
+Skie Field Manual · Beginner workflow; current costs and unlocks must be confirmed in the in-game technology tree
+
+You will learn:
+- Find production, construction, research, fleet and event information.
+- Complete and check one small economic upgrade without breaking your energy balance.
+- Separate an account class, a planet’s lifeform and a play style.
+- Plan your next login before leaving ships or resources behind.
+
+Know what you are managing
+
+OGame is a persistent game: production, timers and fleet movements continue while you are away. Your account is a network of planets and, later, moons. You spend Metal, Crystal and Deuterium on mines, facilities, research, ships and defenses. Energy supports production; it is not a resource you can load into a cargo ship.
+
+Start by finding the selected planet, your resource balances, the event list and the server clock. Open Resources to inspect mines and power, Facilities for supporting buildings, Research for technologies and Fleet for dispatch. Names and positions can differ between desktop and mobile interfaces. Before buying something, open its details and technology prerequisites. A disabled button often means a requirement is missing, not that the page is broken.
+
+Screen or concept | What you use it for | First check
+Resources / production settings | Mines, energy and hourly output | Is production fully powered?
+Facilities / technology details | Construction, labs, shipyard and unlocks | What is actually blocking my next goal?
+Research | Account-wide technologies and prerequisites | What capability does the next level add?
+Fleet / event list | Ship missions, timers and returns | Will I be online when valuable ships return?
+Galaxy | Positions, nearby players and potential destinations | Am I looking at the intended system and location type?
+
+Make your first production loop work
+
+1. Select your starting planet and inspect Metal Mine, Crystal Mine, Deuterium Synthesizer and Solar Plant. Compare available resources with the next upgrade cost rather than selecting a large target from an old build list.
+
+2. Choose a small mine upgrade you can fund. If its energy requirement would leave the planet short, add the necessary power first. For a new account, Solar Plant is a straightforward starting source; the energy guide explains when fusion becomes attractive.
+
+3. Use Metal and Crystal production to support the early construction loop. Add Deuterium production as your next research, ship or fuel requirement calls for it. Avoid spending every last unit on a mine if it prevents the prerequisite you actually need.
+
+4. Wait for the upgrade to finish, then reopen production settings. Confirm that the level changed, energy is sufficient and hourly output increased. This gives you a baseline for comparing future upgrades.
+
+5. Write down the next specific goal and its missing resource. If the limiting resource is Crystal, do not assume another Metal upgrade will solve the wait. Build for the bottleneck, then review it again.
+
+A method, not a rigid 10/8/6 build
+A fixed mine ratio can be a rough reference, but universe speed, rewards, existing levels and your next unlock change the useful order. The economy guide teaches you how to compare the actual next level on each mine.
+
+Use the technology tree as your map
+
+Pick the first capability you need: move resources, explore, settle another planet or progress research. Open that item’s technology details and work backward through the prerequisites. Build only the missing facilities and research levels needed for that near-term goal. A mine makes income; a laboratory or shipyard enables something else. Judge each on the job it performs.
+
+Once you have cargo ships, practise a small transport between suitable owned locations before depending on a large shipment. Confirm the mission, destination type, fuel, payload and return time. Transport does not station the fleet permanently. Read the fleetsaving lesson before treating any dispatch as safe storage.
+
+Early rewards and tutorials can accelerate progression. Read what a reward does before claiming or spending it, and do not build a permanent strategy around a temporary event. More stored resources also require a plan to keep them from becoming an easy target.
+
+Class, lifeform and play style are different
+
+Collector, Discoverer and General are account classes with different bonuses. Lifeform species are chosen on planets and unlock their own buildings; Lifeform technologies are another layer again. A miner is a play style, not a requirement to choose one species everywhere. An expedition player still needs mines, cargo, power and fleet safety.
+
+You do not need to settle every advanced choice immediately. Establish production and a reliable routine, then choose the miner, expedition or active-fleet path that fits the time you will actually spend playing. The play-style pages give a staged development order and explain when to postpone an upgrade.
+
+End the session before closing the game
+
+1. Read all active fleet events and queued ship completions. Note what will arrive or finish while you are away.
+
+2. Estimate resources at your next login: current stock plus hourly production multiplied by hours away. Check storage limits and whether a collection or sensible purchase is needed first.
+
+3. Keep flight fuel and transport capacity available. Do not spend your entire reserve on a last-minute upgrade.
+
+4. Follow the fleetsaving lesson for ships and movable resources you cannot afford to lose. Defense is a deterrent, not a substitute for a safe fleet return.
+
+5. Choose a realistic next login and one objective for that visit. A sustainable routine is more valuable than a plan that requires you to watch timers all night.
+
+Your first small exercise
+Record a mine’s level, hourly production and the planet’s energy balance. Complete one affordable upgrade with enough supporting energy. Record the same three values afterward. Explain the difference in one sentence. Then check how much stock will accumulate before your next login. You have now practised the same measurement loop used for advanced account planning.
+
+Before moving on:
+- I can find the current planet, production settings, technology details and fleet events.
+- I completed or planned a mine upgrade with enough energy and resources for its support.
+- I can explain the difference between account class, lifeform species and play style.
+- I know when my next valuable fleet movement ends and when I will log in.
+
+Sources:
+Buildings tutorial · official forum archive, foundational mechanics
+https://board.en.ogame.gameforge.com/index.php?thread/813417-tutorial-02-buildings/=
+
+Research tutorial · official forum archive
+https://board.en.ogame.gameforge.com/index.php?thread/813419-tutorial-04-research/=
+
+Lifeforms FAQ · species, research and discovery
+https://forum.origin.ogame.gameforge.com/forum/thread/153-lifeforms-faq/
+
+Skie v1.0.0 · reviewed 2026-11-08

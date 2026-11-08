@@ -1,0 +1,90 @@
+Build an economy that keeps growing.
+Skie Field Manual · Source review: 8 November 2026. Check live universe settings; historical Orion beta13 is excluded.
+
+You will learn:
+- Read the bottleneck in your own resource screen.
+- Compare two upgrades using incremental output.
+- Keep storage, energy and transport ahead of production.
+
+Know what each mine does
+
+Metal funds much of your construction and fleet growth. Crystal is often the limiting material for research and advanced infrastructure. Deuterium is both a construction/research resource and the fuel for operations. Mines provide recurring income while you are offline, but only within energy and storage constraints. An upgrade raises future production; it does not immediately deliver a lump sum of resources.
+
+The standard mine-output terms at full power and ×1 economy are 30 × L × 1.1^L for metal, 20 × L × 1.1^L for crystal, and 10 × L × 1.1^L × (1.44 − 0.004 × Tmax) for deuterium. Tmax is the planet’s maximum temperature. These terms exclude natural base income, slot bonuses, class, Plasma Technology, lifeforms and other modifiers. Multiply resource production by economy speed, then account for your actual bonuses. Do not multiply the power requirement by economy speed.
+
+These are computed teaching values
+The table shows formula terms rounded to two decimals, not a promise of the total shown in your resource screen. Compare the screen’s base mine row and modifier rows separately.
+
+Example at mine level 10 | Unmodified mine output/hour | Why it matters
+Metal Mine | 778.12 metal | Construction material; slot bonuses can change the comparison
+Crystal Mine | 518.75 crystal | Research needs can justify prioritizing it despite lower volume
+Deuterium Synthesizer, Tmax +40°C | 332.00 deuterium | Temperature-dependent fuel production
+Deuterium Synthesizer, Tmax −90°C | 466.87 deuterium | Same level, more output because the planet is colder
+
+Follow the first-planet loop
+
+1. Open Resources and inspect the Metal Mine, Crystal Mine, Deuterium Synthesizer and Solar Plant. Read the next-level cost, completion time and energy demand.
+
+2. Use the Solar Plant to support the next mine increase. Check the energy balance after completion; persistent shortages mean the mine is not delivering its intended full output.
+
+3. Build metal and crystal capacity toward a named early unlock. If crystal is delaying that unlock, increase crystal rather than following a fixed metal-to-crystal level ratio.
+
+4. Develop deuterium before research and ship fuel become the bottleneck. Do not drain all fuel into a queue once you have ships to move.
+
+5. Open Facilities for Robotics Factory, Shipyard and Research Lab only as the next unlock requires them. Use the technology tree to see the missing levels.
+
+6. Before your break, check when each resource will fill storage. Spend on the planned upgrade, improve storage when justified, and establish cargo logistics as ships become available. Return to Resources to verify the result.
+
+Measure before you spend
+
+Start on one planet. Write down hourly metal, crystal and deuterium output, available energy, storage space and free fields. Record your class and the universe economy speed next to those numbers. Use the values actually displayed, including active bonuses. A guide written for a different universe cannot supply your production forecast. Refresh the screen after a queue finishes before comparing the result.
+
+Mines need energy, storage limits production, and facilities provide infrastructure rather than direct mine output. These are different problems. An energy shortage is not fixed by another mine, and more storage will not help if you habitually leave a large, profitable stockpile undefended.
+
+Name the next constraint
+
+1. Choose one concrete goal: start the next mine, unlock a colony ship, or fund the next research. Write down the required resources and deadline.
+
+2. Subtract resources already available and safe incoming deliveries. Identify which missing resource will take longest to obtain at current production.
+
+3. Check whether energy, fields, storage or construction time will block the upgrade. Add the necessary supporting work to the plan.
+
+4. Reserve flight fuel and enough cargo capacity to protect the remaining resources. Spend only the balance.
+
+Resource value is contextual
+A metal-heavy account saving for crystal-heavy research should not blindly choose the biggest metal production increase. Reducing the actual waiting time can matter more than a tidy mine ratio.
+
+Compare the complete investment
+
+For an income upgrade, divide its full cost by the additional daily income it enables. Keep unlike resources separate unless you explicitly choose a conversion ratio for planning. That ratio is an assumption, not a guaranteed trade offer. Include required energy infrastructure and subtract additional operating costs where relevant.
+
+Compare the next level on several planets, not just your largest planet. A small improvement to a developing colony may be easier to fund and leave the account less dependent on one location. Do not call a facility a bad investment simply because it has no direct payback: evaluate the construction delay it removes.
+
+Illustrative payback, not game costs
+Upgrade A costs 1,200,000 planning units including its energy support and adds 30,000 units per day: 40 days. Upgrade B costs 800,000 and adds 25,000 per day: 32 days. B has the shorter simple payback. But if B consumes crystal reserved for tomorrow’s colony unlock, delaying it may still be sensible. Neither estimate includes future reinvestment or losses.
+
+Make the offline interval affordable
+
+Calculate the stock that will accumulate before your next collection: current stock plus hourly output multiplied by hours away. Compare each resource with its storage capacity. If a tank fills sooner, schedule an earlier collection, spend before leaving, or budget the storage upgrade. Storage is a buffer, not a security system.
+
+Solar satellites are ships and can be destroyed. Fusion consumes deuterium. Evaluate energy options with their operational risks and net production rather than only their purchase price. Keep a small written recovery plan for a power loss: which mines can be reduced temporarily and what you would rebuild first.
+
+Verify the result
+
+After completion, check actual output, energy balance and the next storage limit. If the gain differs from your estimate, inspect production settings and bonus expiry before making the same purchase elsewhere. End the session with a named next upgrade and a resource target. Avoid filling queues merely because something is affordable; a deliberate empty queue can be better than an irrelevant expense.
+
+Before moving on:
+- I know my next resource bottleneck.
+- The upgrade includes its energy and infrastructure cost.
+- Storage covers my planned absence.
+- Fleet fuel and cargo are reserved.
+- I will verify the actual production increase.
+
+Sources:
+Buildings tutorial · official forum archive, 2019; core mechanics only
+https://board.en.ogame.gameforge.com/index.php?thread/813417-tutorial-02-buildings/=
+
+Formula Thread v3 · unmodified mine terms; exclude obsolete unrelated sections
+https://board.en.ogame.gameforge.com/index.php?thread/548906-formula-thread-v3/=
+
+Skie v1.0.0 · reviewed 2026-11-08
