@@ -26,6 +26,9 @@ Use one planet as a discovery pilot before buying the same setup everywhere. The
 
 5. Keep Intergalactic Envoys level 1 active somewhere before changing the pilot planet’s species or first-slot selection. A species does not need its own permanent planet just to keep its technologies available.
 
+Discovery limits after transfers: announced change, not a confirmed rollout
+Gameforge’s 5 November 2026 announcement, checked 8 November: a transferred or merged account can be blocked from discoveries when its carried-over mission count exceeds the destination server’s age-based limit. Gameforge plans a one-time adjustment of affected counters to the current limit, without removing previous discoveries. It also plans to remove the discovery limit on servers older than one year; servers up to one year old keep their limit. The announced rollout window is November, before Orion’s global release, but this notice does not confirm an exact deployment date. Treat these as pending changes, not rules already active in your universe. After a move, check your discovery counter and the official update before budgeting artefacts or resetting a lifeform tier. A history count higher than the adjusted counter is expected after the fix.
+
 Unlock tiers without buying unnecessary population
 
 There are eighteen research slots arranged in three tiers. Housing and food support the population; conversion buildings make higher-tier population available. For Humans, Academy of Sciences converts toward tier 2 and Neuro-Calibration Centre toward tier 3. For Rock’tal, the analogous progression uses Rune Forge and Oriktorium. Inspect the population tier required by your target slot: a large tier-1 population does not automatically satisfy a tier-2 requirement.
@@ -85,6 +88,9 @@ Before moving on:
 - One planet has been tested before wider rollout.
 
 Sources:
+5 November 2026 · Official discovery-limit announcement (planned rollout; checked 8 November)
+https://board.us.ogame.gameforge.com/index.php?thread/108159-changes-to-the-lifeform-discovery-limit/&postID=748102#post748102
+
 Lifeforms FAQ · Origin ToolDevs administrator
 https://forum.origin.ogame.gameforge.com/forum/thread/153-lifeforms-faq/
 

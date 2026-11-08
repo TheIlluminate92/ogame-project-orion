@@ -1249,7 +1249,7 @@
       "label": "Practical lesson",
       "status": "Source review: 8 November 2026. Check live universe settings; historical Orion beta13 is excluded.",
       "level": "Intermediate",
-      "minutes": 8,
+      "minutes": 9,
       "objectives": [
         "Separate species buildings from research choices.",
         "Work backward from the next useful population threshold.",
@@ -1274,7 +1274,12 @@
             "Choose Intergalactic Envoys in the first slot and research level 1. Launch discovery missions through the Galaxy view DNA icons, not the position-16 expedition menu.",
             "Continue discoveries until the species needed for your planned technology choices are found. Do not assume every mission will find something useful.",
             "Keep Intergalactic Envoys level 1 active somewhere before changing the pilot planet’s species or first-slot selection. A species does not need its own permanent planet just to keep its technologies available."
-          ]
+          ],
+          "callout": {
+            "kind": "warning",
+            "title": "Discovery limits after transfers: announced change, not a confirmed rollout",
+            "text": "Gameforge’s 5 November 2026 announcement, checked 8 November: a transferred or merged account can be blocked from discoveries when its carried-over mission count exceeds the destination server’s age-based limit. Gameforge plans a one-time adjustment of affected counters to the current limit, without removing previous discoveries. It also plans to remove the discovery limit on servers older than one year; servers up to one year old keep their limit. The announced rollout window is November, before Orion’s global release, but this notice does not confirm an exact deployment date. Treat these as pending changes, not rules already active in your universe. After a move, check your discovery counter and the official update before budgeting artefacts or resetting a lifeform tier. A history count higher than the adjusted counter is expected after the fix."
+          }
         },
         {
           "id": "population",
@@ -1362,6 +1367,10 @@
         "One planet has been tested before wider rollout."
       ],
       "sources": [
+        {
+          "label": "5 November 2026 · Official discovery-limit announcement (planned rollout; checked 8 November)",
+          "url": "https://board.us.ogame.gameforge.com/index.php?thread/108159-changes-to-the-lifeform-discovery-limit/&postID=748102#post748102"
+        },
         {
           "label": "Lifeforms FAQ · Origin ToolDevs administrator",
           "url": "https://forum.origin.ogame.gameforge.com/forum/thread/153-lifeforms-faq/"
