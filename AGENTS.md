@@ -69,8 +69,8 @@ Keep calculation controls off the homepage. Keep raw observation dumps out of pu
 - Each resource component is floored independently.
 - IAS levels stack across planets for account-wide anomaly progression.
 - The cross-planet planner balances levels as evenly as possible because the construction curve is exponential.
-- Exact cost calculations use `BigInt` and the rational multiplier `7/5`; do not replace them with floating-point math.
-- Construction costs currently match supplied PTS observations through IAS level 35. Higher levels are formula projections.
+- Exact cost calculations use JavaScript `BigInt` (whole-number arithmetic) and the ratio `3/2`, which is exactly `1.5`. At each level, calculate each resource as `Base × 3^(L − 1) / 2^(L − 1)` and discard its fractional part before adding it to the total; do not replace this with floating-point math.
+- The earlier observations through IAS level 35 apply to the pre-beta13 curve. The current beta13 ×1.5 model has no fresh PTS cost checkpoints; its outputs, including level-60 totals, remain projections pending verification.
 
 ## Routine update workflow
 
