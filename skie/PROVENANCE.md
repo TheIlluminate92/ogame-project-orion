@@ -32,3 +32,7 @@ The later beta15 storage limit, beta16 Lithium reward change and beta17 ship-rew
 ## Publication scope
 
 Only `/skie/` website files are changed. No credentials, repository visibility, Discord invite or user account state is modified. The alliance-cooperation section intentionally does not invent mechanics or operating procedures.
+
+## Legacy URL migration · 10 November 2026
+
+The 17 legacy HTML entry points now forward to the matching pages at https://skie.wazserver.org/. Query strings and section fragments are preserved with JavaScript; canonical and no-JavaScript fallbacks use the fixed matching page. The redirect-only build replaces the retired lesson build. Original source data, assets, text downloads, and the MIT notice remain unchanged. No Orion file outside `/skie/` is changed.

@@ -1,29 +1,49 @@
 import assert from 'node:assert/strict';
-import {readFile,readdir,stat} from 'node:fs/promises';
-import {resolve,dirname} from 'node:path';
+import {readFile, readdir} from 'node:fs/promises';
+import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {iasCosts} from '../assets/costs.js';
-const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
-const data=JSON.parse(await readFile(resolve(root,'data/content.json'),'utf8'));
-const dist=resolve(root,'dist');const names=(await readdir(dist)).filter(x=>x.endsWith('.html'));
-let passed=0;const check=(name,fn)=>{fn();passed++;console.log('PASS '+name);};
-check('Requested teaching scope is present',()=>{for(const id of ['starter','building','energy','crawlers','fleetsaving','colonization','research','expeditions','lifeforms','path-miner','path-expedition','path-fleet','orion'])assert.ok(data.guides.some(g=>g.id===id),id);});
-check('Guide IDs and section IDs are unique',()=>{assert.equal(new Set(data.guides.map(g=>g.id)).size,data.guides.length);for(const g of data.guides){assert.equal(new Set(g.sections.map(s=>s.id)).size,g.sections.length);assert.ok(g.sections.every(s=>/^[a-z0-9-]+$/.test(s.id)));}});
-check('Substantive lessons contain instruction and a practice check',()=>{for(const g of data.guides){assert.ok(g.sections.length>=5,g.id);assert.ok(g.objectives.length>=3,g.id);assert.ok(g.checklist.length>=3,g.id);assert.ok(g.sections.some(s=>s.steps?.length>=3),g.id);assert.ok(g.sections.some(s=>s.example||s.table),g.id);const text=JSON.stringify(g.sections);assert.ok(text.split(/\s+/).length>450,g.id);}});
-check('Sources are public HTTPS links',()=>{for(const g of data.guides){assert.ok(g.sources.length);for(const s of g.sources){const u=new URL(s.url);assert.equal(u.protocol,'https:');assert.notEqual(u.hostname,'chatgpt.com');}}});
-check('Lifeform discovery update is dated, sourced and pending',()=>{const g=data.guides.find(g=>g.id==='lifeforms');const note=g.sections.find(s=>s.id==='discover').callout;assert.match(note.text,/5 November 2026/);assert.match(note.text,/checked 8 November/);assert.match(note.text,/pending changes/);assert.match(note.text,/servers up to one year old keep their limit/);assert.ok(g.sources.some(s=>s.url.includes('108159-changes-to-the-lifeform-discovery-limit')));});
-check('Next-lesson destinations exist',()=>{for(const g of data.guides)if(g.next)assert.ok(data.guides.some(x=>x.id===g.next),g.next);});
-check('All content tables are rectangular',()=>{for(const g of data.guides)for(const s of g.sections)if(s.table){assert.ok(s.table.headers.length>1);for(const row of s.table.rows)assert.equal(row.length,s.table.headers.length,g.id+'/'+s.id);}});
-check('Fifteen planet slots covered',()=>{const g=data.guides.find(g=>g.id==='colonization');const rows=g.sections.find(s=>s.id==='slot-table').table.rows;assert.equal(rows.length,15);assert.deepEqual(rows.map(r=>Number(r[0])),Array.from({length:15},(_,i)=>i+1));});
-check('Fusion and solar worked table arithmetic',()=>{const table=data.guides.find(g=>g.id==='energy').sections.find(s=>s.id==='table').table;for(const row of table.rows){let energy;if(row[0].startsWith('Solar')){const L=Number(row[0].match(/\d+/)[0]);energy=Math.floor(20*L*1.1**L);}else{const [F,E]=row[0].match(/\d+/g).map(Number);energy=Math.floor(30*F*(1.05+.01*E)**F);assert.equal(Number(row[3].replaceAll(',','')),Math.ceil(10*F*1.1**F));assert.equal(Number(row[4].replaceAll(',','')),Math.ceil(8*10*F*1.1**F));}assert.equal(Number(row[1].replaceAll(',','')),energy);}});
-check('Crawler example avoids capacity/output confusion',()=>{assert.equal((30+25+25)*8,640);assert.equal(640*1.1,704);assert.equal(640*50,32000);assert.equal(640*100,64000);assert.equal(704*100,70400);assert.ok(Math.abs(704*.02*1.5*1.5-31.68)<1e-10);});
-check('Historical IAS exact model and range',()=>{assert.deepEqual(iasCosts(0,2),{metal:210n,crystal:105n,deuterium:35n});assert.deepEqual(iasCosts(0,60),{metal:6177102744246n,crystal:3088551372108n,deuterium:1029517124016n});for(const pair of [[0,0],[-1,2],[2,1],[0,101],[NaN,5],[1.5,7]])assert.throws(()=>iasCosts(...pair));});
-check('Alliance facts preserved',()=>{assert.equal(data.alliance.leader,'Lance');assert.equal(data.alliance.second,'Erik');assert.equal(data.alliance.universe,'Mars / Nembus');assert.match(data.alliance.recruitment,/Every application is considered/);});
-for(const name of names){const html=await readFile(resolve(dist,name),'utf8');check(`${name}: accessible static page structure`,()=>{assert.match(html,/<html lang="en">/);assert.equal([...html.matchAll(/<h1\b/g)].length,1);assert.match(html,/class="skip" href="#main"/);assert.match(html,/<main id="main"/);assert.doesNotMatch(html,/\{\{\w+\}\}|undefined|\[object Object\]/);const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,name+' duplicate IDs');});
- const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));for(const match of html.matchAll(/(?:href|src)="([^"#][^"]*|#[^"]+)"/g)){const href=match[1].replaceAll('&amp;','&');if(/^(https:|data:)/.test(href))continue;const [filename,fragment]=href.split('#');const file=(filename||name).split('?')[0];const full=resolve(dist,file);assert.ok(full.startsWith(dist));assert.ok((await stat(full)).isFile(),name+' → '+href);if(fragment){const target=file===name?ids:new Set([...String(await readFile(full,'utf8')).matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));assert.ok(target.has(fragment),name+' missing anchor '+href);}}
- check(`${name}: no private data or unwanted integrations`,()=>assert.doesNotMatch(html,/chatgpt\.com\/c\/|discord\.gg\/|ghp_|sk-proj-|AIza|google-analytics|gtag\(|s178-us\.ogame|Bernard Star|Harvest/));
+import vm from 'node:vm';
+import {pages, destination, render, origin} from './build.mjs';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+assert.equal(new Set(pages).size, 17);
+for (const invalid of ['../index.html', '//evil.example/', 'https://evil.example/', 'guide-unknown.html', 'index.html?next=https://evil.example', '%2e%2e/index.html', '']) {
+  assert.throws(() => destination(invalid), /Unknown legacy/);
 }
-const coop=await readFile(resolve(dist,'cooperation.html'),'utf8');check('Cooperation explicitly remains undetermined',()=>assert.match(coop,/Mechanics and procedures are not yet confirmed/));
-const orion=await readFile(resolve(dist,'guide-orion.html'),'utf8');check('Orion later-patch caveats precede historical calculator',()=>{assert.ok(orion.indexOf('beta15')<orion.indexOf('id="calculator"'));assert.match(orion,/not a current live-server/i);});
-const index=await readFile(resolve(dist,'index.html'),'utf8');check('Home is a learning library with separate style paths',()=>{assert.match(index,/id="play-styles"/);assert.match(index,/id="guides"/);assert.doesNotMatch(index,/<dialog/);assert.equal([...index.matchAll(/data-guide-card /g)].length,9);});
-console.log(`${passed} checks passed; ${names.length} HTML pages, local links, downloads, source URLs and formulas validated.`);
+const cases = [
+  ['', ''], ['?q=fleet&sort=asc', '#fleetsaving'],
+  ['?next=https://evil.example/&x=%3Cscript%3E', '#//evil.example/'],
+  ['?q=%E2%98%85+fleet&x=1&x=2', '#research%20costs'],
+  ['', '#energy'], ['?q=test', '']
+];
+for (const folder of [root, path.join(root, 'dist')]) {
+  const actualPages = (await readdir(folder)).filter(name => name.endsWith('.html')).sort();
+  assert.deepEqual(actualPages, [...pages].sort(), 'No missing or unexpected HTML entry points');
+  for (const page of pages) {
+    const html = await readFile(path.join(folder, page), 'utf8');
+    assert.equal(html, render(page), `Generated page drift: ${page}`);
+    const base = destination(page);
+    assert.ok(html.includes(`<link rel="canonical" href="${base}">`));
+    assert.ok(html.includes(`<noscript><meta http-equiv="refresh" content="0; url=${base}"></noscript>`));
+    assert.ok(html.includes(`<a id="destination" href="${base}">`));
+    assert.ok(html.includes('<html lang="en">') && html.includes('<main>') && html.includes('<h1>'));
+    assert.ok(!/\b(?:src|href)="(?:assets|data|downloads)\//.test(html), 'No stale dependencies');
+    const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)];
+    assert.equal(scripts.length, 1);
+    for (const [search, hash] of cases) {
+      let replacement;
+      const link = {};
+      vm.runInNewContext(scripts[0][1], {
+        window: {location: {search, hash, replace(value) { replacement = value; }}},
+        document: {getElementById(id) { assert.equal(id, 'destination'); return link; }}
+      });
+      assert.equal(replacement, base + search + hash, 'Exact page/query/hash preservation');
+      assert.equal(link.href, replacement);
+      assert.equal(new URL(replacement).origin, origin, 'Query/fragment cannot change destination origin');
+    }
+  }
+}
+const manifest = JSON.parse(await readFile(path.join(root, 'build-manifest.json'), 'utf8'));
+assert.deepEqual(manifest, JSON.parse(await readFile(path.join(root, 'dist/build-manifest.json'), 'utf8')));
+assert.deepEqual(manifest.files.filter(name => name.endsWith('.html')).sort(), [...pages].sort());
+console.log(`PASS: ${pages.length} pages in published + dist output; 204 redirect scenarios; 7 unsafe paths rejected; canonical/no-JS/accessible links checked.`);
