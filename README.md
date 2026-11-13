@@ -1,5 +1,20 @@
 # Project Orion Alliance Field Guide
 
+<!-- historian-overview:start -->
+## Project overview
+
+| Field | Project |
+|---|---|
+| Purpose | OGame Project Orion PTS field guide, research and calculators. |
+| Status | Active PTS guide; observations, confirmed formulas and unknowns remain distinct. |
+| Owner | Repository: TheIlluminate92. Worker: Unassigned; project worker not recorded. |
+| Continue here | [Current work / guidance](docs/NEXT_SESSION.md) · [Checks / context](docs/CURRENT_STATE.md) |
+| Related projects | Independent scope; no related repository is designated here. |
+
+Documentation reviewed October 27, 2026. Existing evidence dates below still apply;
+this overview is not a new release, deployment or live-system verification.
+<!-- historian-overview:end -->
+
 A fast-moving, static GitHub Pages briefing for OGame Project Orion on the public test server.
 
 **Live site:** https://theilluminate92.github.io/ogame-project-orion/
