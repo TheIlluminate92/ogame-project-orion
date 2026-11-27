@@ -2,6 +2,12 @@
 
 Use this file when continuing the Project Orion guide from a blank chat.
 
+## November 27 documentation reconciliation
+
+The [README](../README.md) now includes a source map and troubleshooting pointers.
+The [repository instructions](../AGENTS.md) record the handoff policy and the limits of the IAS cost evidence.
+This documentation update leaves the guide version, formulas and evidence dates intact.
+
 ## Start here
 
 - Repository: https://github.com/TheIlluminate92/ogame-project-orion

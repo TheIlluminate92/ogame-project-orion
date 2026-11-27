@@ -1,5 +1,42 @@
 # Project Orion Alliance Field Guide
 
+<!-- reader-guide:start -->
+## Meet the project
+
+An illustrated field guide and calculator for OGame's Project Orion test-server mechanics. Readers can learn the system, compare calculations and see which observations remain uncertain.
+
+### What it is built with
+
+Static HTML/CSS and browser JavaScript; JavaScript data modules hold dated evidence; Node.js scripts validate formulas and generate research artifacts. No application server or database is required.
+
+### Find your way around
+
+| Start here | What you will find |
+|---|---|
+| [docs/NEXT_SESSION.md](docs/NEXT_SESSION.md) | Where a maintainer resumes. |
+| [docs/CURRENT_STATE.md](docs/CURRENT_STATE.md) | Known facts, assumptions and gaps. |
+| [data/orion-data.js](data/orion-data.js) | Canonical frequently changing facts. |
+| [assets/calculators.js](assets/calculators.js) | Calculator behavior. |
+| [scripts/validate.mjs](scripts/validate.mjs) | Offline validation. |
+
+### When something goes wrong
+
+Start by reading the relevant source or guide below. These are investigation
+starting points, not instructions to change a live system.
+
+| Symptom or question | First place to look |
+|---|---|
+| Wrong value or explanation | Trace it to orion-data.js and its evidence classification; keep observations separate from estimates. |
+| Calculator disagrees | Compare its formula and inputs with the validator before changing a displayed number. |
+| Legacy SKIE link | The separate SKIE repository now owns that manual; this repository retains redirect/history context. |
+
+The repository owner maintains this project; a dedicated technical worker is not recorded.
+
+Reader guide reviewed November 12, 2026 against repository source and available
+owner records. Existing test, deployment and recovery evidence keeps its original
+date; this prose review did not run the application or test a restore.
+<!-- reader-guide:end -->
+
 A fast-moving, static GitHub Pages briefing for OGame Project Orion on the public test server.
 
 **Live site:** https://theilluminate92.github.io/ogame-project-orion/
@@ -22,7 +59,7 @@ Most routine updates only require editing [`data/orion-data.js`](data/orion-data
 3. Increment `meta.revision` using the versioning rules in [`AGENTS.md`](AGENTS.md): patch for evidence/copy/style/bug fixes, minor for new user-facing capabilities, and major for a substantial redesign or stable post-PTS edition.
 4. Add one short entry at the top of `changelog`.
 5. Run `node scripts/validate.mjs`.
-6. Commit and push to `main`; GitHub Pages redeploys automatically from the repository root.
+6. Follow the issue-linked pull request workflow in [`AGENTS.md`](AGENTS.md). An approved merge to `main` triggers GitHub Pages.
 
 Keep confirmed information separate from `unknowns`. PTS behavior can change without notice, so do not silently promote testing assumptions to confirmed mechanics.
 
