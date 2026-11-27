@@ -19,7 +19,7 @@ Use this mode by default so routine Project Orion maintenance does not consume a
 - Prefer repository files and local validation. Browse only when current official facts, release notes, or source verification are required.
 - Perform one proportional local validation pass after the batch. Use browser testing only when layout or runtime behavior changed, and perform one live-site verification after publication.
 - Keep tool output focused. Avoid dumping entire large files, web pages, browser accessibility trees, or diffs when a targeted search or excerpt will answer the question.
-- Do not start or repeat GitHub device-authentication flows inside the Codex sandbox. It cannot access the user's Windows keyring. Commit locally, give the user one `git push origin main` command, and verify the result once after the user confirms the push.
+- Use the existing authorized GitHub session. If it cannot push the topic branch, report the access blocker and keep the local commit. Do not start or repeat GitHub device authentication in the sandbox.
 - Recommend a fresh chat when moving to a distinct phase such as calculator development, mission-database design, evidence intake, or release research. The handoff files exist so the full previous conversation does not need to be carried forward.
 
 ## Evidence rules
@@ -69,15 +69,15 @@ Keep calculation controls off the homepage. Keep raw observation dumps out of pu
 - Each resource component is floored independently.
 - IAS levels stack across planets for account-wide anomaly progression.
 - The cross-planet planner balances levels as evenly as possible because the construction curve is exponential.
-- Exact cost calculations use `BigInt` and the rational multiplier `7/5`; do not replace them with floating-point math.
-- Construction costs currently match supplied PTS observations through IAS level 35. Higher levels are formula projections.
+- Exact cost calculations use JavaScript `BigInt` (whole-number arithmetic) and the ratio `3/2`, which is exactly `1.5`. At each level, calculate each resource as `Base × 3^(L − 1) / 2^(L − 1)` and discard its fractional part before adding it to the total; do not replace this with floating-point math.
+- The earlier observations through IAS level 35 apply to the pre-beta13 curve. The current beta13 ×1.5 model has no fresh PTS cost checkpoints; its outputs, including level-60 totals, remain projections pending verification.
 
 ## Routine update workflow
 
-1. Add or revise the smallest relevant record in `data/orion-data.js`.
-2. Keep observed samples separate from confirmed formulas.
-3. Increment the revision using the rules above and prepend a changelog entry.
-4. Run:
+1. Link or open a GitHub issue, fetch current `main`, and create a topic branch for the change.
+2. Add or revise the smallest relevant record in `data/orion-data.js`. Keep observed samples separate from confirmed formulas.
+3. Increment the revision using the rules above and prepend a changelog entry when facts or behavior change.
+4. Run the applicable checks:
 
    ```text
    node --check assets/app.js
@@ -89,16 +89,16 @@ Keep calculation controls off the homepage. Keep raw observation dumps out of pu
    git diff --check
    ```
 
-5. Commit locally with a short description of the evidence or feature.
-6. Give the user one `git push origin main` command. Do not attempt device authentication from the sandbox.
-7. After the user confirms the push, verify the live page and revision once.
+5. Commit and push the topic branch. Open a pull request targeting `main` with the issue, evidence summary, and actual test results. Use `Closes #N` only if the merge resolves the issue.
+6. The [default-branch ruleset](https://github.com/TheIlluminate92/ogame-project-orion/rules/28213937) requires a pull request and squash merge on `main`. Keep existing checks and owner approvals, including the Pages release decision. Delete the topic branch after the merge when no dependent work uses it.
+7. After an authorized merge and Pages build, verify the live page and revision once.
 
 ## Deployment
 
 - Repository: `https://github.com/TheIlluminate92/ogame-project-orion`
 - Live site: `https://theilluminate92.github.io/ogame-project-orion/`
 - Publishing source: `main` branch, repository root.
-- Never request or commit a GitHub token. The user performs the final push from normal PowerShell using the persistent Windows GitHub login.
+- Never request or commit a GitHub token. An approved merge to the publishing branch can trigger Pages publication.
 
 ## Before handing off
 

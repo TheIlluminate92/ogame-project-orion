@@ -9,7 +9,7 @@ Use this file when continuing the Project Orion guide from a blank chat.
 - Current revision: **0.19.6**
 - Branch: `main`
 - Mission dataset: 39 ten-system, 38 fifty-system, and 70 150-system scan cards plus one collected reward sample; workbook generated from the JSON source using `scripts/build-mission-workbook.mjs`.
-- Deployment: revision 0.19.3 is the latest verified on GitHub Pages; revisions 0.19.4 through 0.19.6 are locally prepared awaiting the user's push
+- Deployment evidence at this checkpoint: revision 0.19.3 was the latest verified on GitHub Pages. Revisions 0.19.4 through 0.19.6 were prepared locally. Verify current source and published revision separately.
 - Working tree at handoff: revision 0.19.6 mission data and workbook are locally prepared; preserve the unrelated local `ERIS_STATE.md`
 
 Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/orion-data.js` is the factual source of truth.
@@ -18,7 +18,7 @@ Read `AGENTS.md`, then `docs/CURRENT_STATE.md`, before making changes. `data/ori
 
 At the start of a blank chat, the agent should give this short, non-blocking prompt before substantial work:
 
-> **Usage check:** Luna with low reasoning is recommended for routine page edits and evidence intake. Use Sol with medium reasoning only for formulas, major refactors, or difficult debugging. I will batch the work, validate once, commit locally, ask you for one final push, and perform one live verification.
+> **Usage check:** Luna with low reasoning is recommended for routine page edits and evidence intake. Use Sol with medium reasoning only for formulas, major refactors, or difficult debugging. I will batch the work, validate, and open a pull request for review.
 
 Then follow these limits:
 
@@ -27,7 +27,7 @@ Then follow these limits:
 - Browse only for current official facts or source verification.
 - Run one proportional local validation pass after the batch.
 - Use browser testing only for changed layout or runtime behavior, followed by one live check after publication.
-- Never repeat GitHub device authentication inside Codex. The sandbox cannot access the Windows keyring; commit locally and have the user run `git push origin main` once.
+- Link one issue and use a topic branch from current `main`. If the authorized session cannot push the topic branch, report the blocker. Do not repeat GitHub device authentication inside Codex.
 - Start a fresh chat when moving to a distinct project phase so the full prior conversation is not carried forward.
 
 ## Current public structure
@@ -68,9 +68,9 @@ Raw PTS observation records and the incomplete reward-scaling concept remain in 
 - Do not publish raw screenshots containing account identity, coordinates, planets, or resource balances.
 - Update the revision and changelog only when public facts or behavior change.
 - Run `node scripts/validate.mjs` and `git diff --check` before committing.
-- Commit locally, then ask the user to run one `git push origin main` from normal PowerShell.
-- After the user confirms the push, verify the Pages build and live revision once.
+- Push the topic branch and open a tested PR against `main`. Squash merge only after checks and the existing owner release approval. The Pages source is `main`, so confirm publication scope before merging.
+- After an authorized merge, verify the Pages build and live revision once.
 
 ## Blank-chat prompt
 
-> Continue the Project Orion field guide at https://github.com/TheIlluminate92/ogame-project-orion. Start by reading AGENTS.md and docs/NEXT_SESSION.md, then give me the usage-check recommendation before substantial work. Use the usage-conscious workflow: batch the edits, prefer targeted reads, browse only for current official facts, validate once, commit locally, ask me for one final `git push origin main`, and perform one live verification afterward. Preserve the evidence boundaries and do not invent unknown costs or formulas.
+> Continue the Project Orion field guide at https://github.com/TheIlluminate92/ogame-project-orion. Start by reading AGENTS.md and docs/NEXT_SESSION.md, then give me the usage-check recommendation before substantial work. Batch the edits, prefer targeted reads, browse only for current official facts, and open a tested pull request from a topic branch linked to an issue. Live verification follows an authorized publication. Preserve the evidence boundaries and do not invent unknown costs or formulas.
