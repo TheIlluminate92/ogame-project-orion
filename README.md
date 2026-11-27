@@ -59,7 +59,7 @@ Most routine updates only require editing [`data/orion-data.js`](data/orion-data
 3. Increment `meta.revision` using the versioning rules in [`AGENTS.md`](AGENTS.md): patch for evidence/copy/style/bug fixes, minor for new user-facing capabilities, and major for a substantial redesign or stable post-PTS edition.
 4. Add one short entry at the top of `changelog`.
 5. Run `node scripts/validate.mjs`.
-6. Commit and push to `main`; GitHub Pages redeploys automatically from the repository root.
+6. Follow the issue-linked pull request workflow in [`AGENTS.md`](AGENTS.md). An approved merge to `main` triggers GitHub Pages.
 
 Keep confirmed information separate from `unknowns`. PTS behavior can change without notice, so do not silently promote testing assumptions to confirmed mechanics.
 
